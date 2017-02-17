@@ -5,6 +5,7 @@
 
 # testing
 /coverage
+index.html
 
 # production
 /build
