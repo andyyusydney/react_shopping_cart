@@ -4,22 +4,8 @@
   "private": true,
   "devDependencies": {
     "gulp": "^3.9.1",
-    "node-sass": "^4.5.0",
-    "npm-run-all": "^4.0.1",
-    "react-scripts": "0.9.0"
-  },
-  "dependencies": {
-    "gulp-sass": "^3.1.0"
-  },
-  "scripts": {
-    "build-css": "node-sass src/ -o src/",
-    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1"
   },
   "main": "",
   "license": "MIT",

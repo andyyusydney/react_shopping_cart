@@ -5,7 +5,10 @@
 
 # testing
 /coverage
-index.html
+/index.html
+/src/js/index.js
+/src/scss/index.scss
+/dist/css/index.css
 
 # production
 /build
@@ -16,6 +19,3 @@ index.html
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-#css
-src/**/*.css
