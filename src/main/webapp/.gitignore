@@ -8,7 +8,7 @@
 /index.html
 /src/js/index.js
 /src/scss/index.scss
-/dist/css/index.css
+/dist
 
 # production
 /build
