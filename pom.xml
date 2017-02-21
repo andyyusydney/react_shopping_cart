@@ -111,12 +111,12 @@
                             <goal>compile</goal>
                         </goals>
                         <configuration>
-                            <inputPath>${project.basedir}/src/main/content/jcr_root/etc/designs/webapp/styles</inputPath>
-                            <includePath>${project.basedir}/src/main/content/jcr_root/etc/designs/webapp/sass:${project.basedir}/src/main/content/jcr_root/apps/webapp/components</includePath>
-                            <outputPath>${project.basedir}/src/main/content/jcr_root/etc/designs/webapp/css</outputPath>
+                            <inputPath>${project.basedir}/src/main/webapp/src/scss/foxtel-header-footer.scss:${project.basedir}/src/main/webapp/src/scss/foxtel-main-style.scss</inputPath>
+                            <includePath>${project.basedir}/src/main/webapp/src/scss/header-footer:${project.basedir}/src/main/webapp/src/scss/main</includePath>
+                            <outputPath>${project.basedir}/src/main/webapp/build/css</outputPath>
                             <outputStyle>compressed</outputStyle>
                             <generateSourceMap>true</generateSourceMap>
-                            <sourceMapOutputPath>${project.basedir}/src/main/content/jcr_root/etc/designs/webapp/css</sourceMapOutputPath>
+                            <sourceMapOutputPath>${project.basedir}/src/main/webapp/build/css</sourceMapOutputPath>
                             <omitSourceMapingURL>true</omitSourceMapingURL>
                         </configuration>
                     </execution>
