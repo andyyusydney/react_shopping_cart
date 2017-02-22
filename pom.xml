@@ -56,26 +56,35 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.github.warmuuh</groupId>
-                <artifactId>libsass-maven-plugin</artifactId>
-                <version>0.1.6-libsass_3.2.4</version>
+                <groupId>org.jasig.maven</groupId>
+                <artifactId>sass-maven-plugin</artifactId>
+                <version>1.1.0</version>
                 <executions>
                     <execution>
-                        <id>compile-sass</id>
+                        <id>compilecss</id>
+                        <phase>process-resources</phase>
                         <goals>
-                            <goal>compile</goal>
+                            <goal>update-stylesheets</goal>
                         </goals>
-                        <configuration>
-                            <inputPath>${sass.root.path}/foxtel-header-footer.scss:${sass.root.path}/foxtel-main-style.scss</inputPath>
-                            <includePath>${sass.root.path}/header-footer:${sass.root.path}/main</includePath>
-                            <outputPath>${project.build.directory}/dist/build/css</outputPath>
-                            <outputStyle>compressed</outputStyle>
-                            <generateSourceMap>true</generateSourceMap>
-                            <sourceMapOutputPath>${project.build.directory}/dist/build/css</sourceMapOutputPath>
-                            <omitSourceMapingURL>true</omitSourceMapingURL>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <resources>
+                        <resource>
+                            <source>
+                                <directory>
+                                    ${basedir}/src/main/webapp/src/scss
+                                </directory>
+                                <includes>
+                                    <include>**/*.scss</include>
+                                </includes>
+                            </source>
+                            <destination>
+                                ${project.build.directory}/dist/build/static
+                            </destination>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -91,7 +100,7 @@
                             <outputDirectory>${project.build.directory}/vault-work/jcr_root/etc/designs/static</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.build.directory}/dist/build</directory>
+                                    <directory>${project.build.directory}/dist/build/static</directory>
                                 </resource>
                             </resources>
                         </configuration>
