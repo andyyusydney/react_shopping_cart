@@ -22,39 +22,7 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-content-resources</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${basedir}/src/main/content</directory>
-                                    <targetPath>vault-work</targetPath>
-                                    <filtering>true</filtering>
-                                    <excludes>
-                                        <exclude>**/.svn</exclude>
-                                        <exclude>**/.vlt</exclude>
-                                        <exclude>**/.vltignore</exclude>
-                                        <exclude>**/.DS_Store</exclude>
-                                    </excludes>
-                                </resource>
-                                <resource>
-                                    <directory>${basedir}/src/main/webapp</directory>
-                                    <targetPath>dist</targetPath>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>org.jasig.maven</groupId>
                 <artifactId>sass-maven-plugin</artifactId>
@@ -101,6 +69,10 @@
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}/dist/build/static</directory>
+                                    <includes>
+                                        <include>foxtel-main-style.css</include>
+                                        <include>foxtel-header-footer.css</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
