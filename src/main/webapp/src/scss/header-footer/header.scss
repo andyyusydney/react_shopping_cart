@@ -1,6 +1,78 @@
-//dummy css to test the scss compile
 .foxtel-header{
-text-align:center;
-padding:0;
-margin:0;
+  display:flex;
+  justify-content: space-between;
+  font-size:18px;
+  background: #181818;
+  color:#fff;
+  height:60px;
+  overflow:hidden;
+  font-family:"ProximaNova",arial,sans-serif;
+  font-weight:bold;
+  align-items: center;
+}
+.foxtel-header__left{
+  display:flex;
+}
+.foxtel-header__left__logo{
+  margin-right:45px;
+}
+.foxtel-header__left__nav{
+  display:flex;
+  list-style-type:none;
+  li{
+    margin-right:20px;
+    @include breakpoint(tablet) {
+      margin-right:30px;
+    }
+    @include breakpoint(laptop) {
+      margin-right:45px;
+    }
+    a{
+      color:#fff;
+    }
+  }
+}
+.foxtel-header__right{
+  display:flex;
+}
+.foxtel-header__right__more{
+  display:flex;
+  align-items:center;
+}
+.foxtel-header__right__more__login{
+  a{
+    display:flex;
+    width: 117px;
+    height: 45px;
+    border-radius: 2px;
+    justify-content: center;
+    align-items:center;
+    background-color: #ffffff;
+    color:#3a3a3a;
+  }
+}
+.foxtel-header__right__more__divider{
+  width: 1px;
+  height: 30px;
+  opacity: 0.2;
+  background-color: #ffffff;
+  margin:0 15px;
+  @include breakpoint(laptop) {
+    margin:0 30px;
+  }
+}
+.foxtel-header__right__more__tv-guide{
+  a{
+    display:flex;
+    width: 117px;
+    height: 45px;
+    border-radius: 2px;
+    border: 1px solid #979797;
+    justify-content: center;
+    align-items:center;
+    color:#fff;
+  }
+}
+.foxtel-header__right__search{
+
 }

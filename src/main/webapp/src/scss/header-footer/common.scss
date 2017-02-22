@@ -1,0 +1,35 @@
+/*********************
+FONT
+*********************/
+
+@font-face {
+  font-family: "ProximaNova";
+  src: url('https://www-sit3.aws.foxtel.com.au/etc/designs/foxtel/assets/fonts/proxima-nova/ProximaNova-Reg-webfont.eot?#iefix') format('embedded-opentype'),
+  url('https://www-sit3.aws.foxtel.com.au/etc/designs/foxtel/assets/fonts/proxima-nova/ProximaNova-Reg-webfont.woff') format('woff'),
+  url('https://www-sit3.aws.foxtel.com.au/etc/designs/foxtel/assets/fonts/proxima-nova/ProximaNova-Reg-webfont.ttf') format('truetype'),
+  url('https://www-sit3.aws.foxtel.com.au/etc/designs/foxtel/assets/fonts/proxima-nova/ProximaNova-Reg-webfont.svg#wf') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*********************
+BREAKPOINTS
+*********************/
+
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (min-width: 1200px) { @content ; }
+  }
+  @else if $point == laptop {
+    @media (min-width: 992px) { @content ; }
+  }
+  @else if $point == tablet {
+    @media (min-width: 768px) { @content ; }
+  }
+  @else if $point == phablet {
+    @media (min-width: 576px)  { @content ; }
+  }
+  @else if $point == mobileOnly {
+    @media (max-width: 575px)  { @content ; }
+  }
+}
