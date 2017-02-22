@@ -41,10 +41,10 @@
                         <resource>
                             <source>
                                 <directory>
-                                    ${basedir}/src/main/webapp/src/scss
+                                    ${basedir}/src/main/webapp/src/scss/temp
                                 </directory>
                                 <includes>
-                                    <include>**/*.scss</include>
+                                    <include>foxtel-header-footer.scss</include>
                                 </includes>
                             </source>
                             <destination>
