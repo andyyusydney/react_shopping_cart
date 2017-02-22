@@ -41,7 +41,7 @@
                         <resource>
                             <source>
                                 <directory>
-                                    ${basedir}/src/main/webapp/src/scss/temp
+                                    ${basedir}/src/main/webapp/src/scss/stylesheet
                                 </directory>
                                 <includes>
                                     <include>foxtel-header-footer.scss</include>
@@ -59,13 +59,28 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
+                        <id>copy-content-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/vault-work/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/content</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>copy-generated-resources</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/vault-work/jcr_root/etc/designs/static</outputDirectory>
+                            <outputDirectory>${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel/static</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}/dist/build/static</directory>
@@ -77,6 +92,7 @@
                             </resources>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
             <plugin>
