@@ -1,0 +1,24 @@
+.foxtel-breadcrumb{
+  width:100%;
+  border:1px solid rgba(255, 255, 255, 0.25);
+  font-family:"ProximaNova",arial,sans-serif;
+  font-size:14px;
+}
+.foxtel-breadcrumb__nav{
+  li{
+    display:inline-block;
+    &:after{
+      content:" > ";
+      display:inline-block;
+    }
+    &:last-child:after{
+      content:"";
+    }
+    a{
+      color:#fff;
+      &:last-child{
+        border-bottom:3px solid #fff;
+      }
+    }
+  }
+}

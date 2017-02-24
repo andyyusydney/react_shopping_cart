@@ -1,6 +1,18 @@
-//dummy css to test the scss compile
 .foxtel-footer{
-text-align:center;
-padding:0;
-margin:2px;
+  font-family:"ProximaNova",arial,sans-serif;
+  font-size: 12px;
+}
+.foxtel-footer__copyright{
+  color:#fff;
+  margin-right:60px;
+}
+.foxtel-footer__nav{
+  li{
+    list-style-type:none;
+    padding:0;
+    margin-right:15px;
+    a{
+      color:#fff;
+    }
+  }
 }

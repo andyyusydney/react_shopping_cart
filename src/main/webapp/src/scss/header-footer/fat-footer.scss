@@ -1,0 +1,32 @@
+.foxtel-fat-footer{
+  font-family:"ProximaNova",arial,sans-serif;
+  font-size: 18px;
+}
+
+.foxtel-fat-footer__column{
+  float:left;
+  @include breakpoint(tablet) {
+    margin-right:45px;
+  }
+  @include breakpoint(desktop) {
+    margin-right:60px;
+  }
+  &:last-child{
+    margin-right:0;
+  }
+}
+
+.foxtel-fat-footer__column__title{
+  color: #454545;
+  opacity: 0.5;
+  margin-bottom:30px;
+}
+
+.foxtel-fat-footer__list{
+  li{
+    margin-bottom:15px;
+    a{
+      color: #454545;
+    }
+  }
+}

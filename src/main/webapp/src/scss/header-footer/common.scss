@@ -13,7 +13,7 @@ FONT
 }
 
 /*********************
-BREAKPOINTS
+MIXIN
 *********************/
 
 @mixin breakpoint($point) {
@@ -32,4 +32,27 @@ BREAKPOINTS
   @else if $point == mobileOnly {
     @media (max-width: 575px)  { @content ; }
   }
+}
+
+@mixin make-foxtel-container{
+  width:100%;
+  @include breakpoint(mobileOnly){
+    padding:0 15px;
+  }
+  @include breakpoint(tablet) {
+    width:720px;
+  }
+  @include breakpoint(laptop) {
+    width:960px;
+  }
+  @include breakpoint(desktop) {
+    width:1140px;
+  }
+}
+
+/*********************
+COMMON STYLE
+*********************/
+.foxtel-container{
+  @include make-foxtel-container();
 }
