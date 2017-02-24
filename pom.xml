@@ -80,7 +80,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel-ui</outputDirectory>
+                            <outputDirectory>${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel-ui/resources</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}/dist/build/static</directory>
