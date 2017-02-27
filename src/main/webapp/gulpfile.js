@@ -8,9 +8,9 @@ gulp.task('sass', function () {
     return gulp.src('./src/scss/stylesheet/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-        //.pipe(sourcemaps.write('../maps'))
-        //.pipe(gulp.dest('./dist/build/static'));
-        .pipe(gulp.dest('../../../target/vault-work/jcr_root/etc/designs/foxtel-ui'));
+        .pipe(sourcemaps.write('../maps'))
+        .pipe(gulp.dest('./dist/build/static'));
+        //.pipe(gulp.dest('../../../target/vault-work/jcr_root/etc/designs/foxtel-ui'));
 });
 
 gulp.task('sass:watch', function () {

@@ -18,6 +18,8 @@
     <properties>
         <maven.test.skip>true</maven.test.skip>
         <sass.root.path>${project.basedir}/src/main/webapp/src/scss</sass.root.path>
+        <js.root.path>${project.basedir}/src/main/webapp/src/js</js.root.path>
+        <vendor.root.path>${project.basedir}/src/main/webapp/vendor</vendor.root.path>
     </properties>
 
     <build>
@@ -41,7 +43,7 @@
                         <resource>
                             <source>
                                 <directory>
-                                    ${basedir}/src/main/webapp/src/scss/stylesheet
+                                    ${sass.root.path}/stylesheet
                                 </directory>
                                 <includes>
                                     <include>foxtel-header-footer.scss</include>
@@ -54,6 +56,7 @@
                     </resources>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -69,6 +72,24 @@
                             <resources>
                                 <resource>
                                     <directory>src/main/content</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-vendor-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel-ui/resources</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/webapp/vendor/bootstrap/css</directory>
+                                    <includes>
+                                        <include>*.min.css</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -92,7 +113,6 @@
                             </resources>
                         </configuration>
                     </execution>
-
                 </executions>
             </plugin>
             <plugin>
