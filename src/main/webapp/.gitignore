@@ -9,7 +9,7 @@
 /src/js/index.js
 /src/scss/index.scss
 /dist
-
+../../../local-resource
 # production
 /build
 
