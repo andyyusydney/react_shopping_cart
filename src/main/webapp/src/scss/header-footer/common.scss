@@ -55,4 +55,5 @@ COMMON STYLE
 *********************/
 .foxtel-container{
   @include make-foxtel-container();
+  margin:0 auto;
 }
