@@ -1,0 +1,48 @@
+/* Extend Bootstrap jumbotron class */
+
+.foxtel-jumbotron {
+	color: grey;
+	padding: 20px 50px;
+	-webkit-box-shadow: 2px 3px 10px 0px #ccc;
+  	-moz-box-shadow:    2px 3px 10px 0px #ccc;
+  	box-shadow:         2px 3px 10px 0px #ccc;
+}
+
+.foxtel-jumbotron--shopping-cart {
+	display: table;
+}
+
+.foxtel-jumbotron--shopping-cart__description,
+.foxtel-jumbotron--shopping-cart__summary {
+	display: table-cell;
+	padding: 0 50px;
+}
+
+.foxtel-jumbotron--shopping-cart__summary {
+	font-weight: bold;
+}
+
+.foxtel-jumbotron--shopping-cart__summary__total-cost {
+	display: table;
+	padding: 20px 0;
+	width: 100%;
+	font-size: 1.25em;
+}
+
+.foxtel-jumbotron--shopping-cart__summary__total-cost sub {
+	font-weight: normal;
+	bottom: 0;
+	font-size: 0.6em;
+}
+
+.foxtel-jumbotron--shopping-cart__summary__total-cost sup {
+	font-weight: normal;
+}
+
+.foxtel-jumbotron--shopping-cart__summary__total-cost p{
+	display: table-cell;
+}
+
+.foxtel-jumbotron--shopping-cart__summary__total-cost p:last-child{
+	font-size: 1.5em;
+}
