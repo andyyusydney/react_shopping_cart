@@ -1,8 +1,12 @@
-
 // --------------------------------------------------
-// CQ AUTHOR styles are being in CQ author mode.
+// CQ author mode only styles
 // --------------------------------------------------
-
+.author-mode-wrapper{
+    border:3px dashed blue;
+}
+.author-mode-wrapper__msg{
+    color:blue;
+}
 .comp-edit-wrap {
     background: transparent;
     padding: 0 5px 5px 4px;
