@@ -1,0 +1,39 @@
+
+// --------------------------------------------------
+// CQ AUTHOR styles are being in CQ author mode.
+// --------------------------------------------------
+
+.comp-edit-wrap {
+    background: transparent;
+    padding: 0 5px 5px 4px;
+    text-align: right;
+}
+.comp-edit-msg {
+    background-color: #5bc0de;
+    border: 1px solid #46b8da;
+    border-radius: 0.5em 0.5em 0.5em 0;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    padding: 0.3em 0.5em 0.25em;
+    &:hover {
+        background-color: #5DC7E8;
+        border-color: #269abc;
+        -webkit-transition: color .25s linear, background-color .25s ease-in-out, border-color .25s ease-in-out;
+        -moz-transition: color .25s linear, background-color .25s ease-in-out, border-color .25s ease-in-out;
+        -o-transition: color .25s linear, background-color .25s ease-in-out, border-color .25s ease-in-out;
+        transition: color .25s linear, background-color .25s ease-in-out, border-color .25s ease-in-out;
+    }
+}
+@media (min-width: 768px) {
+    #footer-image-content {
+        .comp-edit-wrap {
+            position: absolute;
+            bottom: 0px;
+            z-index: 999;
+            width: 300px;
+            left: 23%;
+        }
+    }
+}
