@@ -39,7 +39,7 @@
 .foxtel-header__right__more__login{
   a{
     display:flex;
-    height: 42px;
+    height: 52px;
     border-radius: 2px;
     justify-content: center;
     align-items:center;
@@ -47,18 +47,20 @@
     color:#3a3a3a;
     padding-left:20px;
     padding-right:20px;
+    margin-right:15px;
   }
 }
 .foxtel-header__right__more__tv-guide{
   a{
     display:flex;
-    height: 42px;
+    height: 52px;
     border-radius: 2px;
     border: 1px solid #979797;
     align-items:center;
     color:#fff;
     padding-left:20px;
     padding-right:20px;
+    margin-right:15px;
   }
 }
 .foxtel-header__right__divider{
