@@ -42,6 +42,11 @@
   @include breakpoint(tablet) {
     display:none;
   }
+  &:hover{
+    ul{
+      display:block;
+    }
+  }
 }
 .foxtel-header__left__nav__more__dropdown{
   position:absolute;
