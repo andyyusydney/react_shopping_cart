@@ -10,9 +10,9 @@
   }
 }
 .foxtel-breadcrumb__nav{
-  display: flex;
   li{
     list-style-type: none;
+    display:inline;
     &:after{
       content:">";
       color:#fff;
