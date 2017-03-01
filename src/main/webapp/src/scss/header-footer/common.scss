@@ -36,17 +36,22 @@ MIXIN
 
 @mixin make-foxtel-container{
   width:100%;
-  @include breakpoint(mobileOnly){
-    padding:0 15px;
-  }
+  padding-left:15px;
+  padding-right:15px;
   @include breakpoint(tablet) {
     width:720px;
+    padding-left:0;
+    padding-right:0;
   }
   @include breakpoint(laptop) {
     width:960px;
+    padding-left:0;
+    padding-right:0;
   }
   @include breakpoint(desktop) {
     width:1140px;
+    padding-left:0;
+    padding-right:0;
   }
 }
 

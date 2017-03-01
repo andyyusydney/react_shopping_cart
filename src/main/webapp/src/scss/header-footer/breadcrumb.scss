@@ -4,21 +4,35 @@
   font-family:"ProximaNova",arial,sans-serif;
   font-size:14px;
   background:#000;
+  border-bottom:1px solid rgba(255, 255, 255, 0.25);
+  a:hover, a:focus{
+    text-decoration:none;
+  }
 }
 .foxtel-breadcrumb__nav{
+  display: flex;
   li{
-    display:inline-block;
+    list-style-type: none;
     &:after{
-      content:" > ";
-      display:inline-block;
+      content:">";
+      color:#fff;
+      margin:0 10px;
     }
-    &:last-child:after{
-      content:"";
+    &:last-child{
+      &:after{
+        content:"";
+      }
+      a{
+        border-bottom:3px solid #fff;
+      }
     }
     a{
       color:#fff;
-      &:last-child{
-        border-bottom:3px solid #fff;
+      display:inline-block;
+      margin-top:13px;
+      padding-bottom:13px;
+      &:hover{
+        text-decoration:none;
       }
     }
   }
