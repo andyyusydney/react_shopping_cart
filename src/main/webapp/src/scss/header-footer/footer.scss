@@ -1,20 +1,55 @@
-.foxtel-footer{
+/* Define Foxtel Global footer */
+
+.foxtel-footer {
   clear:both;
   font-family:"ProximaNova",arial,sans-serif;
   font-size: 12px;
   background:#181818;
+  padding: 15px;
 }
-.foxtel-footer__copyright{
+
+.foxtel-footer__wrapper {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foxtel-footer__copyright {
   color:#fff;
-  margin-right:60px;
+  font-weight: bold;
 }
-.foxtel-footer__nav{
-  li{
-    list-style-type:none;
+
+.foxtel-footer__nav {
+  display: inline-flex;
+  margin-bottom: 0;
+  li {
+    list-style-type: none;
     padding:0;
-    margin-right:15px;
-    a{
-      color:#fff;
+    margin-right: 15px;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+.foxtel-fat-footer {
+  background-color: #f7f7f7;
+  overflow: hidden;
+}
+
+.foxtel-fat-footer__column__list {
+  display: inline;
+  li {
+    list-style-type: none;
+    font-weight: bold;
+    padding: 5px 0;
+    a {
+      color: #333;
     }
   }
 }

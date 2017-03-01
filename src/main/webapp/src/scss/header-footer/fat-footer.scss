@@ -1,6 +1,13 @@
 .foxtel-fat-footer{
   font-family:"ProximaNova",arial,sans-serif;
   font-size: 18px;
+  padding: 20px;
+}
+
+.foxtel-fat-footer__column-wrapper {
+  width: 760px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .foxtel-fat-footer__column{
@@ -19,7 +26,6 @@
 .foxtel-fat-footer__column__title{
   color: #454545;
   opacity: 0.5;
-  margin-bottom:30px;
 }
 
 .foxtel-fat-footer__list{

@@ -1,5 +1,10 @@
-/* Extend bootstrap button class / Redefine Foxtel button class */
+/* Extend bootstrap button class | Redefine Foxtel button class */
 
-button{
-    text-align:center;
+.foxtel-btn {
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    color: white !important;
+    font-weight: bold;
 }
