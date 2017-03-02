@@ -4,16 +4,12 @@
   padding: 20px;
 }
 
-.foxtel-fat-footer__column-wrapper {
-  width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .foxtel-fat-footer__column{
   float:left;
+  min-width: 180px;
   @include breakpoint(tablet) {
     margin-right:45px;
+    min-width: inherit;
   }
   @include breakpoint(desktop) {
     margin-right:60px;

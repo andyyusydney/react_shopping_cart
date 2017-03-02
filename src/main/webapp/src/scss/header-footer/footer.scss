@@ -3,9 +3,20 @@
 .foxtel-footer {
   clear:both;
   font-family:"ProximaNova",arial,sans-serif;
-  font-size: 12px;
-  background:#181818;
   padding: 15px;
+  width:100%;
+  border:1px solid rgba(255, 255, 255, 0.25);
+  font-family:"ProximaNova",arial,sans-serif;
+  font-size:14px;
+  background:#000;
+  border-bottom:1px solid rgba(255, 255, 255, 0.25);
+  a:hover, a:focus{
+    text-decoration:none;
+  }
+}
+
+footer {
+  padding: 0;
 }
 
 .foxtel-footer__wrapper {
@@ -15,7 +26,6 @@
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -25,9 +35,9 @@
 }
 
 .foxtel-footer__nav {
-  display: inline-flex;
   margin-bottom: 0;
   li {
+    display: inline;
     list-style-type: none;
     padding:0;
     margin-right: 15px;
