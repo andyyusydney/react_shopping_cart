@@ -15,12 +15,6 @@
     text-decoration:none;
   }
 }
-
-.foxtel-header--now{
-  @extend .foxtel-header;
-  width: 100%;
-}
-
 .foxtel-header__left{
   display:flex;
 }
@@ -92,7 +86,7 @@
     border-radius: 2px;
     justify-content: center;
     align-items:center;
-    background-color: transparent;
+    background-color: #ffffff;
     color:#3a3a3a;
     padding-left:20px;
     padding-right:20px;
@@ -125,9 +119,6 @@
       color:#fff;
     }
   }
-}
-.foxtel-header__right__free-trial{
-  @extend .foxtel-header__right__tv-guide;
 }
 .foxtel-header__right__divider{
   width: 1px;

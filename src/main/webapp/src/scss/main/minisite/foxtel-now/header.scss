@@ -1,0 +1,10 @@
+//addition header style for foxtel now site only
+
+.foxtel-header--now{
+  @extend .foxtel-header;
+  width: 100%;
+}
+
+.foxtel-header__right__free-trial{
+  @extend .foxtel-header__right__tv-guide;
+}
