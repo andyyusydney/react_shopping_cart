@@ -82,6 +82,7 @@
 }
 .foxtel-header__right__login{
   a{
+    display:flex;
     height: 52px;
     border-radius: 2px;
     justify-content: center;
@@ -107,6 +108,7 @@
 }
 .foxtel-header__right__tv-guide{
   a{
+    display:flex;
     height: 52px;
     border-radius: 2px;
     border: 1px solid rgba(255, 255, 255, 0.25);
