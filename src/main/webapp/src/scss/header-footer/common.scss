@@ -55,10 +55,36 @@ MIXIN
   }
 }
 
+@mixin make-foxtel-header-btn ($color, $bg-color){
+  display:flex;
+  height: 52px;
+  border-radius: 2px;
+  justify-content: center;
+  align-items:center;
+  background-color: $bg-color;
+  color:$color;
+  padding-left:20px;
+  padding-right:20px;
+  margin-right:15px;
+  &:hover{
+    color:$color;
+  }
+}
+
+
 /*********************
 COMMON STYLE
 *********************/
 .foxtel-container{
   @include make-foxtel-container();
   margin:0 auto;
+}
+
+.foxtel-header__btn--white{
+  @include make-foxtel-header-btn(#3a3a3a, #fff);
+}
+
+.foxtel-header__btn--transparent{
+  @include make-foxtel-header-btn(#fff, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }

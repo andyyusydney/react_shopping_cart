@@ -15,6 +15,14 @@
     text-decoration:none;
   }
 }
+/*header scrolling up pop state*/
+.foxtel-header--pop {
+  position: fixed;
+  left:0;
+  right:0;
+  background-color: #222;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
 .foxtel-header__left{
   display:flex;
 }
@@ -80,42 +88,9 @@
     align-items: center;
   }
 }
-.foxtel-header__right__login{
-  a{
-    display:flex;
-    height: 52px;
-    border-radius: 2px;
-    justify-content: center;
-    align-items:center;
-    background-color: #ffffff;
-    color:#3a3a3a;
-    padding-left:20px;
-    padding-right:20px;
-    margin-right:15px;
-    &:hover{
-      color:#3a3a3a;
-    }
-  }
-}
 .foxtel-header__right__logout{
   a{
     color:#fff;
-    margin-right:15px;
-    &:hover{
-      color:#fff;
-    }
-  }
-}
-.foxtel-header__right__tv-guide{
-  a{
-    display:flex;
-    height: 52px;
-    border-radius: 2px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    align-items:center;
-    color:#fff;
-    padding-left:20px;
-    padding-right:20px;
     margin-right:15px;
     &:hover{
       color:#fff;
