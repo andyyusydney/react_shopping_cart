@@ -92,3 +92,13 @@
 .border--left {
 	border-left: 1px solid lightgrey;
 }
+
+.foxtel-flex {
+	display: -webkit-box;
+	display: -moz-box;
+  	display: -ms-flexbox;
+  	display: -webkit-flex;
+  	display: flex;
+  	justify-content: space-between;
+  	align-items: center;
+}
