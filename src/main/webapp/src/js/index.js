@@ -12,6 +12,10 @@ $(document).ready(function(){
 
   //set default value
   $progressBarComp.on('click','.progress-bar-dot-wrapper',function(){
+    $this = $(this);
+    var dataLink = $this.data('status-link');
+    alert("goes to "+dataLink);
+
     if ($(this).hasClass('first')){
 
         $('#progress-bar').val('0');
