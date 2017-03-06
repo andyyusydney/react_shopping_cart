@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     // TOP NAV SMART SCROLLING FEATURE
-    var topnav = $('.foxtel-header');
+    var topnav = $('.foxtel-header-breadcrumb-wrapper');
     var topnavH = topnav.height();
     var topnavStatus;
     var currentScroll = 0;
@@ -27,7 +27,7 @@ $(document).ready(function(){
 
                         // TOPNAV SLIDES BACK AWAY
                         topnav.clearQueue().stop().animate({marginTop: -topnavH}, 300, function(){
-                            topnav.removeClass('foxtel-header--pop');
+                            topnav.removeClass('foxtel-header-breadcrumb--pop');
                         });
                     }
                 }
@@ -41,13 +41,13 @@ $(document).ready(function(){
                         // TOPNAV POPS DOWN
                         topnav.clearQueue().stop().css('margin-top',-topnavH).animate({marginTop: 0}, 300);
                     }
-                    topnav.addClass('foxtel-header--pop');
+                    topnav.addClass('foxtel-header-breadcrumb--pop');
                 }
             }
 
             // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
         } else {
-            topnav.removeClass('foxtel-header--pop');
+            topnav.removeClass('foxtel-header-breadcrumb--pop');
         }
 
         // SET CURRENT AS LAST SCROLL

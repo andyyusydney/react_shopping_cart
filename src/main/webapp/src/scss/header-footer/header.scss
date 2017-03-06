@@ -1,10 +1,22 @@
+.foxtel-header-breadcrumb-wrapper{
+  background: grey;
+}
+
+/*foxtel header breadcrumb scrolling up pop state*/
+.foxtel-header-breadcrumb--pop {
+  position: fixed;
+  left:0;
+  right:0;
+  background-color: #222;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
 /* Foxtel header styles */
 
 .foxtel-header{
   display:flex;
   justify-content: space-between;
   font-size:18px;
-  background: grey;
   color:#fff;
   height:75px;
   font-family:"ProximaNova",arial,sans-serif;
@@ -14,14 +26,6 @@
   a:hover, a:focus{
     text-decoration:none;
   }
-}
-/*header scrolling up pop state*/
-.foxtel-header--pop {
-  position: fixed;
-  left:0;
-  right:0;
-  background-color: #222;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 .foxtel-header__left{
   display:flex;
@@ -37,6 +41,7 @@
 }
 .foxtel-header__left__nav{
   display:flex;
+  align-items: center;
   list-style-type:none;
   margin:0;
   padding-left:0;
