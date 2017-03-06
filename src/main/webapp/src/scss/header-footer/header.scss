@@ -23,7 +23,7 @@
   font-weight:bold;
   align-items: center;
   border-bottom:1px solid rgba(255, 255, 255, 0.25);
-  a:hover, a:focus{
+  a, a:hover, a:focus{
     text-decoration:none;
   }
 }
@@ -82,7 +82,8 @@
       white-space: nowrap;
       padding:15px;
       border-bottom:1px solid #efefef;
-      display:block;
+      display:flex;
+      align-items:center;
       &:hover{
         color: #191919;
       }
@@ -100,6 +101,8 @@
   a{
     color:#fff;
     margin-right:15px;
+    display: flex;
+    align-items: center;
     &:hover{
       color:#fff;
     }
@@ -115,4 +118,6 @@
   color: #ffffff;
   opacity:0.5;
   font-weight:normal;
+  display:flex;
+  align-items: center;
 }
