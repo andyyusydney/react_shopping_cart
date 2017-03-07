@@ -1,27 +1,31 @@
+.foxtel-header-breadcrumb-wrapper{
+  background: grey;
+}
+
+/*foxtel header breadcrumb scrolling up pop state*/
+.foxtel-header-breadcrumb--pop {
+  position: fixed;
+  left:0;
+  right:0;
+  background-color: #222;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
 /* Foxtel header styles */
 
 .foxtel-header{
   display:flex;
   justify-content: space-between;
   font-size:18px;
-  background: grey;
   color:#fff;
   height:75px;
   font-family:"ProximaNova",arial,sans-serif;
   font-weight:bold;
   align-items: center;
   border-bottom:1px solid rgba(255, 255, 255, 0.25);
-  a:hover, a:focus{
+  a, a:hover, a:focus{
     text-decoration:none;
   }
-}
-/*header scrolling up pop state*/
-.foxtel-header--pop {
-  position: fixed;
-  left:0;
-  right:0;
-  background-color: #222;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 .foxtel-header__left{
   display:flex;
@@ -37,6 +41,7 @@
 }
 .foxtel-header__left__nav{
   display:flex;
+  align-items: center;
   list-style-type:none;
   margin:0;
   padding-left:0;
@@ -77,7 +82,8 @@
       white-space: nowrap;
       padding:15px;
       border-bottom:1px solid #efefef;
-      display:block;
+      display:flex;
+      align-items:center;
       &:hover{
         color: #191919;
       }
@@ -95,6 +101,8 @@
   a{
     color:#fff;
     margin-right:15px;
+    display: flex;
+    align-items: center;
     &:hover{
       color:#fff;
     }
@@ -110,4 +118,6 @@
   color: #ffffff;
   opacity:0.5;
   font-weight:normal;
+  display:flex;
+  align-items: center;
 }
