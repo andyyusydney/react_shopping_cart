@@ -93,6 +93,10 @@
 	border-left: 1px solid lightgrey;
 }
 
+.border--bold {
+	border-width: 5px;
+}
+
 .foxtel-flex {
 	display: -webkit-box;
 	display: -moz-box;
@@ -101,4 +105,12 @@
   	display: flex;
   	justify-content: space-between;
   	align-items: center;
+}
+
+.font-bold {
+	font-weight: bold;
+}
+
+.font-14 {
+	font-size: 14px;
 }
