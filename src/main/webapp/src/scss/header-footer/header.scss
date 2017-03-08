@@ -3,6 +3,7 @@
 }
 
 /*foxtel header breadcrumb scrolling up pop state*/
+
 .foxtel-header-breadcrumb--pop {
   position: fixed;
   left:0;
@@ -120,4 +121,11 @@
   font-weight:normal;
   display:flex;
   align-items: center;
+}
+
+/* Foxtel Now */
+
+.foxtel-header__right__wrapper {
+  margin-left: 20px;
+  margin-right: 20px; 
 }
