@@ -77,6 +77,9 @@ COMMON STYLE
   margin:0 auto;
 }
 
+/*********************
+BUTTON STYLE
+*********************/
 .foxtel-header__btn--white{
   @include make-foxtel-header-btn(#3a3a3a, #fff);
 }

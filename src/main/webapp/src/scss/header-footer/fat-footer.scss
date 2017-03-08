@@ -34,9 +34,11 @@
 
 .foxtel-fat-footer__list{
   padding:0;
+  font-weight:bold;
   li{
     list-style:none;
-    margin-bottom:10px;
+    margin-bottom:15px;
+    line-height:110%;
     a{
       color: #fff;
     }

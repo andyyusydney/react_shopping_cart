@@ -2,16 +2,33 @@
   font-family:"ProximaNova",arial,sans-serif;
   font-size: 12px;
   background-color: #1e1e1e;
+  padding:15px 0;
+  .foxtel-container{
+    @include breakpoint(tablet) {
+      display: flex;
+    }
+  }
 }
 .foxtel-footer__copyright{
   color:#fff;
   margin-right:60px;
+  font-weight:bold;
+  @include breakpoint(mobileOnly) {
+    margin:15px 0;
+  }
 }
 .foxtel-footer__nav{
+  padding:0;
+  margin:0;
   li{
+    display:inline-block;
     list-style-type:none;
     padding:0;
-    margin-right:15px;
+    margin-right:20px;
+    white-space:nowrap;
+    @include breakpoint(mobileOnly) {
+      margin-bottom:10px;
+    }
     a{
       color:#fff;
     }
