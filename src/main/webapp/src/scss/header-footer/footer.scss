@@ -1,65 +1,19 @@
-/* Define Foxtel Global footer */
-
-.foxtel-footer {
-  clear:both;
+.foxtel-footer{
   font-family:"ProximaNova",arial,sans-serif;
-  padding: 15px;
-  width:100%;
-  border:1px solid rgba(255, 255, 255, 0.25);
-  font-family:"ProximaNova",arial,sans-serif;
-  font-size:14px;
-  background:#000;
-  border-bottom:1px solid rgba(255, 255, 255, 0.25);
-  a:hover, a:focus{
-    text-decoration:none;
-  }
+  font-size: 12px;
+  background-color: #1e1e1e;
 }
-
-footer {
-  padding: 0;
-}
-
-.foxtel-footer__wrapper {
-  display: flex;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-}
-
-.foxtel-footer__copyright {
+.foxtel-footer__copyright{
   color:#fff;
-  font-weight: bold;
+  margin-right:60px;
 }
-
-.foxtel-footer__nav {
-  margin-bottom: 0;
-  li {
-    display: inline;
-    list-style-type: none;
+.foxtel-footer__nav{
+  li{
+    list-style-type:none;
     padding:0;
-    margin-right: 15px;
-    a {
-      color: #fff;
-    }
-  }
-}
-
-.foxtel-fat-footer {
-  background-color: #f7f7f7;
-  overflow: hidden;
-}
-
-.foxtel-fat-footer__column__list {
-  display: inline;
-  li {
-    list-style-type: none;
-    font-weight: bold;
-    padding: 5px 0;
-    a {
-      color: #333;
+    margin-right:15px;
+    a{
+      color:#fff;
     }
   }
 }
