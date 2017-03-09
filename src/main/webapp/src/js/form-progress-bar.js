@@ -14,7 +14,6 @@ $(document).ready(function(){
   $progressBarComp.on('click','.progress-bar-dot-wrapper',function(){
     $this = $(this);
     var dataLink = $this.data('status-link');
-    alert("goes to "+dataLink);
 
     if ($(this).hasClass('first')){
 

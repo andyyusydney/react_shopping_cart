@@ -1,58 +1,58 @@
 /* Extend Bootstrap album.scss card class */
 
-.foxtel-album {
+.foxtel-now-album {
 	background: transparent;	
 }
 
-.foxtel-card {
-	@include foxtel-card();
+.foxtel-now-card {
+	@include foxtel-now-card();
 }
 
-.foxtel-card--orange {
-	.foxtel-card__title {
+.foxtel-now-card--orange {
+	.foxtel-now-card__title {
 		background-color: orange;
 	}
-	.foxtel-card__cta--add-to-card {
+	.foxtel-now-card__cta--add-to-card {
 		color: orange;
 	}
 }
 
-.foxtel-card--crimson {
-	.foxtel-card__title {
+.foxtel-now-card--crimson {
+	.foxtel-now-card__title {
 		background-color: crimson;
 	}
-	.foxtel-card__cta--add-to-card {
+	.foxtel-now-card__cta--add-to-card {
 		color: crimson;
 	}
 }
 
-.foxtel-card--purple {
-	.foxtel-card__title {
+.foxtel-now-card--purple {
+	.foxtel-now-card__title {
 		background-color: purple;
 	}
-	.foxtel-card__cta--add-to-card {
+	.foxtel-now-card__cta--add-to-card {
 		color: purple;
 	}
 }
 
-.foxtel-card--yellowgreen {
-	.foxtel-card__title {
+.foxtel-now-card--yellowgreen {
+	.foxtel-now-card__title {
 		background-color: yellowgreen;
 	}
-	.foxtel-card__cta--add-to-card {
+	.foxtel-now-card__cta--add-to-card {
 		color: yellowgreen;
 	}
 }
 
-.foxtel-card--basic {
-	.foxtel-card__title {
+.foxtel-now-card--basic {
+	.foxtel-now-card__title {
 		background-color: transparent;
 	}
-	.foxtel-card__cta--add-to-card {
+	.foxtel-now-card__cta--add-to-card {
 		color: yellowgreen;
 	}
-	.foxtel-card__title .foxtel-card__title__name,
-	.foxtel-card__title .foxtel-card__title__price {
+	.foxtel-now-card__title .foxtel-now-card__title__name,
+	.foxtel-now-card__title .foxtel-now-card__title__price {
 		color: grey;
 	}
 }

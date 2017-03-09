@@ -1,6 +1,6 @@
 /* Extend bootstrap button class | Redefine Foxtel button class */
 
-.foxtel-btn {
+.foxtel-now-btn {
 	display: block;
 	border-radius: 2px;
 	-webkit-border-radius: 2px;
@@ -18,7 +18,7 @@
     }
 }
 
-.foxtel-btn--round {
+.foxtel-now-btn--round {
     @extend .foxtel-btn;
     border-radius: 5em;
     -webkit-border-radius: 5em;

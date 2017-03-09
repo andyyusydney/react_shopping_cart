@@ -47,6 +47,7 @@
                                 </directory>
                                 <includes>
                                     <include>foxtel-header-footer.scss</include>
+                                    <include>foxtel-main-style.scss</include>
                                 </includes>
                             </source>
                             <destination>
