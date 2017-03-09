@@ -1,3 +1,7 @@
+.foxtel-header-breadcrumb-wrapper{
+  background: #fff;
+}
+
 /*foxtel header breadcrumb scrolling up pop state*/
 
 .foxtel-header-breadcrumb--pop {
@@ -14,10 +18,9 @@
   display:flex;
   justify-content: space-between;
   font-size:18px;
-  color:#fff;
+  color:#0a0a0a;
   height:75px;
-  font-family:"ProximaNova",arial,sans-serif;
-  font-weight:bold;
+  font-family:"ProximaNova-Bold",arial,sans-serif;
   align-items: center;
   border-bottom:1px solid rgba(255, 255, 255, 0.25);
   a, a:hover, a:focus{
@@ -48,7 +51,7 @@
       margin-right:45px;
     }
     >a{
-      color:#fff;
+      color:#0a0a0a;
     }
   }
 }
@@ -94,15 +97,18 @@
     align-items: center;
   }
 }
+.foxtel-header__right__tv-guide{
+  @extend .foxtel-header__btn--white;
+}
+.foxtel-header__right__login{
+  @extend .foxtel-header__btn--black;
+}
 .foxtel-header__right__logout{
+  @extend .foxtel-header__btn--black;
   a{
-    color:#fff;
     margin-right:15px;
     display: flex;
     align-items: center;
-    &:hover{
-      color:#fff;
-    }
   }
 }
 .foxtel-header__right__divider{
@@ -112,9 +118,9 @@
   margin-right:15px;
 }
 .foxtel-header__right__search{
-  color: #ffffff;
+  color: #0a0a0a;
   opacity:0.5;
-  font-weight:normal;
+  font-family: "ProximaNova", arial, sans-serif;
   display:flex;
   align-items: center;
 }

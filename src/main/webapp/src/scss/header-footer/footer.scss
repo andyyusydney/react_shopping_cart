@@ -10,9 +10,9 @@
   }
 }
 .foxtel-footer__copyright{
-  color:#fff;
+  color:#0a0a0a;
   margin-right:60px;
-  font-weight:bold;
+  font-family:"ProximaNova-Bold",arial,sans-serif;
   @include breakpoint(mobileOnly) {
     margin:15px 0;
   }
