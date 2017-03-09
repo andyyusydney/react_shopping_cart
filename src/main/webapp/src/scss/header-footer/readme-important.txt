@@ -11,3 +11,5 @@ Therefore PLEASE use unique class for every element of the Foxtel global header,
 
 DO NOT use bootstrap classes in Foxtel global header, breadcrumb, fat footer and footer!!!
 (to avoid the conflict of the bootstrap versions)
+
+DO NOT use the header footer mixin and common style for other elements either. It's supposed to be a standalone piece.

@@ -1,15 +1,22 @@
 .foxtel-fat-footer{
   font-family:"ProximaNova",arial,sans-serif;
   font-size: 18px;
-  padding: 20px;
+  background-color: #0a0a0a;
+  padding-top:40px;
 }
 
 .foxtel-fat-footer__column{
-  float:left;
-  min-width: 180px;
+  display:inline-block;
+  vertical-align:top;
+  @include breakpoint(mobileOnly) {
+    width:46%;
+    margin-right:6%;
+    &:nth-child(even){
+      margin-right:0;
+    }
+  }
   @include breakpoint(tablet) {
     margin-right:45px;
-    min-width: inherit;
   }
   @include breakpoint(desktop) {
     margin-right:60px;
@@ -20,15 +27,23 @@
 }
 
 .foxtel-fat-footer__column__title{
-  color: #454545;
+  color: #ccc;
   opacity: 0.5;
+  margin-bottom:20px;
 }
 
 .foxtel-fat-footer__list{
+  padding:0;
+  font-weight:bold;
   li{
+    list-style:none;
     margin-bottom:15px;
+    line-height:110%;
     a{
-      color: #454545;
+      color: #fff;
+    }
+    &:last-child{
+      margin-bottom:36px;
     }
   }
 }

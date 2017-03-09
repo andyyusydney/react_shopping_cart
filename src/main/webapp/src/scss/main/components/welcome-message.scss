@@ -1,0 +1,22 @@
+/* Styles for welcome message */
+
+.welcome-message-wrapper {
+	text-align: center;
+	margin-top: 80px;
+	h1 {
+		font-weight: bold;
+	}
+	.welcome-message-wrapper__title,
+	.welcome-message-wrapper__links {
+		margin-top: 15px;
+		margin-bottom: 50px;
+	}
+	.welcome-message-wrapper__links {
+		.foxtel-btn {
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+	}
+}
