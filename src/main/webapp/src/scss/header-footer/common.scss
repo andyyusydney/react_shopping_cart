@@ -23,6 +23,11 @@ FONT
 }
 
 /*********************
+VARIABLE
+*********************/
+$header-footer-image-path: "/etc/designs/foxtel/assets/foxtel-ui/header-footer/";
+
+/*********************
 MIXIN
 *********************/
 
@@ -94,7 +99,6 @@ BUTTON STYLE
   @include make-foxtel-header-btn(#3a3a3a, #fff);
   border: 1px solid #ccc;
 }
-
 .foxtel-header__btn--black{
   @include make-foxtel-header-btn(#fff, #0a0a0a);
 }

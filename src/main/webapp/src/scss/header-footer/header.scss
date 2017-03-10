@@ -21,7 +21,7 @@
   height:75px;
   font-family:"ProximaNova-Bold",arial,sans-serif;
   align-items: center;
-  border-bottom:1px solid rgba(255, 255, 255, 0.25);
+  border-bottom:1px solid #efefef;
   a, a:hover, a:focus{
     text-decoration:none;
   }
@@ -30,12 +30,24 @@
   display:flex;
 }
 .foxtel-header__left__logo{
+  display: flex;
+  align-items: center;
   margin-right:20px;
   @include breakpoint(tablet) {
     margin-right:45px;
   }
-  img{
-    height: 47px;
+}
+.foxtel-header__left__logo__symbol{
+  width:34.9px;
+  height:46.8px;
+}
+.foxtel-header__left__logo__text{
+  display: none;
+  width: 74px;
+  height: 24px;
+  margin-left: 7px;
+  @include breakpoint(laptop) {
+    display:inline-block;
   }
 }
 .foxtel-header__left__nav{
@@ -65,6 +77,13 @@
     }
   }
 }
+.foxtel-header__left__nav__more__text{
+  display:flex;
+  align-items: center;
+  &:after{
+    content:url($header-footer-image-path + "arrow-bottom-solid.svg");
+  }
+}
 .foxtel-header__left__nav__more__dropdown{
   position:absolute;
   left:0;
@@ -89,6 +108,17 @@
     }
   }
 }
+.foxtel-header__left__nav__more__dropdown__logged-in{
+  &:after{
+    display: inline-block;
+    content: "";
+    background: url($header-footer-image-path + "icon-avatar.svg") no-repeat 0 0;
+    width: 15px;
+    height:15px;
+    background-size: 100%;
+    margin-left:10px;
+  }
+}
 .foxtel-header__right{
   display:none;
   @include breakpoint(tablet) {
@@ -102,12 +132,22 @@
 .foxtel-header__right__login{
   @extend .foxtel-header__btn--black;
 }
-.foxtel-header__right__logout{
-  @extend .foxtel-header__btn--black;
-  a{
-    margin-right:15px;
-    display: flex;
-    align-items: center;
+.foxtel-header__right__logged-in{
+  margin-right:15px;
+  display: flex;
+  align-items: center;
+  color:#0a0a0a;
+  &:hover{
+    color:#0a0a0a;
+  }
+  &:after{
+    display: inline-block;
+    content: "";
+    background: url($header-footer-image-path + "icon-avatar.svg") no-repeat 0 0;
+    width: 15px;
+    height:15px;
+    background-size: 100%;
+    margin-left:10px;
   }
 }
 .foxtel-header__right__divider{
@@ -117,9 +157,18 @@
   margin-right:15px;
 }
 .foxtel-header__right__search{
-  color: #0a0a0a;
-  opacity:0.5;
+  color: #999;
   font-family: "ProximaNova", arial, sans-serif;
   display:flex;
   align-items: center;
+  &:before{
+    display: inline-block;
+    content: "";
+    background: url($header-footer-image-path + "icon-search.svg") no-repeat 0 0;
+    width: 25px;
+    height:25px;
+    background-size: 100%;
+    margin-right:15px;
+    color:#0a0a0a;
+  }
 }
