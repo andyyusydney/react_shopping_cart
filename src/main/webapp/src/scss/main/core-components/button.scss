@@ -1,27 +1,10 @@
 /* Extend bootstrap button class | Redefine Foxtel button class */
 
 .foxtel-now-btn {
-	display: block;
-	border-radius: 2px;
-	-webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    padding: 15px;
-    color: black;
-    cursor: pointer;
-    max-width: 100px;
-    text-align: center;
-    &:hover {
-    	text-decoration: none;
-    	color: black;
-    	opacity: 0.8;
-    }
+	@include foxtel-now-btn(5px);
+    border-style: hidden;
 }
 
 .foxtel-now-btn--round {
-    @extend .foxtel-btn;
-    border-radius: 5em;
-    -webkit-border-radius: 5em;
-    -moz-border-radius: 5em;
-    -ms-border-radius: 5em;
+   @include foxtel-now-btn(5em);
 }

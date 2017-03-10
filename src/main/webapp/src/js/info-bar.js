@@ -9,13 +9,13 @@ $(document).ready(function(){
 
         switch (animationType){
             case 'up':
-                window.setTimeout(infobar.slideUp('slow'), 3000);
+                window.setTimeout(infobar.slideUp('slow'), 500);
                 $('.icon-close-remove').click(function(){
                     infobar.slideDown('slow');
                 })
                 break;
             case 'down':
-                window.setTimeout(infobar.slideDown('slow'),3000);
+                window.setTimeout(infobar.slideDown('slow'),500);
                 $('.icon-close-remove').click(function(){
                     infobar.slideUp('slow');
                 })

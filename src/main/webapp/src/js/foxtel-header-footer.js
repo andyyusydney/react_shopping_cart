@@ -24,10 +24,17 @@ $(document).ready(function(){
                 if (scrollDelta > sensitivity){
                     if (topnavStatus) {
                         topnavStatus = false;
+                        topnav.css('position','fixed');
 
                         // TOPNAV SLIDES BACK AWAY
                         topnav.clearQueue().stop().animate({marginTop: -topnavH}, 300, function(){
-                            topnav.removeClass('foxtel-header-breadcrumb--pop');
+
+                            //TO DISTINCUISH FOXTEL NOW HEADER
+                            if (topnav.find('header').hasClass('foxtel-now-header')){
+                                topnav.removeClass('foxtel-now-header-breadcrumb--pop');
+                            }else{
+                                topnav.removeClass('foxtel-header-breadcrumb--pop');
+                            }
                         });
                     }
                 }
@@ -41,13 +48,19 @@ $(document).ready(function(){
                         // TOPNAV POPS DOWN
                         topnav.clearQueue().stop().css('margin-top',-topnavH).animate({marginTop: 0}, 300);
                     }
-                    topnav.addClass('foxtel-header-breadcrumb--pop');
+                    //TO DISTINCUISH FOXTEL NOW HEADER
+                    if (topnav.find('header').hasClass('foxtel-now-header')){
+                        topnav.addClass('foxtel-now-header-breadcrumb--pop');
+                    }else{
+                        topnav.addClass('foxtel-header-breadcrumb--pop');
+                    }
                 }
             }
 
             // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
         } else {
             topnav.removeClass('foxtel-header-breadcrumb--pop');
+            topnav.css('position','relative');
         }
 
         // SET CURRENT AS LAST SCROLL

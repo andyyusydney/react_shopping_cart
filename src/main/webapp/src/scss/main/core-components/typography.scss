@@ -65,3 +65,10 @@ will add to the new Style Guide in the future
 .font-size--sm{
 	font-size:$font-size--sm;
 }
+
+/******************************************
+Predefine body font family
+******************************************/
+body {
+    font-family:"ProximaNova",arial,sans-serif;
+}

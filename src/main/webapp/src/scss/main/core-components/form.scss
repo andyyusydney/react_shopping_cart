@@ -1,5 +1,7 @@
-/* Form classes */
 
+/*********************
+FORM VARIABLE
+*********************/
 $body-bg: #c1bdba;
 $form-bg: #13232f;
 $white: #ffffff;
@@ -16,10 +18,13 @@ $normal: 400;
 $bold: 600;
 $br: 4px;
 
+/* Form classes */
+
 .foxtel-now-form-container {
-  background: ghostwhite;
+  font-family:"ProximaNova",arial,sans-serif;
+  font-size: 18px;
+  color: rgb(102, 102, 102);
   padding: 40px;
-  margin:40px auto;
   border-radius:$br;
   box-shadow:0 4px 10px 4px rgba($form-bg,.3);
 
@@ -55,16 +60,15 @@ $br: 4px;
 	  }
 	}
 
-
 	label {
 	  position:absolute;
 	  transform:translateY(6px);
 	  left:13px;
+	  top: 7px;
 	  color: lightgrey;
 	  transition:all 0.25s ease;
 	  -webkit-backface-visibility: hidden;
 	  pointer-events: none;
-	  font-size:20px;
 	  .req {
 	  	margin:2px;
 	  	color:$main;
@@ -72,20 +76,20 @@ $br: 4px;
 	}
 
 	label.active {
-	  transform:translateY(50px);
-	  left:2px;
-	  font-size:14px;
+	  transform:translateY(-5px);
+	  left:12px;
+	  font-size:12px;
 	  .req {
 	    opacity:0;
 	  }
 	}
 
 	input, textarea {
-	  font-size:22px;
 	  background:none;
 	  background-image:none;
-	  border:1px solid $gray-light;
+	  border: solid 0.5px rgb(153, 153, 153);
 	  border-radius:0;
+	  line-height: 2.25;
 	  transition:border-color .25s ease, box-shadow .25s ease;
 	  &:focus {
 			outline:0;
@@ -108,16 +112,11 @@ $br: 4px;
 
 	.field-wrap {
 	  position:relative;
-	  margin-bottom:40px;
+	  margin-bottom:20px;
 	}
 
 	.two-column {
 	  justify-content: space-between;
-	  &:after {
-	    content: "";
-	    display: table;
-	    clear: both;
-	  }
 	}
 
 	.button {

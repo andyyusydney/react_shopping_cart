@@ -77,6 +77,24 @@
 	}
 }
 
+@mixin foxtel-now-btn($radius) {
+	display: block;
+	border-radius: $radius;
+	-webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    padding: 15px;
+    color: black;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    &:hover {
+    	text-decoration: none;
+    	color: black;
+    	opacity: 0.8;
+    }
+}
+
 .border--top {
 	border-top: 1px solid lightgrey;
 }
@@ -94,7 +112,11 @@
 }
 
 .border--bold {
-	border-width: 5px;
+	border-width: 2px;
+}
+
+.border--dark {
+	border-color: rgb(74, 74, 74);
 }
 
 .foxtel-flex {
@@ -105,4 +127,8 @@
   	display: flex;
   	justify-content: space-between;
   	align-items: center;
+}
+
+.with-underline {
+	text-decoration: underline;
 }
