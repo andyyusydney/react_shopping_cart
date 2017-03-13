@@ -97,16 +97,75 @@ $br: 4px;
 	  }
 	}
 
-	input[type='checkbox'] {
-		width: 45px;
-		height: 45px;
-		&~label {
-			left: 60px;
-		}
+	/* Base for label styling */
+	[type="checkbox"]:not(:checked),
+	[type="checkbox"]:checked {
+	  position: absolute;
+	  left: -9999px;
+	}
+	[type="checkbox"]:not(:checked) + label,
+	[type="checkbox"]:checked + label {
+	  position: relative;
+	  padding-left: 2.95em;
+	  cursor: pointer;
+	  left: initial;
+	  color: initial;
+	  pointer-events: auto;
+	}
+	[type="checkbox"]:not(:checked) + label:before,
+	[type="checkbox"]:checked + label:before {
+	  content: '';
+	  position: absolute;
+	  left: 0; top: 0;
+	  width: 30px; height: 30px;
+	  border: 1px solid rgb(153, 153, 153);
+	  background: #fff;
+	  box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+	}
+	/* checked mark aspect */
+	[type="checkbox"]:not(:checked) + label:after,
+	[type="checkbox"]:checked + label:after {
+	  content: '✔';
+	  position: absolute;
+	  top: .7em; left: .7em;
+	  font-size: .8em;
+	  line-height: 0.8;
+	  color: white;
+	  transition: all .2s;
+	}
+	/* checked mark aspect changes */
+	[type="checkbox"]:not(:checked) + label:after {
+	  opacity: 0;
+	  transform: scale(0);
+	}
+	[type="checkbox"]:checked + label:after {
+	  opacity: 1;
+	  transform: scale(1);
+	}
+	[type="checkbox"]:checked + label:before {
+	  background: rgb(47, 218, 110);
+	}
+	/* disabled checkbox */
+	[type="checkbox"]:disabled:not(:checked) + label:before,
+	[type="checkbox"]:disabled:checked + label:before {
+	  box-shadow: none;
+	  border-color: rgb(153, 153, 153);
+	  background-color: #ddd;
+	}
+	[type="checkbox"]:disabled:checked + label:after {
+	  color: #999;
+	}
+	[type="checkbox"]:disabled + label {
+	  color: #aaa;
+	}
+
+	/* hover style just for information */
+	[type="checkbox"] + label:hover:before {
+	  border: 2px solid #4778d9!important;
 	}
 
 	textarea {
-	  border:2px solid $gray-light;
+	  border:2px solid rgb(153, 153, 153);
 	  resize: vertical;
 	}
 
@@ -144,5 +203,9 @@ $br: 4px;
 	.forgot {
 	  margin-top:-20px;
 	  text-align:right;
-	}	
+	}
+
+	sub	{
+		line-height: initial;
+	}
 }
