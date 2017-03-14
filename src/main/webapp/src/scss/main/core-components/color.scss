@@ -1,5 +1,38 @@
 /* Style for colors in Foxtel*/
 
-.foxtel-background-green {
-	background-color: rgb(47,218,110);
+
+/*********************
+BACKGROUND
+*********************/
+
+.foxtel-now-background-green {
+	background-color: rgb(47,218,110) !important;
+}
+
+.foxtel-now-background-black {
+	background-color: rgb(0,0,0) !important;
+}
+
+.foxtel-now-background-off-white {
+	background-color: rgb(240,240,240) !important;
+}
+
+/*********************
+COLOR
+*********************/
+
+.foxtel-now-color-whilte {
+	color: rgb(255,255,255) !important;
+}
+
+.foxtel-now-color-black {
+	color: rgb(0,0,0) !important;
+}
+
+.foxtel-now-color-grey {
+	color: rgb(153, 153, 153) !important;
+}
+
+.foxtel-now-color-darkgrey {
+	color: rgb(102, 102, 102) !important;
 }

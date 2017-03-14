@@ -1,6 +1,6 @@
 /* Store mixins or re-usable classes */
 
-@mixin foxtel-card() {
+@mixin foxtel-now-card() {
 	width: 275px;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -18,41 +18,41 @@
 	margin-bottom: 0;
 	}
 
-	.foxtel-card__title-wrapper {
+	.foxtel-now-card__title-wrapper {
 	height: 55px;
 	display: table;
 	width: 100%;
 	}
 
-	.foxtel-card__title {
+	.foxtel-now-card__title {
 	color: white;
 	display: table-cell;
 	}
 
-	.foxtel-card__title--middle {
+	.foxtel-now-card__title--middle {
 	vertical-align: middle;
 	padding: 20px;
 	}
 
-	.foxtel-card__title__name,
-	.foxtel-card__title__price {
+	.foxtel-now-card__title__name,
+	.foxtel-now-card__title__price {
 	display: inline;
 	}
 
-	.foxtel-card__title .foxtel-card__title__name {
+	.foxtel-now-card__title .foxtel-now-card__title__name {
 	font-weight: bold;
 	}
 
-	.foxtel-card__title .foxtel-card__title__price {
+	.foxtel-now-card__title .foxtel-now-card__title__price {
 	position: absolute;
 	right: 20px;
 	}
 
-	.foxtel-price-symbol {
-	@include foxtel-price-symbol();
+	.foxtel-now-price-symbol {
+		@include foxtel-now-price-symbol();
 	}
 
-	.foxtel-card__cta {
+	.foxtel-now-card__cta {
 	text-align: center;
 	padding: 20px;
 	margin-top: 0;
@@ -60,12 +60,12 @@
 	height: 60px;
 	}
 
-	.foxtel-card__cta--add-to-card {
+	.foxtel-now-card__cta--add-to-card {
 	font-weight: bold;
 	}
 }
 
-@mixin foxtel-price-symbol() {
+@mixin foxtel-now-price-symbol() {
 	sup {
 		vertical-align: sub;
 		padding-right: 5px;
@@ -75,6 +75,24 @@
 		bottom: 0;
 		left: -5px;
 	}
+}
+
+@mixin foxtel-now-btn($radius) {
+	display: block;
+	border-radius: $radius;
+	-webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    padding: 15px;
+    color: black;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    &:hover {
+    	text-decoration: none;
+    	color: black;
+    	opacity: 0.8;
+    }
 }
 
 .border--top {
@@ -94,7 +112,11 @@
 }
 
 .border--bold {
-	border-width: 5px;
+	border-width: 2px;
+}
+
+.border--dark {
+	border-color: rgb(74, 74, 74);
 }
 
 .foxtel-flex {
@@ -105,4 +127,8 @@
   	display: flex;
   	justify-content: space-between;
   	align-items: center;
+}
+
+.with-underline {
+	text-decoration: underline;
 }

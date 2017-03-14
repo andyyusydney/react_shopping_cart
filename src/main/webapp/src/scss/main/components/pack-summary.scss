@@ -1,8 +1,11 @@
 /* Pack Summary styles */
 
-.foxtel-pack-summary-container {
+.foxtel-now-pack-summary-container {
+    font-family:"ProximaNova",arial,sans-serif;
+  	font-size: 18px;
+  	padding: 40px;
+  	color: rgb(102, 102, 102);
 	.row {
-		padding: 15px 0;
 		font-size: 22px;
 		.col:last-child {
 			p {
@@ -10,8 +13,8 @@
 			}
 		}
 	}
-	.foxtel-pack-summary-container__row {
-		.foxtel-pack-summary-container__row__package-info {
+	.foxtel-now-pack-summary-container__row {
+		.foxtel-now-pack-summary-container__row__package-info {
 			font-size: 14px;
 		}
 	}

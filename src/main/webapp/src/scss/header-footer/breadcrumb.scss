@@ -2,7 +2,6 @@
   width:100%;
   font-family:"ProximaNova",arial,sans-serif;
   font-size:14px;
-  border-bottom:1px solid rgba(255, 255, 255, 0.25);
   a, a:hover, a:focus{
     text-decoration:none;
   }
@@ -13,19 +12,20 @@
     display:inline;
     &:after{
       content:">";
-      color:#fff;
+      color:#0a0a0a;
       margin:0 10px;
     }
     &:last-child{
+      font-family: "ProximaNova-Bold", arial, sans-serif;
       &:after{
         content:"";
       }
       a{
-        border-bottom:3px solid #fff;
+        border-bottom:3px solid #0a0a0a;
       }
     }
     a{
-      color:#fff;
+      color:#0a0a0a;
       display:inline-block;
       margin-top:13px;
       padding-bottom:13px;

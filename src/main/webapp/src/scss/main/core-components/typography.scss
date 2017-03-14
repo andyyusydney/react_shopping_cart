@@ -1,37 +1,74 @@
-/* Define foxtel typography */
-
-.foxtel-font-size-1 {
-	font-size: 2.5em;
+/*********************
+FONT FACE
+*********************/
+@mixin build-font-face($font-family, $file-name) {
+	$file-path: "/etc/designs/foxtel/assets/fonts/proxima-nova/";
+	@font-face {
+		font-family: "#{$font-family}";
+		src: url($file-path + $file-name + ".eot?#iefix") format('embedded-opentype'),
+		url($file-path + $file-name + ".woff") format('woff'),
+		url($file-path + $file-name + ".ttf")  format('truetype'),
+		url($file-path + $file-name + ".svg#wf") format("svg");
+		font-weight: normal;
+		font-style: normal;
+	}
 }
 
-.foxtel-font-size-2 {
-	font-size: 2em;
+@include build-font-face("ProximaNova", "ProximaNova-Reg-webfont");
+@include build-font-face("ProximaNova-Thin", "ProximaNova-Thin-webfont");
+@include build-font-face("ProximaNova-Light", "ProximaNova-Light-webfont");
+@include build-font-face("ProximaNova-Bold","ProximaNova-Bold-webfont");
+
+/*********************
+FONT VARIABLE
+*********************/
+$font-size--xl:   76px;
+$font-size--lg:   47px;
+$font-size--md:   29px;
+$font-size--base: 18px;
+$font-size--sm:   12px;
+
+$font-family--regular	:"ProximaNova", arial, sans-serif;
+$font-family--Thin		:"ProximaNova-Thin", arial, sans-serif;
+$font-family--Light		:"ProximaNova-Light", arial, sans-serif;
+$font-family--Bold		:"ProximaNova-Bold", arial, sans-serif;
+
+
+/******************************************
+Typography classes for Producers
+will add to the new Style Guide in the future
+******************************************/
+.font-family--regular{
+	font-family: $font-family--regular;
+}
+.font-family--Thin{
+	font-family: $font-family--Thin;
+}
+.font-family--Light{
+	font-family: $font-family--Light;
+}
+.font-family--Bold{
+	font-family: $font-family--Bold;
+}
+.font-size--xl{
+	font-size:$font-size--xl;
+}
+.font-size--lg{
+	font-size:$font-size--lg;
+}
+.font-size--md{
+	font-size:$font-size--md;
+}
+.font-size--base{
+	font-size:$font-size--base;
+}
+.font-size--sm{
+	font-size:$font-size--sm;
 }
 
-.foxtel-font-size-3 {
-	font-size: 1.75em;
-}
-
-.foxtel-font-size-4 {
-	font-size: 1.5em;
-}
-
-.foxtel-font-size-5 {
-	font-size: 1.25em;
-}
-
-.foxtel-font-size-6 {
-	font-size: 1em;
-}
-
-.foxtel-font-size-7 {
-	font-size: 0.8em;
-}
-
-.foxtel-font-size-8 {
-	font-size: 0.6em;
-}
-
-.font-bold {
-	font-weight: bold;
+/******************************************
+Predefine body font family
+******************************************/
+body {
+    font-family:"ProximaNova",arial,sans-serif;
 }

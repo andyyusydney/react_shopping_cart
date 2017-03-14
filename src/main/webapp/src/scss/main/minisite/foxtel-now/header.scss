@@ -1,10 +1,20 @@
 //addition header style for foxtel now site only
 
-.foxtel-header--now{
+.foxtel-now-header{
   @extend .foxtel-header;
   width: 100%;
 }
 
-.foxtel-header__right__free-trial{
-  @extend .foxtel-header__right__tv-guide;
+.foxtel-now-header__right__wrapper {
+  margin-left: 20px;
+  margin-right: 20px; 
+}
+
+/*foxtel header breadcrumb scrolling up pop state*/
+
+.foxtel-now-header-breadcrumb--pop {
+  position: fixed;
+  left:0;
+  right:0;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
