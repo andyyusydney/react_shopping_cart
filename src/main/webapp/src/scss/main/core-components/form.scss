@@ -172,6 +172,29 @@ $br: 4px;
 	.field-wrap {
 	  position:relative;
 	  margin-bottom:20px;
+	  .input-icon {
+	  	position: absolute;
+	  	top: 12px;
+	  	right: 20px;
+	  	img {
+		  	opacity: 0.5;
+	  	}
+	  }
+	  .active {
+	  	opacity: 1 !important;
+	  }
+	  .tooltips-target {
+	  	cursor: pointer;
+	  	&:hover {
+	  		opacity: 1;
+	  	}
+	  }
+	  .tooltips-container {
+	  	position: absolute;
+	  	bottom: 45px;
+	  	right: 2px;
+	  	opacity: 0;
+	  }
 	}
 
 	.two-column {
