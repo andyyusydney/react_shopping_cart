@@ -247,7 +247,7 @@ $(document).ready(function(){
 			    }
         });
     }
-
+//Toggle tooltips
 	$('.tooltips-target').
 		on('mouseenter',function(){
 			$(this).siblings('.tooltips-container').css('opacity',1)
@@ -255,4 +255,13 @@ $(document).ready(function(){
 		on('mouseleave',function(){
 			$(this).siblings('.tooltips-container').css('opacity',0)
 		})
+//Toggle password
+	$('.show-password-target').on('click',function(){
+		if($('[data-input-type="password"]').attr('type') == 'tel'){
+			$('[data-input-type="password"]').attr('type','password');
+		}else{
+			$('[data-input-type="password"]').attr('type','tel');
+		}
+		
+	})
 })
