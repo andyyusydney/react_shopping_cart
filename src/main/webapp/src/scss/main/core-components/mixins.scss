@@ -133,6 +133,7 @@
 	text-decoration: underline;
 }
 
+<<<<<<< HEAD
 // Print a given block of rules for the given media-query breakpoint.
 @mixin breakpoint($point) {
   @if $point == desktop {
@@ -148,3 +149,8 @@
     @media (max-width: 767px)  { @content ; }
   }
 }
+=======
+.hidden {
+	display: none;
+}
+>>>>>>> 0b2cd6ab0335972b11d5f09fae7422d3bed91904

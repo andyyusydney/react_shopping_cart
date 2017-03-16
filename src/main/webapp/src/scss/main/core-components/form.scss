@@ -18,16 +18,26 @@ $normal: 400;
 $bold: 600;
 $br: 4px;
 
+.foxtel-now-form-container {
+
+/* Parsley classes */
+
+  .parsley-error {
+  	border: solid 0.5px rgb(182, 0, 0);
+  }
+  .parsley-errors-list {
+  	color: rgb(182, 0, 0);
+  	list-style: none;
+  }
+
 /* Form classes */
 
-.foxtel-now-form-container {
   font-family:"ProximaNova",arial,sans-serif;
   font-size: 18px;
   color: rgb(102, 102, 102);
   padding: 40px;
   border-radius:$br;
   box-shadow:0 4px 10px 4px rgba($form-bg,.3);
-
 	.foxtel-now-form-container__tab-group {
 	  list-style:none;
 	  padding:0;
@@ -37,6 +47,7 @@ $br: 4px;
 	    display: table;
 	    clear: both;
 	  }
+
 	  li a {
 	    display:block;
 	    text-decoration:none;
@@ -171,7 +182,7 @@ $br: 4px;
 
 	.field-wrap {
 	  position:relative;
-	  margin-bottom:20px;
+	  align-self: flex-start;
 	  .input-icon {
 	  	position: absolute;
 	  	top: 12px;
@@ -179,6 +190,10 @@ $br: 4px;
 	  	img {
 		  	opacity: 0.5;
 	  	}
+	  }
+	  .show-password-target {
+	  	cursor: pointer;
+	  	top: 17px;
 	  }
 	  .active {
 	  	opacity: 1 !important;
@@ -195,10 +210,6 @@ $br: 4px;
 	  	right: 2px;
 	  	opacity: 0;
 	  }
-	}
-
-	.two-column {
-	  justify-content: space-between;
 	}
 
 	.button {
