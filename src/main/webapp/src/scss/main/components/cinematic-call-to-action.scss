@@ -1,0 +1,24 @@
+  .foxtel-now-cinematic-call-to-action {
+    $vertical-rhythm: 20px;
+
+    color: white;
+
+    h1 {
+      font-size: 25px;
+      margin-bottom: $vertical-rhythm;
+
+      @include breakpoint(tablet) {
+        font-size: 40px;
+      }
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: $vertical-rhythm;
+    }
+
+    a {
+      background-color: $foxtel-now-green;
+      color: black;
+    }
+  }

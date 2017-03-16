@@ -1,4 +1,11 @@
-/* Style for colors in Foxtel*/
+/* Colour variables */
+
+$foxtel-now-green: rgb(47,218,110);
+$foxtel-now-blue: #141432;
+$grey-blue: #818190;
+$grey-light: #F0F0F0;
+$grey-dark: #888;
+$soft-white: rgba(255, 255, 255, 0.8);
 
 
 /*********************
@@ -6,7 +13,7 @@ BACKGROUND
 *********************/
 
 .foxtel-now-background-green {
-	background-color: rgb(47,218,110) !important;
+	background-color: $foxtel-now-green !important;
 }
 
 .foxtel-now-background-black {

@@ -31,21 +31,6 @@ $header-footer-image-path: "/etc/designs/foxtel/assets/foxtel-ui/header-footer/"
 MIXIN
 *********************/
 
-@mixin breakpoint($point) {
-  @if $point == desktop {
-    @media (min-width: 1200px) { @content ; }
-  }
-  @else if $point == laptop {
-    @media (min-width: 992px) { @content ; }
-  }
-  @else if $point == tablet {
-    @media (min-width: 768px) { @content ; }
-  }
-  @else if $point == mobileOnly {
-    @media (max-width: 767px)  { @content ; }
-  }
-}
-
 @mixin make-foxtel-container{
   width:100%;
   padding-left:15px;
