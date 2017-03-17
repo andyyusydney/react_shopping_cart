@@ -1,25 +1,114 @@
 /* Styles for device list component */
 
 .foxtel-now-device-container {
-    padding: 50px 100px;
-	.foxtel-now-device-wrapper {
-		height: 121px;
-		align-items: center;
-		justify-content: center;
-		border: solid 1px rgb(222, 222, 222);
-		padding: 20px 50px;
-		.foxtel-now-device-image {
-		    text-align: center;
-		    min-height: 60px;
-		}
-		.foxtel-now-device-link {
-            text-align: center;
-		}
-		&:hover {
-		    cursor: pointer;
-		    -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
-            -moz-box-shadow:    0 2px 8px 0 rgba(0, 0, 0, 0.2);
-            box-shadow:         0 2px 8px 0 rgba(0, 0, 0, 0.2);
-		}
-	}
+  $border-style: solid 1px $foxtel-now-light-grey;
+
+  margin-bottom: 50px;
+  padding: 0 100px;
+  display: flex;
+  flex-wrap: wrap;
+  border: {
+    top: $border-style;
+    bottom: $border-style;
+  }
+
+  .container-breakout {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .foxtel-now-device-wrapper {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: {
+      right: $border-style;
+      bottom: $border-style;
+      left: $border-style;
+    }
+    margin-bottom: -1px;
+    margin-left: -1px;
+    padding: {
+      top: 25px;
+      bottom: 25px;
+      left: 30px;
+      right: 30px;
+    }
+
+    @include breakpoint(mobileOnly) {
+      border: {
+        left: none;
+        right: none;
+        bottom: none;
+      }
+    }
+
+    @include breakpoint(large) {
+      padding: {
+        top: 15px;
+        left: 50px;
+        right: 50px;
+      }
+    }
+
+    a {
+      border-bottom: 3px solid transparent;
+      color: $foxtel-now-dark-grey;
+      display: inline-block;
+      padding-bottom: 3px;
+    }
+
+    .foxtel-now-device-image {
+      $max-height-small: 50px;
+      $max-height-large: 100px;
+
+      &:after {
+        content: "";
+        display: inline-block;
+      }
+
+      text-align: center;
+      min-height: 60px;
+      min-width: 70px;
+      line-height: $max-height-small;
+
+      @include breakpoint(large) {
+        line-height: $max-height-large;
+        min-width: 90px;
+      }
+
+      img {
+        max-width: 80px;
+        max-height: $max-height-small;
+
+        @include breakpoint(large) {
+          max-width: none;
+          max-height: $max-height-large;
+        }
+      }
+    }
+
+    .foxtel-now-device-link {
+      text-align: center;
+      font-size: 12px;
+
+      @include breakpoint(large) {
+        font-size: 16px;
+      }
+
+
+    }
+
+    &:hover {
+      cursor: pointer;
+      -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+      -moz-box-shadow:    0 2px 8px 0 rgba(0, 0, 0, 0.2);
+      box-shadow:         0 2px 8px 0 rgba(0, 0, 0, 0.2);
+
+      a {
+        border-bottom: 3px solid $foxtel-now-green;
+        text-decoration: none;
+      }
+    }
+  }
 }

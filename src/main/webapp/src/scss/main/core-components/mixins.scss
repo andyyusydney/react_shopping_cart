@@ -146,6 +146,9 @@
 
 // Print a given block of rules for the given media-query breakpoint.
 @mixin breakpoint($point) {
+  @if $point == large {
+    @media (min-width: 1440px) { @content ; }
+  }
   @if $point == desktop {
     @media (min-width: 1200px) { @content ; }
   }
@@ -162,4 +165,16 @@
 
 .hidden {
 	display: none;
+}
+
+// Allows a background that spans wider than the container itself (in most
+// cases) but one that is still limited to a maximum width.
+
+.container-breakout {
+    position: relative;
+    margin: {
+      left: auto;
+      right: auto;
+    }
+    max-width: 1500px;
 }
