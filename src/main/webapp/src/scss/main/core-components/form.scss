@@ -28,6 +28,11 @@ $br: 4px;
   .parsley-errors-list {
   	color: rgb(182, 0, 0);
   	list-style: none;
+  	display: table-row;
+  	li {
+  		color: rgb(218, 110, 47);
+  		font-size: 12px;
+  	}
   }
 
 /* Form classes */
