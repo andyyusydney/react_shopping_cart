@@ -1,0 +1,30 @@
+/* Styles for cinematic block */
+
+.foxtel-now-cinematic-highlight-block {
+	position: absolute;
+	top: 250px;
+	left: 5%;
+}
+
+.foxtel-now-meta-information {
+	position: absolute;
+	bottom: 250px;
+	right: 5%;
+	.foxtel-now-cinematic-info {
+		position: absolute;
+		color: white;
+	}
+	&.left-index {
+		.cinematic-info {
+			left: 15px;
+			text-align: left;
+		}
+	}
+	&.right-index {
+		.cinematic-info {
+			right: 15px;
+			text-align: right;
+		}
+	}
+		
+}
