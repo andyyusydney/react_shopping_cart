@@ -1,3 +1,5 @@
+@import "./color";
+
 /* Store mixins or re-usable classes */
 
 @mixin foxtel-now-card() {
@@ -205,5 +207,49 @@
 		left: 0;
 		opacity: 0.2;
 		background: black;
+	}
+}
+
+// A Corner ribbon
+.ribbon-wrapper {
+	$background-color: $foxtel-now-green;
+	$font-color: white;
+
+	z-index: 2;
+	width: 170px;
+	height: 120px;
+	overflow: hidden;
+	position: absolute;
+	top: -2px;
+	left: -2px;
+
+	.ribbon {
+		color: $foxtel-now-very-dark-grey;
+		text-align: center;
+		position: relative;
+		padding: 7px 30px 7px 0;
+		float: right;
+		right: -5px;
+		top: 15px;
+		width: 230px;
+		background-color: $background-color;
+		transform: rotate(-45deg);
+
+		&:before, &:after {
+			content: "";
+			border-top:   3px solid scale-lightness($background-color, -40%);
+			border-left:  3px solid transparent;
+			border-right: 3px solid transparent;
+			position:absolute;
+			bottom: -3px;
+		}
+
+		&:before {
+			left: 0;
+		}
+
+		&:after {
+			right: 0;
+		}
 	}
 }
