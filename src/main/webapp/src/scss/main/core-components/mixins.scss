@@ -9,7 +9,10 @@
 	background-color: rgb(255, 255, 255);
   	background-color: var(--white);
   	border: solid 2px rgb(240, 240, 240);
-
+  	&:hover {
+  		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+  		border: solid 2px rgb(47, 218, 110);	
+  	}
 	.foxtel-now-card__image-wrapper {
 		text-align: center;
 		.foxtel-now-card__image-wrapper__promo {
@@ -89,6 +92,7 @@
 }
 
 @mixin foxtel-now-btn($radius) {
+	border-style: hidden;
 	display: block;
 	border-radius: $radius;
 	-webkit-border-radius: $radius;
@@ -96,6 +100,7 @@
     -ms-border-radius: $radius;
     padding: 15px;
     color: black;
+    background-color: rgb(47,218,110);
     cursor: pointer;
     width: 100%;
     text-align: center;
@@ -146,4 +151,8 @@
 
 .hidden {
 	display: none;
+}
+
+.disabled {
+	background-color: #b4b4b4 !important;
 }
