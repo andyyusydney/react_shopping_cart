@@ -1,9 +1,0 @@
-/* Extend bootstrap button class | Redefine Foxtel button class */
-
-.foxtel-now-btn {
-	@include foxtel-now-btn(5px);
-}
-
-.foxtel-now-btn--round {
-   @include foxtel-now-btn(5em);
-}

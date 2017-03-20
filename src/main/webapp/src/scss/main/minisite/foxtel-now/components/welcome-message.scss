@@ -1,0 +1,20 @@
+/* Styles for welcome message */
+
+.foxtel-now-welcome-message-wrapper {
+	text-align: left;
+	margin-top: 80px;
+	max-width: 500px;
+	color: #fff;
+	h1 {
+		font-weight: bold;
+	}
+	.foxtel-now-welcome-message-wrapper__title,
+	.foxtel-now-welcome-message-wrapper__links {
+		margin-top: 15px;
+		margin-bottom: 30px;
+		.foxtel-now-btn {
+			max-width: 308px;
+			margin-bottom: 30px;
+		}
+	}
+}
