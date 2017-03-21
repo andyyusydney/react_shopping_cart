@@ -11,7 +11,9 @@
   }
 
   .foxtel-now-progress-bar{
-    appearance:none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     width: 100%;
     color: #000;
     height: 2px;
@@ -52,11 +54,16 @@
       margin-left: -30px;
     }
   }
-  #progress-bar::-webkit-progress-value{ /* Changes line color */
+  #progress-bar::-webkit-progress-value,
+  #progress-bar::-moz-progress-value{ /* Changes line color */
     background: green;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
   }
-  #progress-bar::-webkit-progress-bar{ /* Changes background color */
+  #progress-bar::-webkit-progress-bar,
+  #progress-bar::-moz-progress-bar{ /* Changes background color */
     background: lightgrey;
   }
   .border-change {
@@ -66,6 +73,9 @@
       }
     }
     border-color: grey;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
   }
 }

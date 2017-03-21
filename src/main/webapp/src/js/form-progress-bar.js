@@ -38,7 +38,7 @@ $(document).ready(function(){
   });
 
   //detect data-default-step and set status value when page load
-  var dataDefaultStep = &progressBarComp.attr('data-default-step');
+  var dataDefaultStep = $progressBarComp.attr('data-default-step');
 
   if(typeof dataDefaultStep != 'undefined' && dataDefaultStep != null && dataDefaultStep != ''){console.log(dataDefaultStep);
 
