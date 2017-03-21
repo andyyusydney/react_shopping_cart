@@ -69,9 +69,6 @@ MIXIN
 }
 
 @mixin breakpoint($point) {
-  @if $point == xxLarge {
-    @media (min-width: 1440px) { @content ; }
-  }
   @if $point == desktop {
     @media (min-width: 1200px) { @content ; }
   }

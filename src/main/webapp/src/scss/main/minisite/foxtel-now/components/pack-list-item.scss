@@ -13,14 +13,17 @@
 
     &.as-text-link {
       height: 100%;
+      min-height: 150px;
       border: 1px solid $foxtel-now-dark-grey;
 
       h3 {
         font-weight: 400;
         color: $foxtel-now-dark-grey;
         bottom: 50%;
-        left: 50%;
-        transform: translateY(50%) translateX(-50%);
+        left: 0%;
+        width: 100%;
+        text-align: center;
+        transform: translateY(50%);
         font-size: 26px;
 
         &:after {
@@ -33,6 +36,12 @@
       &:after {
         opacity: 0.4;
         border-radius: $rounding;
+      }
+    }
+
+    .ribbon {
+      @include breakpoint(mobileOnly) {
+        display: none;
       }
     }
 

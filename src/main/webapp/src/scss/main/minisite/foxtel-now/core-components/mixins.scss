@@ -160,9 +160,6 @@
 }
 
 @mixin breakpoint($point) {
-  @if $point == xxLarge {
-    @media (min-width: 1440px) { @content ; }
-  }
   @if $point == desktop {
     @media (min-width: 1200px) { @content ; }
   }
@@ -177,31 +174,9 @@
   }
 }
 
-// Allows a background that spans wider than the container itself (in most
-// cases) but one that is still limited to a maximum width.
-
-.container-breakout,
-.container-fluid.capped {
-    position: relative;
-    margin: {
-      left: auto;
-      right: auto;
-    }
-    max-width: 1500px;
-}
-
 // A subordinated style similar to h2
 .h2-sub {
 	font-weight: 400;
-}
-
-// Column classes for the xxLarge (xxl) breakpoint
-// New breakpoints can be generated from sass if we use the bootstrap source files.
-// https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.6/scss/_variables.scss#L205
-.col-xxl-4 {
-	@include breakpoint(xxLarge) {
-		max-width: 33.33%;
-	}
 }
 
 // Re-usable overlay modifier
