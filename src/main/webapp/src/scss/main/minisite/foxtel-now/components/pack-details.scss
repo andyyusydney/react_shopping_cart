@@ -1,10 +1,10 @@
-.pack-details {
+.foxtel-now-pack-details {
   $vertical-rhythm: 20px;
 
   position: relative;
   margin-bottom: 50px;
 
-  .pack-details-inner {
+  .foxtel-now-pack-details-inner {
 
     @include breakpoint(tablet) {
       min-height: 400px;
@@ -18,22 +18,22 @@
       margin-bottom: $vertical-rhythm;
     }
 
-    .pack-details__meta {
+    .foxtel-now-pack-details__meta {
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding-right: 50px;
 
-      .pack-details__meta__offers {
+      .foxtel-now-pack-details__meta__offers {
         margin-bottom: $vertical-rhythm;
       }
 
-      .pack-details__meta__description {
+      .foxtel-now-pack-details__meta__description {
         font-size: 14px;
         color: black;
       }
 
-      .pack-details__meta__actions {
+      .foxtel-now-pack-details__meta__actions {
         margin-bottom: $vertical-rhythm / 2;
 
         .btn {
@@ -43,14 +43,14 @@
         }
       }
 
-      .pack-details__meta__extra {
+      .foxtel-now-pack-details__meta__extra {
         color: $foxtel-now-dark-grey;
         font-size: 11px;
       }
     }
   }
 
-  .pack-details__image {
+  .foxtel-now-pack-details__image {
     overflow: hidden;
 
     @include breakpoint(tablet) {
