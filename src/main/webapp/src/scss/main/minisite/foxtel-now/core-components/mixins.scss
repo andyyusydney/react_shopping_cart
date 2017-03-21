@@ -158,15 +158,19 @@
 }
 
 .foxtel-now-list {
-	color: rgb(47, 218, 110);
+	display: flex;
+	justify-content: space-between;
 	li {
-		span {
-			color: black;
+		&:before {
+			content: "\2022";
+			color: rgb(47, 218, 110);
+			font-size: 1.5em;
 		}
 	}
 }
 
-foxtel-now-list--inline {
+.foxtel-now-list--inline {
+	@extend .foxtel-now-list;
 	li {
 		display: inline;
 	}
