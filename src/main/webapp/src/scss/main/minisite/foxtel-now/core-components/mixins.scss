@@ -93,7 +93,7 @@
 	}
 }
 
-@mixin foxtel-now-btn($radius) {
+@mixin foxtel-now-btn($radius: 5px, $backgroundColour: $foxtel-now-green) {
 	border-style: hidden;
 	display: block;
 	border-radius: $radius;
@@ -102,7 +102,7 @@
     -ms-border-radius: $radius;
     padding: 15px;
     color: black;
-    background-color: rgb(47,218,110);
+    background-color: $backgroundColour;
     cursor: pointer;
     width: 100%;
     text-align: center;

@@ -1,0 +1,75 @@
+.pack-details {
+  $vertical-rhythm: 20px;
+
+  position: relative;
+  margin-bottom: 50px;
+
+  .pack-details-inner {
+
+    @include breakpoint(tablet) {
+      min-height: 400px;
+    }
+
+    h3 {
+      margin-bottom: $vertical-rhythm;
+    }
+
+    p {
+      margin-bottom: $vertical-rhythm;
+    }
+
+    .pack-details__meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 50px;
+
+      .pack-details__meta__offers {
+        margin-bottom: $vertical-rhythm;
+      }
+
+      .pack-details__meta__description {
+        font-size: 14px;
+        color: black;
+      }
+
+      .pack-details__meta__actions {
+        margin-bottom: $vertical-rhythm / 2;
+
+        .btn {
+          display: inline-block;
+          margin-right: 20px;
+          width: auto;
+        }
+      }
+
+      .pack-details__meta__extra {
+        color: $foxtel-now-dark-grey;
+        font-size: 11px;
+      }
+    }
+  }
+
+  .pack-details__image {
+    overflow: hidden;
+
+    @include breakpoint(tablet) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 50%;
+      height: 100%;
+
+      img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+  }
+}
