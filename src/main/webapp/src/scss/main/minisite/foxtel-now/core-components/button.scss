@@ -7,3 +7,8 @@
 .foxtel-now-btn--round {
    @include foxtel-now-btn(5em);
 }
+
+.foxtel-btn--wide {
+	display: inline-block;
+	max-width: none;
+}

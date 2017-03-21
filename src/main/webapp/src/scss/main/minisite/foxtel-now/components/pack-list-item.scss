@@ -1,0 +1,77 @@
+.foxtel-now-pack-list__item {
+  $bottom-margin: 15px;
+  $rounding: 3px;
+
+  margin-bottom: 30px;
+  list-style: none;
+
+  .foxtel-now-pack-list__item__inner {
+    position: relative;
+    border-radius: $rounding;
+    border: 1px solid transparent;
+
+
+    &.as-text-link {
+      height: 100%;
+      min-height: 150px;
+      border: 1px solid $foxtel-now-dark-grey;
+
+      h3 {
+        font-weight: 400;
+        color: $foxtel-now-dark-grey;
+        bottom: 50%;
+        left: 0%;
+        width: 100%;
+        text-align: center;
+        transform: translateY(50%);
+        font-size: 26px;
+
+        &:after {
+          content: " →";
+        }
+      }
+    }
+
+    &.overlay {
+      &:after {
+        opacity: 0.4;
+        border-radius: $rounding;
+      }
+    }
+
+    .ribbon {
+      @include breakpoint(mobileOnly) {
+        display: none;
+      }
+    }
+
+    img {
+      width: 100%;
+      border-radius: $rounding;
+    }
+
+    h3,
+    .legal {
+      z-index: 1;
+      position: absolute;
+    }
+
+    h3 {
+      margin-bottom: 0;
+      bottom: $bottom-margin;
+      left: 15px;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .legal {
+      bottom: $bottom-margin;
+      right: 20px;
+      color: white;
+      font-size: 11px;
+      opacity: 0.5;
+      font-weight: 300;
+    }
+  }
+}
