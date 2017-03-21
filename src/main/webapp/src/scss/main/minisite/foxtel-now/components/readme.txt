@@ -1,0 +1,1 @@
+this folder is for the scss files used in specific components. e.g. music-chart, sq-check and etc.
