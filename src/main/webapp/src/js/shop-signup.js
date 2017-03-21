@@ -4,7 +4,7 @@ $(document).ready(function(){
     if($form.length==0){
         return;
     }
-
+    $form.parsley();
     var ajaxUrl = "/bin/foxtel/now/customerDetails";
 
     var $submitButton = $("#sign-up-form-submit");
