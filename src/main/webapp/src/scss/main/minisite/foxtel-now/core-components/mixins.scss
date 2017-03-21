@@ -156,3 +156,18 @@
 .disabled {
 	background-color: #b4b4b4 !important;
 }
+
+.foxtel-now-list {
+	color: rgb(47, 218, 110);
+	li {
+		span {
+			color: black;
+		}
+	}
+}
+
+foxtel-now-list--inline {
+	li {
+		display: inline;
+	}
+}
