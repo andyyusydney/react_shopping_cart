@@ -1,7 +1,15 @@
 //addition header style for foxtel now site only
 
 .foxtel-now-header{
-  @extend .foxtel-header;
+  font-size:18px;
+  color:#0a0a0a;
+  height:75px;
+  font-family:"ProximaNova-Bold",arial,sans-serif;
+  align-items: center;
+  border-bottom:1px solid #efefef;
+  a, a:hover, a:focus{
+    text-decoration:none;
+  }
   width: 100%;
 }
 

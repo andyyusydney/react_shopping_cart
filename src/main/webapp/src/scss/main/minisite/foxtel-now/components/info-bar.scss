@@ -1,0 +1,14 @@
+.foxtel-now-info-bar-wrapper {
+    background: rgb(47,218,110);
+    padding: 15px 100px;
+    .foxtel-now-info-bar-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .foxtel-now-info-bar-content {
+            span {
+                margin-right: 20px;
+            }
+        }
+    }
+}
