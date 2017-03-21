@@ -12,9 +12,9 @@ $(document).ready(function(){
     $submitButton.click(function(){
         $this = $(this);
         var requestObject = {};
-        requestObject.cardNumber = $form.find("#cardNumber").val();
-        requestObject.cardExpiry = $form.find("#cardExpiry").val();
-        requestObject.cvc = $form.find("#cvc").val();
+        requestObject.cardNumber = $form.find("[data-id='cardNumber']").val();
+        requestObject.cardExpiry = $form.find("[data-id='cardExpiry']").val();
+        requestObject.cvc = $form.find("[data-id='cvc']").val();
 
         $.ajax({
             url: ajaxUrl,

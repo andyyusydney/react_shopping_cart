@@ -12,12 +12,12 @@ $(document).ready(function(){
     $submitButton.click(function(){
         $this = $(this);
         var requestObject = {};
-        requestObject.firstName = $form.find("#firstName").val();
-        requestObject.lastName = $form.find("#lastName").val();
-        requestObject.email = $form.find("#email").val();
-        requestObject.password = $form.find("#password").val();
-        requestObject.mobile = $form.find("#mobile").val();
-        requestObject.postcode = $form.find("#postcode").val();
+        requestObject.firstName = $form.find("[data-id='firstName']").val();
+        requestObject.lastName = $form.find("[data-id='lastName']").val();
+        requestObject.email = $form.find("[data-id='email']").val();
+        requestObject.password = $form.find("[data-id='password']").val();
+        requestObject.mobile = $form.find("[data-id='mobile']").val();
+        requestObject.postcode = $form.find("[data-id='postcode']").val();
 
 
         $.ajax({
