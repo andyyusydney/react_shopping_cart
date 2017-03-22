@@ -245,9 +245,8 @@
 }
 
 .foxtel-now-list {
-	display: flex;
-	justify-content: space-between;
 	padding-left: 0;
+	list-style: none;
 	li {
 		&:before {
 			content: "\2022";
@@ -260,6 +259,8 @@
 
 .foxtel-now-list--inline {
 	@extend .foxtel-now-list;
+	display: flex;
+	justify-content: space-between;
 	li {
 		display: inline;
 	}
