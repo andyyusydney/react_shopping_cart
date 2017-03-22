@@ -35,6 +35,10 @@ $br: 4px;
   	}
   }
 
+  .field-description {
+  	margin-top: -1rem;		
+  }
+
 /* Form classes */
 
   font-family:"ProximaNova",arial,sans-serif;
@@ -109,7 +113,7 @@ $br: 4px;
 	  transition:border-color .25s ease, box-shadow .25s ease;
 	  &:focus {
 			outline:0;
-			border-color:$main;
+			border-color:initial;
 	  }
 	}
 
