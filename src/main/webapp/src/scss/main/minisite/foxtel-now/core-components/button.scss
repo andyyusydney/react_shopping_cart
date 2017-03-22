@@ -8,6 +8,11 @@
    @include foxtel-now-btn(5em);
 }
 
+.foxtel-now-btn--black {
+	background-color: black;
+	color: white;
+}
+
 .foxtel-btn--wide {
 	display: inline-block;
 	max-width: none;
