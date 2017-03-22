@@ -9,7 +9,6 @@
     $left-indent: 10px;
 
     font-size: 14px;
-    padding: 30px 0 20px 0;
 
     h3 {
       color: $grey-dark;
@@ -29,6 +28,7 @@
         padding-left: $left-indent;
         padding-right: 10px;
         border-bottom: 2px solid transparent;
+        margin-bottom: 20px;
 
         &.active {
           border-bottom: 2px solid $foxtel-now-green;
@@ -50,6 +50,12 @@
       &.first {
         border-right: $border-style;
       }
+
+      padding-top: 30px;
+    }
+
+    &.first {
+      padding-top: 30px;
     }
   }
 }
