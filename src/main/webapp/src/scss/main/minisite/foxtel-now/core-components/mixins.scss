@@ -6,8 +6,6 @@
 	width: 376px;
 	height: 465px;
 	padding: 15px;
-	margin-left: 15px;
-	margin-right: 15px;
 	background-color: rgb(255, 255, 255);
   	background-color: var(--white);
   	border: solid 2px rgb(240, 240, 240);
@@ -255,6 +253,7 @@
 			content: "\2022";
 			color: rgb(47, 218, 110);
 			font-size: 1.5em;
+			padding-right: 10px;
 		}
 	}
 }
