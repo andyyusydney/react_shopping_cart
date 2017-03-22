@@ -1,4 +1,4 @@
-/* Jumbotron shopping cart related JS*/
+/* Foxtel now jumbotron shopping cart */
 
 $(document).ready(function(){
 	if($('.foxtel-jumbotron--shopping-cart').find('.foxtel-jumbotron__pack-tag')){

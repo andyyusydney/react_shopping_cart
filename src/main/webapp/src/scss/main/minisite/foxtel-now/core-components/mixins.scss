@@ -15,6 +15,14 @@
   		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
   		border: solid 2px rgb(47, 218, 110);
   	}
+  	.foxtel-now-btn.enable {
+  		span{
+  			&:before {
+  				content: '\002B';
+  				padding-right: 10px;
+  			}
+  		}
+  	}
 	.foxtel-now-card__image-wrapper {
 		text-align: center;
 		.foxtel-now-card__image-wrapper__promo {
@@ -152,11 +160,12 @@
 }
 
 .hidden {
-	display: none;
+	display: none !important;
 }
 
 .disabled {
 	background-color: #b4b4b4 !important;
+	cursor: default;
 }
 
 @mixin breakpoint($point) {
@@ -240,6 +249,7 @@
 .foxtel-now-list {
 	display: flex;
 	justify-content: space-between;
+	padding-left: 0;
 	li {
 		&:before {
 			content: "\2022";

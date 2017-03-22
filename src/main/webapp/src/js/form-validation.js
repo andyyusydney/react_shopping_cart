@@ -1,4 +1,4 @@
-/* Form validation related JS */
+/* Foxtel now form validation */
 
 $(document).ready(function(){
 	//Validate sign up form
