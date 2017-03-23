@@ -7,16 +7,15 @@
   	color: rgb(102, 102, 102);
 	.row {
 		font-size: 22px;
-		.col:last-child {
-			p {
+	}
+	.foxtel-now-pack-summary-container__pack-wrapper {
+		.row {
+			.foxtel-now-pack-summary-container__pack-wrapper__price {
 				text-align: right;
+			}
+			sub {
+				margin-top: -15px;
 			}
 		}
 	}
-	.foxtel-now-pack-summary-container__row {
-		.foxtel-now-pack-summary-container__row__package-info {
-			font-size: 14px;
-		}
-	}
-
 }
