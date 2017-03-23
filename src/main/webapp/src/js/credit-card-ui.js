@@ -257,10 +257,10 @@ $(document).ready(function(){
 		})
 //Toggle password
 	$('.show-password-target').on('click',function(){
-		if($('[data-input-type="password"]').attr('type') == 'tel'){
-			$('[data-input-type="password"]').attr('type','password');
+		if($('[data-password-mask]').attr('type') == 'text'){
+			$('[data-password-mask]').attr('type','password');
 		}else{
-			$('[data-input-type="password"]').attr('type','tel');
+			$('[data-password-mask]').attr('type','text');
 		}
 		
 	})

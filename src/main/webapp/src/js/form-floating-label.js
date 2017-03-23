@@ -1,3 +1,5 @@
+/* Foxtel now floating label */
+
 $(document).ready(function(){
 
   $('form[data-animation="float-label"]').find('input, textarea').on('keyup blur focus', function (e) {

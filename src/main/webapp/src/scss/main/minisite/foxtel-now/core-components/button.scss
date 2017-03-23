@@ -12,3 +12,12 @@
 	display: inline-block;
 	max-width: none;
 }
+
+.foxtel-now-btn--ghost {
+	@extend .foxtel-now-btn;
+	background: transparent;
+	border: 1px solid rgb(47,218,110);
+	&:hover{
+		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+	}
+}
