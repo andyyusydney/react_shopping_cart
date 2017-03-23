@@ -35,11 +35,20 @@
 
       .foxtel-now-pack-details__meta__actions {
         margin-bottom: $vertical-rhythm / 2;
+        position: relative;
 
         .btn {
           display: inline-block;
           margin-right: 20px;
           width: auto;
+        }
+
+        .slide-bg {
+          z-index: -1;
+          position: absolute;
+          top: 0;
+          height: 100%;
+          background-color: $foxtel-now-green;
         }
       }
 
