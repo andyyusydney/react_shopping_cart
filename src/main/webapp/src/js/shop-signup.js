@@ -11,6 +11,13 @@ $(document).ready(function(){
 
     $submitButton.click(function(){
         $this = $(this);
+
+        //validated form?
+
+        if(!$form.parsley().validate()){
+            return;
+        }
+
         var requestObject = {};
         requestObject.firstName = $form.find("[data-id='firstName']").val();
         requestObject.lastName = $form.find("[data-id='lastName']").val();
