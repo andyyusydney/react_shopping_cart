@@ -45,7 +45,7 @@ $(document).on('keyup',"[data-ccexpiry-formatter]",function(){
     if(!value){
         return;
     }
-    var replacedValue = value.replace("-", "");
+    var replacedValue = value.replace(/-/g, "");
     var replacedLength = replacedValue.length;
     var newValue;
     if (replacedLength > 1) {
