@@ -5,59 +5,60 @@
  * Use standard JS event to handle click events and UI changes
  */
 
-(function($) {
 
-    com.foxtel.ShopCartManager = function() {
 
-        //Constants are defined here, but variables are defined in init function
-        var MODEL_NAME_FOR_CART_SERVLET ="modelShopCart";
-        var CART_SERVLET_URL = "/bin/foxtel/now/cart";
+com.foxtel.ShopCartManager = function() {
 
-        function init(){
-            //shop cart servlet response
-            this.shopCartResponseData = null;
-            var self = this;
+    //Constants are defined here, but variables are defined in init function
+    var MODEL_NAME_FOR_CART_SERVLET ="modelShopCart";
+    var CART_SERVLET_URL = "/bin/foxtel/now/cart";
 
-            FOX.dyc.subscribeEvent(MODEL_NAME_FOR_CART_SERVLET,function(data){
-                self.shopCartResponseData = data;
-            });
-        }
+    function init(){
+        //shop cart servlet response
+        this.shopCartResponseData = null;
+        var self = this;
 
-        function addTier(tierId){
-            var self = this;
-            var postData  =
-                {
-                    "play" : {
-                        "tiers" : [
-                            {
-                                "tierId" : 990690
-                            }
-                        ]
-                    }
-                };
+        FOX.dyc.subscribeEvent(MODEL_NAME_FOR_CART_SERVLET,function(data){
+            self.shopCartResponseData = data;
+        });
+    }
 
-            $.ajax({
-                type: "POST",
-                url: CART_SERVLET_URL,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify(postData),
-                success: function(data) {
-                    self.shopCartResponseData = data;
+    function addTier(tierId){
+        var self = this;
+        var postData  =
+            {
+                "play" : {
+                    "tiers" : [
+                        {
+                            "tierId" : 990690
+                        }
+                    ]
                 }
-            });
+            };
 
-        }
-
-        return {
-                init:init,
-                addTier:addTier
-
+        $.ajax({
+            type: "POST",
+            url: CART_SERVLET_URL,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(postData),
+            success: function(data) {
+                self.shopCartResponseData = data;
             }
+        });
 
-    };
+    }
 
-     Foxtel.ShopCartManager = new com.foxtel.ShopCartManager();
-     Foxtel.ShopCartManager.init();
+    return {
+        init:init,
+        addTier:addTier
+    }
 
-})(jQuery);
+};
+
+Foxtel.ShopCartManager = new com.foxtel.ShopCartManager();
+
+$(document).ready(function(){
+    Foxtel.ShopCartManager.init();
+});
+
