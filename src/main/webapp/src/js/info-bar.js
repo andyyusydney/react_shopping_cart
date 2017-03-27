@@ -1,4 +1,4 @@
-// Info bar animation
+/* Foxtel now info bar */
 
 $(document).ready(function(){
     if($('.info-bar-wrapper').length > 0){

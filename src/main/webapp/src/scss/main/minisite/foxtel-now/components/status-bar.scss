@@ -4,6 +4,16 @@
   padding: 0;
   margin: 50px auto;
   
+  @media (max-width: 767px)  {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+    width: 118px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 0;
+  }
+
   .foxtel-now-cont-flex-box {
     display: flex;
     justify-content: space-between;
@@ -11,7 +21,9 @@
   }
 
   .foxtel-now-progress-bar{
-    appearance:none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     width: 100%;
     color: #000;
     height: 2px;
@@ -24,6 +36,12 @@
     top: -45px;
     p:first-child {
       min-width: 100px;
+      white-space: nowrap;
+      @media (max-width: 767px)  {
+        transform: rotate(-90deg);
+        margin-left: -50px;
+        padding-left: 30px;
+      }
     }
   }
 
@@ -39,24 +57,35 @@
 
   .second{
     p:first-child {
-      margin-left: -20px;    
+      @media (min-width: 768px)  {
+        margin-left: -20px;    
+      }
     }
   }
   .third{
     p:first-child {
-      margin-left: -30px;
+      @media (min-width: 768px)  {
+        margin-left: -30px;
+      }
     }
   }
   .fourth{
     p:first-child {
-      margin-left: -30px;
+      @media (min-width: 768px)  {
+        margin-left: -30px;
+      }
     }
   }
-  #progress-bar::-webkit-progress-value{ /* Changes line color */
+  #progress-bar::-webkit-progress-value,
+  #progress-bar::-moz-progress-value{ /* Changes line color */
     background: green;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
   }
-  #progress-bar::-webkit-progress-bar{ /* Changes background color */
+  #progress-bar::-webkit-progress-bar,
+  #progress-bar::-moz-progress-bar{ /* Changes background color */
     background: lightgrey;
   }
   .border-change {
@@ -66,6 +95,9 @@
       }
     }
     border-color: grey;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
   }
 }
