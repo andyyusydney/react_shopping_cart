@@ -1,17 +1,28 @@
-/* Foxtel now shop */
+/**
+ * This javascript is for now/shop.html
+ */
+
+
 
 $(document).ready(function(){
-	if($('.foxtel-now-album')){
-		$foxtel_now_album = $('.foxtel-now-album');
-		$foxtel_now_album.find('.foxtel-now-btn.enable').on('click',function(){
-			$(this).addClass('hidden');
-			$(this).siblings('.foxtel-now-btn.disabled').removeClass('hidden');
-		})
-		$foxtel_now_album.find('.foxtel-now-btn').on('click',function(e){
-			e.stopImmediatePropagation();
-            e.preventDefault();
-            return false;
-		})
-	}
-	
-})
+
+    //add button event
+    $(document).on('click','.foxtelNowProductAddToCart span',function(){
+        var $this = $(this);
+        var tierId = $this.data("tier-id");
+        if(!tierId){
+            return;
+        }
+
+        Foxtel.ShopCartManager.addPlayTier(tierId);
+    });
+
+    $(document).on('click','[data-button-url]',function(){
+        var dataURL = $(this).data("button-url");
+        Foxtel.navigator(dataURL);
+    });
+
+
+
+
+});

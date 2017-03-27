@@ -12,6 +12,12 @@ $(document).ready(function(){
 
     $submitButton.click(function(){
         $this = $(this);
+
+        //validated form?
+        if(!$form.parsley().validate()){
+            return;
+        }
+
         var requestObject = {};
         requestObject.cardNumber = $form.find("[data-id='cardNumber']").val();
         requestObject.cardExpiry = $form.find("[data-id='cardExpiry']").val();

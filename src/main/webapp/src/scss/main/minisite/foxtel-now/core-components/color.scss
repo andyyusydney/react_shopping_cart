@@ -8,9 +8,10 @@ $grey-dark: #888;
 $soft-white: rgba(255, 255, 255, 0.8);
 
 $foxtel-now-green: #2dcc67;
+$foxtel-now-light-grey: #f0f0f0;
+$foxtel-now-disabled-grey: #b4b4b4;
 $foxtel-now-dark-grey: #505050;
 $foxtel-now-very-dark-grey: #0a0a0a;
-$foxtel-now-light-grey: #f0f0f0;
 
 
 /*********************
@@ -18,7 +19,7 @@ BACKGROUND
 *********************/
 
 .foxtel-now-background-green {
-	background-color: rgb(47,218,110) !important;
+	background-color: $foxtel-now-green !important;
 }
 
 .foxtel-now-background-black {

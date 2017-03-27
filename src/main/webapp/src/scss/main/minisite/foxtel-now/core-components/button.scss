@@ -8,12 +8,26 @@
    @include foxtel-now-btn(5em);
 }
 
+.foxtel-now-btn--disabled {
+	@extend .foxtel-now-btn;
+
+	background-color: $foxtel-now-disabled-grey;
+	color: $foxtel-now-dark-grey;
+	pointer-events: none;
+
+	&:hover {
+		opacity: 1.0;
+	}
+}
+
 .foxtel-now-btn--black {
 	background-color: black;
 	color: white;
 }
 
 .foxtel-btn--wide {
+	@extend .foxtel-now-btn;
+
 	display: inline-block;
 	max-width: none;
 }
