@@ -51,6 +51,11 @@ var CartCollectionView = Backbone.View.extend({
 /* Execution Backbones */
 $(document).ready(function(){
 
+   var cartTemplate = $('#cartCollection-template');
+   if(cartTemplate.length==0){
+        return;
+   }
+
   // var cart_item = new CartItem({tierId: 10, price: 13.5,title: 'drama'});
 
   var cart_collection = new CartCollection();
