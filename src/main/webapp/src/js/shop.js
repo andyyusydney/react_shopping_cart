@@ -7,14 +7,21 @@
 $(document).ready(function(){
 
     //add button event
-    $(document).on('click','.foxtelNowProductAddToCart span',function(){
+    $(document).on('click','.foxtelNowProductAddToCart',function(e){
         var $this = $(this);
-        var tierId = $this.data("tier-id");
+        var tierId = $this.data('tier-id') || $this.find('span').data('tier-id');
         if(!tierId){
             return;
         }
-
+        if($(this).hasClass('enable')){
+            $(this).addClass('hidden');
+            $(this).siblings('.foxtel-now-btn.disabled').removeClass('hidden');
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            return false;
+        }   
         Foxtel.ShopCartManager.addPlayTier(tierId);
+
     });
 
     $(document).on('click','[data-button-url]',function(){

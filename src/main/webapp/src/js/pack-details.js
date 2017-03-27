@@ -5,10 +5,10 @@ $(document).ready(function () {
   function updateSlidingBackground() {
     var $activeAnchor = $actions.find('.active');
 
-    $slider.css({
-      'left': $activeAnchor.position().left,
-      'width': $activeAnchor.outerWidth()
-    });
+    // $slider.css({
+    //   'left': $activeAnchor.position().left,
+    //   'width': $activeAnchor.outerWidth()
+    // });
   }
 
   var $actions = $('.foxtel-now-pack-details__meta__actions');
