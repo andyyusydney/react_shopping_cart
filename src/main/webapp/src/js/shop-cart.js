@@ -20,6 +20,7 @@ com.foxtel.ShopCartManager = function() {
 
         FOX.dyc.subscribeEvent(MODEL_NAME_FOR_CART_SERVLET,function(data){
             self.shopCartResponseData = data;
+            FOX.context.broadcast("SHOP_CART_LOADED",data);
         });
     }
 
@@ -41,6 +42,7 @@ com.foxtel.ShopCartManager = function() {
                 if(callback){
                     callback(data);
                 }
+                FOX.context.broadcast("SHOP_CART_REFRESHED",data);
             }
         });
     }
