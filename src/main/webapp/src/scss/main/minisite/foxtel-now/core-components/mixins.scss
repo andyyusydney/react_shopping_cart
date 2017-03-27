@@ -7,7 +7,6 @@
 	height: 465px;
 	padding: 15px;
 	background-color: rgb(255, 255, 255);
-  	background-color: var(--white);
   	border: solid 2px rgb(240, 240, 240);
   	&:hover {
   		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
@@ -97,7 +96,7 @@
 	}
 }
 
-@mixin foxtel-now-btn($radius: 5px, $backgroundColour: $foxtel-now-green) {
+@mixin foxtel-now-btn($radius) {
 	border-style: hidden;
 	display: block;
 	border-radius: $radius;
@@ -106,7 +105,7 @@
     -ms-border-radius: $radius;
     padding: 15px;
     color: black;
-    background-color: $backgroundColour;
+    background-color: $foxtel-now-green;
     cursor: pointer;
     width: 100%;
     text-align: center;
