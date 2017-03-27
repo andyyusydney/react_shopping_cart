@@ -23,18 +23,12 @@ com.foxtel.ShopCartManager = function() {
         });
     }
 
-    function addTier(tierId){
+    function addPlayTier(tierId,callback){
         var self = this;
-        var postData  =
-            {
-                "play" : {
-                    "tiers" : [
-                        {
-                            "tierId" : 990690
-                        }
-                    ]
-                }
-            };
+
+        var tierIds = self.getCurrentPlayTiers();
+        tierIds = _.union(tierIds, [tierId]);
+        var postData = getPlayRequestFromTierIds(tierIds);
 
         $.ajax({
             type: "POST",
@@ -44,14 +38,43 @@ com.foxtel.ShopCartManager = function() {
             data: JSON.stringify(postData),
             success: function(data) {
                 self.shopCartResponseData = data;
+                if(callback){
+                    callback(data);
+                }
             }
         });
-
     }
+
+    function getCurrentPlayTiers(){
+        var tierIds = [];
+
+        $.each(this.shopCartResponseData.play.tiers,function(tier){
+            tierIds.push(tier.tierId);
+        });
+
+        return tierIds;
+    }
+
+    function getPlayRequestFromTierIds(tierIds){
+        var postData  = {
+                "play" : {
+                    "tiers" : [
+
+                    ]
+                }
+            };
+
+        $.each(tierIds,function(tierId){
+            postData.play.tiers.push({"tierId":tierId})
+        });
+    }
+
+
 
     return {
         init:init,
-        addTier:addTier
+        addPlayTier:addPlayTier,
+        getCurrentPlayTiers:getCurrentPlayTiers
     }
 
 };
