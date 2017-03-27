@@ -50,7 +50,7 @@ com.foxtel.ShopCartManager = function() {
     function getCurrentPlayTiers(){
         var tierIds = [];
 
-        $.each(this.shopCartResponseData.play.tiers,function(tier){
+        $.each(this.shopCartResponseData.play.tiers,function(idx,tier){
             tierIds.push(tier.tierId);
         });
 
@@ -66,9 +66,11 @@ com.foxtel.ShopCartManager = function() {
                 }
             };
 
-        $.each(tierIds,function(tierId){
+        $.each(tierIds,function(idx,tierId){
             postData.play.tiers.push({"tierId":tierId})
         });
+
+        return postData;
     }
 
 

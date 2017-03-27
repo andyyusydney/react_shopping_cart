@@ -50,25 +50,27 @@ var CartCollectionView = Backbone.View.extend({
 
 /* Execution Backbones */
 $(document).ready(function(){
-  
+
   // var cart_item = new CartItem({tierId: 10, price: 13.5,title: 'drama'});
 
   var cart_collection = new CartCollection();
-
   var cart_collection_view = new CartCollectionView({collection: cart_collection});
-
   cart_collection_view.$el = $('#cartCollection-container');
-  
-  $('.foxtelNowProductAddToCart').on('click',function(){
 
-    var tierId = $(this).find('span').data('tier-id');
 
-    var pack = Foxtel.ShopCartManager.addPlayTier(tierId,null);
-        
-    
+    //cart load & cart refresh event
+    function updateCart(cartResponse){
+        var source = $('#cartCollection-template').html();
+        var template = Handlebars.compile(source);
+        var html = template(cartResponse.play.tiers);
+        $('#cartCollection-container').html(html);
+    };
+
+    FOX.context.subscribe("SHOP_CART_LOADED",function(data){
+        updateCart(data);
     });
 
-  })
-
-  console.log('length: ' + cart_collection.length);
+    FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
+        updateCart(data);
+    });
 })
