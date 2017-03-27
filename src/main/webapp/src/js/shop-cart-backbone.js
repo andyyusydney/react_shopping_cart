@@ -2,7 +2,6 @@
 /**
  * Foxtel now shop cart backbone logic
  * Backbone view for all shop cart components 
- * Use standard JS event to handle click events and UI changes
  */
 
 
@@ -63,19 +62,27 @@ $(document).ready(function(){
   cart_collection_view.$el = $('#cartCollection-container');
 
 
-    //cart load & cart refresh event
-    function updateCart(cartResponse){
-        var source = $('#cartCollection-template').html();
-        var template = Handlebars.compile(source);
-        var html = template(cartResponse.play.tiers);
-        $('#cartCollection-container').html(html);
-    };
+  //cart load & cart refresh event
+  function updateCart(cartResponse){
+      var source = $('#cartCollection-template').html();
+      var template = Handlebars.compile(source);
+      var html = template(cartResponse);
+      $('#cartCollection-container').html(html);
+  };
 
-    FOX.context.subscribe("SHOP_CART_LOADED",function(data){
-        updateCart(data);
-    });
+  //basket load refresh
+  function updateCart(cartResponse){
+      var source = $('#icon-basket-template').html();
+      var template = Handlebars.compile(source);
+      var html = template(cartResponse);
+      $('#icon-basket-template-container').html(html);
+  };
 
-    FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
-        updateCart(data);
-    });
+  FOX.context.subscribe("SHOP_CART_LOADED",function(data){
+      updateCart(data);
+  });
+
+  FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
+      updateCart(data);
+  });
 })
