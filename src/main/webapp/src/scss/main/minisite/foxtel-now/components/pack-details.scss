@@ -1,0 +1,69 @@
+.foxtel-now-pack-details {
+  $vertical-rhythm: 20px;
+
+  position: relative;
+  margin-bottom: 50px;
+
+  h3 {
+    margin-bottom: $vertical-rhythm;
+  }
+
+  p {
+    margin-bottom: $vertical-rhythm;
+  }
+
+  .foxtel-now-pack-details__meta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .foxtel-now-pack-details__meta__inner {
+      padding-right: 50px;
+    }
+
+    .foxtel-now-pack-details__meta__offers {
+      margin-bottom: $vertical-rhythm;
+    }
+
+    .foxtel-now-pack-details__meta__description {
+      font-size: 14px;
+      color: black;
+    }
+
+    .foxtel-now-pack-details__meta__actions {
+      margin-bottom: $vertical-rhythm / 2;
+      position: relative;
+
+      .btn {
+        position: relative;
+        display: inline-block;
+        margin-right: 20px;
+        width: auto;
+
+        &.slide-bg {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          background-color: $foxtel-now-green;
+        }
+      }
+
+    }
+
+    .foxtel-now-pack-details__meta__extra {
+      color: $foxtel-now-dark-grey;
+      font-size: 11px;
+    }
+  }
+
+  .foxtel-now-pack-details__image {
+    img {
+      max-width: 100%;
+    }
+  }
+}
