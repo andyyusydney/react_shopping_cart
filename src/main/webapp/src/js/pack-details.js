@@ -19,7 +19,7 @@ $(document).ready(function () {
     var anchorWidth = $links.first().css('width');
 
     // Setup sliding background element.
-    $slider.css('width', anchorWidth);
+    $slider.show().css('width', anchorWidth);
     updateSlidingBackground();
 
     // Update the sliding background on hover.
@@ -31,7 +31,7 @@ $(document).ready(function () {
       });
     });
   }
-  
+
   $('.foxtel-now-pack-details__meta__actions a.add-to-cart').click(function (event) {
     var text = $(this).data('added-text');
 
