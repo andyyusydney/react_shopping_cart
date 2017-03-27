@@ -12,23 +12,26 @@ $(document).ready(function () {
   }
 
   var $actions = $('.foxtel-now-pack-details__meta__actions');
-  var $links = $actions.find('a');
-  var $slider = $actions.find('.slide-bg');
-  var anchorWidth = $links.first().css('width');
 
-  // Setup sliding background element.
-  $slider.css('width', anchorWidth);
-  updateSlidingBackground();
+  if ($actions.length) {
+    var $links = $actions.find('a');
+    var $slider = $actions.find('.slide-bg');
+    var anchorWidth = $links.first().css('width');
 
-  // Update the sliding background on hover.
-  $links.each(function () {
-    $(this).mouseover(function () {
-      $links.removeClass('active');
-      $(this).addClass('active');
-      updateSlidingBackground();
+    // Setup sliding background element.
+    $slider.css('width', anchorWidth);
+    updateSlidingBackground();
+
+    // Update the sliding background on hover.
+    $links.each(function () {
+      $(this).mouseover(function () {
+        $links.removeClass('active');
+        $(this).addClass('active');
+        updateSlidingBackground();
+      });
     });
-  });
-
+  }
+  
   $('.foxtel-now-pack-details__meta__actions a.add-to-cart').click(function (event) {
     var text = $(this).data('added-text');
 
