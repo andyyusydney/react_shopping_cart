@@ -51,16 +51,24 @@ var CartCollectionView = Backbone.View.extend({
 /* Execution Backbones */
 $(document).ready(function(){
   
-  var cart_item = new CartItem({tierId: 10, price: 13.5,title: 'drama'});
-  var cart_item2 = new CartItem({tierId: 11, price: 13.5,title: 'sport'});
+  // var cart_item = new CartItem({tierId: 10, price: 13.5,title: 'drama'});
+
   var cart_collection = new CartCollection();
 
   var cart_collection_view = new CartCollectionView({collection: cart_collection});
 
   cart_collection_view.$el = $('#cartCollection-container');
-
-  cart_collection.add(cart_item);
-  cart_collection.add(cart_item2);
   
+  $('.foxtelNowProductAddToCart').on('click',function(){
+
+    var tierId = $(this).find('span').data('tier-id');
+
+    var pack = Foxtel.ShopCartManager.addPlayTier(tierId,null);
+        
+    
+    });
+
+  })
+
   console.log('length: ' + cart_collection.length);
 })
