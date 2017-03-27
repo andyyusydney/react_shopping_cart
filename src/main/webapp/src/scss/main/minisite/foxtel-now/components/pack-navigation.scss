@@ -1,0 +1,61 @@
+.foxtel-now-pack-navigation-wrapper {
+  $border-style: 2px solid darken($grey-light, 10%);
+
+  background-color: $grey-light;
+  border-bottom: $border-style;
+  margin-bottom: 50px;
+
+  .foxtel-now-pack-navigation {
+    $left-indent: 10px;
+
+    font-size: 14px;
+
+    h3 {
+      color: $grey-dark;
+      font-weight: 400;
+      font-size: 14px;
+      margin-bottom: 40px;
+      padding-left: $left-indent;
+    }
+
+    .foxtel-now-pack-navigation__pack-list {
+      padding-left: 0;
+
+      li {
+        display: inline-block;
+        list-style: none;
+        padding-bottom: 16px;
+        padding-left: $left-indent;
+        padding-right: 10px;
+        border-bottom: 2px solid transparent;
+        margin-bottom: 20px;
+
+        &.active {
+          border-bottom: 2px solid $foxtel-now-green;
+
+          a {
+              font-weight: 700;
+              pointer-events: none;
+          }
+        }
+
+        a {
+          color: black;
+          text-decoration: none;
+        }
+      }
+    }
+
+    @include breakpoint(tablet) {
+      &.first {
+        border-right: $border-style;
+      }
+
+      padding-top: 30px;
+    }
+
+    &.first {
+      padding-top: 30px;
+    }
+  }
+}

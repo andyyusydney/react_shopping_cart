@@ -24,9 +24,14 @@
 	}
 }
 
+.foxtel-now-btn--black {
+	background-color: black;
+	color: white;
+}
+
 .foxtel-btn--wide {
 	@extend .foxtel-now-btn;
-	
+
 	display: inline-block;
 	max-width: none;
 }
