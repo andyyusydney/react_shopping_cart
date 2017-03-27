@@ -1,8 +1,7 @@
 
 /**
- * Foxtel now shop cart
- * All the frontend interaction with cart or cart servlet should be put here
- * Use standard JS event to handle click events and UI changes
+ * Foxtel now shop cart manager
+ * 
  */
 
 
