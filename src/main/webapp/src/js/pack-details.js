@@ -1,45 +1,69 @@
-// Animate green background between buttons on hover.
-// --------------------------------------------------
+// JavaScript for Pack Details Page
+// --------------------------------
 
 $(document).ready(function () {
-  function updateSlidingBackground() {
-    var $activeAnchor = $actions.find('.active');
+  var $packDetails = $('.foxtel-now-pack-details');
 
-    $slider.css({
-      'left': $activeAnchor.position().left,
-      'width': $activeAnchor.outerWidth()
+  if ($packDetails.length) {
+
+    // PackDetailsView
+    // ---------------
+
+    var PackDetailsView = Backbone.View.extend({
+      initialize: function (options) {
+        this.$actions = this.$el.find('.foxtel-now-pack-details__meta__actions');
+        this.$links = this.$actions.find('a');
+        this.$slider = this.$actions.find('.slide-bg');
+        this.cart = options.cart
+        this.updateSlidingBackground();
+      },
+
+      events: {
+        'mouseover .foxtel-now-pack-details__meta__actions a': 'handleActionHover',
+        'click a.add-to-cart': 'handleAddToCart'
+      },
+
+      // Event handlers
+      // --------------
+
+      handleActionHover: function (event) {
+        this.$links.removeClass('active');
+        $(event.currentTarget).addClass('active');
+        this.updateSlidingBackground();
+      },
+
+      handleAddToCart: function (event) {
+        var $link = $(event.currentTarget);
+        var text = $link.data('added-text');
+        var tierId = $link.data('tier-id');
+
+        event.preventDefault();
+        $link.addClass('is-disabled');
+        $link.html(text);
+        $link.removeClass('active');
+        $link.siblings('.buy-it-now').addClass('active');
+        this.updateSlidingBackground();
+      },
+
+      // Private
+      // -------
+
+      updateSlidingBackground: function () {
+        var $activeAnchor = this.$actions.find('.active');
+
+        this.$slider.show().css({
+          'left': $activeAnchor.position().left,
+          'width': $activeAnchor.outerWidth()
+        });
+      }
     });
-  }
 
-  var $actions = $('.foxtel-now-pack-details__meta__actions');
-
-  if ($actions.length) {
-    var $links = $actions.find('a');
-    var $slider = $actions.find('.slide-bg');
-    var anchorWidth = $links.first().css('width');
-
-    // Setup sliding background element.
-    $slider.show().css('width', anchorWidth);
-    updateSlidingBackground();
-
-    // Update the sliding background on hover.
-    $links.each(function () {
-      $(this).mouseover(function () {
-        $links.removeClass('active');
-        $(this).addClass('active');
-        updateSlidingBackground();
+    // Instantiate PackDetailsView
+    $packDetails.each(function () {
+      new PackDetailsView({
+        el: $(this),
+        cart: Foxtel.ShopCartManager
       });
     });
   }
-
-  $('.foxtel-now-pack-details__meta__actions a.add-to-cart').click(function (event) {
-    var text = $(this).data('added-text');
-
-    event.preventDefault();
-    $(this).addClass('foxtel-now-btn--disabled');
-    $(this).html(text);
-    $(this).removeClass('active');
-    $(this).siblings('a').first().addClass('active');
-    updateSlidingBackground();
-  });
 });
