@@ -71,7 +71,7 @@ $(document).ready(function(){
   };
 
   //basket load refresh
-  function updateCart(cartResponse){
+  function updateIcon(cartResponse){
       var source = $('#icon-basket-template').html();
       var template = Handlebars.compile(source);
       var html = template(cartResponse);
@@ -80,9 +80,12 @@ $(document).ready(function(){
 
   FOX.context.subscribe("SHOP_CART_LOADED",function(data){
       updateCart(data);
+      updateIcon(data);
+
   });
 
   FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
       updateCart(data);
+      updateIcon(data);
   });
 })
