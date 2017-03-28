@@ -37,3 +37,22 @@ $(document).on('change',"[data-name-formatter]",function(){
 
     $this.val(newNameString);
 });
+
+$(document).on('keyup',"[data-ccexpiry-formatter]",function(){
+    var $this = $(this);
+    var value = $this.val();
+
+    if(!value){
+        return;
+    }
+    var replacedValue = value.replace(/-/g, "");
+    var replacedLength = replacedValue.length;
+    var newValue;
+    if (replacedLength > 1) {
+        newValue = replacedValue.slice(0, 2) + "-" + replacedValue.slice(2);
+    }
+    else {
+        newValue = replacedValue;
+    }
+    $this.val(newValue);
+});
