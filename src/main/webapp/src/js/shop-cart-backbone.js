@@ -55,12 +55,9 @@ $(document).ready(function(){
         return;
    }
 
-  // var cart_item = new CartItem({tierId: 10, price: 13.5,title: 'drama'});
-
   var cart_collection = new CartCollection();
   var cart_collection_view = new CartCollectionView({collection: cart_collection});
   cart_collection_view.$el = $('#cartCollection-container');
-
 
   //cart load & cart refresh event
   function updateCart(cartResponse){
@@ -71,7 +68,7 @@ $(document).ready(function(){
   };
 
   //basket load refresh
-  function updateCart(cartResponse){
+  function updateIcon(cartResponse){
       var source = $('#icon-basket-template').html();
       var template = Handlebars.compile(source);
       var html = template(cartResponse);
@@ -80,9 +77,12 @@ $(document).ready(function(){
 
   FOX.context.subscribe("SHOP_CART_LOADED",function(data){
       updateCart(data);
+      updateIcon(data);
+console.log(data.quote.monthlyCostItems);
   });
 
   FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
       updateCart(data);
+      updateIcon(data);
   });
 })
