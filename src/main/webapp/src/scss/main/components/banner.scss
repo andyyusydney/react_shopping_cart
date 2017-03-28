@@ -2,37 +2,35 @@
   position:relative;
   overflow: hidden;
 }
-
 .foxtel-banner__image{
   display:flex;
   justify-content: center;
 }
-.foxtel-banner__content--vCenter{
+.foxtel-banner__content{
   width:100%;
   position:absolute;
   left:0;
   top:0;
   bottom:0;
-  display:flex;
-  align-items:center;
   @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+}
+.foxtel-banner__content--vCenter{
+  width:100%;
+  padding-top:60px;
+  @media (min-width: 768px) {
+    padding-top:0;
     .container {
       padding: 0;
     }
   }
 }
-.foxtel-banner__content--vCenter--z-index{
-  width: 100%;
-  z-index: 1;
-}
 .foxtel-banner__content--vBtm{
   width:100%;
   position:absolute;
-  left:0;
-  top:0;
   bottom:0;
-  display:flex;
-  align-items:flex-end;
   @media (min-width: 768px) {
     .container {
       padding: 0;
