@@ -56,3 +56,15 @@ $(document).on('keyup',"[data-ccexpiry-formatter]",function(){
     }
     $this.val(newValue);
 });
+
+$(document).on('keyup',"[data-ccnumber-formatter]",function(e){
+    if($(this).val().length == 4 && e.keyCode != 8) {
+        $(this).val($(this).val()+" ");
+    }
+    else {
+        var str = $(this).val();
+        if((str.length - str.lastIndexOf(" "))%5 == 0 && str.length > 4 && e.keyCode != 8){
+            $(this).val(str+" ");
+        }
+    }
+});
