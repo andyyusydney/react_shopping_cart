@@ -17,8 +17,7 @@ $(document).ready(function(){
             $(this).addClass('hidden');
             $(this).siblings('.foxtel-now-btn.disabled').removeClass('hidden');
             e.stopImmediatePropagation();
-            e.preventDefault();
-            return false;
+            e.preventDefault();            
         }   
         Foxtel.ShopCartManager.addPlayTier(tierId);
 
