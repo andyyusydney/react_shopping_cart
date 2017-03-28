@@ -1,0 +1,10 @@
+@mixin make-btn ($color, $background){
+  color:$color;
+  background-color:$background;
+  padding:15px 30px;
+  border-radius: 100px;
+  &:hover{
+    color:$color;
+    text-decoration: none;
+  }
+}

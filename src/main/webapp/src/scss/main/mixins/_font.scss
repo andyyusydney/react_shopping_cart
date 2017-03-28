@@ -1,0 +1,12 @@
+@mixin build-font-face($font-family, $file-name) {
+  $file-path: "/etc/designs/foxtel/assets/fonts/proxima-nova/";
+  @font-face {
+    font-family: "#{$font-family}";
+    src: url($file-path + $file-name + ".eot?#iefix") format('embedded-opentype'),
+    url($file-path + $file-name + ".woff") format('woff'),
+    url($file-path + $file-name + ".ttf")  format('truetype'),
+    url($file-path + $file-name + ".svg#wf") format("svg");
+    font-weight: normal;
+    font-style: normal;
+  }
+}

@@ -1,74 +1,66 @@
 /*********************
 FONT FACE
 *********************/
-@mixin build-font-face($font-family, $file-name) {
-	$file-path: "/etc/designs/foxtel/assets/fonts/proxima-nova/";
-	@font-face {
-		font-family: "#{$font-family}";
-		src: url($file-path + $file-name + ".eot?#iefix") format('embedded-opentype'),
-		url($file-path + $file-name + ".woff") format('woff'),
-		url($file-path + $file-name + ".ttf")  format('truetype'),
-		url($file-path + $file-name + ".svg#wf") format("svg");
-		font-weight: normal;
-		font-style: normal;
-	}
-}
-
 @include build-font-face("ProximaNova", "ProximaNova-Reg-webfont");
 @include build-font-face("ProximaNova-Thin", "ProximaNova-Thin-webfont");
 @include build-font-face("ProximaNova-Light", "ProximaNova-Light-webfont");
 @include build-font-face("ProximaNova-Bold","ProximaNova-Bold-webfont");
 
-/*********************
-FONT VARIABLE
-*********************/
-$font-size--xl:   76px;
-$font-size--lg:   47px;
-$font-size--md:   29px;
-$font-size--base: 18px;
-$font-size--sm:   12px;
-
-$font-family--regular	:"ProximaNova", arial, sans-serif;
-$font-family--Thin		:"ProximaNova-Thin", arial, sans-serif;
-$font-family--Light		:"ProximaNova-Light", arial, sans-serif;
-$font-family--Bold		:"ProximaNova-Bold", arial, sans-serif;
-
-
 /******************************************
-Typography classes for Producers
-will add to the new Style Guide in the future
+Typography scss placeholders
+&
+Typography classes for Producers (will add to the new Style Guide in the future)
+
+Defined 5 types plus 4 bold style based on the Typography guide provided by Vane,
+They will be all Typography we use for the site based on the discussion with Vane.
+Please don't add anymore.
 ******************************************/
-.font-family--regular{
-	font-family: $font-family--regular;
-}
-.font-family--Thin{
+
+.font--xl, %font--xl{
 	font-family: $font-family--Thin;
-}
-.font-family--Light{
-	font-family: $font-family--Light;
-}
-.font-family--Bold{
-	font-family: $font-family--Bold;
-}
-.font-size--xl{
 	font-size:$font-size--xl;
+	letter-spacing: -2px;
 }
-.font-size--lg{
+.font--lg, %font--lg{
+	font-family: $font-family--regular;
 	font-size:$font-size--lg;
+	letter-spacing: -0.5px;
 }
-.font-size--md{
+.font--md, %font--md{
+	font-family: $font-family--regular;
 	font-size:$font-size--md;
+	letter-spacing: -0.25px;
 }
-.font-size--base{
+.font--base, %font--base{
+	font-family: $font-family--regular;
 	font-size:$font-size--base;
 }
-.font-size--sm{
+.font--sm, %font--sm{
+	font-family: $font-family--regular;
+	font-size:$font-size--sm;
+}
+.font--lg--bold, %font--lg--bold{
+	font-family: $font-family--Bold;
+	font-size:$font-size--lg;
+	letter-spacing: -0.5px;
+}
+.font--md--bold, %font--md--bold{
+	font-family: $font-family--Bold;
+	font-size:$font-size--md;
+	letter-spacing: -0.25px;
+}
+.font--base--bold, %font--base--bold{
+	font-family: $font-family--Bold;
+	font-size:$font-size--base;
+}
+.font--sm--bold, %font--sm--bold{
+	font-family: $font-family--Bold;
 	font-size:$font-size--sm;
 }
 
 /******************************************
-Predefine body font family
+Define body font
 ******************************************/
 body {
-    font-family:"ProximaNova",arial,sans-serif;
+    @extend %font--base;
 }

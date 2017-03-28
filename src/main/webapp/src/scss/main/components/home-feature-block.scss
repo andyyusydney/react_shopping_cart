@@ -1,0 +1,21 @@
+.home-feature-block{
+  position:relative;
+  width:100%;
+  height:465px;
+  background-position: left top;
+  background-repeat: no-repeat;
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+}
+.home-feature-block__content--vCenter{
+  padding-top:60px;
+  @media (min-width: 768px) {
+    padding-top:0;
+  }
+}
+.home-feature-block__content--vBtm{
+  position:absolute;
+  bottom:0;
+}
