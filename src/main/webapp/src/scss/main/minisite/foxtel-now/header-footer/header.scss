@@ -1,21 +1,84 @@
+@import "../core-components/color";
+
 //addition header style for foxtel now site only
 
 .foxtel-now-header{
   font-size:18px;
   color:#0a0a0a;
   height:75px;
+  padding: 10px 20px;
   font-family:"ProximaNova-Bold",arial,sans-serif;
   border-bottom:1px solid #efefef;
-  padding: 10px 90px;
+
+  @include breakpoint(tablet) {
+    padding: 10px 90px;
+  }
+
   a, a:hover, a:focus{
     text-decoration:none;
   }
+
   width: 100%;
+
+  .wysiwyg {
+    p {
+      margin-bottom: 0;
+    }
+  }
 }
 
-.foxtel-now-header__right__wrapper {
-  margin-left: 20px;
-  margin-right: 20px; 
+.foxtel-now-header__btn-cart {
+  .foxtel-now-header__btn-cart__icon {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+
+    @include breakpoint(tablet) {
+      margin-right: 50px;
+    }
+
+    .foxtel-now-header__btn-cart__icon__quantity {
+      position: absolute;
+      top: -5px;
+      right: -15px;
+      background-color: $foxtel-now-green;
+      color: black;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      font-weight: 700;
+      line-height: 30px;
+    }
+
+    .icon {
+      // generated styles - to be replaced by font and class def
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      stroke-width: 0;
+      stroke: currentColor;
+      fill: currentColor;
+      // added customisations
+      width: 30px;
+      height: 30px;
+      margin-top: 15px;
+    }
+  }
+}
+
+.foxtel-header__right {
+  display: flex;
+
+  .foxtel-now-header__right__wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+    display: none;
+
+    @include breakpoint(tablet) {
+      display: block;
+    }
+  }
 }
 
 /*foxtel header breadcrumb scrolling up pop state*/
