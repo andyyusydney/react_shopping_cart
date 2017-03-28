@@ -92,7 +92,7 @@
 	sub {
 		font-size: 10px;
 		bottom: 0;
-		left: -5px;
+		left: 0;
 	}
 }
 
@@ -117,19 +117,19 @@
 }
 
 .border--top {
-	border-top: 1px solid lightgrey;
+	border-top: 1px solid $foxtel-now-light-grey;
 }
 
 .border--right {
-	border-right: 1px solid lightgrey;
+	border-right: 1px solid $foxtel-now-light-grey;
 }
 
 .border--bottom {
-	border-bottom: 1px solid lightgrey;
+	border-bottom: 1px solid $foxtel-now-light-grey;
 }
 
 .border--left {
-	border-left: 1px solid lightgrey;
+	border-left: 1px solid $foxtel-now-light-grey;
 }
 
 .border--bold {
