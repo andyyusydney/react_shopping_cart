@@ -52,7 +52,7 @@ $(document).on('keyup',"[data-ccexpiry-formatter]",function(){
         newValue = replacedValue.slice(0, 2) + "-" + replacedValue.slice(2);
     }
     else {
-        newValue = replacedLength;
+        newValue = replacedValue;
     }
     $this.val(newValue);
 });
