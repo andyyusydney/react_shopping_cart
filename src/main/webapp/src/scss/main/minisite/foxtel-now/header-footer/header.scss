@@ -1,4 +1,5 @@
 @import "../core-components/color";
+@import "../../../../header-footer/common";
 
 //addition header style for foxtel now site only
 
@@ -67,7 +68,7 @@
   }
 }
 
-.foxtel-header__right {
+.foxtel-now-header__right {
   display: flex;
 
   .foxtel-now-header__right__wrapper {
