@@ -1,5 +1,6 @@
 .foxtel-header-breadcrumb-wrapper{
   background: #fff;
+  width:100%;
 }
 
 /*foxtel header breadcrumb scrolling up pop state*/
@@ -68,6 +69,7 @@
 }
 .foxtel-header__left__nav__more{
   position:relative;
+  margin-right:0 !important;
   @include breakpoint(tablet) {
     display:none;
   }
