@@ -9,7 +9,7 @@
 	position: absolute;
 
 	@include breakpoint(mobileOnly) {
-		bottom: 30px;
+		top: 20%;
 		left: 50%;
 		transform: translateX(-50%);
 		width: 80%;
@@ -40,9 +40,9 @@
 	    }
 	  }
 
-	  @include breakpoint(mobileOnly) {
-	    visibility: hidden;
-	  }
+		img {
+			max-height: 40px;
+		}
 	}
 
 	&.left-index {
