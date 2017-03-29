@@ -1,5 +1,5 @@
 /*********************
-FONT FACE
+font face
 *********************/
 @include build-font-face("ProximaNova", "ProximaNova-Reg-webfont");
 @include build-font-face("ProximaNova-Thin", "ProximaNova-Thin-webfont");
@@ -56,11 +56,4 @@ Please don't add anymore.
 .font--sm--bold, %font--sm--bold{
 	font-family: $font-family--Bold;
 	font-size:$font-size--sm;
-}
-
-/******************************************
-Define body font
-******************************************/
-body {
-    @extend %font--base;
 }

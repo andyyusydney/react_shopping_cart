@@ -1,5 +1,6 @@
 .foxtel-header-breadcrumb-wrapper{
   background: #fff;
+  width:100%;
 }
 
 /*foxtel header breadcrumb scrolling up pop state*/
@@ -9,6 +10,7 @@
   right:0;
   background-color: #fff;
   box-shadow: 0 0 30px rgba(0,0,0,0.15);
+  z-index:5;
 }
 
 /* Foxtel header styles */
@@ -68,6 +70,7 @@
 }
 .foxtel-header__left__nav__more{
   position:relative;
+  margin-right:0 !important;
   @include breakpoint(tablet) {
     display:none;
   }
@@ -86,7 +89,7 @@
 }
 .foxtel-header__left__nav__more__dropdown{
   position:absolute;
-  left:0;
+  right:0;
   top:50px;
   padding:0;
   background-color: #ffffff;
