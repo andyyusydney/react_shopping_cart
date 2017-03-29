@@ -1,0 +1,28 @@
+.meta-data--h {
+    display: table;
+    width: 100%;
+    .meta-data__icon {
+        display: table-cell;
+        vertical-align: middle;
+        width: 6em;
+    }
+
+    .meta-data__desc {
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 12px;
+    }
+}
+
+.meta-data--v {
+    display: block;
+    .meta-data__desc {
+        font-size: 12px;
+    }
+}
+.meta-data__separator {
+    margin-left: .2em;
+}
+.meta-data--font-bold {
+    font-weight: bold;
+}
