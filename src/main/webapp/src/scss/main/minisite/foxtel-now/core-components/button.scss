@@ -24,11 +24,15 @@
 	color: white;
 }
 
-.foxtel-btn--wide {
+.foxtel-now-btn--wide {
 	@extend .foxtel-now-btn;
 
 	display: inline-block;
-	max-width: none;
+	width: auto;
+	padding: {
+		left: 50px;
+		right: 50px;
+	}
 }
 
 .foxtel-now-btn--ghost {
