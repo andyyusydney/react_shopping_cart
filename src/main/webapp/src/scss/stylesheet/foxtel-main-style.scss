@@ -1,14 +1,8 @@
-/**********************
-core-components style
-**********************/
-@import "../main/core-components/typography";
-@import "../main/core-components/cq-author";
-
-
-/**********************
-components style
-**********************/
-@import "../main/components/banner";
+/**************************
+foxtel main website style
+**************************/
+@import "../main/core-components";//core-components has imported mixins.scss
+@import "../main/components";
 
 
 /**************************

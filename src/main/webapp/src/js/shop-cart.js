@@ -1,6 +1,6 @@
 
 /**
- * Foxtel now shop cart manager
+ * Foxtel now shop cart manager && related JS
  * 
  */
 
@@ -85,6 +85,68 @@ com.foxtel.ShopCartManager = function() {
 Foxtel.ShopCartManager = new com.foxtel.ShopCartManager();
 
 $(document).ready(function(){
+    
     Foxtel.ShopCartManager.init();
+
+    // Shopping Cart SMART SCROLLING FEATURE
+    var shoppingcart = $('.foxtel-now-jumbotron');
+    var shoppingcartH = shoppingcart.height();
+    var shoppingcartStatus;
+    var currentScroll = 0;
+
+    // SCROLL SENSITIVITY TO ADJUST SCROLL BEHAVIOURS
+    var sensitivity = 2;
+
+    $(window).scroll(function() {
+        // GET CURRENT PAGE AXIS
+        var nextScroll = $(this).scrollTop();
+
+        // GET SCROLL DELTA
+        var scrollDelta = nextScroll - currentScroll;
+
+        // IF SCROLLED OR LEFT FROM 0 Y-AXIS
+        if($(this).scrollTop() > 0) {
+
+            // WHEN SCROLL DOWNWARDS
+            if (nextScroll > currentScroll){
+                if (scrollDelta > sensitivity){
+                    if (shoppingcartStatus) {
+                        shoppingcartStatus = false;
+                        shoppingcart.css('position','fixed');
+
+                        // shoppingcart SLIDES BACK AWAY
+                        shoppingcart.clearQueue().stop().animate({marginTop: -shoppingcartH}, 300, function(){
+
+                            //TO DISTINCUISH FOXTEL NOW HEADER
+                            shoppingcart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+                        });
+                    }
+                }
+
+                // WHEN SCROLL UPWARDS
+            } else {
+                if (scrollDelta < -sensitivity){
+                    if (!shoppingcartStatus) {
+                        shoppingcartStatus = true;
+
+                        // shoppingcart POPS DOWN
+                        shoppingcart.clearQueue().stop().css('margin-top',-shoppingcartH).animate({marginTop: 0}, 300);
+                    }
+                    //TO DISTINCUISH FOXTEL NOW HEADER
+                    shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+                }
+            }
+
+            // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
+        } else {
+            shoppingcart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+            shoppingcart.css('position','relative');
+        }
+
+        // SET CURRENT AS LAST SCROLL
+        currentScroll = nextScroll;
+    });
+
+
 });
 

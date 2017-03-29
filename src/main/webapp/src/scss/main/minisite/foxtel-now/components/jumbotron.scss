@@ -9,6 +9,8 @@
 	-webkit-box-shadow: 2px 3px 10px 0px #ccc;
   	-moz-box-shadow:    2px 3px 10px 0px #ccc;
   	box-shadow:         2px 3px 10px 0px #ccc;
+  	z-index: 9;
+  	top: 0;
 }
 
 .foxtel-now-jumbotron--shopping-cart {
@@ -25,21 +27,64 @@
 
 	.foxtel-now-jumbotron--shopping-cart__description {
 		width: 70%;
-		.foxtel-now-jumbotron__pack-tag {
-			display: inline-block;
-			color: black;
-			border-radius: 50px;
-  			background-color: rgb(255, 255, 255);
-  			padding: 10px 30px;
-  			margin: 10px;
-  			margin-left: 0;
+		.foxtel-now-jumbotron--shopping-cart__description-wrapper {
+			display: table;
+			.cart-title-wrapper {
+				display: table-cell;
+				p {
+					margin-right: 20px;
+				}
+			}
+			.cart-item-wrapper {
+				display: table-cell;
+				p {
+					display: none;
+				}
+				.foxtel-now-jumbotron__pack-tag,
+				.foxtel-now-jumbotron__pack-tag--ghost,
+				.foxtel-now-jumbotron__pack-tag--transparent {
+					display: inline-block;
+					color: black;
+					border-radius: 50px;
+		  			background-color: rgb(255, 255, 255);
+		  			padding: 10px 30px;
+		  			margin: 10px;
+		  			margin-left: 0;
 
-  			sub {
-  				bottom: -5px;
-  				font-size: 36px;
-  				left: 10px;
-  				cursor: pointer;
-  			}
+		  			sub {
+		  				bottom: -5px;
+		  				font-size: 36px;
+		  				left: 10px;
+		  				cursor: pointer;
+		  			}
+				}
+				.foxtel-now-jumbotron__pack-tag--ghost {
+				    border: 1px dashed white;
+				    background: transparent;
+				    color: white;
+
+				    sub {
+				    	bottom: -6px;
+			    		padding: 0 13px;
+				    }
+
+				    &:hover {
+				    	background: white;
+				    	color: black;
+				    	border: none;
+
+				    	sub {
+				    		background: $foxtel-now-light-grey;
+				    		border-radius: 1em;
+				    	}
+				    }	
+				}
+				.foxtel-now-jumbotron__pack-tag--transparent {
+					display: none;
+				    background: transparent;
+				    color: white;	
+				}
+			}
 		}
 	}
 
@@ -55,8 +100,9 @@
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost,
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
 			display: table;
-			padding: 20px 0;
 			width: 100%;
+			min-width: 258px;
+			padding: 5px 0;
 			sub {
 				font-weight: normal;
 				bottom: 0;
@@ -73,12 +119,56 @@
 			}
 
 			p:last-child{
-				font-size: 1.8em;
+				font-size: $font-size--base;
 				text-align: right;
+			}
+		}
+		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
+			p:first-child {
+				width: 50%;
 			}
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
 			font-size: 18px;
 		}
+	}
+}
+
+.foxtel-now-jumbotron--minimized {
+	.foxtel-now-jumbotron--shopping-cart__description {
+
+		.foxtel-now-jumbotron--shopping-cart__description-wrapper {
+			.cart-item-wrapper {
+				.foxtel-now-jumbotron__pack-tag {
+					display: none;
+				}
+				p:first-child,
+				p:nth-child(2),
+				p:last-child {
+					display: inline-block;
+				}		
+			}
+		}
+	}
+	.foxtel-now-jumbotron--shopping-cart__summary {
+		.wysiwyg {
+			display: none;
+		}
+		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
+			display: table-cell;
+			p {
+				display: inline-block;
+			}
+			p:last-child {
+				text-align: right;
+			}
+		}
+		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
+			display: table-cell;
+		}
+	}
+	.foxtel-now-jumbotron--shopping-cart__description,
+	.foxtel-now-jumbotron--shopping-cart__summary {
+		padding: 0 20px;
 	}
 }

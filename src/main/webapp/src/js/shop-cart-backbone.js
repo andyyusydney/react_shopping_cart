@@ -75,10 +75,10 @@ $(document).ready(function(){
       $('#icon-basket-template-container').html(html);
   };
 
-  FOX.context.subscribe("SHOP_CART_LOADED",function(data){
-      updateCart(data);
-      updateIcon(data);
-  });
+   FOX.context.subscribe("SHOP_CART_LOADED",function(data){
+       updateCart(data);
+       updateIcon(data);
+   });
 
   FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
       updateCart(data);
