@@ -78,7 +78,6 @@ $(document).ready(function(){
   FOX.context.subscribe("SHOP_CART_LOADED",function(data){
       updateCart(data);
       updateIcon(data);
-console.log(data.quote.monthlyCostItems);
   });
 
   FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
