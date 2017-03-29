@@ -85,6 +85,7 @@ com.foxtel.ShopCartManager = function() {
 Foxtel.ShopCartManager = new com.foxtel.ShopCartManager();
 
 $(document).ready(function(){
+    
     Foxtel.ShopCartManager.init();
 
     // Shopping Cart SMART SCROLLING FEATURE
@@ -145,6 +146,7 @@ $(document).ready(function(){
         // SET CURRENT AS LAST SCROLL
         currentScroll = nextScroll;
     });
+
 
 });
 
