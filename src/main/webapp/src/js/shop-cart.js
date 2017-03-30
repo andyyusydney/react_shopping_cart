@@ -110,29 +110,14 @@ $(document).ready(function(){
             // WHEN SCROLL DOWNWARDS
             if (nextScroll > currentScroll){
                 if (scrollDelta > sensitivity){
-                    if (shoppingcartStatus) {
-                        shoppingcartStatus = false;
-                        shoppingcart.css('position','fixed');
-
-                        // shoppingcart SLIDES BACK AWAY
-                        shoppingcart.clearQueue().stop().animate({marginTop: -shoppingcartH}, 300, function(){
-
-                            //TO DISTINCUISH FOXTEL NOW HEADER
-                            shoppingcart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
-                        });
-                    }
+                    // shoppingcart SLIDES BACK AWAY
+                    shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+                    shoppingcart.css('position','fixed');
                 }
 
                 // WHEN SCROLL UPWARDS
             } else {
                 if (scrollDelta < -sensitivity){
-                    if (!shoppingcartStatus) {
-                        shoppingcartStatus = true;
-
-                        // shoppingcart POPS DOWN
-                        shoppingcart.clearQueue().stop().css('margin-top',-shoppingcartH).animate({marginTop: 0}, 300);
-                    }
-                    //TO DISTINCUISH FOXTEL NOW HEADER
                     shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
                 }
             }
