@@ -4,12 +4,15 @@
   $border-style: solid 1px $foxtel-now-light-grey;
 
   margin-bottom: 50px;
-  padding: 0 100px;
   display: flex;
   flex-wrap: wrap;
   border: {
     top: $border-style;
     bottom: $border-style;
+  }
+
+  @include breakpoint(tablet) {
+    padding: 0 100px;
   }
 
   .container-breakout {
