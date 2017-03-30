@@ -3,6 +3,10 @@
 
     color: white;
 
+    @include breakpoint(mobileOnly) {
+      text-align: center;
+    }
+
     h1 {
       font-size: 25px;
       margin-bottom: $vertical-rhythm;
@@ -15,6 +19,7 @@
     h3 {
       font-size: 16px;
       margin-bottom: $vertical-rhythm;
+      font-weight: 300;
     }
 
     a {

@@ -12,9 +12,14 @@
 
 
     &.as-text-link {
+      display: none;
       height: 100%;
       min-height: 150px;
       border: 1px solid $foxtel-now-dark-grey;
+
+      @include breakpoint(tablet) {
+        display: block;
+      }
 
       h3 {
         font-weight: 400;
@@ -68,6 +73,8 @@
       font-size: 11px;
       opacity: 0.5;
       font-weight: 300;
+      text-align: right;
+      max-width: 45%;
     }
   }
 }
