@@ -13,7 +13,7 @@ $(document).ready(function(){
         if(!tierId){
             return;
         }
-        if($(this).hasClass('enable')){
+        if($(this).hasClass('enable')){console.log('aaaa');
             $(this).addClass('hidden');
             $(this).siblings('.foxtel-now-btn.disabled').removeClass('hidden');
             e.stopImmediatePropagation();

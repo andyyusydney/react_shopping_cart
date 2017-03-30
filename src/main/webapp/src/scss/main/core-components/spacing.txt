@@ -1,0 +1,26 @@
+Producer can use bootstrap 4 classes for spacing
+
+https://v4-alpha.getbootstrap.com/utilities/spacing/
+
+margins: m{sides}-{size}
+padding: p{sides}-{size}
+
+Examples..
+
+mb-2 = margin bottom 2 spacing units
+m-0 = no margins
+pt-3 = padding top 3 spacing units
+p-1 = padding all sides 1 spacing unit
+
+There are now 6 sizes (0-6). Additionally, x-axis (left/right) and y-axis (top/bottom) utils have been added:
+
+my-2 = margin top & bottom 2 spacing units
+mx-0 = no margins left & right
+px-3 = padding left & right 3 spacing units
+
+And, the spacing utils are responsive. The smallest xs breakpoint is implied when no breakpoint is used.
+
+margins: m{sides}-{breakpoint}-{size}
+padding: p{sides}-{breakpoint}-{size}
+mt-md-2 = margin top 2 spacing units, on md (and up)
+py-sm-0 = no padding top & bottom, on sm (and up)

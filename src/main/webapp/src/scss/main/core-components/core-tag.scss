@@ -1,0 +1,14 @@
+/******************************************************************************
+core tags used on our site,
+the style below will overwrite some of the bootstrap default styles
+******************************************************************************/
+
+html{
+  @extend %font--base;
+}
+
+body {
+  @extend %font--base;
+  @extend %color--black;
+  font-weight:normal;
+}

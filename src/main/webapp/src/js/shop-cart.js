@@ -99,6 +99,7 @@ com.foxtel.ShopCartManager = function() {
 Foxtel.ShopCartManager = new com.foxtel.ShopCartManager();
 
 $(document).ready(function(){
+    
     Foxtel.ShopCartManager.init();
 
     // Shopping Cart SMART SCROLLING FEATURE
@@ -125,13 +126,13 @@ $(document).ready(function(){
                 if (scrollDelta > sensitivity){
                     if (shoppingcartStatus) {
                         shoppingcartStatus = false;
-                        shoppingcart.css('position','fixed');
 
                         // shoppingcart SLIDES BACK AWAY
                         shoppingcart.clearQueue().stop().animate({marginTop: -shoppingcartH}, 300, function(){
 
                             //TO DISTINCUISH FOXTEL NOW HEADER
-                            shoppingcart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+                            shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+                            shoppingcart.css('position','fixed');
                         });
                     }
                 }
@@ -145,7 +146,7 @@ $(document).ready(function(){
                         // shoppingcart POPS DOWN
                         shoppingcart.clearQueue().stop().css('margin-top',-shoppingcartH).animate({marginTop: 0}, 300);
                     }
-                    //TO DISTINCUISH FOXTEL NOW HEADER
+
                     shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
                 }
             }
@@ -159,6 +160,7 @@ $(document).ready(function(){
         // SET CURRENT AS LAST SCROLL
         currentScroll = nextScroll;
     });
+
 
 });
 

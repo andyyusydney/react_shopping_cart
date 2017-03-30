@@ -37,8 +37,12 @@
 			}
 			.cart-item-wrapper {
 				display: table-cell;
+				p {
+					display: none;
+				}
 				.foxtel-now-jumbotron__pack-tag,
-				.foxtel-now-jumbotron__pack-tag--ghost {
+				.foxtel-now-jumbotron__pack-tag--ghost,
+				.foxtel-now-jumbotron__pack-tag--transparent {
 					display: inline-block;
 					color: black;
 					border-radius: 50px;
@@ -75,6 +79,11 @@
 				    	}
 				    }	
 				}
+				.foxtel-now-jumbotron__pack-tag--transparent {
+					display: none;
+				    background: transparent;
+				    color: white;	
+				}
 			}
 		}
 	}
@@ -92,6 +101,7 @@
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
 			display: table;
 			width: 100%;
+			min-width: 258px;
 			padding: 5px 0;
 			sub {
 				font-weight: normal;
@@ -126,16 +136,26 @@
 
 .foxtel-now-jumbotron--minimized {
 	.foxtel-now-jumbotron--shopping-cart__description {
-		width: 60%;
+
+		.foxtel-now-jumbotron--shopping-cart__description-wrapper {
+			.cart-item-wrapper {
+				.foxtel-now-jumbotron__pack-tag {
+					display: none;
+				}
+				p:first-child,
+				p:nth-child(2),
+				p:last-child {
+					display: inline-block;
+				}		
+			}
+		}
 	}
 	.foxtel-now-jumbotron--shopping-cart__summary {
-		width: 40%;
 		.wysiwyg {
 			display: none;
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
 			display: table-cell;
-			width: 50%;
 			p {
 				display: inline-block;
 			}
@@ -145,7 +165,6 @@
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
 			display: table-cell;
-			width: 50%;
 		}
 	}
 	.foxtel-now-jumbotron--shopping-cart__description,
