@@ -1,7 +1,7 @@
 
 /**
  * Foxtel now shop cart backbone logic
- * Backbone view for all shop cart components 
+ * Backbone view for all shop cart components
  */
 
 
@@ -50,10 +50,6 @@ var CartCollectionView = Backbone.View.extend({
 /* Execution Backbones */
 $(document).ready(function(){
 
-   var cartTemplate = $('#cartCollection-template');
-   if(cartTemplate.length==0){
-        return;
-   }
 
   var cart_collection = new CartCollection();
   var cart_collection_view = new CartCollectionView({collection: cart_collection});
@@ -61,6 +57,10 @@ $(document).ready(function(){
 
   //cart load & cart refresh event
   function updateCart(cartResponse){
+      var cartTemplate = $('#cartCollection-template');
+      if(cartTemplate.length==0){
+        return;
+      }
       var source = $('#cartCollection-template').html();
       var template = Handlebars.compile(source);
       var html = template(cartResponse);
@@ -69,16 +69,20 @@ $(document).ready(function(){
 
   //basket load refresh
   function updateIcon(cartResponse){
+      var basketTemplate = $('#icon-basket-template');
+      if(basketTemplate.length==0){
+        return;
+      }
       var source = $('#icon-basket-template').html();
       var template = Handlebars.compile(source);
       var html = template(cartResponse);
       $('#icon-basket-template-container').html(html);
   };
 
-//   FOX.context.subscribe("SHOP_CART_LOADED",function(data){
-//       updateCart(data);
-//       updateIcon(data);
-//   });
+   FOX.context.subscribe("SHOP_CART_LOADED",function(data){
+       updateCart(data);
+       updateIcon(data);
+   });
 
   FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
       updateCart(data);

@@ -24,15 +24,15 @@ $(document).ready(function(){
                 if (scrollDelta > sensitivity){
                     if (topnavStatus) {
                         topnavStatus = false;
-                        topnav.css('position','fixed');
 
                         // TOPNAV SLIDES BACK AWAY
                         topnav.clearQueue().stop().animate({marginTop: -topnavH}, 300, function(){
 
                             //TO DISTINCUISH FOXTEL NOW HEADER
                             if (topnav.find('header').hasClass('foxtel-now-header')){
-                                topnav.removeClass('foxtel-now-header-breadcrumb--pop');
+                                return;
                             }else{
+                                topnav.css('position','fixed');
                                 topnav.removeClass('foxtel-header-breadcrumb--pop');
                             }
                         });
@@ -50,7 +50,7 @@ $(document).ready(function(){
                     }
                     //TO DISTINCUISH FOXTEL NOW HEADER
                     if (topnav.find('header').hasClass('foxtel-now-header')){
-                        topnav.addClass('foxtel-now-header-breadcrumb--pop');
+                        return;
                     }else{
                         topnav.addClass('foxtel-header-breadcrumb--pop');
                     }
