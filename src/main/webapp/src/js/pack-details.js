@@ -38,6 +38,7 @@ $(document).ready(function () {
         var tierId = $link.data('tier-id');
 
         event.preventDefault();
+        this.cart.addPlayTier(tierId);
         $link.addClass('is-disabled');
         $link.html(text);
         $link.removeClass('active');
