@@ -22,9 +22,6 @@
   padding-top:60px;
   @media (min-width: 768px) {
     padding-top:0;
-    .container {
-      padding: 0;
-    }
   }
 }
 .foxtel-banner__content--vBtm{
@@ -32,9 +29,4 @@
   position:absolute;
   left:0;
   bottom:0;
-  @media (min-width: 768px) {
-    .container {
-      padding: 0;
-    }
-  }
 }
