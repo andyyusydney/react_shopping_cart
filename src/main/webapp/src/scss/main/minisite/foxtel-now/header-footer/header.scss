@@ -11,6 +11,19 @@
   font-family:"ProximaNova-Bold",arial,sans-serif;
   border-bottom:1px solid #efefef;
 
+  .foxtel-now-header__nav-list {
+    list-style: none;
+    margin: 0;
+    li {
+        display: inline-block;
+        margin-left: 15px;
+        margin-top: 15px;
+        a {
+            color: black;
+        }
+    }
+  }
+
   @include breakpoint(tablet) {
     padding: 10px 50px;
   }
