@@ -71,7 +71,9 @@ $(document).ready(function () {
           self.model.set({
             addedToCart: true
           });
-          cb();
+          if (typeof cb === 'function') {
+            cb();
+          }
         });
       },
 
