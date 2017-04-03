@@ -16,6 +16,7 @@ $(document).ready(function () {
         this.$slider = this.$actions.find('.slide-bg');
         this.cart = options.cart
         this.updateSlidingBackground();
+        FOX.context.subscribe('SHOP_CART_LOADED', this.handleShopCartLoaded);
       },
 
       events: {
@@ -48,6 +49,21 @@ $(document).ready(function () {
         this.updateSlidingBackground();
       },
 
+      // Check the add to cart button is disabled when pack is already in cart.
+      handleShopCartLoaded: function (data) {
+        // Can't pass through context, so use a global $ selector.
+        var $addToCartButton = $('.foxtel-now-pack-details .add-to-cart');
+        var buttonData = $addToCartButton.data();
+
+        _(data.play.tiers).select(function (tier) {
+          if (tier.tierId === parseInt(buttonData.tierId, 10)) {
+            $addToCartButton.addClass('is-disabled').html(buttonData.addToCartText);
+            // Update the sliding background to the buy it now button.
+            $addToCartButton.siblings('.buy-it-now').trigger('mouseover');
+          }
+        });
+      },
+
       // Add the item to the cart then redirect to the buy it now link's URL.
       handleBuyItNowClick: function (event) {
         var $link = $(event.currentTarget);
@@ -71,7 +87,9 @@ $(document).ready(function () {
           self.model.set({
             addedToCart: true
           });
-          cb();
+          if (typeof cb === 'function') {
+            cb();
+          }
         });
       },
 

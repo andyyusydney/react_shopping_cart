@@ -50,7 +50,6 @@ var CartCollectionView = Backbone.View.extend({
 /* Execution Backbones */
 $(document).ready(function(){
 
-
   var cart_collection = new CartCollection();
   var cart_collection_view = new CartCollectionView({collection: cart_collection});
   cart_collection_view.$el = $('#cartCollection-container');
@@ -73,16 +72,23 @@ $(document).ready(function(){
       if(basketTemplate.length==0){
         return;
       }
+      var $container = $('.foxtel-now-header__btn-cart');
+      if (cartResponse.play.tiers.length > 0) {
+        $container.show();
+      } else {
+        $container.hide();
+        return;
+      }
       var source = $('#icon-basket-template').html();
       var template = Handlebars.compile(source);
       var html = template(cartResponse);
       $('#icon-basket-template-container').html(html);
   };
 
-   FOX.context.subscribe("SHOP_CART_LOADED",function(data){
-       updateCart(data);
-       updateIcon(data);
-   });
+  FOX.context.subscribe("SHOP_CART_LOADED",function(data){
+      updateCart(data);
+      updateIcon(data);
+  });
 
   FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
       updateCart(data);

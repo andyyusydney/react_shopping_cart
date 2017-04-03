@@ -28,6 +28,26 @@ com.foxtel.ShopCartManager = function() {
 
         var tierIds = self.getCurrentPlayTiers();
         tierIds = _.union(tierIds, [tierId]);
+        self.updatePlayTiers(tierIds,callback);
+    }
+
+    function addPlayTiers(tierIdsAdded,callback){
+        var self = this;
+
+        var tierIds = self.getCurrentPlayTiers();
+        tierIds = _.union(tierIds, tierIdsAdded);
+        self.updatePlayTiers(tierIds,callback);
+    }
+
+    function removePlayTier(tierId,callback){
+        var self = this;
+
+        var tierIds = self.getCurrentPlayTiers();
+        tierIds = _.without(tierIds, [tierId]);
+        self.updatePlayTiers(tierIds,callback);
+    }
+
+    function updatePlayTiers(tierIds,callback){
         var postData = getPlayRequestFromTierIds(tierIds);
 
         $.ajax({
@@ -77,6 +97,8 @@ com.foxtel.ShopCartManager = function() {
     return {
         init:init,
         addPlayTier:addPlayTier,
+        removePlayTier:removePlayTier,
+        updatePlayTiers:updatePlayTiers,
         getCurrentPlayTiers:getCurrentPlayTiers
     }
 
