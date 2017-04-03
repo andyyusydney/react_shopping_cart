@@ -73,6 +73,13 @@ $(document).ready(function(){
       if(basketTemplate.length==0){
         return;
       }
+      var $container = $('.foxtel-now-header__btn-cart');
+      if (cartResponse.play.tiers.length > 0) {
+        $container.show();
+      } else {
+        $container.hide();
+        return;
+      }
       var source = $('#icon-basket-template').html();
       var template = Handlebars.compile(source);
       var html = template(cartResponse);
