@@ -91,7 +91,7 @@ com.foxtel.ShopCartManager = function() {
         var self = this;
 
         var tierIds = self.getCurrentPlayTiers();
-        tierIds = _.difference(tierIds, [tierId]);
+        tierIds = _.difference(tierIds, tierIds);
         self.updatePlayTiers(tierIds,callback);
     }
 
