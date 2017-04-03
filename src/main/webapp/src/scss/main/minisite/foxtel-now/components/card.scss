@@ -14,6 +14,15 @@
 	}
 }
 
+.foxtel-now-card--myaccount {
+	@include foxtel-now-card();
+	width: inherit;
+	height: 204px;
+	margin-left: 15px;
+	margin-bottom: 27px;
+	text-align: center;
+}
+
 .foxtel-now-card--basic {
 	.foxtel-now-card__title {
 		background-color: transparent;
