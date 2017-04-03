@@ -30,10 +30,10 @@ $(document).ready(function(){
         //Add all packs click event
         $(document).on('click','#foxtel-now-add-all-packs',function(e){
 
-            var $cards[] = $('.foxtel-now-card');
+            var $cards = $('.foxtel-now-card');
             var tierIds=[];
 
-            for(var i = 0; i<cards.length;i++ ){
+            for(var i = 0; i<$cards.length;i++ ){
                 var $thisBtn = $cards[i].find('.foxtelNowProductAddToCart');
                 if(!$thisBtn.find('span').data('tier-id')){
                     continue;
