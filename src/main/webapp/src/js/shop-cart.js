@@ -31,6 +31,14 @@ com.foxtel.ShopCartManager = function() {
         self.updatePlayTiers(tierIds,callback);
     }
 
+    function addPlayTiers(tierIdsAdded,callback){
+        var self = this;
+
+        var tierIds = self.getCurrentPlayTiers();
+        tierIds = _.union(tierIds, tierIdsAdded);
+        self.updatePlayTiers(tierIds,callback);
+    }
+
     function removePlayTier(tierId,callback){
         var self = this;
 
