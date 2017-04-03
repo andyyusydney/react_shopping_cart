@@ -15,17 +15,17 @@ com.foxtel.ShopCartManager = function() {
     var EPL_CHANNEL_TIERS = [
         {
             name:"Chelsea TV",
-            tierIdWithoutSports:991139
+            tierIdWithoutSports:991139,
             tierIdWithSports:991145
         },
         {
             name:"Liverpool TV",
-            tierIdWithoutSports:991140
+            tierIdWithoutSports:991140,
             tierIdWithSports:991146
         },
         {
             name:"Manchest TV",
-            tierIdWithoutSports:991141
+            tierIdWithoutSports:991141,
             tierIdWithSports:991147
         },
     ];
@@ -79,8 +79,19 @@ com.foxtel.ShopCartManager = function() {
     function removePlayTier(tierId,callback){
         var self = this;
 
+        var tierIds = [tierId];
+        //add 3 epl free channels when adding sports
+        if(tierId == sport_tier_id){
+            tierIds = _.union(tierId,self.epl_channel_with_sport_ids);
+        }
+        self.removePlayTiers(tierIds,callback);
+    }
+
+    function removePlayTiers(tierIds,callback){
+        var self = this;
+
         var tierIds = self.getCurrentPlayTiers();
-        tierIds = _.without(tierIds, [tierId]);
+        tierIds = _.difference(tierIds, [tierId]);
         self.updatePlayTiers(tierIds,callback);
     }
 
@@ -136,6 +147,7 @@ com.foxtel.ShopCartManager = function() {
         addPlayTier:addPlayTier,
         addPlayTiers:addPlayTiers,
         removePlayTier:removePlayTier,
+        removePlayTiers:removePlayTiers,
         updatePlayTiers:updatePlayTiers,
         getCurrentPlayTiers:getCurrentPlayTiers
     }
