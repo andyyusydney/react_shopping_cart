@@ -66,18 +66,6 @@ $(document).ready(function(){
       $('#cartCollection-container').html(html);
   };
 
-  //pack load & cart refresh event
-//  function updatePack(cartResponse){
-//      var packTemplate = $('#album-button-template');
-//      if(packTemplate.length==0){
-//        return;
-//      }
-//      var source = $('#album-button-template').html();
-//      var template = Handlebars.compile(source);
-//      var html = template(cartResponse);
-//      $('#foxtel-now-card__add-to-card-btn-container').html(html);
-//  };
-
   //basket load refresh
   function updateIcon(cartResponse){
       var basketTemplate = $('#icon-basket-template');
@@ -99,13 +87,11 @@ $(document).ready(function(){
 
   FOX.context.subscribe("SHOP_CART_LOADED",function(data){
       updateCart(data);
-      //updatePack(data);
       updateIcon(data);
   });
 
   FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
       updateCart(data);
-      //updatePack(data);
       updateIcon(data);
   });
 })
