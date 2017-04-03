@@ -14,9 +14,11 @@ $(document).ready(function(){
     //pack load & cart refresh event
     function updatePackBtns(cartResponse){
         $.each(cartResponse.play.tiers,function(idx,element){
-            if($('.foxtelNowProductAddToCart').children('span').data('tier-id') == element.tierId){
-                $('.foxtelNowProductAddToCart').addClass('hidden');
-                $('.foxtelNowProductAddToCart').siblings('.foxtel-now-btn.disabled').removeClass('hidden');
+
+            var $btnWrapper = $("[data-tier-id="+element.tierId+"]").closest('.foxtelNowProductAddToCart');
+            if($btnWrapper.length>0){
+                $btnWrapper.addClass('hidden');
+                $btnWrapper.siblings('.foxtel-now-btn.disabled').removeClass('hidden');
             }
         });
 
