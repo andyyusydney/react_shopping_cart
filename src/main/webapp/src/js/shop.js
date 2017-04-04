@@ -33,7 +33,7 @@ $(document).ready(function(){
 
         $.each(cartResponse.play.tiers,function(idx,element){
 
-            if(element.id == sport_tier_id){
+            if(element.tierId == sport_tier_id){
                 $epl_extra_tiers_without_sports.removeClass('hidden-sm-down hidden-sm-up ');
                 $epl_extra_tiers_with_sports.addClass('hidden-sm-down hidden-sm-up ');
             }else{
