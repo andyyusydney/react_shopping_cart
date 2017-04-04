@@ -137,8 +137,8 @@
 }
 
 .foxtel-now-jumbotron--minimized {
+    padding-right: 30px;
 	.foxtel-now-jumbotron--shopping-cart__description {
-
 		.foxtel-now-jumbotron--shopping-cart__description-wrapper {
 			.cart-item-wrapper {
 				.foxtel-now-jumbotron__pack-tag {
@@ -157,16 +157,12 @@
 			display: none;
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
-			display: table-cell;
 			p {
 				display: inline-block;
 			}
 			p:last-child {
 				text-align: right;
 			}
-		}
-		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
-			display: table-cell;
 		}
 	}
 	.foxtel-now-jumbotron--shopping-cart__description,
