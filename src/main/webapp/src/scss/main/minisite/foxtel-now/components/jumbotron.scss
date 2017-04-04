@@ -136,6 +136,9 @@
 .foxtel-now-jumbotron--minimized {
     padding-right: 30px;
 	.foxtel-now-jumbotron--shopping-cart__description {
+	    @include breakpoint(mobileOnly){
+	        display: none;
+	    }
 		.foxtel-now-jumbotron--shopping-cart__description-wrapper {
 			.cart-item-wrapper {
 				.foxtel-now-jumbotron__pack-tag {
@@ -150,10 +153,13 @@
 		}
 	}
 	.foxtel-now-jumbotron--shopping-cart__summary {
-		.wysiwyg {
-			display: none;
-		}
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
+		    @include breakpoint(mobileOnly){
+                display: none;
+                &.total {
+                    display: table;
+                }
+            }
 			p {
 				display: inline-block;
 			}
