@@ -32,10 +32,21 @@ com.foxtel.ShopCartManager = function() {
 
     var sport_tier_id = 990703;
 
+    function getEPLTiers(){
+        return this.EPL_CHANNEL_TIERS;
+    }
+
+    function getSportTierId(){
+        return this.sport_tier_id;
+    }
+
     function init(){
         //shop cart servlet response
         this.shopCartResponseData = null;
         var self = this;
+
+        self.EPL_CHANNEL_TIERS = EPL_CHANNEL_TIERS;
+        self.sport_tier_id = sport_tier_id;
 
         //keep a copy in client side
         //we need to change the request to follow EPL rules
@@ -59,8 +70,9 @@ com.foxtel.ShopCartManager = function() {
         var self = this;
 
         var tierIdsAdded = [tierId];
-        //add 3 epl free channels when adding sports
+        //add 3 epl free channels when adding sports and remove epl free channels
         if(tierId == sport_tier_id){
+            tierIdsAdded = _.difference(tierIdsAdded,self.epl_channel_without_sport_ids);
             tierIdsAdded = _.union(tierIdsAdded,self.epl_channel_with_sport_ids);
         }
 
@@ -150,7 +162,9 @@ com.foxtel.ShopCartManager = function() {
         removePlayTier:removePlayTier,
         removePlayTiers:removePlayTiers,
         updatePlayTiers:updatePlayTiers,
-        getCurrentPlayTiers:getCurrentPlayTiers
+        getCurrentPlayTiers:getCurrentPlayTiers,
+        getEPLTiers:getEPLTiers,
+        getSportTierId:getSportTierId
     }
 
 };

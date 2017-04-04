@@ -24,12 +24,38 @@ $(document).ready(function(){
 
     };
 
+    //show or hide EPL channels
+    function updateEPLChannels(cartResponse){
+
+        var sport_tier_id = Foxtel.ShopCartManager.getSportTierId();
+        var $epl_extra_tiers_without_sports = $('.epl-extra-tiers').children('.EPL-without-sports');
+        var $epl_extra_tiers_with_sports = $('.epl-extra-tiers').children('.EPL-with-sports');
+
+        $epl_extra_tiers_without_sports.addClass('hidden');
+        $epl_extra_tiers_with_sports.addClass('hidden');
+
+        var hasSport = false;
+        $.each(cartResponse.play.tiers,function(idx,element){
+            if(element.tierId == sport_tier_id){
+               hasSport = true;
+            }
+        });
+        if(hasSport){
+            $epl_extra_tiers_with_sports.removeClass('hidden');
+        }else{
+            $epl_extra_tiers_without_sports.removeClass('hidden');
+        }
+
+    };
+
     FOX.context.subscribe("SHOP_CART_LOADED",function(data){
         updatePackBtns(data);
+        updateEPLChannels(data);
     });
 
     FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
         updatePackBtns(data);
+        updateEPLChannels(data);
     });
 
     //Add all packs click event
@@ -77,6 +103,13 @@ $(document).ready(function(){
 
     });
 
+    //Hide or show Cart
+    $(document).on('click','.foxtel-now-header__btn-cart__icon',function(e){
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        $('.foxtel-now-jumbotron').toggle('slow',function(){})
+    });
+
     //Remove pack from shopping cart
     $(document).on('click','.foxtel-now-jumbotron__pack-tag',function(e){
         var $this = $(this);
@@ -84,7 +117,7 @@ $(document).ready(function(){
         if(!tierId){
             return;
         }
-
+console.log(tierId);
         Foxtel.ShopCartManager.removePlayTier(tierId);
     })
 
