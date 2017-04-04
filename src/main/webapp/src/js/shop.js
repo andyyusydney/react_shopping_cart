@@ -77,6 +77,13 @@ $(document).ready(function(){
 
     });
 
+    //Hide or show Cart
+    $(document).on('click','.foxtel-now-header__btn-cart__icon',function(e){
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        $('.foxtel-now-jumbotron').toggle('slow',function(){})
+    });
+
     //Remove pack from shopping cart
     $(document).on('click','.foxtel-now-jumbotron__pack-tag',function(e){
         var $this = $(this);
@@ -84,7 +91,7 @@ $(document).ready(function(){
         if(!tierId){
             return;
         }
-
+console.log(tierId);
         Foxtel.ShopCartManager.removePlayTier(tierId);
     })
 
