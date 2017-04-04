@@ -70,8 +70,9 @@ com.foxtel.ShopCartManager = function() {
         var self = this;
 
         var tierIdsAdded = [tierId];
-        //add 3 epl free channels when adding sports
+        //add 3 epl free channels when adding sports and remove epl free channels
         if(tierId == sport_tier_id){
+            tierIdsAdded = _.difference(tierIdsAdded,self.epl_channel_without_sport_ids);
             tierIdsAdded = _.union(tierIdsAdded,self.epl_channel_with_sport_ids);
         }
 
