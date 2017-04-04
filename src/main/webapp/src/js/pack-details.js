@@ -17,6 +17,7 @@ $(document).ready(function () {
         this.cart = options.cart
         this.updateSlidingBackground();
         FOX.context.subscribe('SHOP_CART_LOADED', this.handleShopCartLoaded);
+        $(window).on('resize', this.triggerButtonUpdate);
       },
 
       events: {
@@ -77,6 +78,10 @@ $(document).ready(function () {
         }
       },
 
+      triggerButtonUpdate: function () {
+        $('.foxtel-now-pack-details a.active').trigger('mouseover');
+      },
+
       // Private
       // -------
 
@@ -98,7 +103,9 @@ $(document).ready(function () {
 
         this.$slider.show().css({
           'left': $activeAnchor.position().left,
-          'width': $activeAnchor.outerWidth()
+          'top': $activeAnchor.position().top,
+          'width': $activeAnchor.outerWidth(),
+          'height': $activeAnchor.outerHeight()
         });
       }
     });

@@ -39,6 +39,7 @@
     .foxtel-now-pack-details__meta__description {
       font-size: 14px;
       color: black;
+      margin-bottom: 30px;
     }
 
     .foxtel-now-pack-details__meta__actions {
@@ -46,10 +47,17 @@
       position: relative;
 
       .btn {
-        position: relative;
         display: inline-block;
-        margin-right: 20px;
-        width: auto;
+        position: relative;
+        width: 80%;
+        max-width: 200px;
+        margin-bottom: 30px;
+
+        @include breakpoint(tablet) {
+          margin-right: 20px;
+          width: auto;
+          margin-bottom: 0;
+        }
 
         &.slide-bg {
           display: none;
