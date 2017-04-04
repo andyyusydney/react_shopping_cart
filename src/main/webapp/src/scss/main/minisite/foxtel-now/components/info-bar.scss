@@ -1,14 +1,49 @@
-.foxtel-now-info-bar-wrapper {
-    background: rgb(47,218,110);
-    padding: 15px 100px;
-    .foxtel-now-info-bar-box {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .foxtel-now-info-bar-content {
-            span {
-                margin-right: 20px;
-            }
-        }
+.foxtel-now-info-bar {
+  background-color: $foxtel-now-green;
+  margin-bottom: 20px;
+
+  &.warn {
+    background-color: $foxtel-now-orange;
+  }
+
+  .foxtel-now-info-bar__inner {
+    position: relative;
+
+    .foxtel-now-info-bar__content {
+      padding: 15px 70px 15px 30px;
+      color: $foxtel-now-very-dark-grey;
+      line-height: 40px;
+
+      p {
+        margin-bottom: 0;
+      }
+
+      .icon {
+        margin-right: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: $foxtel-now-light-grey;
+        width: auto;
+        padding: 12px 30px;
+        margin-left: 20px;
+      }
     }
+
+    .foxtel-now-info-bar__close {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 25px;
+      color: $foxtel-now-very-dark-grey;
+      transition: color 300ms ease-in;
+      font-size: 24px;
+
+      &:hover {
+        color: black;
+        text-decoration: none;
+      }
+    }
+  }
 }
