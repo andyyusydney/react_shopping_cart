@@ -31,17 +31,20 @@ $(document).ready(function(){
         var $epl_extra_tiers_without_sports = $('.epl-extra-tiers').children('.EPL-without-sports');
         var $epl_extra_tiers_with_sports = $('.epl-extra-tiers').children('.EPL-with-sports');
 
-        $.each(cartResponse.play.tiers,function(idx,element){
+        $epl_extra_tiers_without_sports.addClass('hidden');
+        $epl_extra_tiers_with_sports.addClass('hidden');
 
+        var hasSport = false;
+        $.each(cartResponse.play.tiers,function(idx,element){
             if(element.tierId == sport_tier_id){
-                $epl_extra_tiers_without_sports.removeClass('hidden-sm-down hidden-sm-up ');
-                $epl_extra_tiers_with_sports.addClass('hidden-sm-down hidden-sm-up ');
-            }else{
-                $epl_extra_tiers_without_sports.addClass('hidden-sm-down hidden-sm-up ');
-                $epl_extra_tiers_with_sports.removeClass('hidden-sm-down hidden-sm-up ');
+               hasSport = true;
             }
-             return;
         });
+        if(hasSport){
+            $epl_extra_tiers_with_sports.removeClass('hidden');
+        }else{
+            $epl_extra_tiers_without_sports.removeClass('hidden');
+        }
 
     };
 
