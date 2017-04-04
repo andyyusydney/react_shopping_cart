@@ -82,20 +82,21 @@ com.foxtel.ShopCartManager = function() {
         var tierIds = [tierId];
         //add 3 epl free channels when adding sports
         if(tierId == sport_tier_id){
-            tierIds = _.union(tierId,self.epl_channel_with_sport_ids);
+            tierIds = _.union(tierIds,self.epl_channel_with_sport_ids);
         }
         self.removePlayTiers(tierIds,callback);
     }
 
-    function removePlayTiers(tierIds,callback){
+    function removePlayTiers(tierIdsRemoved,callback){
         var self = this;
 
         var tierIds = self.getCurrentPlayTiers();
-        tierIds = _.difference(tierIds, tierIds);
+        tierIds = _.difference(tierIds, tierIdsRemoved);
         self.updatePlayTiers(tierIds,callback);
     }
 
     function updatePlayTiers(tierIds,callback){
+        var self = this;
         var postData = getPlayRequestFromTierIds(tierIds);
 
         $.ajax({
