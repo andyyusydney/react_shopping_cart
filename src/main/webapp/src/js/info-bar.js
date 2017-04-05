@@ -55,7 +55,7 @@ $(document).ready(function () {
           $template: $template
         }).render();
 
-        $('#foxtel-now-info-bar-container').append(view.$el);
+        $('#foxtel-now-info-bar-container--' + data.name).append(view.$el);
         view.$el.trigger('show');
       }
     });
