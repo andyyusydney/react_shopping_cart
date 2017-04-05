@@ -117,7 +117,6 @@ $(document).ready(function(){
         if(!tierId){
             return;
         }
-console.log(tierId);
         Foxtel.ShopCartManager.removePlayTier(tierId);
     })
 
