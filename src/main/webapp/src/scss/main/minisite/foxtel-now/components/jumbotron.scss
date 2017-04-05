@@ -2,9 +2,10 @@
 
 .foxtel-now-jumbotron {
 	color: rgb(255, 255, 255);
-	padding: 20px 50px;
 	border-radius: 2px;
   	background-color: rgb(20, 20, 50);
+  	padding-top: 20px;
+  	padding-bottom: 20px;
   	box-shadow: 0 2px 2px 0 rgba(71, 80, 109, 0.2);
 	-webkit-box-shadow: 2px 3px 10px 0px #ccc;
   	-moz-box-shadow:    2px 3px 10px 0px #ccc;
@@ -31,15 +32,15 @@
 			display: table;
 			.cart-title-wrapper {
 				display: table-cell;
+				@include breakpoint(mobileOnly){
+				    display: table-row;
+				}
 				p {
 					margin-right: 20px;
 				}
 			}
 			.cart-item-wrapper {
 				display: table-cell;
-				p {
-					display: none;
-				}
 				.foxtel-now-jumbotron__pack-tag,
 				.foxtel-now-jumbotron__pack-tag--ghost,
 				.foxtel-now-jumbotron__pack-tag--transparent {
@@ -48,9 +49,7 @@
 					border-radius: 50px;
 		  			background-color: rgb(255, 255, 255);
 		  			padding: 10px 30px;
-		  			margin: 10px;
-		  			margin-left: 0;
-
+                    white-space: nowrap;
 		  			sub {
 		  				bottom: -5px;
 		  				font-size: 36px;
@@ -93,10 +92,7 @@
 	}
 
 	.foxtel-now-jumbotron--shopping-cart__summary {
-		border-left: solid 1px rgba(255, 255, 255, 0.2);
-		@media (max-width: 767px)  {
-			border-top: solid 1px rgba(255, 255, 255, 0.2);
-		}
+		 border-left: solid 1px rgba(255, 255, 255, 0.2);
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost,
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
 			display: table;
@@ -124,9 +120,15 @@
 			}
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
+            @include breakpoint(mobileOnly){
+                border-top: solid 1px rgba(255, 255, 255, 0.2);
+            }
 			p:first-child {
 				width: 50%;
 			}
+			p:last-child {
+                font-size: $font-size--md;
+            }
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
 			font-size: 18px;
@@ -135,8 +137,11 @@
 }
 
 .foxtel-now-jumbotron--minimized {
+    padding-right: 30px;
 	.foxtel-now-jumbotron--shopping-cart__description {
-
+	    @include breakpoint(mobileOnly){
+	        display: none;
+	    }
 		.foxtel-now-jumbotron--shopping-cart__description-wrapper {
 			.cart-item-wrapper {
 				.foxtel-now-jumbotron__pack-tag {
@@ -151,11 +156,15 @@
 		}
 	}
 	.foxtel-now-jumbotron--shopping-cart__summary {
-		.wysiwyg {
-			display: none;
-		}
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
-			display: table-cell;
+		    @include breakpoint(mobileOnly){
+		        width: initial;
+		        padding-top: 0;
+		        padding-bottom: 0;
+		        p {
+		            margin-bottom: 0;
+		        }
+		    }
 			p {
 				display: inline-block;
 			}
@@ -164,8 +173,22 @@
 			}
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
-			display: table-cell;
+            @include breakpoint(mobileOnly){
+                .foxtel-now-btn {
+                    margin-top: 15px;
+                }
+            }
 		}
+
+		.foxtel-now-jumbotron--shopping-cart__summary__total-cost,
+		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
+		    @include breakpoint(mobileOnly){
+		        display: table-cell;
+		        min-width: initial;
+		        width: 50%;
+		    }
+		}
+
 	}
 	.foxtel-now-jumbotron--shopping-cart__description,
 	.foxtel-now-jumbotron--shopping-cart__summary {

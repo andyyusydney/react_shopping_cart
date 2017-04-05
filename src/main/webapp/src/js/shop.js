@@ -3,8 +3,86 @@
  */
 
 
-
 $(document).ready(function(){
+
+    //Disable <add to cart> button status
+    function disableButton ($btn,$siblings,e){
+        if($btn.hasClass('enable')){
+            $btn.addClass('hidden');
+            $btn.siblings($siblings).removeClass('hidden');
+            if('undefined' != e){
+                e.stopImmediatePropagation();
+                e.preventDefault();
+            }
+        }
+    }
+
+    //Enable <add to cart> button status
+    function enableButton ($btn,$siblings,e){
+        if($btn.hasClass('enable')){
+            $btn.removeClass('hidden');
+            $btn.siblings($siblings).addClass('hidden');
+            if('undefined' != e){
+                e.stopImmediatePropagation();
+                e.preventDefault();
+            }
+        }
+    }
+
+    var $cards = $('.foxtel-now-card');
+    if($cards.length == 0){
+        return;
+    }
+
+    //pack load & cart refresh event
+    function updatePackBtns(cartResponse){
+        $.each(cartResponse.play.tiers,function(idx,element){
+            var $btnWrapper = $("[data-tier-id="+element.tierId+"]").closest('.foxtelNowProductAddToCart');
+            if($btnWrapper.length>0){
+                disableButton($btnWrapper,'.foxtel-now-btn.disabled');
+            }
+        });
+
+    };
+
+    //show or hide EPL channels
+    function updateEPLChannels(cartResponse){
+
+        var sport_tier_id = Foxtel.ShopCartManager.getSportTierId();
+        var $epl_extra_tiers_without_sports = $('.epl-extra-tiers').children('.EPL-without-sports');
+        var $epl_extra_tiers_with_sports = $('.epl-extra-tiers').children('.EPL-with-sports');
+
+        $epl_extra_tiers_without_sports.addClass('hidden');
+        $epl_extra_tiers_with_sports.addClass('hidden');
+
+        var hasSport = false;
+        $.each(cartResponse.play.tiers,function(idx,element){
+            if(element.tierId == sport_tier_id){
+               hasSport = true;
+            }
+        });
+        if(hasSport){
+            $epl_extra_tiers_with_sports.removeClass('hidden');
+        }else{
+            $epl_extra_tiers_without_sports.removeClass('hidden');
+        }
+
+    };
+
+    //Add all packs click event
+    $(document).on('click','.foxtelNowAddAllPacks',function(e){
+        var tierIds=[];
+        $('body').find('.foxtel-now-album').each(function(index){
+            var $thisBtn = $(this).find('.foxtelNowProductAddToCart');
+            if($thisBtn.find('span').data('tier-id')){
+                tierIds.push($thisBtn.find('span').data('tier-id'));
+            }
+        });
+
+        Foxtel.ShopCartManager.addPlayTiers(tierIds);
+        disableButton($(this),'.foxtel-now-btn--ghost.disabled',e);
+
+    });
 
     //Add button event
     $(document).on('click','.foxtelNowProductAddToCart',function(e){
@@ -14,15 +92,16 @@ $(document).ready(function(){
             return;
         }
 
-        if($(this).hasClass('enable')){
-
-            $(this).addClass('hidden');
-            $(this).siblings('.foxtel-now-btn.disabled').removeClass('hidden');
-            e.stopImmediatePropagation();
-            e.preventDefault();            
-        }   
+        disableButton($(this),'.foxtel-now-btn.disabled',e);
         Foxtel.ShopCartManager.addPlayTier(tierId);
 
+    });
+
+    //Hide or show Cart
+    $(document).on('click','.foxtel-now-header__btn-cart__icon',function(e){
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        $('.foxtel-now-jumbotron').toggle('slow',function(){})
     });
 
     //Remove pack from shopping cart
@@ -32,8 +111,12 @@ $(document).ready(function(){
         if(!tierId){
             return;
         }
-
         Foxtel.ShopCartManager.removePlayTier(tierId);
+
+        //Enable <add all packs> button
+        var $foxtelNowAddAllPacks = $('.foxtelNowAddAllPacks');
+        disableButton($foxtelNowAddAllPacks,'.foxtel-now-btn--ghost.disabled',e);
+
     })
 
     //Add default pack offer from shopping cart
@@ -54,6 +137,14 @@ $(document).ready(function(){
     });
 
 
+    FOX.context.subscribe("SHOP_CART_LOADED",function(data){
+        updatePackBtns(data);
+        updateEPLChannels(data);
+    });
 
+    FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
+        updatePackBtns(data);
+        updateEPLChannels(data);
+    });
 
 });
