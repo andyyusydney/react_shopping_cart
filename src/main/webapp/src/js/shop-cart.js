@@ -70,8 +70,9 @@ com.foxtel.ShopCartManager = function() {
         var self = this;
 
         var tierIdsAdded = [tierId];
-        //add 3 epl free channels when adding sports
+        //add 3 epl free channels when adding sports and remove epl free channels
         if(tierId == sport_tier_id){
+            tierIdsAdded = _.difference(tierIdsAdded,self.epl_channel_without_sport_ids);
             tierIdsAdded = _.union(tierIdsAdded,self.epl_channel_with_sport_ids);
         }
 
@@ -83,7 +84,23 @@ com.foxtel.ShopCartManager = function() {
         var self = this;
 
         var tierIds = self.getCurrentPlayTiers();
-        tierIds = _.union(tierIds, tierIdsAdded);
+
+        $.each(tierIds,function(idx,element){
+            // Check and replace tierId without sports with with sports
+            switch (element) {
+                case 991139://Chelsea TV
+                    tierIds[idx] = this.EPL_CHANNEL_TIERS[0].tierIdWithSports;
+                    break;
+                case 991140://Liverpool TV
+                    tierIds[idx] = this.EPL_CHANNEL_TIERS[1].tierIdWithSports;
+                    break;
+                case 991141://Manchest TV
+                    tierIds[idx] = this.EPL_CHANNEL_TIERS[2].tierIdWithSports;
+                    break;
+                 default:
+                    console.log('tierIdWithSports added');
+            }
+        })
         self.updatePlayTiers(tierIds,callback);
     }
 

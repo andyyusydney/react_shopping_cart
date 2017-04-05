@@ -1,3 +1,5 @@
+spacing.txt and spacing.xlsx files are temporary for now and will be removed once the new style guide has been created.
+
 Producer can use bootstrap 4 classes for spacing
 
 https://v4-alpha.getbootstrap.com/utilities/spacing/
@@ -24,3 +26,5 @@ margins: m{sides}-{breakpoint}-{size}
 padding: p{sides}-{breakpoint}-{size}
 mt-md-2 = margin top 2 spacing units, on md (and up)
 py-sm-0 = no padding top & bottom, on sm (and up)
+
+detail listed down on spacing.xlsx

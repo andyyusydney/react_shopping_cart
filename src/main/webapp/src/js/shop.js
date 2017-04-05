@@ -3,8 +3,31 @@
  */
 
 
-
 $(document).ready(function(){
+
+    //Disable <add to cart> button status
+    function disableButton ($btn,$siblings,e){
+        if($btn.hasClass('enable')){
+            $btn.addClass('hidden');
+            $btn.siblings($siblings).removeClass('hidden');
+            if('undefined' != e){
+                e.stopImmediatePropagation();
+                e.preventDefault();
+            }
+        }
+    }
+
+    //Enable <add to cart> button status
+    function enableButton ($btn,$siblings,e){
+        if($btn.hasClass('enable')){
+            $btn.removeClass('hidden');
+            $btn.siblings($siblings).addClass('hidden');
+            if('undefined' != e){
+                e.stopImmediatePropagation();
+                e.preventDefault();
+            }
+        }
+    }
 
     var $cards = $('.foxtel-now-card');
     if($cards.length == 0){
@@ -14,11 +37,9 @@ $(document).ready(function(){
     //pack load & cart refresh event
     function updatePackBtns(cartResponse){
         $.each(cartResponse.play.tiers,function(idx,element){
-
             var $btnWrapper = $("[data-tier-id="+element.tierId+"]").closest('.foxtelNowProductAddToCart');
             if($btnWrapper.length>0){
-                $btnWrapper.addClass('hidden');
-                $btnWrapper.siblings('.foxtel-now-btn.disabled').removeClass('hidden');
+                disableButton($btnWrapper,'.foxtel-now-btn.disabled');
             }
         });
 
@@ -31,54 +52,36 @@ $(document).ready(function(){
         var $epl_extra_tiers_without_sports = $('.epl-extra-tiers').children('.EPL-without-sports');
         var $epl_extra_tiers_with_sports = $('.epl-extra-tiers').children('.EPL-with-sports');
 
-        $.each(cartResponse.play.tiers,function(idx,element){
+        $epl_extra_tiers_without_sports.addClass('hidden');
+        $epl_extra_tiers_with_sports.addClass('hidden');
 
+        var hasSport = false;
+        $.each(cartResponse.play.tiers,function(idx,element){
             if(element.tierId == sport_tier_id){
-                $epl_extra_tiers_without_sports.removeClass('hidden-sm-down hidden-sm-up ');
-                $epl_extra_tiers_with_sports.addClass('hidden-sm-down hidden-sm-up ');
-            }else{
-                $epl_extra_tiers_without_sports.addClass('hidden-sm-down hidden-sm-up ');
-                $epl_extra_tiers_with_sports.removeClass('hidden-sm-down hidden-sm-up ');
+               hasSport = true;
             }
-             return;
         });
+        if(hasSport){
+            $epl_extra_tiers_with_sports.removeClass('hidden');
+        }else{
+            $epl_extra_tiers_without_sports.removeClass('hidden');
+        }
 
     };
 
-    FOX.context.subscribe("SHOP_CART_LOADED",function(data){
-        updatePackBtns(data);
-        updateEPLChannels(data);
-    });
-
-    FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
-        updatePackBtns(data);
-        updateEPLChannels(data);
-    });
-
     //Add all packs click event
-    $(document).on('click','#foxtel-now-add-all-packs',function(e){
-
+    $(document).on('click','.foxtelNowAddAllPacks',function(e){
         var tierIds=[];
-
-        for(var i = 0; i<$cards.length;i++ ){
-            var $thisBtn = $cards[i].find('.foxtelNowProductAddToCart');
-            if(!$thisBtn.find('span').data('tier-id')){
-                continue;
+        $('body').find('.foxtel-now-album').each(function(index){
+            var $thisBtn = $(this).find('.foxtelNowProductAddToCart');
+            if($thisBtn.find('span').data('tier-id')){
+                tierIds.push($thisBtn.find('span').data('tier-id'));
             }
-
-            tierIds.push($thisBtn.find('span').data('tier-id'));
-
-        }
+        });
 
         Foxtel.ShopCartManager.addPlayTiers(tierIds);
+        disableButton($(this),'.foxtel-now-btn--ghost.disabled',e);
 
-        if($(this).hasClass('enable')){
-
-            $(this).addClass('hidden');
-            $(this).siblings('.foxtel-now-btn--ghost.disabled').removeClass('hidden');
-            e.stopImmediatePropagation();
-            e.preventDefault();
-        }
     });
 
     //Add button event
@@ -89,13 +92,7 @@ $(document).ready(function(){
             return;
         }
 
-        if($(this).hasClass('enable')){
-
-            $(this).addClass('hidden');
-            $(this).siblings('.foxtel-now-btn.disabled').removeClass('hidden');
-            e.stopImmediatePropagation();
-            e.preventDefault();
-        }
+        disableButton($(this),'.foxtel-now-btn.disabled',e);
         Foxtel.ShopCartManager.addPlayTier(tierId);
 
     });
@@ -114,8 +111,12 @@ $(document).ready(function(){
         if(!tierId){
             return;
         }
-console.log(tierId);
         Foxtel.ShopCartManager.removePlayTier(tierId);
+
+        //Enable <add all packs> button
+        var $foxtelNowAddAllPacks = $('.foxtelNowAddAllPacks');
+        disableButton($foxtelNowAddAllPacks,'.foxtel-now-btn--ghost.disabled',e);
+
     })
 
     //Add default pack offer from shopping cart
@@ -135,5 +136,15 @@ console.log(tierId);
         Foxtel.navigator(dataURL);
     });
 
+
+    FOX.context.subscribe("SHOP_CART_LOADED",function(data){
+        updatePackBtns(data);
+        updateEPLChannels(data);
+    });
+
+    FOX.context.subscribe("SHOP_CART_REFRESHED",function(data){
+        updatePackBtns(data);
+        updateEPLChannels(data);
+    });
 
 });
