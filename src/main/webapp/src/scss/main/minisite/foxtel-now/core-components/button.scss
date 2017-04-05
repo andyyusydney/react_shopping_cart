@@ -50,3 +50,12 @@
 	background-color: transparent;
 	color: black;
 }
+
+.foxtel-now-btn--profile {
+	@extend .foxtel-now-btn;
+
+	background-color: transparent;
+	color: black;
+	border: solid 1px rgb(222, 222, 222);
+	padding: 10px;
+}
