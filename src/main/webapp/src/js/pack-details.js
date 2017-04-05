@@ -110,6 +110,58 @@ $(document).ready(function () {
       }
     });
 
+    // PackContentItemView
+    // -------------------
+
+    var PackContentItemView = Backbone.View.extend({
+      initialize: function () {
+        $(window).on('resize', this.handleResize.bind(this));
+        this.$inner = this.$el.find('.pack-content__item__inner');
+        this.hoverDelay = 400;
+      },
+
+      events: {
+        'mouseenter .pack-content__item__inner': 'handleMouseEnter',
+        'mouseleave .pack-content__item__inner': 'handleMouseLeave'
+      },
+
+      // Event handlers
+      // --------------
+
+      handleMouseEnter: function (event) {
+        var self = this;
+
+        self.hoverTimeout = setTimeout(function () {
+          self.setHeight();
+          self.$inner.addClass('is-active');
+        }, self.hoverDelay);
+      },
+
+      handleMouseLeave: function (event) {
+        clearTimeout(this.hoverTimeout);
+        this.$inner.removeClass('is-active');
+      },
+
+      handleResize: function () {
+        this.setHeight();
+      },
+
+      // Private
+      // -------
+
+      setHeight: function () {
+        this.$el.css('height', 'auto');
+        this.$el.css('height', this.$el.outerHeight());
+      }
+    });
+
+    // Instantiate PackContentItemView
+    $('.pack-content__item').each(function () {
+      new PackContentItemView({
+        el: $(this)
+      });
+    });
+
     // Instantiate PackDetailsView
     $packDetails.each(function () {
       new PackDetailsView({
