@@ -6,13 +6,24 @@
   display:flex;
   justify-content: center;
 }
-.foxtel-banner__content{
+.foxtel-banner__content--mobile-text-on-image{
   width:100%;
   position:absolute;
   left:0;
   top:0;
   bottom:0;
   @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+}
+.foxtel-banner__content--mobile-text-below-image{
+  width:100%;
+  @media (min-width: 768px) {
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
     display: flex;
     align-items: center;
   }
