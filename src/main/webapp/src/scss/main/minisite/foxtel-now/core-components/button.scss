@@ -22,6 +22,9 @@
 .foxtel-now-btn--black {
 	background-color: black;
 	color: white;
+	&:hover {
+	    color: white;
+	}
 }
 
 .foxtel-now-btn--wide {
