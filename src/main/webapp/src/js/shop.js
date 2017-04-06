@@ -28,6 +28,9 @@ $(document).ready(function(){
 
     //pack load & cart refresh event
     function updatePackBtns(cartResponse){
+        $('.foxtelNowProductAddToCart').each(function(){
+            enableButton($(this),'.foxtel-now-btn.disabled');
+        })
         $.each(cartResponse.play.tiers,function(idx,element){
             var $btnWrapper = $("[data-tier-id="+element.tierId+"]").closest('.foxtelNowProductAddToCart');
             if($btnWrapper.length>0){
