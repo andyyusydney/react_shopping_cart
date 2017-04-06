@@ -38,11 +38,11 @@ $(document).on('change',"[data-name-formatter]",function(){
     $this.val(newNameString);
 });
 
-$(document).on('keyup',"[data-ccexpiry-formatter]",function(){
+$(document).on('keyup',"[data-ccexpiry-formatter]",function(e){
     var $this = $(this);
     var value = $this.val();
 
-    if(!value){
+    if(!value || e.keyCode == 8){
         return;
     }
     var replacedValue = value.replace(/-/g, "");
