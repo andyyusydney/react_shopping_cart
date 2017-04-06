@@ -97,10 +97,11 @@ com.foxtel.ShopCartManager = function() {
                 case 991141://Manchest TV
                     tierIds[idx] = this.EPL_CHANNEL_TIERS[2].tierIdWithSports;
                     break;
-                 default:
+                default:
                     console.log('tierIdWithSports added');
             }
         })
+        tierIds = _.union(tierIds, tierIdsAdded);
         self.updatePlayTiers(tierIds,callback);
     }
 
