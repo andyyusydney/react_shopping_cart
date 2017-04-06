@@ -18,6 +18,8 @@ $(document).ready(function(){
             return;
         }
 
+        $this.addClass('is-loading');
+
         var requestObject = {};
         requestObject.cardNumber = $form.find("[data-id='cardNumber']").val();
         requestObject.cardExpiry = $form.find("[data-id='cardExpiry']").val();
