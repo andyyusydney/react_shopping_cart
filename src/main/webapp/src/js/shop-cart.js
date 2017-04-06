@@ -1,7 +1,7 @@
 
 /**
  * Foxtel now shop cart manager && related JS
- * 
+ *
  */
 
 
@@ -170,7 +170,9 @@ com.foxtel.ShopCartManager = function() {
         return postData;
     }
 
-
+    function getCartResponse(){
+        return this.shopCartResponseData;
+    }
 
     return {
         init:init,
@@ -180,6 +182,7 @@ com.foxtel.ShopCartManager = function() {
         removePlayTiers:removePlayTiers,
         updatePlayTiers:updatePlayTiers,
         getCurrentPlayTiers:getCurrentPlayTiers,
+        getCartResponse : getCartResponse,
         getEPLTiers:getEPLTiers,
         getSportTierId:getSportTierId
     }
@@ -189,7 +192,7 @@ com.foxtel.ShopCartManager = function() {
 Foxtel.ShopCartManager = new com.foxtel.ShopCartManager();
 
 $(document).ready(function(){
-    
+
     Foxtel.ShopCartManager.init();
 
     // Shopping Cart SMART SCROLLING FEATURE
@@ -238,4 +241,3 @@ $(document).ready(function(){
 
 
 });
-
