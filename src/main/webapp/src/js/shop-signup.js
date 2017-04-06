@@ -59,9 +59,7 @@ $(document).ready(function(){
     });
     $emailField.parsley().subscribe('parsley:field:success', function() {
         FOX.context.broadcast('HIDE_BANNER', {
-            name: 'EMAIL_TAKEN',
-            email: $parsleyField.$element.val(),
-            closeEnabled: true
+            name: 'EMAIL_TAKEN'
         });
     });
 
