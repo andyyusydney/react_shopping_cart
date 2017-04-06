@@ -11,7 +11,7 @@ $(document).ready(function(){
         return;
     }
 
-    var modelData = FOX.context.getModel("checkoutWithoutStarterPackModel");
+    var modelData = FOX.context.getModel("checkoutWithoutStarterPackModel").attributes;
 
     //Update title Text when having cart object
     FOX.context.subscribe("SHOP_CART_LOADED",function(cartResponse){
@@ -20,11 +20,13 @@ $(document).ready(function(){
         //get premium tier names
         var premiumTierNames = [];
         $.each(cartResponse.play.tiers,function(idx,item){
-            premiumTierNames.push(item.title);
+            if("PREMIUM" == item.type){
+                premiumTierNames.push(item.title);
+            }
         })
         var replaceText = "";
         var len = premiumTierNames.length;
-        for(var idx;idx<len;idx++){
+        for(var idx=0;idx<len;idx++){
             replaceText += premiumTierNames[idx];
             if(idx< len -2){
                 replaceText += ",";
@@ -33,8 +35,7 @@ $(document).ready(function(){
                 replaceText += "&";
             }
         }
-        titleText = titleText.replace("[selected_tier_names]");
-        titleText = titleText.replace("[selected_tier_names]");
+        titleText = titleText.replace("[selected_tier_names]",replaceText);
         if(len==1){
             titleText = titleText.replace("[be]","is");
         }else{
