@@ -127,8 +127,30 @@ $(document).ready(function(){
 
     //Navigation
     $(document).on('click','[data-button-url]',function(){
-        var dataURL = $(this).data("button-url");
-        Foxtel.navigator(dataURL);
+        $this = $(this);
+
+        //check if it's empty
+        var cartResponse = Foxtel.ShopCartManager.getCartResponse();
+        if(cartResponse.play.tiers.length == 0){
+          //TODO disabled the button
+          return;
+        }
+
+        //do we have starter pack
+        var hasStarterPack = false;
+        for(var i = 0; i< cartResponse.play.tiers.length;i++){
+          if ('GENRE' == cartResponse.play.tiers[i].type) {
+            hasStarterPack = true;
+            break;
+          }
+        }
+
+        if(hasStarterPack){
+            Foxtel.navigator($this.data("button-url"));
+        }else{
+            Foxtel.navigator($this.data("button-without-starter-url"));
+        }
+
     });
 
 
