@@ -113,6 +113,67 @@
     	color: black;
     	opacity: 0.8;
     }
+	$transition-time: 250ms;
+	transition: border $transition-time ease,
+		border-radius $transition-time ease,
+		background-color $transition-time ease,
+		width $transition-time ease,
+		height $transition-time ease;
+
+	&.is-loading {
+		text-indent: -1000em;
+		background-color: transparent;
+		pointer-events: none;
+		content: "";
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+    background-color: transparent;
+    border: 3px solid #f0f0f0;
+		border-left-color: $foxtel-now-green;
+		animation: rotating 2s 250ms linear infinite, in 2s 0 ease-in;
+		margin: auto;
+
+		&:focus {
+			outline: 0;
+		}
+	}
+
+	&.is-valid {
+		text-indent: -1000em;
+		width: 100px;
+		height: 40px;
+		margin: auto;
+		padding: 0;
+
+		span {
+			display: none;
+		}
+
+		&:after {
+			display: inherit;
+	    content: "\f00c";
+	    background-image: url(/content/dam/now/Icons/check.svg);
+	    background-size: 30%;
+	    background-position: 50%;
+	    background-repeat: no-repeat;
+	    width: 100%;
+	    height: 100%;
+		}
+
+		&:focus {
+			outline: 0;
+		}
+	}
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .border--top {
