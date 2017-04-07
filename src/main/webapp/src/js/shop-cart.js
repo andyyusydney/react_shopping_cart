@@ -48,6 +48,12 @@ com.foxtel.ShopCartManager = function() {
 
     function getPopTierId(){
         return pop_tier_id;
+    function getEPLWithSportTierIds(){
+        return this.epl_channel_with_sport_ids;
+    }
+
+    function getEPLWithOutSportTierIds(){
+        return this.epl_channel_without_sport_ids;
     }
 
     function init(){
@@ -196,7 +202,9 @@ com.foxtel.ShopCartManager = function() {
         getEPLTiers:getEPLTiers,
         getSportTierId:getSportTierId,
         getDramaTierId,
-        getPopTierId
+        getPopTierId,
+        getEPLWithSportTierIds:getEPLWithSportTierIds,
+        getEPLWithOutSportTierIds:getEPLWithOutSportTierIds
     }
 
 };
