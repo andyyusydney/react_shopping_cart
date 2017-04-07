@@ -139,6 +139,7 @@
 .foxtel-now-jumbotron--minimized {
     padding-right: 30px;
 	.foxtel-now-jumbotron--shopping-cart__description {
+	    width: 60%;
 	    @include breakpoint(mobileOnly){
 	        display: none;
 	    }
@@ -156,7 +157,13 @@
 		}
 	}
 	.foxtel-now-jumbotron--shopping-cart__summary {
+	    width: 40%;
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
+		    display: none;
+		    &.total {
+		        display: table-cell;
+                width: 60%;
+		    }
 		    @include breakpoint(mobileOnly){
 		        width: initial;
 		        padding-top: 0;
@@ -173,6 +180,7 @@
 			}
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
+            display: table-cell;
             @include breakpoint(mobileOnly){
                 .foxtel-now-btn {
                     margin-top: 15px;
@@ -182,11 +190,7 @@
 
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost,
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
-		    @include breakpoint(mobileOnly){
-		        display: table-cell;
-		        min-width: initial;
-		        width: 50%;
-		    }
+            min-width: initial;
 		}
 
 	}

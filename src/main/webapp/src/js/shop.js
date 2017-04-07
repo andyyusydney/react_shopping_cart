@@ -56,10 +56,20 @@ $(document).ready(function(){
                hasSport = true;
             }
         });
+
+        var $btnsWithSport = $epl_extra_tiers_with_sports.find('.foxtelNowProductAddToCart');
         if(hasSport){
             $epl_extra_tiers_with_sports.removeClass('hidden');
+            //disable <add to card> button
+            $.each($btnsWithSport,function(idx,element){
+                disableButton($(element),'.foxtel-now-btn.disabled')
+            })
         }else{
             $epl_extra_tiers_without_sports.removeClass('hidden');
+            //enable <add to card> button
+            $.each($btnsWithSport,function(idx,element){
+                enableButton($(element),'.foxtel-now-btn.disabled')
+            })
         }
 
     };
