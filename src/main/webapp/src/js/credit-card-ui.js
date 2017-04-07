@@ -258,7 +258,15 @@ $(document).ready(function(){
 		}).
 		on('mouseleave',function(){
 			$(this).siblings('.tooltips-container').css('opacity',0)
-		})
+		}).
+    on('click', function () {
+      var $tooltip = $(this).siblings('.tooltips-container');
+      if ($tooltip.length && parseInt($tooltip.css('opacity')) === 0) {
+        $tooltip.css('opacity', 1);
+      } else {
+        $tooltip.css('opacity', 0);
+      }
+    });
 //Toggle password
 	$('.show-password-target').on('click',function(){
 		if($('[data-password-mask]').attr('type') == 'text'){
