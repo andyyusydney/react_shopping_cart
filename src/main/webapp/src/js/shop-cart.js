@@ -1,7 +1,7 @@
 
 /**
  * Foxtel now shop cart manager && related JS
- * 
+ *
  */
 
 
@@ -33,11 +33,11 @@ com.foxtel.ShopCartManager = function() {
     var sport_tier_id = 990703;
 
     function getEPLTiers(){
-        return this.EPL_CHANNEL_TIERS;
+        return EPL_CHANNEL_TIERS;
     }
 
     function getSportTierId(){
-        return this.sport_tier_id;
+        return sport_tier_id;
     }
 
     function init(){
@@ -89,18 +89,19 @@ com.foxtel.ShopCartManager = function() {
             // Check and replace tierId without sports with with sports
             switch (element) {
                 case 991139://Chelsea TV
-                    tierIds[idx] = this.EPL_CHANNEL_TIERS[0].tierIdWithSports;
+                    tierIds[idx] = self.EPL_CHANNEL_TIERS[0].tierIdWithSports;
                     break;
                 case 991140://Liverpool TV
-                    tierIds[idx] = this.EPL_CHANNEL_TIERS[1].tierIdWithSports;
+                    tierIds[idx] = self.EPL_CHANNEL_TIERS[1].tierIdWithSports;
                     break;
                 case 991141://Manchest TV
-                    tierIds[idx] = this.EPL_CHANNEL_TIERS[2].tierIdWithSports;
+                    tierIds[idx] = self.EPL_CHANNEL_TIERS[2].tierIdWithSports;
                     break;
-                 default:
+                default:
                     console.log('tierIdWithSports added');
             }
         })
+        tierIds = _.union(tierIds, tierIdsAdded);
         self.updatePlayTiers(tierIds,callback);
     }
 
@@ -169,7 +170,9 @@ com.foxtel.ShopCartManager = function() {
         return postData;
     }
 
-
+    function getCartResponse(){
+        return this.shopCartResponseData;
+    }
 
     return {
         init:init,
@@ -179,6 +182,7 @@ com.foxtel.ShopCartManager = function() {
         removePlayTiers:removePlayTiers,
         updatePlayTiers:updatePlayTiers,
         getCurrentPlayTiers:getCurrentPlayTiers,
+        getCartResponse : getCartResponse,
         getEPLTiers:getEPLTiers,
         getSportTierId:getSportTierId
     }
@@ -188,7 +192,7 @@ com.foxtel.ShopCartManager = function() {
 Foxtel.ShopCartManager = new com.foxtel.ShopCartManager();
 
 $(document).ready(function(){
-    
+
     Foxtel.ShopCartManager.init();
 
     // Shopping Cart SMART SCROLLING FEATURE
@@ -237,4 +241,3 @@ $(document).ready(function(){
 
 
 });
-

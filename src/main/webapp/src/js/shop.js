@@ -6,26 +6,18 @@
 $(document).ready(function(){
 
     //Disable <add to cart> button status
-    function disableButton ($btn,$siblings,e){
+    function disableButton ($btn,$siblings){
         if($btn.hasClass('enable')){
             $btn.addClass('hidden');
             $btn.siblings($siblings).removeClass('hidden');
-            if('undefined' != e){
-                e.stopImmediatePropagation();
-                e.preventDefault();
-            }
         }
     }
 
     //Enable <add to cart> button status
-    function enableButton ($btn,$siblings,e){
+    function enableButton ($btn,$siblings){
         if($btn.hasClass('enable')){
             $btn.removeClass('hidden');
             $btn.siblings($siblings).addClass('hidden');
-            if('undefined' != e){
-                e.stopImmediatePropagation();
-                e.preventDefault();
-            }
         }
     }
 
@@ -36,6 +28,9 @@ $(document).ready(function(){
 
     //pack load & cart refresh event
     function updatePackBtns(cartResponse){
+        $('.foxtelNowProductAddToCart').each(function(){
+            enableButton($(this),'.foxtel-now-btn.disabled');
+        })
         $.each(cartResponse.play.tiers,function(idx,element){
             var $btnWrapper = $("[data-tier-id="+element.tierId+"]").closest('.foxtelNowProductAddToCart');
             if($btnWrapper.length>0){
@@ -80,7 +75,7 @@ $(document).ready(function(){
         });
 
         Foxtel.ShopCartManager.addPlayTiers(tierIds);
-        disableButton($(this),'.foxtel-now-btn--ghost.disabled',e);
+        disableButton($(this),'.foxtel-now-btn--ghost.disabled');
 
     });
 
@@ -92,7 +87,7 @@ $(document).ready(function(){
             return;
         }
 
-        disableButton($(this),'.foxtel-now-btn.disabled',e);
+        disableButton($(this),'.foxtel-now-btn.disabled');
         Foxtel.ShopCartManager.addPlayTier(tierId);
 
     });
@@ -115,7 +110,7 @@ $(document).ready(function(){
 
         //Enable <add all packs> button
         var $foxtelNowAddAllPacks = $('.foxtelNowAddAllPacks');
-        disableButton($foxtelNowAddAllPacks,'.foxtel-now-btn--ghost.disabled',e);
+        enableButton($foxtelNowAddAllPacks,'.foxtel-now-btn--ghost.disabled');
 
     })
 
@@ -132,8 +127,30 @@ $(document).ready(function(){
 
     //Navigation
     $(document).on('click','[data-button-url]',function(){
-        var dataURL = $(this).data("button-url");
-        Foxtel.navigator(dataURL);
+        $this = $(this);
+
+        //check if it's empty
+        var cartResponse = Foxtel.ShopCartManager.getCartResponse();
+        if(cartResponse.play.tiers.length == 0){
+          //TODO disabled the button
+          return;
+        }
+
+        //do we have starter pack
+        var hasStarterPack = false;
+        for(var i = 0; i< cartResponse.play.tiers.length;i++){
+          if ('GENRE' == cartResponse.play.tiers[i].type) {
+            hasStarterPack = true;
+            break;
+          }
+        }
+
+        if(hasStarterPack){
+            Foxtel.navigator($this.data("button-url"));
+        }else{
+            Foxtel.navigator($this.data("button-without-starter-url"));
+        }
+
     });
 
 

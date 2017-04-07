@@ -214,36 +214,40 @@ $(document).ready(function(){
     var creditCard = $('[data-input-type="creditcard"]');
     if (creditCard.length){
         creditCard.validateCreditCard(function(result) {
+            var $allCards = $('.visa, .mastercard, .amex, .dc');
+
             if(result.card_type !== null){
                 var type = result.card_type.name;
                 switch (type)
                 {
                   case "visa":
-                    $(".visa").addClass("active").siblings('img').removeClass('active');
+                    $(".visa").addClass("active").siblings('img').removeClass('active').addClass('inactive');
                     break;
 
                   case "mastercard":
-                    $(".mastercard").addClass("active").siblings('img').removeClass('active');
+                    $(".mastercard").addClass("active").siblings('img').removeClass('active').addClass('inactive');
                     break;
 
                   case "amex":
-                    $(".amex").addClass("active").siblings('img').removeClass('active');
+                    $(".amex").addClass("active").siblings('img').removeClass('active').addClass('inactive');
                     break;
 
                   case "diners_club_international":
-                    $(".dc").addClass("active").siblings('img').removeClass('active');
+                    $(".dc").addClass("active").siblings('img').removeClass('active').addClass('inactive');
                     break;
 
                   case "diners_club_carte_blanche":
-                    $(".dc").addClass("active").siblings('img').removeClass('active');
+                    $(".dc").addClass("active").siblings('img').removeClass('active').addClass('inactive');
                     break;
 
 	                default:
 	                $('img').removeClass('active');
+                  $allCards.removeClass('inactive');
 	                //don't do anything
                 }
             }else{
 			    	$('img').removeClass('active');
+            $allCards.removeClass('inactive');
 			    }
         });
     }
@@ -262,6 +266,6 @@ $(document).ready(function(){
 		}else{
 			$('[data-password-mask]').attr('type','text');
 		}
-		
+
 	})
 })

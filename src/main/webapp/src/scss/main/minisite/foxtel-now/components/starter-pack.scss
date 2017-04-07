@@ -1,0 +1,27 @@
+/* Styles for checkoutWithoutStarterPack component */
+.foxtel-now-no-starter-pack-container{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f0f0f0;
+    padding: 30px 100px;
+    .foxtel-now-no-starter-pack-container__title-wrapper {
+        text-align: center;
+    }
+    .foxtel-now-no-starter-pack-container__list-wrapper {
+        border-top: 1px solid lightgrey;
+        border-bottom: 1px solid lightgrey;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    .foxtel-now-no-starter-pack-container__button-wrapper {
+        display: flex;
+        justify-content: space-between;
+        .foxtel-now-btn--round {
+            max-width: 200px;
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+}
