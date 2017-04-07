@@ -40,6 +40,14 @@ com.foxtel.ShopCartManager = function() {
         return sport_tier_id;
     }
 
+    function getEPLWithSportTierIds(){
+        return this.epl_channel_with_sport_ids;
+    }
+
+    function getEPLWithOutSportTierIds(){
+        return this.epl_channel_without_sport_ids;
+    }
+
     function init(){
         //shop cart servlet response
         this.shopCartResponseData = null;
@@ -184,7 +192,9 @@ com.foxtel.ShopCartManager = function() {
         getCurrentPlayTiers:getCurrentPlayTiers,
         getCartResponse : getCartResponse,
         getEPLTiers:getEPLTiers,
-        getSportTierId:getSportTierId
+        getSportTierId:getSportTierId,
+        getEPLWithSportTierIds:getEPLWithSportTierIds,
+        getEPLWithOutSportTierIds:getEPLWithOutSportTierIds
     }
 
 };
