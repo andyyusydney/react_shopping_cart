@@ -31,6 +31,8 @@ com.foxtel.ShopCartManager = function() {
     ];
 
     var sport_tier_id = 990703;
+    var drama_tier_id = 991149;
+    var pop_tier_id = 991148;
 
     function getEPLTiers(){
         return EPL_CHANNEL_TIERS;
@@ -38,6 +40,14 @@ com.foxtel.ShopCartManager = function() {
 
     function getSportTierId(){
         return sport_tier_id;
+    }
+
+    function getDramaTierId(){
+        return drama_tier_id;
+    }
+
+    function getPopTierId(){
+        return pop_tier_id;
     }
 
     function init(){
@@ -184,7 +194,9 @@ com.foxtel.ShopCartManager = function() {
         getCurrentPlayTiers:getCurrentPlayTiers,
         getCartResponse : getCartResponse,
         getEPLTiers:getEPLTiers,
-        getSportTierId:getSportTierId
+        getSportTierId:getSportTierId,
+        getDramaTierId,
+        getPopTierId
     }
 
 };
