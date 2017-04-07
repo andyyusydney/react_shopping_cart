@@ -48,6 +48,9 @@ com.foxtel.ShopCartManager = function() {
 
     function getPopTierId(){
         return pop_tier_id;
+    }
+
+
     function getEPLWithSportTierIds(){
         return this.epl_channel_with_sport_ids;
     }
