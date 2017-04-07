@@ -55,26 +55,26 @@
 		  				font-size: 36px;
 		  				left: 10px;
 		  				cursor: pointer;
+		  				padding: 0 10px;
 		  			}
+                    &:hover {
+                        sub {
+                            background: $foxtel-now-light-grey;
+                            border-radius: 1em;
+                        }
+                    }
 				}
 				.foxtel-now-jumbotron__pack-tag--ghost {
 				    border: 1px dashed white;
 				    background: transparent;
 				    color: white;
 
-				    sub {
-				    	bottom: -6px;
-			    		padding: 0 13px;
-				    }
-
 				    &:hover {
 				    	background: white;
 				    	color: black;
 				    	border: none;
-
 				    	sub {
-				    		background: $foxtel-now-light-grey;
-				    		border-radius: 1em;
+				    	    padding: 0 13px;
 				    	}
 				    }	
 				}
