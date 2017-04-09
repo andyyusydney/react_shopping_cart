@@ -1,6 +1,54 @@
-/* additional Sajari search engine needed classes from existing site stylesheet*/
+/* additional Sajari search engine needed classes from existing site stylesheet */
 
 #sj-overlay {
+  font-family: ProximaNova,arial,sans-serif;
+  font-family: -mac-system,BlinkMacSystemFont,arial,sans-serif;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  z-index: 1000000;
+  -webkit-animation-name: sj-overlay-rolldown;
+  animation-name: sj-overlay-rolldown;
+  -webkit-animation-duration: .4s;
+  animation-duration: .4s;
+  #sj-tabs-container {
+    background-color: #fff;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    color: #777;
+    width: 100%;
+
+    #sj-tabs {
+      font-family: ProximaNova-semibold;
+      padding-left: 126px;
+      overflow: auto;
+      white-space: nowrap;
+
+      .sj-tab {
+        padding: .75em 1.25em;
+        font-size: 15px;
+        display: inline-block;
+        font-size: 13px;
+        cursor: pointer;
+        margin: 0;
+        padding: 1em;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .sj-tab.sj-tab-active {
+        color: #ed6e24;
+        border-bottom: 3px solid #ed6e24;
+      }
+    }
+  }
   #sj-results {
      position: relative;
      width: auto;
@@ -62,6 +110,29 @@
        .marginless {
          margin: 0!important;
        }
+    }
+    .sj-paginator {
+      font-family: ProximaNova-semibold;
+      margin: 1em 0;
+      text-align: center;
+      max-width: 700px;
+    }
+    .sj-paginator > div {
+      display: inline;
+      padding: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .sj-paginator > div.disabled {
+      color: #aaa;
+      background-color: transparent !important;
+    }
+    .sj-paginator > div.current {
+      color: #ed6e24;
     }
   }
 }
