@@ -1,7 +1,7 @@
 
 /**
  * Foxtel now shop cart manager && related JS
- * 
+ *
  */
 
 
@@ -31,13 +31,32 @@ com.foxtel.ShopCartManager = function() {
     ];
 
     var sport_tier_id = 990703;
+    var drama_tier_id = 991149;
+    var pop_tier_id = 991148;
 
     function getEPLTiers(){
-        return this.EPL_CHANNEL_TIERS;
+        return EPL_CHANNEL_TIERS;
     }
 
     function getSportTierId(){
-        return this.sport_tier_id;
+        return sport_tier_id;
+    }
+
+    function getDramaTierId(){
+        return drama_tier_id;
+    }
+
+    function getPopTierId(){
+        return pop_tier_id;
+    }
+
+
+    function getEPLWithSportTierIds(){
+        return this.epl_channel_with_sport_ids;
+    }
+
+    function getEPLWithOutSportTierIds(){
+        return this.epl_channel_without_sport_ids;
     }
 
     function init(){
@@ -89,13 +108,13 @@ com.foxtel.ShopCartManager = function() {
             // Check and replace tierId without sports with with sports
             switch (element) {
                 case 991139://Chelsea TV
-                    tierIds[idx] = this.EPL_CHANNEL_TIERS[0].tierIdWithSports;
+                    tierIds[idx] = self.EPL_CHANNEL_TIERS[0].tierIdWithSports;
                     break;
                 case 991140://Liverpool TV
-                    tierIds[idx] = this.EPL_CHANNEL_TIERS[1].tierIdWithSports;
+                    tierIds[idx] = self.EPL_CHANNEL_TIERS[1].tierIdWithSports;
                     break;
                 case 991141://Manchest TV
-                    tierIds[idx] = this.EPL_CHANNEL_TIERS[2].tierIdWithSports;
+                    tierIds[idx] = self.EPL_CHANNEL_TIERS[2].tierIdWithSports;
                     break;
                 default:
                     console.log('tierIdWithSports added');
@@ -170,7 +189,9 @@ com.foxtel.ShopCartManager = function() {
         return postData;
     }
 
-
+    function getCartResponse(){
+        return this.shopCartResponseData;
+    }
 
     return {
         init:init,
@@ -180,8 +201,13 @@ com.foxtel.ShopCartManager = function() {
         removePlayTiers:removePlayTiers,
         updatePlayTiers:updatePlayTiers,
         getCurrentPlayTiers:getCurrentPlayTiers,
+        getCartResponse : getCartResponse,
         getEPLTiers:getEPLTiers,
-        getSportTierId:getSportTierId
+        getSportTierId:getSportTierId,
+        getDramaTierId,
+        getPopTierId,
+        getEPLWithSportTierIds:getEPLWithSportTierIds,
+        getEPLWithOutSportTierIds:getEPLWithOutSportTierIds
     }
 
 };
@@ -189,7 +215,7 @@ com.foxtel.ShopCartManager = function() {
 Foxtel.ShopCartManager = new com.foxtel.ShopCartManager();
 
 $(document).ready(function(){
-    
+
     Foxtel.ShopCartManager.init();
 
     // Shopping Cart SMART SCROLLING FEATURE
@@ -238,4 +264,3 @@ $(document).ready(function(){
 
 
 });
-

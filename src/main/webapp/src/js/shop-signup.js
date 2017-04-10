@@ -19,6 +19,8 @@ $(document).ready(function(){
             return;
         }
 
+        $this.addClass('is-loading');
+
         var requestObject = {};
         requestObject.firstName = $form.find("[data-id='firstName']").val();
         requestObject.lastName = $form.find("[data-id='lastName']").val();
