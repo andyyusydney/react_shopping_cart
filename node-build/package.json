@@ -7,6 +7,8 @@
     "start": "webpack-dev-sever"
   },
   "dependencies": {
+    "jshint": "^2.9.4",
+    "jshint-loader": "^0.8.4",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   }

@@ -8,7 +8,8 @@ module.exports = {
           './shop-creditcard.js',
           './shop-cart.js',
           './shop-cart-backbone.js',
-          './shop-checkout-without-starter.js'
+          './shop-checkout-without-starter.js',
+          './shop-cart-helpers.js'
         ]
   },
   output: {
@@ -18,5 +19,5 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
     port:9000
-  },
+  }
 };
