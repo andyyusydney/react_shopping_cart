@@ -45,6 +45,9 @@ $br: 4px;
   font-size: 18px;
   color: rgb(102, 102, 102);
   padding: 40px;
+  @include breakpoint(mobileOnly){
+    padding: 20px;
+  }
   border-radius:$br;
   box-shadow:0 4px 10px 4px rgba($form-bg,.3);
 	.foxtel-now-form-container__tab-group {
