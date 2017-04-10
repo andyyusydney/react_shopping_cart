@@ -78,6 +78,13 @@ $(document).ready(function(){
 
     var ajaxUrl = "/bin/foxtel/now/customerDetailLanding";
 
+    function updateField($field,value){
+      $field.val(value);;
+      if(value!=''){
+        $field.siblings('label').addClass('active highlight');
+      }
+    }
+
     //empty request
     $.ajax({
         url: ajaxUrl,
@@ -85,13 +92,17 @@ $(document).ready(function(){
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success:function(data){
-          $form.find("[data-id='firstName']").val(data.firstName);
-          $form.find("[data-id='lastName']").val(data.lastName);
-          $form.find("[data-id='email']").val(data.email);
-          $form.find("[data-id='mobile']").val(data.mobile);
-          $form.find("[data-id='postcode']").val(data.postcode);
+          updateField($form.find("[data-id='firstName']"),data.firstName);
+          updateField($form.find("[data-id='lastName']"),data.lastName);
+          updateField($form.find("[data-id='email']"),data.email);
+          updateField($form.find("[data-id='mobile']"),data.mobile);
+          updateField($form.find("[data-id='postcode']"),data.postcode);
+
+
 
         }
-    });    
+    });
+
+
 
 });
