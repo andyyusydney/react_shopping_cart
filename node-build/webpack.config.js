@@ -1,5 +1,6 @@
 const path = require('path');
-const webpack = require('webpack');
+var jsonFile = require('jsonfile');
+
 module.exports = {
   context: path.resolve(__dirname, '../src/main/webapp/src/js'),
   entry: {
@@ -18,6 +19,19 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
-    port:9000
+    port:9000,
+    setup: function(app) {
+
+      app.post('/*', function (req, res) {
+         console.log("===="+req.originalUrl);
+
+         var outputFolder = path.resolve(__dirname, './dist');
+         var outputFile = path.join(outputFolder,req.originalUrl);
+         console.log(jsonFile.readFileSync(outputFile));
+         res.send(jsonFile.readFileSync(outputFile));
+        //res.redirect("http://127.0.0.1:9000/"+req.originalUrl);
+      });
+
+    },
   }
 };
