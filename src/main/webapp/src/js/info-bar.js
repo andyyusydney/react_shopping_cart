@@ -4,8 +4,15 @@ $(document).ready(function () {
   if ($infoBarTemplates.length > 0) {
     var InfoBarView = Backbone.View.extend({
       initialize: function (options) {
-        this.template = Handlebars.compile(options.$template.html());
-        this.slideDuration = 150; // ms
+        var self = this;
+
+        self.template = Handlebars.compile(options.$template.html());
+        self.slideDuration = 150; // ms
+        FOX.context.subscribe('HIDE_BANNER', function (data) {
+          if (data.name === self.model.get('name')) {
+            self.handleClose();
+          }
+        });
       },
 
       events: {
@@ -59,5 +66,6 @@ $(document).ready(function () {
         view.$el.trigger('show');
       }
     });
+
   }
 });
