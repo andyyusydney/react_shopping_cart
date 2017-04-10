@@ -193,6 +193,20 @@ com.foxtel.ShopCartManager = function() {
         return this.shopCartResponseData;
     }
 
+    // Has the user added any premium packs to the cart but not yet any starter
+    // packs?
+    function hasPremiumPackAndNoStarter () {
+      var packsInCart = this.shopCartResponseData.play.tiers;
+      var anyPremiumPacks = _(packsInCart).any(function (pack) {
+        return pack.type === 'PREMIUM';
+      });
+      var anyStarterPacks = _(packsInCart).any(function (pack) {
+        return pack.type === 'GENRE';
+      });
+
+      return anyPremiumPacks && !anyStarterPacks;
+    }
+
     return {
         init:init,
         addPlayTier:addPlayTier,
@@ -207,7 +221,8 @@ com.foxtel.ShopCartManager = function() {
         getDramaTierId,
         getPopTierId,
         getEPLWithSportTierIds:getEPLWithSportTierIds,
-        getEPLWithOutSportTierIds:getEPLWithOutSportTierIds
+        getEPLWithOutSportTierIds:getEPLWithOutSportTierIds,
+        hasPremiumPackAndNoStarter:hasPremiumPackAndNoStarter
     }
 
 };
