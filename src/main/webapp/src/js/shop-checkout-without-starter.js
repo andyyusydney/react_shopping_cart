@@ -17,13 +17,22 @@ $(document).ready(function(){
     FOX.context.subscribe("SHOP_CART_LOADED",function(cartResponse){
         var titleText = modelData.title;
 
+        var eplWithSportTierIds = Foxtel.ShopCartManager.getEPLWithSportTierIds();
+
         //get premium tier names
         var premiumTierNames = [];
         $.each(cartResponse.play.tiers,function(idx,item){
             if("PREMIUM" == item.type){
                 premiumTierNames.push(item.title);
             }
+            if("EXTRA" == item.type){
+                //ingore free tiers
+                if(!_.contains(eplWithSportTierIds, item.tierId)){
+                    premiumTierNames.push(item.title);
+                }
+            }
         })
+
         var replaceText = "";
         var len = premiumTierNames.length;
         for(var idx=0;idx<len;idx++){
