@@ -193,6 +193,15 @@ com.foxtel.ShopCartManager = function() {
         return this.shopCartResponseData;
     }
 
+    // Has the user added any starter packs?
+    function hasStarter () {
+      var packsInCart = this.shopCartResponseData.play.tiers;
+
+      return _(packsInCart).any(function (pack) {
+        return pack.type === 'GENRE';
+      });
+    }
+
     // Has the user added any premium packs to the cart but not yet any starter
     // packs?
     function hasPremiumPackAndNoStarter () {
@@ -200,9 +209,7 @@ com.foxtel.ShopCartManager = function() {
       var anyPremiumPacks = _(packsInCart).any(function (pack) {
         return pack.type === 'PREMIUM';
       });
-      var anyStarterPacks = _(packsInCart).any(function (pack) {
-        return pack.type === 'GENRE';
-      });
+      var anyStarterPacks = this.hasStarter();
 
       return anyPremiumPacks && !anyStarterPacks;
     }
@@ -222,6 +229,7 @@ com.foxtel.ShopCartManager = function() {
         getPopTierId,
         getEPLWithSportTierIds:getEPLWithSportTierIds,
         getEPLWithOutSportTierIds:getEPLWithOutSportTierIds,
+        hasStarter:hasStarter,
         hasPremiumPackAndNoStarter:hasPremiumPackAndNoStarter
     }
 

@@ -138,9 +138,9 @@ $(document).ready(function(){
     //Navigation
     $(document).on('click','[data-button-url]',function(){
         if(Foxtel.ShopCartManager.hasPremiumPackAndNoStarter()){
-            Foxtel.navigator($this.data("button-without-starter-url"));
+            Foxtel.navigator($(this).data("button-without-starter-url"));
         }else{
-            Foxtel.navigator($this.data("button-url"));
+            Foxtel.navigator($(this).data("button-url"));
         }
     });
 
