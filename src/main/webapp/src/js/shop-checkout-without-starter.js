@@ -61,7 +61,7 @@ $(document).ready(function(){
 
     $cmp.on('click',"[data-id='addStarterBtn']",function(){
         Foxtel.ShopCartManager.addPlayTier(modelData.starterTierId,function(){
-            Foxtel.navigator(modelData.moreOptionsBtnLink);
+            Foxtel.navigator(modelData.addStarterBtnLink);
         });
     });
 });
