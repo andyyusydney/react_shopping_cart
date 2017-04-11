@@ -1,0 +1,30 @@
+.toast-popup {
+  border-bottom: 1px solid #ffffff;
+  color: #ffffff;
+  text-align: center;
+  line-height: 80px;
+  height: 80px;
+  background-color: #0a0a0a;
+  @media (max-width: 1024px) {
+    visibility: hidden;
+    display: none;
+  }
+
+  &.toast-popoup--fixed {
+    visibility: hidden;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  &.toast-popoup--static {
+     display: block;
+     @media (max-width: 1024px) {
+       visibility: hidden;
+       display: none;
+     }
+  }
+  .toast-popup__btn {
+    display: inline-block; font-family: ProximaNova; font-size: 18px; font-weight: bold; text-align: center; color: #ffffff; width: 185px; height: 52px; border-radius: 100px; background-color: #f54e13;  line-height: 52px; margin-left: 20px;
+  }
+}
