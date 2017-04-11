@@ -200,11 +200,27 @@ $br: 4px;
 	  	position: absolute;
 	  	top: 12px;
 	  	right: 20px;
+	  	.icon {
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          stroke-width: 0;
+          stroke: currentColor;
+          fill: currentColor;
+        }
+        .icon-Show-password {
+          width: 1.5em;
+        }
+        .iconpath {
+            &:hover {
+                fill: black;
+            }
+        }
 	  	img {
 		  	opacity: 0.5;
-        &:hover {
-            opacity: 1;
-        }
+            &:hover {
+                opacity: 1;
+            }
         &.inactive {
           display: none;
         }
