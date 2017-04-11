@@ -196,8 +196,9 @@ com.foxtel.ShopCartManager = function() {
     function hasPremiumPackAndNoStarter () {
       var packsInCart = this.shopCartResponseData.play.tiers;
       var anyPremiumPacks = _(packsInCart).any(function (pack) {
-        return pack.type === 'PREMIUM';
+        return pack.type === 'PREMIUM' || pack.type ==="EXTRA";
       });
+
       var anyStarterPacks = this.hasStarter();
 
       return anyPremiumPacks && !anyStarterPacks;
