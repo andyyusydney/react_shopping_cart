@@ -11,9 +11,11 @@
 }
 .home-feature-block__content--vCenter{
   width:100%;
-  padding-top:60px;
+  padding:60px 15px 0 15px;
   @media (min-width: 768px) {
     padding-top:0;
+    padding-left:30px;
+    padding-right:30px;
   }
 }
 .home-feature-block__content--vBtm{
@@ -21,4 +23,20 @@
   position:absolute;
   left:0;
   bottom:0;
+  padding:0 15px;
+  @media (min-width: 768px) {
+    padding:0 30px;
+  }
+}
+
+.shop-feature-block{
+  .container{
+    .border{
+      border: 1px solid red;
+    }
+  }
+}
+
+.shop-feature-block__image{
+  width:100%;
 }
