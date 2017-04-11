@@ -200,11 +200,27 @@ $br: 4px;
 	  	position: absolute;
 	  	top: 12px;
 	  	right: 20px;
+	  	.icon {
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          &:hover {
+            path:first-child {
+                fill: var(--color1, black)
+            }
+            path:last-child {
+                stroke: var(--color1, black)
+            }
+          }
+        }
+        .icon-Show-password {
+          width: 1.5em;
+        }
 	  	img {
 		  	opacity: 0.5;
-        &:hover {
-            opacity: 1;
-        }
+            &:hover {
+                opacity: 1;
+            }
         &.inactive {
           display: none;
         }
