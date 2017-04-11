@@ -67,13 +67,21 @@ $(document).ready(function () {
 
       // Add the item to the cart then redirect to the buy it now link's URL.
       handleBuyItNowClick: function (event) {
+        var self = this;
         var $link = $(event.currentTarget);
         var tierId = $link.data('tier-id');
 
         if (!this.model.get('addedToCart')) {
           event.preventDefault();
-          this.addToCart(tierId, function () {
-            window.location.href = $link.attr('href');
+          self.addToCart(tierId, function () {
+            // If the cart contains a premium pack but no starter ones,
+            // redirect to the page to prompt them to add a starter pack.
+            if (self.cart.hasPremiumPackAndNoStarter()) {
+              window.location.href = $link.data('add-starter-pack-url');
+            // Otherwise, redirect to the checkout.
+            } else {
+              window.location.href = $link.attr('href');
+            }
           });
         }
       },

@@ -58,16 +58,7 @@ Handlebars.registerHelper("shopCartEmptyCart",function(cartResponse,options) {
 });
 
 Handlebars.registerHelper("shopDefaultPackage",function(cartResponse,options) {
-    var hasStarterTier = false;
-    for(var i = 0; i< cartResponse.play.tiers.length;i++){
-        if ('GENRE' == cartResponse.play.tiers[i].type) {
-            hasStarterTier = true;
-        } else {
-            hasStarterTier = false;
-        }
-    }
-
-    if(hasStarterTier){
+    if (Foxtel.ShopCartManager.hasStarter()) {
         return options.fn(this);
     }else {
         return options.inverse(this);
