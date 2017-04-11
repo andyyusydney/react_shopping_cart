@@ -4,6 +4,9 @@
     font-family:"ProximaNova",arial,sans-serif;
   	font-size: 18px;
   	padding: 40px;
+    @include breakpoint(mobileOnly){
+        padding: 20px;
+    }
   	color: rgb(102, 102, 102);
 	.row {
 		font-size: 22px;

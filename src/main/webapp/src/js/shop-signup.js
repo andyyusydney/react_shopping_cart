@@ -1,4 +1,5 @@
 
+//form submit
 $(document).ready(function(){
     var $form = $("#shop-sign-up-form");
     if($form.length==0){
@@ -18,6 +19,8 @@ $(document).ready(function(){
         if(!$form.parsley().validate()){
             return;
         }
+
+        $this.addClass('is-loading');
 
         var requestObject = {};
         requestObject.firstName = $form.find("[data-id='firstName']").val();
@@ -62,5 +65,44 @@ $(document).ready(function(){
             name: 'EMAIL_TAKEN'
         });
     });
+
+});
+
+//pre-fill form when loading
+
+$(document).ready(function(){
+    var $form = $("#shop-sign-up-form");
+    if($form.length==0){
+        return;
+    }
+
+    var ajaxUrl = "/bin/foxtel/now/customerDetailLanding";
+
+    function updateField($field,value){
+      $field.val(value);;
+      if(value&&value!=''){
+        $field.siblings('label').addClass('active highlight');
+      }
+    }
+
+    //empty request
+    $.ajax({
+        url: ajaxUrl,
+        type:"POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success:function(data){
+          updateField($form.find("[data-id='firstName']"),data.firstName);
+          updateField($form.find("[data-id='lastName']"),data.lastName);
+          updateField($form.find("[data-id='email']"),data.email);
+          updateField($form.find("[data-id='mobile']"),data.mobileNumber);
+          updateField($form.find("[data-id='postcode']"),data.postCode);
+
+
+
+        }
+    });
+
+
 
 });
