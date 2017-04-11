@@ -80,7 +80,7 @@ $(document).ready(function(){
 
     function updateField($field,value){
       $field.val(value);;
-      if(value!=''){
+      if(value&&value!=''){
         $field.siblings('label').addClass('active highlight');
       }
     }
@@ -95,8 +95,8 @@ $(document).ready(function(){
           updateField($form.find("[data-id='firstName']"),data.firstName);
           updateField($form.find("[data-id='lastName']"),data.lastName);
           updateField($form.find("[data-id='email']"),data.email);
-          updateField($form.find("[data-id='mobile']"),data.mobile);
-          updateField($form.find("[data-id='postcode']"),data.postcode);
+          updateField($form.find("[data-id='mobile']"),data.mobileNumber);
+          updateField($form.find("[data-id='postcode']"),data.postCode);
 
 
 
