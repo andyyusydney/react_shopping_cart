@@ -42,7 +42,9 @@ $(document).ready(function(){
 
     //show or hide EPL channels
     function updateEPLChannels(cartResponse){
-
+        if(Foxtel.isEditOrDesignMode()){
+            return;
+        }
         var sport_tier_id = Foxtel.ShopCartManager.getSportTierId();
         var $epl_extra_tiers_without_sports = $('.epl-extra-tiers').children('.EPL-without-sports');
         var $epl_extra_tiers_with_sports = $('.epl-extra-tiers').children('.EPL-with-sports');
