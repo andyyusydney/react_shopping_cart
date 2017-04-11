@@ -202,7 +202,9 @@ $br: 4px;
 	  	right: 20px;
 	  	img {
 		  	opacity: 0.5;
-
+        &:hover {
+            opacity: 1;
+        }
         &.inactive {
           display: none;
         }
