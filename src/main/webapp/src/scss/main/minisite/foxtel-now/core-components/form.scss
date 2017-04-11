@@ -259,4 +259,31 @@ $br: 4px;
 	sub	{
 		line-height: initial;
 	}
+
+  .form-control--has-button {
+    padding-right: 160px;
+  }
+
+
+  .password-edit {
+    $inputHeight: 60px;
+
+    .btn {
+      margin-top: 20px;
+      border-radius: 0;
+    }
+
+    @include breakpoint(laptop) {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      .btn {
+        margin-top: 0;
+        height: 60px;
+        line-height: 60px;
+        padding: 0 20px;
+      }
+    }
+  }
 }
