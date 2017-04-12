@@ -55,8 +55,11 @@ $(document).ready(function () {
 
     FOX.context.subscribe('SHOW_BANNER', function (data) {
       var $template = $('#foxtel-now-info-bar-template--' + data.name);
+      var $infoBar = $('#foxtel-now-info-bar-container--' + data.name + ' .foxtel-now-info-bar');
 
-      if ($template.length) {
+      // Instantiate if no info bar of this name already exists and there is a
+      // template to render.
+      if (!$infoBar.length && $template.length) {
         var view = new InfoBarView({
           model: new Backbone.Model(data),
           $template: $template

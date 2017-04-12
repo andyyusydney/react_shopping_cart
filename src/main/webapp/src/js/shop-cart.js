@@ -89,11 +89,6 @@ com.foxtel.ShopCartManager = function() {
         var self = this;
 
         var tierIdsAdded = [tierId];
-        //add 3 epl free channels when adding sports and remove epl free channels
-        if(tierId == sport_tier_id){
-            tierIdsAdded = _.difference(tierIdsAdded,self.epl_channel_without_sport_ids);
-            tierIdsAdded = _.union(tierIdsAdded,self.epl_channel_with_sport_ids);
-        }
 
         //call
         self.addPlayTiers(tierIdsAdded,callback);
@@ -103,24 +98,8 @@ com.foxtel.ShopCartManager = function() {
         var self = this;
 
         var tierIds = self.getCurrentPlayTiers();
-
-        $.each(tierIds,function(idx,element){
-            // Check and replace tierId without sports with with sports
-            switch (element) {
-                case 991139://Chelsea TV
-                    tierIds[idx] = self.EPL_CHANNEL_TIERS[0].tierIdWithSports;
-                    break;
-                case 991140://Liverpool TV
-                    tierIds[idx] = self.EPL_CHANNEL_TIERS[1].tierIdWithSports;
-                    break;
-                case 991141://Manchest TV
-                    tierIds[idx] = self.EPL_CHANNEL_TIERS[2].tierIdWithSports;
-                    break;
-                default:
-                    console.log('tierIdWithSports added');
-            }
-        })
         tierIds = _.union(tierIds, tierIdsAdded);
+
         self.updatePlayTiers(tierIds,callback);
     }
 
@@ -145,6 +124,16 @@ com.foxtel.ShopCartManager = function() {
 
     function updatePlayTiers(tierIds,callback){
         var self = this;
+        var sport_tier_id = Foxtel.ShopCartManager.getSportTierId();
+        var hasSportTier = _.contains(tierIds,sport_tier_id);
+
+        if(hasSportTier){
+            tierIds = _.difference(tierIds, self.epl_channel_without_sport_ids);
+            tierIds = _.union(tierIds, self.epl_channel_with_sport_ids);
+        }else{
+            tierIds = _.difference(tierIds, self.epl_channel_with_sport_ids);
+        }
+
         var postData = getPlayRequestFromTierIds(tierIds);
 
         $.ajax({
@@ -207,8 +196,9 @@ com.foxtel.ShopCartManager = function() {
     function hasPremiumPackAndNoStarter () {
       var packsInCart = this.shopCartResponseData.play.tiers;
       var anyPremiumPacks = _(packsInCart).any(function (pack) {
-        return pack.type === 'PREMIUM';
+        return pack.type === 'PREMIUM' || pack.type ==="EXTRA";
       });
+
       var anyStarterPacks = this.hasStarter();
 
       return anyPremiumPacks && !anyStarterPacks;
