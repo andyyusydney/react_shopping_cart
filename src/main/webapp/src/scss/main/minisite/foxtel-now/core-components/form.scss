@@ -1,3 +1,8 @@
+@mixin placeholder($selector, $color) {
+  #{$selector}::-webkit-input-placeholder {color: $color}
+  #{$selector}::-moz-placeholder          {color: $color}
+  #{$selector}:-ms-input-placeholder      {color: $color}
+}
 
 /*********************
 FORM VARIABLE
@@ -19,6 +24,8 @@ $bold: 600;
 $br: 4px;
 
 .foxtel-now-form-container {
+  @include placeholder('input', transparent);
+  @include placeholder('input:focus', $foxtel-now-dark-grey);
 
 /* Parsley classes */
 
@@ -119,6 +126,7 @@ $br: 4px;
 			outline:0;
 			border-color:initial;
 	  }
+
 	}
 
 	/* Base for label styling */
@@ -273,16 +281,42 @@ $br: 4px;
       border-radius: 0;
     }
 
-    @include breakpoint(laptop) {
-      position: absolute;
-      top: 0;
-      right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
 
-      .btn {
-        margin-top: 0;
-        height: 60px;
-        line-height: 60px;
-        padding: 0 20px;
+    .btn {
+      background-color: white;
+      margin-top: 0;
+      height: $inputHeight;
+      line-height: $inputHeight;
+      padding: 0 20px;
+    }
+  }
+
+  .choices {
+    .choices__inner {
+      border: solid 0.5px #999999;
+      height: 60px;
+      border-radius: 0;
+      background-color: white;
+
+      .choices__list--single {
+        padding-left: 8px;
+        font-size: 19px;
+        color: lightgrey;
+
+        [aria-selected=true] {
+          color: $foxtel-now-dark-grey;
+        }
+      }
+    }
+
+    &.is-focused {
+      .choices__inner {
+        .choices__list--single {
+          color: $foxtel-now-dark-grey;
+        }
       }
     }
   }
