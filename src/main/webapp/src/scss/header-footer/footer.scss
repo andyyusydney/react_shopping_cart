@@ -3,6 +3,8 @@
   font-size: 12px;
   background-color: #1e1e1e;
   padding:15px 0;
+  position:relative;
+  z-index: 6;
   .foxtel-container{
     @include breakpoint(tablet) {
       display: flex;
