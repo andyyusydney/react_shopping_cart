@@ -60,3 +60,45 @@
     padding-bottom:0;
   }
 }
+.shop-feature-block--smWithBg{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 100%;
+  height: 360px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #ffffff;
+
+  .shop-feature-block--smWithBg__caption {
+    font-size: 29px;
+    margin-bottom: 5px;
+  }
+  .shop-feature-block--smWithBg__btn {
+    margin-bottom: 35px;
+  }
+}
+
+
+
+.shop-feature-block--smWithImg{
+  width:100%;
+  height: 361px;
+  border-radius: 1px;
+  color: #fff;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+
+  .shop-feature-block--smWithImg__caption {
+   color: #0a0a0a; font-size: 29px; letter-spacing: -0.3px;
+  }
+  .shop-feature-block--smWithImg__btn {
+    margin-bottom: 35px;
+  }
+}
+
+
