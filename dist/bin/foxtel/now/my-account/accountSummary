@@ -1,0 +1,16 @@
+{
+   "status":"SUCCESS",
+   "error":null,
+   "idmAccount":{
+      "firstName":"Test",
+      "userId":null,
+      "accountId":"13738258",
+      "state":"NSW"
+   },
+   "accountStatus":{
+      "freeTrialEndDate":"2017-04-13",
+      "activated":true,
+      "primary":false,
+      "freeTrial":true
+   }
+}
