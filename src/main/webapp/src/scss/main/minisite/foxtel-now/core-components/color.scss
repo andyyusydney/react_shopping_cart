@@ -48,9 +48,13 @@ COLOR
 }
 
 .foxtel-now-color-grey {
-	color: rgb(153, 153, 153) !important;
+	color: $foxtel-now-dark-grey !important;
 }
 
 .foxtel-now-color-darkgrey {
-	color: rgb(102, 102, 102) !important;
+	color: $foxtel-now-dark-grey !important;
+}
+
+.foxtel-now-color-orange {
+	color: $foxtel-now-orange !important;
 }
