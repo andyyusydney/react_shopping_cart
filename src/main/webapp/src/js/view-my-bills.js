@@ -6,7 +6,7 @@
 
 $(document).ready(function(){
 
-    if($('#foxtel-now-bill-history-template-containerr').length < 1){
+    if($('#foxtel-now-bill-history-template-container').length < 1){
         return;
     }
 
