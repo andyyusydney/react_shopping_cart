@@ -14,7 +14,9 @@ module.exports = {
             './shop-cart.js',
             './shop-cart-backbone.js',
             './shop-checkout-without-starter.js',
-            './shop-cart-helpers.js'
+            './shop-cart-helpers.js',
+            './my-account-home.js',
+            './my-account-home-helpers.js'
         ],
     foxtelmainui:[
             './utilities.js',
