@@ -5,13 +5,13 @@ Colour classes for Producers (will add to the new Style Guide in the future)
 ******************************************/
 
 .color--white, %color--white{
-  color:$color--white;
+  color:$color--white !important;
 }
 
 .color--black, %color--black{
-  color:$color--black;
+  color:$color--black !important;
 }
 
 .color--orange, %color--orange{
-  color:$color--orange;
+  color:$color--orange !important;
 }
