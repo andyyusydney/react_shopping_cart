@@ -1,10 +1,11 @@
 .meta-data--h {
     display: table;
     width: 100%;
+    margin-bottom: 20px;
     .meta-data__icon {
         display: table-cell;
         vertical-align: middle;
-        width: 6em;
+        padding-right: 20px;
     }
 
     .meta-data__desc {
@@ -16,8 +17,10 @@
 
 .meta-data--v {
     display: block;
+    margin-bottom: 20px;
     .meta-data__desc {
         font-size: 12px;
+        margin-top: 20px;
     }
 }
 .meta-data__separator {
