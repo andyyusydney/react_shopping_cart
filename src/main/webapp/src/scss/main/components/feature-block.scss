@@ -19,6 +19,10 @@
     padding-left:30px;
     padding-right:30px;
   }
+  .divider{
+    width:30px;
+    margin-left:0;
+  }
 }
 .home-feature-block__content--vBtm{
   width:100%;
@@ -60,3 +64,32 @@
     padding-bottom:0;
   }
 }
+
+
+.shop-feature-block--smWithBg {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  height: 360px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #ffffff;
+}
+.shop-feature-block--smWithImg {
+  height: 360px;
+  border-radius: 1px;
+  color: #fff;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.shop-feature-block__content {
+  margin-bottom: 35px;
+  font-size: 29px;
+  letter-spacing: -0.3px;
+  text-align: center;
+}
+
