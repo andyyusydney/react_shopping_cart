@@ -121,6 +121,18 @@ $br: 4px;
 	  }
 	}
 
+    select {
+      border: solid 0.5px rgb(153, 153, 153);
+      border-radius:0;
+      transition:border-color .25s ease, box-shadow .25s ease;
+      width: 100%;
+      font-size: 90%;
+      &:focus {
+            outline:0;
+            border-color:initial;
+      }
+    }
+
 	/* Base for label styling */
 	[type="checkbox"]:not(:checked),
 	[type="checkbox"]:checked {
@@ -188,11 +200,6 @@ $br: 4px;
 	  border: 2px solid #4778d9!important;
 	}
 
-	textarea {
-	  border:2px solid rgb(153, 153, 153);
-	  resize: vertical;
-	}
-
 	.field-wrap {
 	  position:relative;
 	  align-self: flex-start;
@@ -245,6 +252,15 @@ $br: 4px;
 	  	right: 2px;
 	  	opacity: 0;
 	  }
+      &.required {
+        &:after {
+            content: "*";
+            color: red;
+            position: absolute;
+            top: 5px;
+            right: 25px;
+        }
+      }
 	}
 
 	.button {
