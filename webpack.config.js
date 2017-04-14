@@ -90,6 +90,7 @@ http.createServer(function (req, res) {
         return;
     }
 
+    req.url = req.url+"?wcmmode=disabled";
     proxy.web(req, res, {
       target: LOCAL_AEM_SERVER
     });
