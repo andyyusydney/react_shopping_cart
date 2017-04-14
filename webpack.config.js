@@ -90,6 +90,14 @@ http.createServer(function (req, res) {
         return;
     }
 
+    if(/\/bin\/secure\.*/.test(url)){
+        proxy.web(req, res, {
+           target: LOCAL_WEBPACK_SERVER
+        });
+        return;
+    }
+
+    req.url = req.url+"?wcmmode=disabled";
     proxy.web(req, res, {
       target: LOCAL_AEM_SERVER
     });

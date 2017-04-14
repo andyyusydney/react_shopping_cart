@@ -1,12 +1,23 @@
 
+/**
+ * This js is for both sales and reactivation flows
+ */
+
 $(document).ready(function(){
+    var ajaxUrl = "/bin/foxtel/now/payment";
     var $form = $("#shop-credit-card-form");
     if($form.length==0){
-        return;
+
+        //try reactivation form
+        $form = $("#reactivation-bill-details-form");
+        ajaxUrl = "/bin/foxtel/now/my-account/reactivation/payment";
+        if($form.length ==0 ){
+            return;
+        }
     }
+
     $form.parsley();
 
-    var ajaxUrl = "/bin/foxtel/now/payment";
 
     var $submitButton = $("#credit-card-form-submit");
 

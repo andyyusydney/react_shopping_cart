@@ -1,0 +1,91 @@
+{
+   "status":"SUCCESS",
+   "error":null,
+   "play":{
+      "tiers":[
+         {
+            "tierId":991152,
+            "price":"10",
+            "discountedPrice":"100",
+            "title":"Kids",
+            "type":"GENRE"
+         },
+         {
+             "tierId":991153,
+             "price":"50",
+             "discountedPrice":"25",
+             "title":"Life Styles",
+             "type":"GENRE"
+          },
+         {
+            "tierId":990703,
+            "price":"29",
+            "discountedPrice":"29",
+            "title":"Sport",
+            "type":"PREMIUM"
+         },
+         {
+            "tierId":991145,
+            "price":"0",
+            "discountedPrice":"0",
+            "title":"Chelsea TV",
+            "type":"EXTRA"
+         },
+         {
+            "tierId":991146,
+            "price":"0",
+            "discountedPrice":"0",
+            "title":"Liverpool FC TV",
+            "type":"EXTRA"
+         },
+         {
+            "tierId":991147,
+            "price":"0",
+            "discountedPrice":"0",
+            "title":"Manchester United FC TV",
+            "type":"EXTRA"
+         }
+      ],
+      "monthlyCostExcludingOffer":"39",
+      "monthlyCostIncludingOffer":"39"
+   },
+   "quote":{
+      "monthlyOfferItems":[
+         {
+            "offerTierId":990709,
+            "title":"2 week free trial",
+            "length":0,
+            "offerEndDate":"",
+            "target":"PLAY",
+            "percentage":"100"
+         }
+      ],
+      "monthlyCostItems":[
+         {
+            "name":"Month 1-1",
+            "len":0,
+            "value":"0"
+         },
+         {
+            "name":"Month 1-12",
+            "len":11,
+            "value":"39"
+         }
+      ],
+      "firstMonthTotal":"39.03",
+      "minCost":"0",
+      "playQuote":{
+         "firstMonthTotal":"39",
+         "contractLength":1,
+         "upfrontCosts":[
+
+         ],
+         "upfrontOfferItems":[
+
+         ]
+      }
+   },
+   "triggedEvents":[
+
+   ]
+}
