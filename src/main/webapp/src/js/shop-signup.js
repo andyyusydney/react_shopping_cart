@@ -25,6 +25,7 @@
                     return;
                 }
 
+                $this.attr("disabled","disabled");
                 $this.addClass('is-loading');
                 var requestObject = self.getSubmitRequestObject();
 

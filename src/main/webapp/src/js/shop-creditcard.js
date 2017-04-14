@@ -29,6 +29,7 @@ $(document).ready(function(){
             return;
         }
 
+        $this.attr("disabled","disabled");
         $this.addClass('is-loading');
 
         var requestObject = {};
