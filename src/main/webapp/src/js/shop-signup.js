@@ -1,52 +1,170 @@
 
-//form submit
-$(document).ready(function(){
-    var $form = $("#shop-sign-up-form");
-    if($form.length==0){
-        return;
-    }
-    $form.parsley();
-    var ajaxUrl = "/bin/foxtel/now/customerDetails";
+/**
+ * sign up form in sales flow
+ * personal details form in reactivation flow
+ */
 
-    var $submitButton = $("#sign-up-form-submit");
+(function($) {
+    com.foxtel.now.CustomerDetailsForm =  {
 
-    //submit event handler
-    $submitButton.click(function(){
-        $this = $(this);
+        config:function (options){
+            this.options = options;
+            var $submitButton = $(this.options.submitBtnSelector);
+            var self = this;
 
-        //validated form?
+            //pre fill form data
+            self.loadFormData();
 
-        if(!$form.parsley().validate()){
-            return;
+            self.options.$form.parsley();
+
+            //submit event handler
+            $submitButton.click(function(){
+                $this = $(this);
+                //validated form?
+                if(! self.options.$form.parsley().validate()){
+                    return;
+                }
+
+                $this.addClass('is-loading');
+                var requestObject = self.getSubmitRequestObject();
+
+                $.ajax({
+                    url: self.options.submitAjaxUrl,
+                    data:JSON.stringify(requestObject),
+                    type:"POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success:function(data){
+                        Foxtel.navigator($this.data("redirect-url"));
+                    },
+                    complete:function(){
+                        $this.removeClass("is-loading");
+                        $this.removeAttr("disabled","disabled");
+                    }
+                });
+            });
+        },
+
+        updateField:function ($field,value){
+          $field.val(value);;
+          if(value&&value!=''){
+            $field.siblings('label').addClass('active highlight');
+          }
+        },
+
+        loadFormData:function (){
+            var self = this;
+
+            //empty request
+            $.ajax({
+                url: self.options.loadAjaxUrl,
+                type:"POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success:function(data){
+                    if(self.fillForm){
+                        self.fillForm(data);
+                    }
+                }
+            });
+        },
+        getSubmitRequestObject:function (){
+            //do nothing, implement in child class
+        },
+
+        fillForm:function (data){
+            //do nothing, implement in child class
+        },
+
+    };
+
+    com.foxtel.now.SalesCustomerDetailsForm = function () {};
+    com.foxtel.now.ReactivationCustomerDetailsForm = function () {};
+
+    _.extend(com.foxtel.now.SalesCustomerDetailsForm.prototype,com.foxtel.now.CustomerDetailsForm,{
+
+        getSubmitRequestObject:function(){
+            var self = this;
+
+            var requestObject = {};
+            requestObject.firstName = self.options.$form.find("[data-id='firstName']").val();
+            requestObject.lastName = self.options.$form.find("[data-id='lastName']").val();
+            requestObject.email = self.options.$form.find("[data-id='email']").val();
+            requestObject.password = self.options.$form.find("[data-id='password']").val();
+            requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
+            requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
+        },
+        fillForm:function(data){
+            var self = this;
+            self.updateField(self.options.$form.find("[data-id='firstName']"),data.firstName);
+            self.updateField(self.options.$form.find("[data-id='lastName']"),data.lastName);
+            self.updateField(self.options.$form.find("[data-id='email']"),data.email);
+            self.updateField(self.options.$form.find("[data-id='mobile']"),data.mobileNumber);
+            self.updateField(self.options.$form.find("[data-id='postcode']"),data.postCode);
+
         }
 
-        $this.addClass('is-loading');
-
-        var requestObject = {};
-        requestObject.firstName = $form.find("[data-id='firstName']").val();
-        requestObject.lastName = $form.find("[data-id='lastName']").val();
-        requestObject.email = $form.find("[data-id='email']").val();
-        requestObject.password = $form.find("[data-id='password']").val();
-        requestObject.mobile = $form.find("[data-id='mobile']").val();
-        requestObject.postcode = $form.find("[data-id='postcode']").val();
-
-
-        $.ajax({
-            url: ajaxUrl,
-            data:JSON.stringify(requestObject),
-            type:"POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success:function(data){
-                Foxtel.navigator($this.data("redirect-url"));
-            },
-            complete:function(){
-                $this.removeClass("is-loading");
-                $this.removeAttr("disabled","disabled");
-            }
-        });
-
     });
+
+    _.extend(com.foxtel.now.ReactivationCustomerDetailsForm.prototype,com.foxtel.now.CustomerDetailsForm,{
+        getSubmitRequestObject:function(){
+            var self = this;
+
+            var requestObject = {};
+            requestObject.firstName = self.options.$form.find("[data-id='firstName']").val();
+            requestObject.lastName = self.options.$form.find("[data-id='lastName']").val();
+            requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
+            requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
+        },
+        fillForm:function(data){
+            var self = this;
+            self.updateField(self.options.$form.find("[data-id='firstName']"),data.firstName);
+            self.updateField(self.options.$form.find("[data-id='lastName']"),data.lastName);
+            self.updateField(self.options.$form.find("[data-id='email']"),data.email);
+            self.updateField(self.options.$form.find("[data-id='password']"),"******");
+            self.updateField(self.options.$form.find("[data-id='mobile']"),data.mobileNumber);
+            self.updateField(self.options.$form.find("[data-id='postcode']"),data.postCode);
+            self.options.$form.find("[data-id='email']").addClass('disabled');
+            self.options.$form.find("[data-id='password']").addClass('disabled');
+        }
+    });
+
+})(jQuery);
+
+//form submit
+$(document).ready(function(){
+
+    var hasForm = false;
+
+    var $form = $("#shop-sign-up-form");
+    if($form.length > 0){
+        hasForm = true;
+
+        new com.foxtel.now.SalesCustomerDetailsForm().config({
+            submitBtnSelector:"#sign-up-form-submit",
+            $form:$form,
+            submitAjaxUrl:"/bin/foxtel/now/customerDetails",
+            loadAjaxUrl:"/bin/foxtel/now/customerDetailLanding"
+        });
+        return;
+    }
+
+    $form = $("#reactivation-personal-details-form");
+    if($form.length > 0){
+        hasForm = true;
+        new com.foxtel.now.ReactivationCustomerDetailsForm().config({
+            submitBtnSelector:"#sign-up-form-submit",
+            $form:$form,
+            submitAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetails",
+            loadAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetailLanding"
+        });
+        return;
+    }
+
+    //stop loading if there is no form
+    if(!hasForm){
+        return;
+    }
 
     $emailField = $form.find("[data-id='email']");
     //email in use listener
@@ -65,44 +183,5 @@ $(document).ready(function(){
             name: 'EMAIL_TAKEN'
         });
     });
-
-});
-
-//pre-fill form when loading
-
-$(document).ready(function(){
-    var $form = $("#shop-sign-up-form");
-    if($form.length==0){
-        return;
-    }
-
-    var ajaxUrl = "/bin/foxtel/now/customerDetailLanding";
-
-    function updateField($field,value){
-      $field.val(value);;
-      if(value&&value!=''){
-        $field.siblings('label').addClass('active highlight');
-      }
-    }
-
-    //empty request
-    $.ajax({
-        url: ajaxUrl,
-        type:"POST",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success:function(data){
-          updateField($form.find("[data-id='firstName']"),data.firstName);
-          updateField($form.find("[data-id='lastName']"),data.lastName);
-          updateField($form.find("[data-id='email']"),data.email);
-          updateField($form.find("[data-id='mobile']"),data.mobileNumber);
-          updateField($form.find("[data-id='postcode']"),data.postCode);
-
-
-
-        }
-    });
-
-
 
 });
