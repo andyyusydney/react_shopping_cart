@@ -14,6 +14,10 @@ Handlebars.registerHelper("myAccountHomeUserPanelPermission",function(secondaryA
         allowedAccess = false;
     }
 
+    if(accountStatus.activated && inactiveAllowed ==='YES'){
+        allowedAccess = false;
+    }
+
     if (allowedAccess) {
         return options.fn(this);
     } else {
