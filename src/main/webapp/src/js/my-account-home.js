@@ -12,7 +12,7 @@ $(document).ready(function () {
     FOX.dyc.subscribeEvent("modelAccountSummary",function(data){
     if(data.accountStatus.freeTrial){
         FOX.context.broadcast('SHOW_BANNER', {
-          name: 'EMAIL_TAKEN',
+          name: 'FREE_TRIAL_MY_ACCOUNT_HOME',
           freeTrialEndDate: data.accountStatus.freeTrialEndDate,
           closeEnabled: true
         });
