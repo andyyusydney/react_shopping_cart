@@ -4,7 +4,7 @@ var Utilities = {};
 Utilities.getPostData = function($requestObj, $url, $callback,$complete){
     $.ajax({
             url: $url,
-            data:JSON.stringify($requestObj),
+            data:$requestObj || JSON.stringify($requestObj),
             type:"POST",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
