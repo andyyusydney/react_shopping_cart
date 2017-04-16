@@ -94,6 +94,7 @@
             requestObject.password = self.options.$form.find("[data-id='password']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
+            return requestObject;
         },
         fillForm:function(data){
             var self = this;
@@ -116,6 +117,7 @@
             requestObject.lastName = self.options.$form.find("[data-id='lastName']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
+            return requestObject;
         },
         fillForm:function(data){
             var self = this;
