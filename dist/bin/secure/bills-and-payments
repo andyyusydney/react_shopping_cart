@@ -1,0 +1,168 @@
+{
+    "account": {
+        "accountInternalId": 7825050,
+        "accountCategory": 1,
+        "dateActive": 1310479200000,
+        "accountStatus": 0,
+        "firstName": "JACQUELINE",
+        "rateClassDefault": 1000,
+        "collectionStatus": 0,
+        "serviceHouseNumber": "1-21",
+        "serviceHouseNumberSuffix": null,
+        "serviceUnitNo": "10",
+        "serviceStreetName": "DEAN",
+        "serviceStreetSuffix": "STREET",
+        "serviceCity": "MOONEE PONDS",
+        "serviceState": "VIC",
+        "servicePostalCode": "3039"
+    },
+    "headerCounter": 0,
+    "roles": {
+        "primary": 1,
+        "foxtelPlay": 1,
+        "foxtelPlayXboxPpvOnly": 0,
+        "foxtelXboxAndStbCombined": 0,
+        "setTopBox": 0,
+        "foxtelGuest": 0
+    },
+    "billsAndPayments": {
+        "invoiceList": {
+            "count": 22,
+            "invoices": [{
+                "statementDate": "2016-12-01T00:00:00.000+11:00",
+                "totalDue": 5684,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.237780648.html?a=b"
+            }, {
+                "statementDate": "2016-11-01T00:00:00.000+11:00",
+                "totalDue": 16721,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.234792417.html?a=b"
+            }, {
+                "statementDate": "2016-10-01T00:00:00.000+10:00",
+                "totalDue": 21934,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.231870326.html?a=b"
+            }, {
+                "statementDate": "2016-09-01T00:00:00.000+10:00",
+                "totalDue": 25740,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.228926556.html?a=b"
+            }, {
+                "statementDate": "2016-08-01T00:00:00.000+10:00",
+                "totalDue": 8550,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.225960728.html?a=b"
+            }, {
+                "statementDate": "2016-07-01T00:00:00.000+10:00",
+                "totalDue": 22558,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.222690112.html?a=b"
+            }, {
+                "statementDate": "2016-06-01T00:00:00.000+10:00",
+                "totalDue": 12884,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.219682801.html?a=b"
+            }, {
+                "statementDate": "2016-05-01T00:00:00.000+10:00",
+                "totalDue": 27950,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.216349726.html?a=b"
+            }, {
+                "statementDate": "2016-04-01T00:00:00.000+11:00",
+                "totalDue": 44865,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.211961822.html?a=b"
+            }, {
+                "statementDate": "2016-03-01T00:00:00.000+11:00",
+                "totalDue": 11338,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.209037245.html?a=b"
+            }, {
+                "statementDate": "2016-02-01T00:00:00.000+11:00",
+                "totalDue": 56546,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.206150330.html?a=b"
+            }, {
+                "statementDate": "2016-01-01T00:00:00.000+11:00",
+                "totalDue": 36521,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.203279377.html?a=b"
+            }, {
+                "statementDate": "2015-12-13T00:00:00.000+11:00",
+                "totalDue": 16195,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.201576169.html?a=b"
+            }, {
+                "statementDate": "2015-11-13T00:00:00.000+11:00",
+                "totalDue": 22961,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.198715458.html?a=b"
+            }, {
+                "statementDate": "2015-10-13T00:00:00.000+11:00",
+                "totalDue": 16767,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.195836768.html?a=b"
+            }, {
+                "statementDate": "2015-09-13T00:00:00.000+10:00",
+                "totalDue": 24505,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.192969971.html?a=b"
+            }, {
+                "statementDate": "2015-08-13T00:00:00.000+10:00",
+                "totalDue": 16265,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.190119500.html?a=b"
+            }, {
+                "statementDate": "2015-07-13T00:00:00.000+10:00",
+                "totalDue": 21529,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.187283196.html?a=b"
+            }, {
+                "statementDate": "2015-06-13T00:00:00.000+10:00",
+                "totalDue": 17422,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.184473954.html?a=b"
+            }, {
+                "statementDate": "2015-05-13T00:00:00.000+10:00",
+                "totalDue": 53211,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.181699347.html?a=b"
+            }, {
+                "statementDate": "2015-04-13T00:00:00.000+10:00",
+                "totalDue": 16200,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.178925404.html?a=b"
+            }, {
+                "statementDate": "2015-03-13T00:00:00.000+11:00",
+                "totalDue": 34179,
+                "pdfImageUrl": "/bin/secure/billsandpayments/download.7825050.0.176179861.html?a=b"
+            }]
+        },
+        "paymentProfile": {
+            "paymentProfileId": 24321449003,
+            "ongoingFlag": true,
+            "customerName": "test Account test Account",
+            "bankAccountNumber": "23445654",
+            "customerDevicesList": {
+                "customerDevices": []
+            },
+            "bsbnumber": "533-000",
+            "hasDirectDebit": true
+        },
+        "sumBalance": {
+            "overDueAmmount": 5684,
+            "sumBalance": 5684,
+            "totalAmount": 5684,
+            "currentAmount": 0,
+            "paymentDueDate": "2016-12-15T00:00:00.000+11:00"
+        },
+        "paymentHistory": {
+            "successFlag": true,
+            "count": 4,
+            "payments": [{
+                "transDate": "2016-04-02T00:00:00.000+11:00",
+                "reversal": true,
+                "transAmount": 44865,
+                "transSource": "Direct Debit"
+            }, {
+                "transDate": "2016-04-01T00:00:00.000+11:00",
+                "reversal": false,
+                "transAmount": 44865,
+                "transSource": "Direct Debit",
+                "details": "300000-68135168"
+            }, {
+                "transDate": "2015-06-16T00:00:00.000+10:00",
+                "reversal": false,
+                "transAmount": 500,
+                "transSource": "Payment via Agent",
+                "details": "VISA **** **** **** 9058"
+            }, {
+                "transDate": "2015-06-16T00:00:00.000+10:00",
+                "reversal": false,
+                "transAmount": 500,
+                "transSource": "Refund"
+            }]
+        }
+    },
+    "custEmail": "JACQUELINE.THIRD@fakemail.com"
+}

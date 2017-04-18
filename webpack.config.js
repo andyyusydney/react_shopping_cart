@@ -14,7 +14,11 @@ module.exports = {
             './shop-cart.js',
             './shop-cart-backbone.js',
             './shop-checkout-without-starter.js',
-            './shop-cart-helpers.js'
+            './shop-cart-helpers.js',
+            './my-account-home.js',
+            './my-account-view-my-bills.js',
+            './my-account-update-billing-details.js',
+            './my-account-home-helpers.js'
         ],
     foxtelmainui:[
             './utilities.js',
@@ -88,6 +92,14 @@ http.createServer(function (req, res) {
         return;
     }
 
+    if(/\/bin\/secure\.*/.test(url)){
+        proxy.web(req, res, {
+           target: LOCAL_WEBPACK_SERVER
+        });
+        return;
+    }
+
+    req.url = req.url+"?wcmmode=disabled";
     proxy.web(req, res, {
       target: LOCAL_AEM_SERVER
     });
