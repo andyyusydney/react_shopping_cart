@@ -10,11 +10,33 @@ $(function () {
 
     var UpdateDetailsView = Backbone.View.extend({
       initialize: function () {
+        this.$el.parsley();
         this.$submitButton = this.$el.find('#update-details-button');
         this.initializeSelectBoxes();
         this.model.getProfile();
         this.model.on('completed:update', this.handleUpdateComplete.bind(this));
         this.model.on('fetched:details', this.handleFetchedDetails.bind(this));
+        this.$emailField = this.$el.find("[data-id='email']");
+        this.$emailField.parsley().subscribe('parsley:field:error', this.handleEmailError);
+        this.$emailField.parsley().subscribe('parsley:field:success', this.handleEmailValid);
+      },
+
+      handleEmailValid: function() {
+        FOX.context.broadcast('HIDE_BANNER', {
+          name: 'EMAIL_TAKEN'
+        });
+      },
+
+      handleEmailError:  function($parsleyField) {
+        var assertName = $parsleyField.validationResult[0].assert.name;
+
+        if(assertName === "verifyemail") {
+          FOX.context.broadcast('SHOW_BANNER', {
+            name: 'EMAIL_TAKEN',
+            email: $parsleyField.$element.val(),
+            closeEnabled: true
+          });
+        }
       },
 
       events: {
@@ -47,8 +69,11 @@ $(function () {
       },
 
       handleSubmit: function (event) {
-        var $form = $(event.currentTarget).parents('form').first();
-        var personalDetailsData = $form.serializeFormJSON();
+        var personalDetailsData = this.$el.serializeFormJSON();
+
+        if(!this.$el.parsley().validate()){
+          return;
+        }
         // Mark request as pending.
         this.$submitButton.addClass('is-loading');
         // Trigger the update details request.
@@ -58,6 +83,12 @@ $(function () {
       handleUpdateComplete: function (event) {
         var self = this;
 
+        // Show notification banner for successful update.
+        FOX.context.broadcast('SHOW_BANNER', {
+          name: 'PROFILE_UPDATED',
+          closeEnabled: true
+        });
+        // Update button state to show successful update.
         self.$submitButton.removeClass('is-loading').addClass('is-valid');
         setTimeout(function () {
           self.$submitButton.removeClass('is-valid');
