@@ -31,7 +31,7 @@ $(document).ready(function () {
       },
 
       // Retrieve data to be rendered.
-      getTemplateData () {
+      getTemplateData: function () {
         return this.model && this.model.toJSON() || {};
       },
 

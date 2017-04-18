@@ -33,12 +33,12 @@ $(document).ready(function(){
         $this.addClass('is-loading');
 
         var postDataObj = {
-            reasonCode: "",
+            reasonCode: ,
             deviceCode: "",
             extraComment: ""
         }
 
-        postDataObj.reasonCode = $("input[data-id='deactiveReason'] option:selected").val();
+        postDataObj.reasonCode = parseInt($("input[data-id='deactiveReason'] option:selected").val());
         postDataObj.deviceCode = $("input[data-id='deviceUsed'] option:selected").val();
         postDataObj.extraComment = $("input[data-id='extraComment']").val();
 
@@ -58,6 +58,6 @@ $(document).ready(function(){
             });
         };
 
-        Utilities.getPostData(postDataObj,"/bin/foxtel/now/cart",$callback,$complete);
+        Utilities.getPostData(postDataObj,"/bin/foxtel/now/my-account/deactivate",$callback,$complete);
     });
 });
