@@ -52,6 +52,14 @@ http.createServer(function (req, res) {
         return;
     }
 
+    if(/.*shop-checkout.js/.test(url)){
+        req.url = '/';
+        proxy.web(req, res, {
+          target: LOCAL_WEBPACK_SERVER
+        });
+        return;
+    }
+
     if(/\/bin\/foxtel\/now.*/.test(url)){
         proxy.web(req, res, {
            target: LOCAL_WEBPACK_SERVER
