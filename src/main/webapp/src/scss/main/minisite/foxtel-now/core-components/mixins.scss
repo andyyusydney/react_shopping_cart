@@ -232,6 +232,8 @@
 .disabled {
 	background-color: #b4b4b4 !important;
 	cursor: default;
+	pointer-events:none;
+	tab-index: -1;
 }
 
 @mixin breakpoint($point) {
