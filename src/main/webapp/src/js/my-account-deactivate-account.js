@@ -34,7 +34,7 @@ $(document).ready(function(){
         $this.addClass('is-loading');
 
         var postDataObj = {
-            reasonCode: ,
+            reasonCode: "",
             deviceCode: "",
             extraComment: ""
         }
