@@ -1,0 +1,80 @@
+.foxtel-slideshow {
+    padding: 0;
+    display: block;
+    height: calc( 100vh - 65px - 45px );    /* 65px - header`s height; 45px - margin left till bottom */
+    position: relative;
+}
+.foxtel-slideshow li {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+
+    animation: image-animation 15s linear infinite 0s;
+}
+.foxtel-slideshow li .meta-data {
+    color: white;
+    opacity: 0;
+
+    animation: meta-animation 15s linear infinite 0s;
+}
+.foxtel-slideshow li:nth-child(1) {
+    background-image: url(./images/1.jpg);
+}
+.foxtel-slideshow li:nth-child(2) {
+    background-image: url(./images/2.jpg);
+    animation-delay: 3s;
+}
+.foxtel-slideshow li:nth-child(3) {
+    background-image: url(./images/3.jpg);
+    animation-delay: 6s;
+}
+.foxtel-slideshow li:nth-child(4) {
+    background-image: url(./images/4.jpg);
+    animation-delay: 9s;
+}
+.foxtel-slideshow li:nth-child(5) {
+    background-image: url(./images/5.jpg);
+    animation-delay: 12s;
+}
+@keyframes image-animation {
+    0%  { opacity: 0; animation-timing-function: ease-in;  }
+    10% { opacity: 1; animation-timing-function: ease-out; }
+    17% { opacity: 1;  }
+    25% { opacity: 0;  }
+    100% { opacity: 0; }
+}
+
+.foxtel-slideshow li:nth-child(2) .meta-data { animation-delay: 3s; }
+.foxtel-slideshow li:nth-child(3) .meta-data { animation-delay: 6s; }
+.foxtel-slideshow li:nth-child(4) .meta-data { animation-delay: 9s; }
+.foxtel-slideshow li:nth-child(5) .meta-data { animation-delay: 12s;}
+@keyframes meta-animation {
+    0%  { opacity: 1; }
+    10% { opacity: 1; }
+    17% { opacity: 1; }
+    19% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.foxtel-slideshow--highlight-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+.foxtel-slideshow__meta-data-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
