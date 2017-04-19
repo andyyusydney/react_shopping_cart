@@ -15,9 +15,33 @@ Utilities.getPostData = function($requestObj, $url, $callback,$complete){
                 console.log("data error:" + data)
             },
             complete: function(){
-                $complete();
+                if (typeof $complete === 'function') {
+                  $complete();
+                }
             }
         });
-}
+};
+
+Utilities.registerJqueryExtensions = function () {
+  (function ($) {
+    $.fn.serializeFormJSON = function () {
+
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+  })(jQuery);
+};
+Utilities.registerJqueryExtensions();
 
 module.exports =  Utilities;
