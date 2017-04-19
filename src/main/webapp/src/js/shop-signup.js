@@ -94,6 +94,7 @@
             requestObject.password = self.options.$form.find("[data-id='password']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
+            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").val();
             return requestObject;
         },
         fillForm:function(data){
@@ -117,6 +118,7 @@
             requestObject.lastName = self.options.$form.find("[data-id='lastName']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
+            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").val();
             return requestObject;
         },
         fillForm:function(data){
@@ -124,11 +126,9 @@
             self.updateField(self.options.$form.find("[data-id='firstName']"),data.firstName);
             self.updateField(self.options.$form.find("[data-id='lastName']"),data.lastName);
             self.updateField(self.options.$form.find("[data-id='email']"),data.email);
-            self.updateField(self.options.$form.find("[data-id='password']"),"******");
             self.updateField(self.options.$form.find("[data-id='mobile']"),data.mobileNumber);
             self.updateField(self.options.$form.find("[data-id='postcode']"),data.postCode);
             self.options.$form.find("[data-id='email']").addClass('disabled');
-            self.options.$form.find("[data-id='password']").addClass('disabled');
         }
     });
 

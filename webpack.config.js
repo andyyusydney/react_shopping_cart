@@ -6,10 +6,10 @@ var glob = require("glob");
 
 module.exports = {
   entry: {
-    foxtel-now: glob.sync('./src/main/webapp/src/js/*')
+    foxtelmainui: glob.sync('./src/main/webapp/src/js/*')
   },
   output: {
-    path: path.resolve(__dirname, './src/main/webapp/src/js/*'),
+    path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
   },
   devServer: {
@@ -52,14 +52,6 @@ http.createServer(function (req, res) {
         return;
     }
 
-    if(/.*shop-checkout.js/.test(url)){
-        req.url = '/';
-        proxy.web(req, res, {
-          target: LOCAL_WEBPACK_SERVER
-        });
-        return;
-    }
-
     if(/\/bin\/foxtel\/now.*/.test(url)){
         proxy.web(req, res, {
            target: LOCAL_WEBPACK_SERVER
@@ -79,4 +71,4 @@ http.createServer(function (req, res) {
       target: LOCAL_AEM_SERVER
     });
 
-});
+}).listen(8080);

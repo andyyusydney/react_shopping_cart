@@ -1,5 +1,11 @@
+.btn--brand{
+  @include make-btn ($color--white, $color--brand);
+}
+.btn--body{
+  @include make-btn ($color--white, $color--body);
+}
 .btn--white{
-  @include make-btn ($color--black, $color--white);
+  @include make-btn ($color--body, $color--white);
 }
 .btn--black{
   @include make-btn ($color--white, $color--black);
