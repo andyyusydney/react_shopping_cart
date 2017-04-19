@@ -19,3 +19,5 @@ Utilities.getPostData = function($requestObj, $url, $callback,$complete){
             }
         });
 }
+
+module.exports =  Utilities;
