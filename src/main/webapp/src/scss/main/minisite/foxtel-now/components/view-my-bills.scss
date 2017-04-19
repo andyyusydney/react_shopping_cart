@@ -1,0 +1,28 @@
+/* View my bills component related class */
+
+.foxtel-now-view-my-bills-container {
+    width: 60%;
+    .foxtel-now-view-my-bills-container {
+        display: table;
+        .foxtel-now-view-my-bills-container__th {
+            p {
+                font-weight: bold;
+            }
+        }
+        .foxtel-now-view-my-bills-container__row {
+            display: table-row;
+            cursor: pointer;
+            &:hover {
+               background-color: rgba(0,0,0,.075);
+            }
+            p {
+                display: table-cell;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                a {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

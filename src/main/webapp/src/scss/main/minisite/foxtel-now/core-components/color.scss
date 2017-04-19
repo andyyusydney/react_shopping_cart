@@ -13,6 +13,7 @@ $foxtel-now-light-grey: #f0f0f0;
 $foxtel-now-disabled-grey: #b4b4b4;
 $foxtel-now-dark-grey: #505050;
 $foxtel-now-very-dark-grey: #0a0a0a;
+$foxtel-now-grey: #ebebeb;
 
 
 /*********************
@@ -35,6 +36,11 @@ BACKGROUND
 	background-color: rgb(247,247,247) !important;
 }
 
+.foxtel-now-background-transparent {
+	background-color: transparent !important;
+	box-shadow: none !important;
+}
+
 /*********************
 COLOR
 *********************/
@@ -48,9 +54,13 @@ COLOR
 }
 
 .foxtel-now-color-grey {
-	color: rgb(153, 153, 153) !important;
+	color: $foxtel-now-dark-grey !important;
 }
 
 .foxtel-now-color-darkgrey {
-	color: rgb(102, 102, 102) !important;
+	color: $foxtel-now-dark-grey !important;
+}
+
+.foxtel-now-color-orange {
+	color: $foxtel-now-orange !important;
 }

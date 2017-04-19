@@ -1,3 +1,8 @@
+@mixin placeholder($selector, $color) {
+  #{$selector}::-webkit-input-placeholder {color: $color}
+  #{$selector}::-moz-placeholder          {color: $color}
+  #{$selector}:-ms-input-placeholder      {color: $color}
+}
 
 /*********************
 FORM VARIABLE
@@ -19,6 +24,8 @@ $bold: 600;
 $br: 4px;
 
 .foxtel-now-form-container {
+  @include placeholder('input', transparent);
+  @include placeholder('input:focus', $foxtel-now-dark-grey);
 
 /* Parsley classes */
 
@@ -119,7 +126,24 @@ $br: 4px;
 			outline:0;
 			border-color:initial;
 	  }
+
 	}
+
+	textarea {
+	    padding: 0;
+	}
+
+    select {
+      border: solid 0.5px rgb(153, 153, 153);
+      border-radius:0;
+      transition:border-color .25s ease, box-shadow .25s ease;
+      width: 100%;
+      font-size: 90%;
+      &:focus {
+            outline:0;
+            border-color:initial;
+      }
+    }
 
 	/* Base for label styling */
 	[type="checkbox"]:not(:checked),
@@ -188,11 +212,6 @@ $br: 4px;
 	  border: 2px solid #4778d9!important;
 	}
 
-	textarea {
-	  border:2px solid rgb(153, 153, 153);
-	  resize: vertical;
-	}
-
 	.field-wrap {
 	  position:relative;
 	  align-self: flex-start;
@@ -245,6 +264,15 @@ $br: 4px;
 	  	right: 2px;
 	  	opacity: 0;
 	  }
+      &.required {
+        &:after {
+            content: "*";
+            color: red;
+            position: absolute;
+            top: 5px;
+            right: 25px;
+        }
+      }
 	}
 
 	.button {
@@ -277,4 +305,56 @@ $br: 4px;
 	sub	{
 		line-height: initial;
 	}
+
+  .form-control--has-button {
+    padding-right: 160px;
+  }
+
+  .password-edit {
+    $inputHeight: 60px;
+
+    .btn {
+      margin-top: 20px;
+      border-radius: 0;
+    }
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .btn {
+      background-color: white;
+      margin-top: 0;
+      height: $inputHeight;
+      line-height: $inputHeight;
+      padding: 0 20px;
+    }
+  }
+
+  .choices {
+    .choices__inner {
+      border: solid 0.5px #999999;
+      height: 60px;
+      border-radius: 0;
+      background-color: white;
+
+      .choices__list--single {
+        padding-left: 8px;
+        font-size: 19px;
+        color: lightgrey;
+
+        [aria-selected=true] {
+          color: $foxtel-now-dark-grey;
+        }
+      }
+    }
+
+    &.is-focused {
+      .choices__inner {
+        .choices__list--single {
+          color: $foxtel-now-dark-grey;
+        }
+      }
+    }
+  }
 }

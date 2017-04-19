@@ -10,7 +10,7 @@ com.foxtel.ShopCartManager = function() {
 
     //Constants are defined here, but variables are defined in init function
     var MODEL_NAME_FOR_CART_SERVLET ="modelShopCart";
-    var CART_SERVLET_URL = "/bin/foxtel/now/cart";
+    var DEFAULT_CART_SERVLET_URL = "/bin/foxtel/now/cart";
 
     var EPL_CHANNEL_TIERS = [
         {
@@ -70,6 +70,11 @@ com.foxtel.ShopCartManager = function() {
         //keep a copy in client side
         //we need to change the request to follow EPL rules
         self.current_play_tiers = [];
+
+        self.cartServletUrl = $("[data-model-id='"+MODEL_NAME_FOR_CART_SERVLET+"']").data('request-url');
+        if(!self.cartServletUrl){
+            self.cartServletUrl = DEFAULT_CART_SERVLET_URL;
+        }
 
         FOX.dyc.subscribeEvent(MODEL_NAME_FOR_CART_SERVLET,function(data){
             self.shopCartResponseData = data;
@@ -138,7 +143,7 @@ com.foxtel.ShopCartManager = function() {
 
         $.ajax({
             type: "POST",
-            url: CART_SERVLET_URL,
+            url: self.cartServletUrl,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: JSON.stringify(postData),
@@ -204,6 +209,13 @@ com.foxtel.ShopCartManager = function() {
       return anyPremiumPacks && !anyStarterPacks;
     }
 
+    // Is the cart empty?
+    function isEmpty () {
+      var packsInCart = this.shopCartResponseData.play.tiers;
+
+      return packsInCart.length === 0;
+    }
+
     return {
         init:init,
         addPlayTier:addPlayTier,
@@ -215,8 +227,8 @@ com.foxtel.ShopCartManager = function() {
         getCartResponse : getCartResponse,
         getEPLTiers:getEPLTiers,
         getSportTierId:getSportTierId,
-        getDramaTierId,
-        getPopTierId,
+        getDramaTierId:getDramaTierId,
+        getPopTierId:getPopTierId,
         getEPLWithSportTierIds:getEPLWithSportTierIds,
         getEPLWithOutSportTierIds:getEPLWithOutSportTierIds,
         hasStarter:hasStarter,

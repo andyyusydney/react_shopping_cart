@@ -2,33 +2,14 @@ const path = require('path');
 var jsonFile = require('jsonfile');
 var http = require('http');
 var httpProxy = require('http-proxy');
-
+var glob = require("glob");
 
 module.exports = {
-  context: path.resolve(__dirname, './src/main/webapp/src/js'),
   entry: {
-    shopcheckout: [
-            './shop.js',
-            './shop-signup.js',
-            './shop-creditcard.js',
-            './shop-cart.js',
-            './shop-cart-backbone.js',
-            './shop-checkout-without-starter.js',
-            './shop-cart-helpers.js'
-        ],
-    foxtelmainui:[
-            './utilities.js',
-            './form-floating-label.js',
-            './form-progress-bar.js',
-            './info-bar.js',
-            './credit-card-ui.js',
-            './form-validation.js',
-            './pack-details.js',
-            './session-timeout.js'
-    ]
+    foxtel-now: glob.sync('./src/main/webapp/src/js/*')
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './src/main/webapp/src/js/*'),
     filename: '[name].js',
   },
   devServer: {
@@ -63,15 +44,6 @@ http.createServer(function (req, res) {
 
     var url = req.url;
 
-    //quick and dirty redirection rules
-    if(/.*shop-checkout.js/.test(url)){
-        req.url = 'shopcheckout.js';
-        proxy.web(req, res, {
-          target: LOCAL_WEBPACK_SERVER
-        });
-        return;
-    }
-
     if(/.*foxtel-main-ui.js/.test(url)){
         req.url = 'foxtelmainui.js';
         proxy.web(req, res, {
@@ -80,6 +52,13 @@ http.createServer(function (req, res) {
         return;
     }
 
+    if(/.*shop-checkout.js/.test(url)){
+        req.url = '/';
+        proxy.web(req, res, {
+          target: LOCAL_WEBPACK_SERVER
+        });
+        return;
+    }
 
     if(/\/bin\/foxtel\/now.*/.test(url)){
         proxy.web(req, res, {
@@ -88,10 +67,16 @@ http.createServer(function (req, res) {
         return;
     }
 
+    if(/\/bin\/secure\.*/.test(url)){
+        proxy.web(req, res, {
+           target: LOCAL_WEBPACK_SERVER
+        });
+        return;
+    }
+
+    req.url = req.url+"?wcmmode=disabled";
     proxy.web(req, res, {
       target: LOCAL_AEM_SERVER
     });
 
-}).listen(80);
-
-
+});

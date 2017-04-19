@@ -105,29 +105,36 @@
 }
 
 @mixin foxtel-now-btn($radius) {
+	$transition-time: 250ms;
+
+	margin: auto;
 	border-style: hidden;
 	display: block;
 	border-radius: $radius;
 	-webkit-border-radius: $radius;
-    -moz-border-radius: $radius;
-    -ms-border-radius: $radius;
-    padding: 15px;
-    color: black;
-    background-color: $foxtel-now-green;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-    &:hover {
-    	text-decoration: none;
-    	color: black;
-    	opacity: 0.8;
-    }
-	$transition-time: 250ms;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  padding: 15px;
+  color: black;
+  background-color: $foxtel-now-green;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
 	transition: border $transition-time ease,
 		border-radius $transition-time ease,
 		background-color $transition-time ease,
 		width $transition-time ease,
 		height $transition-time ease;
+
+  &:hover {
+  	text-decoration: none;
+  	color: black;
+  	opacity: 0.8;
+  }
+
+	&:focus {
+		outline: 0;
+	}
 
 	&.is-loading {
 		text-indent: -1000em;
@@ -141,11 +148,6 @@
     border: 3px solid #f0f0f0;
 		border-left-color: $foxtel-now-green;
 		animation: rotating 2s 250ms linear infinite, in 2s 0 ease-in;
-		margin: auto;
-
-		&:focus {
-			outline: 0;
-		}
 	}
 
 	&.is-valid {
@@ -168,10 +170,6 @@
 	    background-repeat: no-repeat;
 	    width: 100%;
 	    height: 100%;
-		}
-
-		&:focus {
-			outline: 0;
 		}
 	}
 }
@@ -234,6 +232,8 @@
 .disabled {
 	background-color: #b4b4b4 !important;
 	cursor: default;
+	pointer-events:none;
+	tab-index: -1;
 }
 
 @mixin breakpoint($point) {

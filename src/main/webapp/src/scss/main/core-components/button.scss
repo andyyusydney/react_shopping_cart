@@ -1,11 +1,13 @@
 .btn--white{
   @include make-btn ($color--black, $color--white);
 }
-
 .btn--black{
   @include make-btn ($color--white, $color--black);
 }
-
 .btn--orange{
   @include make-btn ($color--white, $color--orange);
+}
+.btn--ghost{
+  @include make-btn ($color--white, $color--transparent);
+  border:1px solid #979797;
 }

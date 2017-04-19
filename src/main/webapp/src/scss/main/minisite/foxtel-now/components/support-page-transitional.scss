@@ -1,0 +1,129 @@
+.main-support.main{
+  padding: 0;
+
+  .accord-header{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    text-decoration: none;
+    color: $grey-dark;
+    padding: 30px;
+    transition: border .25s ease-in;
+    border: 1px solid $foxtel-now-grey;
+    margin-top: 15px;
+
+    &:hover, &:focus{
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    &::after{
+      content: "\e901";
+      font-family: 'foxtel-icons';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      font-size: 1.25em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    &.active::after{
+      content:'\e909';
+    }
+
+  }
+
+  .landing-nav-block.content-landing{
+      background: none;
+    &::before, &::after{
+      display:none;
+    }
+    .landing-list{
+      padding-top: 15px;
+      p{
+        color: $foxtel-now-very-dark-grey;
+      }
+    }
+  }
+
+  .header-support{
+    background-color: $foxtel-now-blue;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+
+    .heading h3 span{
+      color: white;
+    }
+
+    .bg-line{
+      display:none;
+    }
+
+    .search-block{
+
+      #search-text{
+        box-shadow: none;
+        border: none;
+        height: 50px;
+        border-radius: 5px;
+        font-size: 16px;
+        max-width: 450px;
+      }
+
+      input[type="submit"]{
+        background-image: url("/content/dam/now/icons/magnifier.svg");
+        right: 15px;
+        top: 15px;
+        width: 22px;
+        height:22px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  h3{
+    font-weight: bold;
+  }
+
+  .jump-link-2 .link-list li{
+    list-style: disc;
+  }
+
+  .related-block{
+    padding: 20px;
+
+    h3{
+      margin-top: 0;
+    }
+  }
+
+  .wysiwyg{
+    padding: 0;
+    margin: 20px 0;
+  }
+}
+
+//desktop only
+.main-support.main{
+  @include breakpoint(laptop){
+    .header-support{
+      .search-block{
+        width: 450px;
+      }
+    }
+  }
+}
+
+//mobile only
+.main-support.main{
+  @include breakpoint(mobileOnly){
+    .accord-header{
+      flex-direction:column;
+    }
+  }
+}

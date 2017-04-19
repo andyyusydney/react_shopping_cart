@@ -1,0 +1,11 @@
+/* Billing details component related class */
+
+.foxtel-now-display-div-template-container {
+    margin-bottom: 1em;
+    .foxtel-now-display-div-wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
