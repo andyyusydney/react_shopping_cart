@@ -2,6 +2,7 @@
  * This javascript is for view my bills in my account
  */
 
+var Utilities = require('./utilities');
 
 
 $(document).ready(function(){
@@ -33,7 +34,7 @@ $(document).ready(function(){
         $this.addClass('is-loading');
 
         var postDataObj = {
-            reasonCode: ,
+            reasonCode: "",
             deviceCode: "",
             extraComment: ""
         }

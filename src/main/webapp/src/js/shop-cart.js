@@ -209,6 +209,13 @@ com.foxtel.ShopCartManager = function() {
       return anyPremiumPacks && !anyStarterPacks;
     }
 
+    // Is the cart empty?
+    function isEmpty () {
+      var packsInCart = this.shopCartResponseData.play.tiers;
+
+      return packsInCart.length === 0;
+    }
+
     return {
         init:init,
         addPlayTier:addPlayTier,
