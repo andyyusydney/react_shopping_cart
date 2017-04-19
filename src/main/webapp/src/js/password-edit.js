@@ -71,15 +71,15 @@ $(function () {
       // --------------
 
       updatePasswordSuccess: function (response) {
-        // if (response.isSuccess) {
+        if (response.isSuccess) {
           FOX.context.broadcast('SHOW_BANNER', {
             name: 'PASSWORD_UPDATE_SUCCESS',
             closeEnabled: true
           });
           this.trigger('success:update');
-        // } else {
-        //   this.updatePasswordError(response);
-        // }
+        } else {
+          this.updatePasswordError(response);
+        }
       },
 
       updatePasswordError: function (response) {
