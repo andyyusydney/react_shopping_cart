@@ -34,13 +34,15 @@ $(document).ready(function(){
         $this.addClass('is-loading');
 
         var postDataObj = {
-            reasonCode: "",
-            deviceCode: "",
+            reason: {code:"",text:""},
+            device: {code:"",text:""},
             extraComment: ""
         }
 
-        postDataObj.reasonCode = parseInt($("input[data-id='deactiveReason'] option:selected").val());
-        postDataObj.deviceCode = $("input[data-id='deviceUsed'] option:selected").val();
+        postDataObj.reason.code = parseInt($("input[data-id='deactiveReason'] option:selected").val());
+        postDataObj.reason.text = $("input[data-id='deactiveReason'] option:selected").text();
+        postDataObj.device.code = $("input[data-id='deviceUsed'] option:selected").val();
+        postDataObj.device.text = $("input[data-id='deviceUsed'] option:selected").text();
         postDataObj.extraComment = $("input[data-id='extraComment']").val();
 
         var $complete = function(){
