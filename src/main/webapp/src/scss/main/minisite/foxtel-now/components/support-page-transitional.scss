@@ -14,7 +14,7 @@
 
     &:hover, &:focus{
       text-decoration: none;
-      cursor: hand;
+      cursor: pointer;
     }
 
     &::after{
@@ -76,7 +76,7 @@
       }
 
       input[type="submit"]{
-        background-image: url("/content/dam/now/Icons/magnifier.svg");
+        background-image: url("/content/dam/now/icons/magnifier.svg");
         right: 15px;
         top: 15px;
         width: 22px;
