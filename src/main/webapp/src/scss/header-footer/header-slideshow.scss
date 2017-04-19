@@ -8,7 +8,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    position: relative;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -19,27 +18,31 @@
     animation: image-animation 15s linear infinite 0s;
 }
 .foxtel-slideshow li .meta-data {
-    color: white;
     opacity: 0;
 
     animation: meta-animation 15s linear infinite 0s;
 }
 .foxtel-slideshow li:nth-child(1) {
+    z-index: 1000;
     background-image: url(./images/1.jpg);
 }
 .foxtel-slideshow li:nth-child(2) {
+    z-index: 999;
     background-image: url(./images/2.jpg);
     animation-delay: 3s;
 }
 .foxtel-slideshow li:nth-child(3) {
+    z-index: 998;
     background-image: url(./images/3.jpg);
     animation-delay: 6s;
 }
 .foxtel-slideshow li:nth-child(4) {
+    z-index: 997;
     background-image: url(./images/4.jpg);
     animation-delay: 9s;
 }
 .foxtel-slideshow li:nth-child(5) {
+    z-index: 996;
     background-image: url(./images/5.jpg);
     animation-delay: 12s;
 }
