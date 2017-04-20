@@ -8,6 +8,9 @@
   position: relative;
   margin-bottom: 30px;
 
+  @media (max-width: 767px) {
+    margin-bottom: 15px;
+  }
   .channel-pack-combos-square{
     position: absolute;
     margin: auto;
