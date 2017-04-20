@@ -1,3 +1,12 @@
+.meta-data__desc {
+    font-size: $font-size--sm;
+    a{
+        font-family: $font-family--Bold;
+        color:$color--white;
+        text-decoration: underline;
+    }
+}
+
 .meta-data--h {
     display: table;
     width: 100%;
@@ -7,11 +16,9 @@
         vertical-align: middle;
         padding-right: 20px;
     }
-
     .meta-data__desc {
         display: table-cell;
         vertical-align: middle;
-        font-size: 12px;
     }
 }
 
@@ -19,13 +26,6 @@
     display: block;
     margin-bottom: 20px;
     .meta-data__desc {
-        font-size: 12px;
         margin-top: 20px;
     }
-}
-.meta-data__separator {
-    margin-left: .2em;
-}
-.meta-data--font-bold {
-    font-weight: bold;
 }
