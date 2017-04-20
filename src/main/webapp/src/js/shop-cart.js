@@ -232,7 +232,8 @@ com.foxtel.ShopCartManager = function() {
         getEPLWithSportTierIds:getEPLWithSportTierIds,
         getEPLWithOutSportTierIds:getEPLWithOutSportTierIds,
         hasStarter:hasStarter,
-        hasPremiumPackAndNoStarter:hasPremiumPackAndNoStarter
+        hasPremiumPackAndNoStarter:hasPremiumPackAndNoStarter,
+        isEmpty: isEmpty
     }
 
 };

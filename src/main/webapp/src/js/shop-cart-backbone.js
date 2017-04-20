@@ -64,6 +64,7 @@ $(document).ready(function(){
       var template = Handlebars.compile(source);
       var html = template(cartResponse);
       $('#cartCollection-container').html(html);
+      FOX.context.broadcast('updated:cart');
   };
 
   //basket load refresh
