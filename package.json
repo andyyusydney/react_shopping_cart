@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-sever"
+    "install-yarn": " npm install yarn",
+    "yarn-install": " yarn install",
+    "yarn-webpack": " yarn webpack",
+    "start": " yarn webpack-dev-server"
   },
   "dependencies": {
     "glob": "^7.1.1",

@@ -6,10 +6,10 @@ var glob = require("glob");
 
 module.exports = {
   entry: {
-    foxtelmainui: glob.sync('./src/main/webapp/src/js/*')
+    foxtelnow: glob.sync('./src/main/webapp/src/js/*')
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './dist/js'),
     filename: '[name].js',
   },
   devServer: {
@@ -71,4 +71,4 @@ http.createServer(function (req, res) {
       target: LOCAL_AEM_SERVER
     });
 
-}).listen(8080);
+});
