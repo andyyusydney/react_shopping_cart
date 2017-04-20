@@ -39,11 +39,11 @@ $(document).ready(function(){
             extraComment: ""
         }
 
-        postDataObj.reason.code = parseInt($("input[data-id='deactiveReason'] option:selected").val());
-        postDataObj.reason.text = $("input[data-id='deactiveReason'] option:selected").text();
-        postDataObj.device.code = $("input[data-id='deviceUsed'] option:selected").val();
-        postDataObj.device.text = $("input[data-id='deviceUsed'] option:selected").text();
-        postDataObj.extraComment = $("input[data-id='extraComment']").val();
+        postDataObj.reason.code = parseInt($("select[data-id='deactiveReason'] option:selected").val());
+        postDataObj.reason.text = $("select[data-id='deactiveReason'] option:selected").text();
+        postDataObj.device.code = $("select[data-id='deviceUsed'] option:selected").val();
+        postDataObj.device.text = $("select[data-id='deviceUsed'] option:selected").text();
+        postDataObj.extraComment = $("textarea[data-id='extraComment']").val();
 
         var $complete = function(){
             $this.removeAttr('disabled').removeClass('is-loading');
@@ -51,6 +51,7 @@ $(document).ready(function(){
 
         var $callback = function(data){
             if ((typeof data !== 'undefined') || !($.isEmptyObject(data))) {
+
                Foxtel.navigator($this.data("redirect-url"));
             }
 
@@ -61,6 +62,6 @@ $(document).ready(function(){
             });
         };
 
-        Utilities.getPostData(postDataObj,"/bin/foxtel/now/my-account/deactivate",$callback,$complete);
+        Utilities.getPostData(JSON.stringify(postDataObj),"/bin/foxtel/now/my-account/deactivate",$callback,$complete);
     });
 });
