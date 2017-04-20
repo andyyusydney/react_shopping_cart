@@ -7,9 +7,7 @@
   text-align: center;
   position: relative;
   margin-bottom: 30px;
-  @media (max-width: @screen-xs-max) {
-    margin-bottom: 15px;
-  }
+
   .channel-pack-combos-square{
     position: absolute;
     margin: auto;
