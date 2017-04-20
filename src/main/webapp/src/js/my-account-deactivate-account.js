@@ -62,6 +62,6 @@ $(document).ready(function(){
             });
         };
 
-        Utilities.getPostData(postDataObj,"/bin/foxtel/now/my-account/deactivate",$callback,$complete);
+        Utilities.getPostData(JSON.stringify(postDataObj),"/bin/foxtel/now/my-account/deactivate",$callback,$complete);
     });
 });
