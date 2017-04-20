@@ -22,6 +22,24 @@ Utilities.getPostData = function($requestObj, $url, $callback,$complete){
         });
 };
 
+Utilities.timeConverter = function (UNIX_timestamp,hrs_flag){
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  if(hrs_flag){
+    var time = date + ' ' + month + ', ' + year + ' ' + hour + ':' + min + ':' + sec ;
+  } else {
+    var time = date + ' ' + month + ', ' + year;
+  }
+
+  return time;
+}
+
 Utilities.registerJqueryExtensions = function () {
   (function ($) {
     $.fn.serializeFormJSON = function () {

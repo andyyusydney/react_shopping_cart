@@ -51,6 +51,7 @@ $(document).ready(function(){
 
         var $callback = function(data){
             if ((typeof data !== 'undefined') || !($.isEmptyObject(data))) {
+
                Foxtel.navigator($this.data("redirect-url"));
             }
 
