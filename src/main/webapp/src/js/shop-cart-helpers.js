@@ -177,7 +177,7 @@ Handlebars.registerHelper("shopCartView",function(cartResponse,options) {
 Handlebars.registerHelper("shopCartTimeConverter",function(cartResponse,options) {
 
   var UNIX_timestamp = parseInt(cartResponse);
-  var a = new Date(UNIX_timestamp * 1000);
+  var a = new Date(UNIX_timestamp);
   var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var year = a.getFullYear();
   var month = months[a.getMonth()];
