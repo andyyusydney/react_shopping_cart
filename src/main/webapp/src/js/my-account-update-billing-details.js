@@ -1,7 +1,6 @@
 /**
  * This javascript is for update billing details in my account
  */
-var Utilities = require('./utilities');
 
 $(document).ready(function(){
 
