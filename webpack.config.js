@@ -71,4 +71,4 @@ http.createServer(function (req, res) {
       target: LOCAL_AEM_SERVER
     });
 
-}).listen(8080);
+}).listen(80);

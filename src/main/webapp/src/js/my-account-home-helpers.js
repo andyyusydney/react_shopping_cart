@@ -3,22 +3,30 @@
  * These helper functions are for myaccount home page
  */
 
+/**
+ * showState:
+ * 0: hide
+ * 1: show disabled icon & link
+ * 2: show active icon & link
+ */
 Handlebars.registerHelper("myAccountHomeUserPanelPermission",function(secondaryAllowed,inactiveAllowed,accountStatus,options) {
-    var allowedAccess = true;
 
-    if(!accountStatus.primary && secondaryAllowed ==='NO'){
-        allowedAccess = false;
-    }
+    var showState = -1;
 
-    if(inactiveAllowed ==='YES'){
-        if(accountStatus.activated){
-            allowedAccess = false;
+    // hide if active && inactive not allowed
+    if( accountStatus.activated){
+
+        if(inactiveAllowed ==='YES'){
+            accountStatus.showState = 0;
+            return;
         }
     }
 
-    if (allowedAccess) {
-        return options.fn(this);
-    } else {
-        return options.inverse(this);
+    // secondary account
+    if(!accountStatus.primary && secondaryAllowed ==='NO'){
+        accountStatus.showState = 1;
+        return;
     }
+
+    accountStatus.showState = 2;
 });
