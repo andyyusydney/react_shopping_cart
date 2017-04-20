@@ -9,7 +9,7 @@ Utilities.getPostData = function($requestObj, $url, $callback,$complete){
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success:function(data){
-                $callback(data);
+                if(typeof $callback == 'function') $callback(data);
             },
             error: function(data){
                 console.log("data error:" + data)
