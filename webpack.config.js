@@ -6,7 +6,7 @@ var glob = require("glob");
 
 module.exports = {
   entry: {
-    foxtelnow: glob.sync('./src/main/webapp/src/js/*')
+    mainui: glob.sync('./src/main/webapp/src/js/*')
   },
   output: {
     path: path.resolve(__dirname, './dist/js'),
