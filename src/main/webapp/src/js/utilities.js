@@ -43,5 +43,3 @@ Utilities.registerJqueryExtensions = function () {
   })(jQuery);
 };
 Utilities.registerJqueryExtensions();
-
-module.exports =  Utilities;
