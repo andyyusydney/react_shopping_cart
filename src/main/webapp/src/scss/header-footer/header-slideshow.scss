@@ -3,6 +3,7 @@
     display: block;
     height: calc( 100vh - 65px - 45px );    /* 65px - header`s height; 45px - margin left till bottom */
     position: relative;
+    margin-bottom: 30px;
 }
 .foxtel-slideshow li {
     background-size: cover;
