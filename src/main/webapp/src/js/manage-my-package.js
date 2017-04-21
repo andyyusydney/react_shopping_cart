@@ -8,7 +8,7 @@ $(function () {
   if (onManageMyPackagePage && $cart.length) {
     var ManageMyPackageView = Backbone.View.extend({
       initialize: function () {
-        FOX.context.subscribe("SHOP_CART_REFRESHED", this.handleCartUpdated.bind(this));
+        FOX.context.subscribe("updated:cart", this.handleCartUpdated.bind(this));
         this.$submitButton = $('.foxtel-now-jumbotron--shopping-cart__summary button');
       },
 
@@ -23,7 +23,7 @@ $(function () {
         event.preventDefault();
         // If the cart is empty redirect the user to cancel subscription
         if (Foxtel.ShopCartManager.isEmpty()) {
-          window.location = '/now/my-account/deactivate.html'
+          window.location = '/now/my-account/deactivate.html';
           return;
         // Otherwise, make the update call.
         } else {
@@ -36,26 +36,31 @@ $(function () {
       },
 
       handleUpdateSuccess: function (response) {
-        FOX.context.broadcast('SHOW_BANNER', {
-          name: 'PACKAGE_UPDATE_SUCCESS',
-          closeEnabled: true
-        });
-      },
-
-      handleUpdateError: function (xhr, status, error) {
-        switch(xhr.status) {
-          case 500:
-            this.genericError();
-          case 700:
-            this.genericError();
+        if (response.status === 'ERROR') {
+          this.genericError();
+        } else {
+          FOX.context.broadcast('SHOW_BANNER', {
+            name: 'PACKAGE_UPDATE_SUCCESS',
+            closeEnabled: true
+          });
         }
       },
 
+      handleUpdateError: function (xhr, status, error) {
+        this.genericError();
+      },
+
       handleCartUpdated: function (data) {
-        if (Foxtel.ShopCartManager.isEmpty()) {
-          this.$submitButton.html(this.$submitButton.data('cancel-label'));
+        var $submitButton = $('.foxtel-now-jumbotron--shopping-cart__summary__checkout button');
+
+        if (this.loaded) {
+            if (Foxtel.ShopCartManager.isEmpty()) {
+              $submitButton.html(this.$submitButton.data('button-cancel-label'));
+            } else {
+              $submitButton.html(this.$submitButton.data('button-edit-label'));
+            }
         } else {
-          this.$submitButton.html(this.$submitButton.data('edit-label'));
+            this.loaded = true;
         }
       },
 
