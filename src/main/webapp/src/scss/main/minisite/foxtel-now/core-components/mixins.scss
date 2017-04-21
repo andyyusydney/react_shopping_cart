@@ -12,6 +12,13 @@
   		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
   		border: solid 2px rgb(47, 218, 110);
   	}
+
+  	&.is-disabled {
+  	      	&:hover {
+          		box-shadow: none;
+          		border: solid 2px rgb(240, 240, 240);
+          	}
+  	}
   	.foxtel-now-btn.enable {
   	    color: black;
   		span{
