@@ -11,6 +11,23 @@
   @media (max-width: 767px) {
     margin-bottom: 15px;
   }
+
+  &.channel-pack-combos-highlight {
+    background-color: $color--body;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
+    .channel-pack-combos__top > .channel-pack-combos__top__headline {
+      color: $color--white;
+    }
+    .channel-pack-combos__top > .channel-pack-combos__top__price {
+      color: $color--white;
+    }
+    .channel-pack-combos__middle {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .channel-pack-combos__bottom .channel-pack-combos__bottom__btn1 {
+      color: $color--white;
+    }
+  }
   .channel-pack-combos-square{
     position: absolute;
     margin: auto;
@@ -23,7 +40,6 @@
     height: 32px;
     border-radius: 1px;
     background-color: $color--white;
-
     box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
   }
   .channel-pack-combos__top {
@@ -99,15 +115,6 @@
       color: #bec0c2;
       padding-left:  30px;
       padding-right: 30px;
-    }
-  }
-  .channel-pack-combos-highlight {
-    background-color: $color--body;
-    &.channel-pack-combos__top {
-      color: $color--white;
-    }
-    &.channel-pack-combos__bottom {
-      color: $color--white;
     }
   }
 
