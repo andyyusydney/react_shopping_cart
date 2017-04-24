@@ -9,7 +9,9 @@
    },
    "accountStatus":{
       "freeTrialEndDate":"2017-04-13",
-      "activated":true,
+      "activated":false,
+      "pendingDeactivated":false,
+      "nextBillingDate":"2017-04-19",
       "primary":false,
       "freeTrial":true
    }
