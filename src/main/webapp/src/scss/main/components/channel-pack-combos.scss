@@ -20,6 +20,7 @@
   &.channel-pack-combos-highlight {
     background-color: $color--body;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
+
     .channel-pack-combos__top > .channel-pack-combos__top__headline {
       color: $color--white;
     }
@@ -101,35 +102,22 @@
       width: 69px;
       background-color: $color--brand;
     }
-
-    a.channel-pack-combos__build-yours {
-      color: $color--white;
-      width: 151px;
-      height: 42px;
-      border-radius: 100px;
-      background-color: $color--brand
-    }
-
     .channel-pack-combos__bottom__desc {
       font-size: $font-size--sm;
-      color: #$color--grey-bec0c2;
+      color: $color--grey-bec0c2;
       padding-left:  30px;
       padding-right: 30px;
       margin-top: 15px;
       margin-bottom: 30px;
     }
   }
-  &.build-yours {
-    height: 302px;
-
-    .channel-pack-combos__label {
-      height: 55%;
-      justify-content: flex-end;
-      display: flex;
-      flex-direction: column;
-    }
-    .build-yours__bottom {
-      height: 45%;
-    }
+  a.channel-pack-combos__build-yours {
+    color: $color--white;
+    width: 151px;
+    height: 42px;
+    border-radius: 100px;
+    background-color: $color--brand;
+    display: inline-block;
+    line-height: 42px;
   }
 }
