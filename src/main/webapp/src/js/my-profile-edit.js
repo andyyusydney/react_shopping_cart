@@ -48,7 +48,7 @@ $(function () {
 
       handleFetchedDetails: function () {
         var self = this;
-        var formData = self.model.get('formData');
+        var formData = self.model.get('prefillFormData');
 
         _(formData).chain().keys().each(function (key) {
           var $field = $('[data-id="' + key + '"]');
