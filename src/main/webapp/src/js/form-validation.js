@@ -68,3 +68,52 @@ $(document).on('keyup',"[data-ccnumber-formatter]",function(e){
         }
     }
 });
+
+$(function () {
+  $('[data-dob-formatter]').on('keyup', function (event) {
+    var value = $(this).val();
+
+    if(!value || event.keyCode === 8){
+        return;
+    }
+
+    var replacedValue = value.replace(/-/g, "");
+    var replacedLength = replacedValue.length;
+    var newValue;
+
+    // Ensure the format dd-mm-yyyy is maintained.
+    if (replacedLength > 1) {
+      newValue = replacedValue.slice(0, 2)
+        + "-" + replacedValue.slice(2, 4);
+
+      if (replacedLength > 3) {
+        newValue += "-" + replacedValue.slice(4);
+      }
+    } else {
+      newValue = replacedValue;
+    }
+    $(this).val(newValue);
+  });
+
+  $('[data-dob-formatter]').on('keydown', function (event) {
+    var value = $(this).val();
+
+    var replacedValue = value.replace(/-/g, "");
+    var replacedLength = replacedValue.length;
+
+    // Do nothing if the key pressed is not a number.
+    if (!((event.keyCode >= 48 && event.keyCode <= 57)
+      || (event.keyCode >= 96 && event.keyCode <= 105)
+      // Allow backspace.
+      || event.keyCode === 8
+      // Allow tab.
+      || event.keyCode === 9)) {
+      return false;
+    }
+
+    // Do nothing if we've reached the right length.
+    if (replacedLength > 7 && event.keyCode !== 8) {
+      return false;
+    }
+  });
+});
