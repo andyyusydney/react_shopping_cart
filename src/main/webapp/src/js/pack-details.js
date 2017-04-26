@@ -58,7 +58,7 @@ $(document).ready(function () {
 
         _(data.play.tiers).select(function (tier) {
           if (tier.tierId === parseInt(buttonData.tierId, 10)) {
-            $addToCartButton.addClass('is-disabled').html(buttonData.addToCartText);
+            $addToCartButton.addClass('is-disabled').html(buttonData.addedText);
             // Update the sliding background to the buy it now button.
             $addToCartButton.siblings('.buy-it-now').trigger('mouseover');
           }
