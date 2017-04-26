@@ -149,7 +149,6 @@ $(document).ready(function(){
             submitAjaxUrl:"/bin/foxtel/now/customerDetails",
             loadAjaxUrl:"/bin/foxtel/now/customerDetailLanding"
         });
-        return;
     }
 
     $form = $("#reactivation-personal-details-form");
@@ -161,7 +160,6 @@ $(document).ready(function(){
             submitAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetails",
             loadAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetailLanding"
         });
-        return;
     }
 
     //stop loading if there is no form
