@@ -38,10 +38,10 @@ $(document).ready(function(){
         for(var idx=0;idx<len;idx++){
             replaceText += premiumTierNames[idx];
             if(idx< len -2){
-                replaceText += ",";
+                replaceText += ", ";
             }
             if(idx == len -2){
-                replaceText += "&";
+                replaceText += " & ";
             }
         }
         titleText = titleText.replace("[selected_tier_names]",replaceText);

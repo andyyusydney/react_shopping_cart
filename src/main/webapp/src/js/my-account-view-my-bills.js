@@ -10,4 +10,9 @@ $(document).ready(function(){
         return;
     }
 
+    $("a").on('click',function(e){
+        var linkUrl = $(this).data("href");
+        linkUrl = $.trim(linkUrl);
+        $(location).attr('href',linkUrl);
+    })
 });
