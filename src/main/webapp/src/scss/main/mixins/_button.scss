@@ -5,7 +5,8 @@
   padding:15px 30px;
   border-radius: 100px;
   font-family: $font-family--Bold;
-  &:hover{
+  text-decoration: none !important;
+  &:hover, &:visited{
     color:$color;
     text-decoration: none;
   }
