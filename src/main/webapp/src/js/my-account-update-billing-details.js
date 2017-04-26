@@ -21,7 +21,7 @@ $(document).ready(function(){
 
         //hide notification bar
         FOX.context.broadcast('HIDE_BANNER', {
-          name: 'PAYMENT_GATEWAY_ERROR',
+          name: 'PROFILE_UPDATED',
           closeEnabled: true
         });
 
@@ -71,7 +71,7 @@ $(document).ready(function(){
 
             //notification bar
             FOX.context.broadcast('SHOW_BANNER', {
-              name: 'PAYMENT_GATEWAY_ERROR',
+              name: 'PROFILE_UPDATED',
               closeEnabled: true
             });
         };
