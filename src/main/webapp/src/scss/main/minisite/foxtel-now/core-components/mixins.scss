@@ -144,7 +144,7 @@
 	}
 
 	&.is-loading {
-		text-indent: -1000em;
+		color: transparent;
 		background-color: transparent;
 		pointer-events: none;
 		content: "";
