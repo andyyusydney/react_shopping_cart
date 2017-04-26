@@ -11,6 +11,10 @@ $(document).ready(function(){
     $formDirectDebit = $('#foxtel-now-credit-card-details-form');
     $submitBtn = $('#credit-card-form-submit');
 
+    $formDirectDebit.hide();
+    $(".foxtel-now-display-div-wrapper").on('click','.edit-link a',function(){
+        $formDirectDebit.slideToggle();
+    })
 
     $submitBtn.on('click', function (e) {
         e.preventDefault();
