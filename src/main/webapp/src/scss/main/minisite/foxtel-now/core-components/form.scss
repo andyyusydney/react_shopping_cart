@@ -120,7 +120,7 @@ $br: 4px;
 	  background-image:none;
 	  border: solid 0.5px rgb(153, 153, 153);
 	  border-radius:0;
-	  line-height: 2.25;
+	  height: 3em;
 	  transition:border-color .25s ease, box-shadow .25s ease;
 	  &:focus {
 			outline:0;
@@ -260,7 +260,7 @@ $br: 4px;
 	  }
 	  .tooltips-container {
 	  	position: absolute;
-	  	bottom: 45px;
+	  	bottom: 65px;
 	  	right: 2px;
 	  	opacity: 0;
 	  }
@@ -303,7 +303,7 @@ $br: 4px;
 	}
 
 	sub	{
-		line-height: initial;
+		line-height: normal;
 	}
 
   .form-control--has-button {
