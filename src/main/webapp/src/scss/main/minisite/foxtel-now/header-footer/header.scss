@@ -2,96 +2,265 @@
 @import "../../../../header-footer/common";
 
 //addition header style for foxtel now site only
-
 .foxtel-now-header{
-  font-size:18px;
-  color:#0a0a0a;
-  height:75px;
-  padding: 10px 20px;
-  font-family:"ProximaNova-Bold",arial,sans-serif;
-  border-bottom:1px solid #efefef;
+  height: 70px;
+  margin-top: 10px;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
 
-  .foxtel-now-header__nav-list {
-    list-style: none;
-    margin: 0;
-    li {
-        display: inline-block;
-        margin-left: 15px;
-        margin-top: 15px;
-        a {
-            color: black;
-        }
-    }
+  &.is-logged-in {
+    max-width: none;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
-  @include breakpoint(tablet) {
-    padding: 10px 50px;
-  }
+  .menu-bar {
+    font-family: "ProximaNova", arial, sans-serif;
+    min-width: 300px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
 
-  a, a:hover, a:focus{
-    text-decoration:none;
-  }
-
-  width: 100%;
-
-  .wysiwyg {
-    p {
-      margin-bottom: 0;
-    }
-  }
-}
-
-.foxtel-now-header__btn-cart {
-  .foxtel-now-header__btn-cart__icon {
-    position: relative;
-    display: inline-block;
-    margin-right: 20px;
-
-    @include breakpoint(tablet) {
-      margin-right: 50px;
-    }
-
-    .foxtel-now-header__btn-cart__icon__quantity {
-      position: absolute;
-      top: -5px;
-      right: -15px;
-      background-color: $foxtel-now-green;
-      color: black;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      text-align: center;
-      font-weight: 700;
-      line-height: 30px;
-    }
-
-    .icon {
-      // generated styles - to be replaced by font and class def
+    .left-section {
       display: inline-block;
-      width: 1em;
-      height: 1em;
-      stroke-width: 0;
-      stroke: currentColor;
-      fill: currentColor;
-      // added customisations
-      width: 30px;
-      height: 30px;
-      margin-top: 15px;
+
+      .logo {
+        height: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        float: left;
+        margin-right: 25px;
+
+        .wysiwyg {
+          p {
+            margin-bottom: 0;
+
+            img {
+              height: 45px;
+              padding-bottom: 5px;
+            }
+          }
+        }
+      }
+
+      .menu-item {
+        display: none;
+        color: #9b9b9b;
+        cursor: pointer;
+        padding: 0;
+        margin: 0 25px;
+        font-size: 20px;
+        position: relative;
+        height: 100%;
+        line-height: 70px;
+        font-weight: 700;
+
+        @include breakpoint(tablet) {
+          display: inline-block;
+        }
+
+        a {
+          transition: color .3s ease;
+          color: $foxtel-now-dark-grey;
+          text-decoration: none;
+
+          &:hover {
+            color: black;
+          }
+
+          img.kids {
+            padding-bottom: 10px;
+            transition: opacity .3s ease;
+            opacity: 0.7;
+
+            &:hover {
+              opacity: 1.0;
+            }
+          }
+        }
+      }
     }
-  }
-}
 
-.foxtel-now-header__right {
-  display: flex;
+    .right-section {
+      -ms-flex-item-align: end;
+      align-self: flex-end;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      height: 100%;
+      box-sizing: border-box;
 
-  .foxtel-now-header__right__wrapper {
-    margin-left: 20px;
-    margin-right: 20px;
+      .settings {
+        display: inline-block;
+        margin-left: 20px;
+        height: 100%;
+        outline: 0;
+        width: 30px;
+
+        .settings-icon {
+          vertical-align: middle;
+          cursor: pointer;
+          color: #9b9b9b;
+          transition: color .3s ease;
+          height: 100%;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+        }
+
+        .dropdown {
+          display: none;
+          margin-left: 5%;
+          position: relative;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          width: 150px;
+
+          &.open {
+            display: block;
+          }
+
+          .options {
+            $xTransform: -102px;
+
+            width: 130px;
+            z-index: 101;
+            -webkit-transform: translateX($xTransform) translateY(-20px);
+            -ms-transform: translateX($xTransform) translateY(-20px);
+            transform: translateX($xTransform) translateY(-20px);
+
+            opacity: 1;
+            pointer-events: auto;
+
+            position: absolute;
+            transition: opacity .3s ease;
+            text-overflow: ellipsis;
+
+            .arrow-box {
+              padding: 0;
+
+              position: relative;
+              border: 1px solid $foxtel-now-dark-grey;
+              background: white;
+              min-width: 100%;
+              margin-top: 10px;
+
+              &:before,
+              &:after {
+                content: " ";
+                bottom: 100%;
+                right: 10px;
+                border: solid transparent;
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+                border-color: transparent;
+                border-bottom-color: white;
+                border-width: 10px;
+              }
+
+              &:before {
+                border-bottom-color: $foxtel-now-dark-grey;
+
+                border-width: 12px;
+                right: 8px;
+              }
+
+              span {
+                text-align: right;
+
+                color: $foxtel-now-dark-grey;
+                transition: color .1s ease;
+                cursor: pointer;
+                display: block;
+                padding: 5px 0;
+                padding-right: 1em;
+                font-size: 16px;
+
+                &.username {
+                  color: black;
+                  font-weight: bold;
+                }
+
+                &.hr {
+                  width: 100%;
+                  border-bottom: 1px solid $foxtel-now-dark-grey;
+                  padding: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .foxtel-now-header__btn-cart {
+        .foxtel-now-header__btn-cart__icon {
+          position: relative;
+          display: inline-block;
+          margin-right: 20px;
+          margin-top: 4px;
+
+          @include breakpoint(tablet) {
+            margin-right: 50px;
+          }
+
+          .foxtel-now-header__btn-cart__icon__quantity {
+            position: absolute;
+            top: -5px;
+            right: -15px;
+            background-color: $foxtel-now-green;
+            color: black;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            font-weight: 700;
+            line-height: 30px;
+          }
+
+          .icon {
+            // generated styles - to be replaced by font and class definitions
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            stroke-width: 0;
+            stroke: currentcolor;
+            fill: currentcolor;
+            // added customisations
+            width: 30px;
+            height: 30px;
+            margin-top: 15px;
+          }
+        }
+      }
+
+      .foxtel-now-header__btn-container {
+        margin-left: 20px;
+        display: flex;
+        vertical-align: middle;
+      }
+    }
   }
 }
 
 /*foxtel header breadcrumb scrolling up pop state*/
-
 .foxtel-now-header-breadcrumb--pop {
   position: fixed;
   left:0;
