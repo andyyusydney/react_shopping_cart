@@ -10,6 +10,7 @@ $(function () {
       initialize: function () {
         FOX.context.subscribe("updated:cart", this.handleCartUpdated.bind(this));
         this.$submitButton = $('.foxtel-now-jumbotron--shopping-cart__summary button');
+        this.$submitButton.removeClass('disabled');
       },
 
       events: {
@@ -53,7 +54,7 @@ $(function () {
 
       handleUpdateError: function (xhr, status, error) {
         var $submitButton = $('.foxtel-now-jumbotron--shopping-cart__summary button');
-        
+
         this.genericError();
         $submitButton.removeClass('is-disabled');
       },
