@@ -149,19 +149,19 @@ $(document).ready(function(){
             submitAjaxUrl:"/bin/foxtel/now/customerDetails",
             loadAjaxUrl:"/bin/foxtel/now/customerDetailLanding"
         });
-        return;
     }
 
-    $form = $("#reactivation-personal-details-form");
-    if($form.length > 0){
-        hasForm = true;
-        new com.foxtel.now.ReactivationCustomerDetailsForm().config({
-            submitBtnSelector:"#sign-up-form-submit",
-            $form:$form,
-            submitAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetails",
-            loadAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetailLanding"
-        });
-        return;
+    if(!hasForm){
+        $form = $("#reactivation-personal-details-form");
+        if($form.length > 0){
+            hasForm = true;
+            new com.foxtel.now.ReactivationCustomerDetailsForm().config({
+                submitBtnSelector:"#sign-up-form-submit",
+                $form:$form,
+                submitAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetails",
+                loadAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetailLanding"
+            });
+        }
     }
 
     //stop loading if there is no form

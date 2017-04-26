@@ -1,0 +1,30 @@
+
+
+***PLEASE DON'T ADD ANY OTHER COMPONENT STYLE IN THIS FOLDER***
+
+
+Foxtel GLOBAL header, breadcrumb, fat footer and footer ONLY
+
+These components used in the
+
+    - new re-brand main site pages (bootstrap 4 framework)
+    - existing main site pages (bootstrap 3 framework)
+    - Foxtel Now site
+    - other foxtel minisites
+    - third party website
+
+Therefore
+
+1. UNIQUE CSS CLASS
+
+    Please use unique css class for every element of the Foxtel global header, breadcrumb, fat footer and footer!!!
+    (to avoid overwrite third party website style and been overwritten by third party website style)
+
+2. NO BOOTSTRAP CLASSES
+
+    Do not use bootstrap classes in Foxtel global header, breadcrumb, fat footer and footer!!!
+    (to avoid the conflict of the bootstrap versions)
+
+3. STANDALONE! NO SHARE STYLES
+
+    Do not share styles with other components from any other folders. It's supposed to be a standalone piece.
