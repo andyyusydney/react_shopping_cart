@@ -40,7 +40,8 @@ $(function () {
       },
 
       events: {
-        'click #update-details-button': 'handleSubmit'
+        'click #update-details-button': 'handleSubmit',
+        'keyup [data-id="email"]': 'handleEmailTyping'
       },
 
       // Event handlers
@@ -93,6 +94,21 @@ $(function () {
         setTimeout(function () {
           self.$submitButton.removeClass('is-valid');
         }, 1000);
+      },
+
+      handleEmailTyping: function (event) {
+        this.model.set('prefillFormData', {
+          email: 'dan@dan.com'
+        });
+        // Only check if the email is registered if the user changes it.
+        var prefillFormData = this.model.get('prefillFormData');
+        var $emailField = $(event.currentTarget)
+        var value = $emailField.val();
+
+        $emailField.data('unchanged', false);
+        if (prefillFormData && value === prefillFormData.email) {
+          $emailField.data('unchanged', true);
+        }
       },
 
       // Private
