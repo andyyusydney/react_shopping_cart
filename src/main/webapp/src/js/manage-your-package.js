@@ -26,7 +26,7 @@ $(function () {
         // If the cart is empty redirect the user to cancel subscription
         if (Foxtel.ShopCartManager.isEmpty()) {
           window.location = '/now/my-account/deactivate.html';
-          return;
+          return false;
         // Otherwise, make the update call.
         } else {
           $.post('/bin/foxtel/now/updatecart', {})
@@ -65,6 +65,7 @@ $(function () {
         if (this.loaded) {
             if (Foxtel.ShopCartManager.isEmpty()) {
               $submitButton.html(this.$submitButton.data('button-cancel-label'));
+              $submitButton.removeClass('disabled');
             } else {
               $submitButton.html(this.$submitButton.data('button-edit-label'));
             }
