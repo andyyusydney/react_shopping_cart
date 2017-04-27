@@ -126,7 +126,9 @@ $br: 4px;
 			outline:0;
 			border-color:initial;
 	  }
-
+      &::-ms-clear {
+        display: none;
+      }
 	}
 
 	textarea {
