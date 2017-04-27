@@ -18,6 +18,7 @@ $(function () {
         this.$emailField = this.$el.find("[data-id='email']");
         this.$emailField.parsley().subscribe('parsley:field:error', this.handleEmailError);
         this.$emailField.parsley().subscribe('parsley:field:success', this.handleEmailValid);
+        this.$emailField.data('unchanged', true);
         this.$dobField = this.$el.find("[data-id='dateOfBirth']");
         this.$dobField.parsley().subscribe('parsley:field:error', this.handleDobError);
         this.$dobField.parsley().subscribe('parsley:field:success', this.handleDobValid);
