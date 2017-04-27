@@ -131,9 +131,8 @@ $(function () {
 
     var UpdateDetails = Backbone.Model.extend({
       getDetailsEndpoint: '/bin/secure/profileSettings',
-      idmEndpoint: '/bin/active/profile-settings/update-my-details',
-      kenanEndpoint: '/bin/active/profile-settings/update-contact-details',
-      passwordEndpoint: '/bin/active/profile-settings/update-login-details',
+      idmEndpoint: '/bin/secure/profile-settings/update-my-details',
+      kenanEndpoint: '/bin/secure/profile-settings/update-contact-details',
 
       updateDetails: function (formData) {
         this.set({
