@@ -18,22 +18,43 @@ $(function () {
         this.$emailField = this.$el.find("[data-id='email']");
         this.$emailField.parsley().subscribe('parsley:field:error', this.handleEmailError);
         this.$emailField.parsley().subscribe('parsley:field:success', this.handleEmailValid);
+        this.$dobField = this.$el.find("[data-id='dateOfBirth']");
+        this.$dobField.parsley().subscribe('parsley:field:error', this.handleDobError);
+        this.$dobField.parsley().subscribe('parsley:field:success', this.handleDobValid);
         this.model.getProfile();
       },
 
-      handleEmailValid: function() {
+      handleEmailValid: function () {
         FOX.context.broadcast('HIDE_BANNER', {
           name: 'EMAIL_TAKEN'
         });
       },
 
-      handleEmailError:  function($parsleyField) {
+      handleEmailError: function ($parsleyField) {
         var assertName = $parsleyField.validationResult[0].assert.name;
 
-        if(assertName === "verifyemail") {
+        if (assertName === "verifyemail") {
           FOX.context.broadcast('SHOW_BANNER', {
             name: 'EMAIL_TAKEN',
             email: $parsleyField.$element.val(),
+            closeEnabled: true
+          });
+        }
+      },
+
+      handleDobValid: function () {
+        FOX.context.broadcast('HIDE_BANNER', {
+          name: 'UNDER_18'
+        });
+      },
+
+      handleDobError: function ($parsleyField) {
+        var assertName = $parsleyField.validationResult[0].assert.name;
+        debugger;
+
+        if (assertName === "overeighteennow") {
+          FOX.context.broadcast('SHOW_BANNER', {
+            name: 'UNDER_18',
             closeEnabled: true
           });
         }
