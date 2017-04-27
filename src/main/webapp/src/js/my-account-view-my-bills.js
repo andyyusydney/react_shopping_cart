@@ -10,9 +10,11 @@ $(document).ready(function(){
         return;
     }
 
-    $("a").on('click',function(e){
+    $(".foxtel-now-view-my-bills-container").on('click','a',function(e){
+        e.preventDefault();
         var linkUrl = $(this).data("href");
         linkUrl = $.trim(linkUrl);
-        $(location).attr('href',linkUrl);
+        window.open(linkUrl,'_blank');
+        return false;
     })
 });
