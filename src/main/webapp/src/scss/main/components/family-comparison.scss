@@ -37,6 +37,9 @@
 
     &.family-comparison__unavailable-feature {
       color: #bec0c2;
+      @media (max-width: 767px) {
+        display: none;
+      }
     }
     &.family-comparison__unavailable-feature:before {
       border-color: #bec0c2;
