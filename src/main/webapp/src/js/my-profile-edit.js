@@ -40,7 +40,8 @@ $(function () {
       },
 
       events: {
-        'click #update-details-button': 'handleSubmit'
+        'click #update-details-button': 'handleSubmit',
+        'keyup [data-id="email"]': 'handleEmailTyping'
       },
 
       // Event handlers
@@ -95,6 +96,18 @@ $(function () {
         }, 1000);
       },
 
+      handleEmailTyping: function (event) {
+        // Only check if the email is registered if the user changes it.
+        var prefillFormData = this.model.get('prefillFormData');
+        var $emailField = $(event.currentTarget)
+        var value = $emailField.val();
+
+        $emailField.data('unchanged', false);
+        if (prefillFormData && value === prefillFormData.email) {
+          $emailField.data('unchanged', true);
+        }
+      },
+
       // Private
       // -------
 
@@ -118,9 +131,8 @@ $(function () {
 
     var UpdateDetails = Backbone.Model.extend({
       getDetailsEndpoint: '/bin/secure/profileSettings',
-      idmEndpoint: '/bin/active/profile-settings/update-my-details',
-      kenanEndpoint: '/bin/active/profile-settings/update-contact-details',
-      passwordEndpoint: '/bin/active/profile-settings/update-login-details',
+      idmEndpoint: '/bin/secure/profile-settings/update-my-details',
+      kenanEndpoint: '/bin/secure/profile-settings/update-contact-details',
 
       updateDetails: function (formData) {
         this.set({
