@@ -47,6 +47,7 @@ $(document).ready(function () {
               closeEnabled: true
             });
             $(".foxtel-now-btn--ghost").addClass('disabled');
+            $("#divChangeMyPackageButton .foxtel-now-btn").addClass('disabled');
         }
 
         //deactivated account
