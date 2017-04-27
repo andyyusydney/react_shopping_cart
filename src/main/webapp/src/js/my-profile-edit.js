@@ -97,9 +97,6 @@ $(function () {
       },
 
       handleEmailTyping: function (event) {
-        this.model.set('prefillFormData', {
-          email: 'dan@dan.com'
-        });
         // Only check if the email is registered if the user changes it.
         var prefillFormData = this.model.get('prefillFormData');
         var $emailField = $(event.currentTarget)
