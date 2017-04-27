@@ -13,12 +13,12 @@ $(function () {
         this.$el.parsley();
         this.$submitButton = this.$el.find('#update-details-button');
         this.initializeSelectBoxes();
-        this.model.getProfile();
-        this.model.on('completed:update', this.handleUpdateComplete.bind(this));
         this.model.on('fetched:details', this.handleFetchedDetails.bind(this));
+        this.model.on('completed:update', this.handleUpdateComplete.bind(this));
         this.$emailField = this.$el.find("[data-id='email']");
         this.$emailField.parsley().subscribe('parsley:field:error', this.handleEmailError);
         this.$emailField.parsley().subscribe('parsley:field:success', this.handleEmailValid);
+        this.model.getProfile();
       },
 
       handleEmailValid: function() {
@@ -147,13 +147,21 @@ $(function () {
         $.get(this.getDetailsEndpoint, this.handleGetDetailsResponse.bind(this));
       },
 
-
       // Event handlers
       // --------------
 
       handleGetDetailsResponse: function (response) {
         // Store non-form data in the model.
         this.setNonFormData(response);
+
+        // Hide default addresses
+        var defaultAddresses = [
+          '5 THOMAS HOLT DRIVE',
+          '1 Foxtel now road'
+        ];
+        if (_(defaultAddresses).contains(response.kBillAddress1)) {
+          response.kBillAddress1 = "";
+        }
 
         // Prepare data for the html form.
         var formData =  {
@@ -162,7 +170,7 @@ $(function () {
           email: response.iEmail,
           password: 'password',
           mobile: response.iContactTelephone,
-          dateOfBirth: response.kDOB,
+          dateOfBirth: response.kDOB.replace(/\//g, '-'),
           address: response.kBillAddress1,
           suburb: response.kBillCity,
           state: response.kBillState,
