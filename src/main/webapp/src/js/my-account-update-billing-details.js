@@ -12,7 +12,7 @@ $(document).ready(function(){
     $submitBtn = $('#credit-card-form-submit');
 
     $formDirectDebit.hide();
-    $('foxtel-now-display-div-template-container').on('click','.edit-link a',function(){
+    $('.foxtel-now-display-div-template-container').on('click','.edit-link',function(){
         $formDirectDebit.slideToggle();
     })
 
