@@ -105,10 +105,12 @@ $(document).ready(function(){
     });
 
     //Hide or show Cart
-    $(document).on('click','.foxtel-now-header__btn-cart__icon',function(e){
+    $(document).on('click','.foxtel-now-header__btn-cart',function(e){
         e.stopImmediatePropagation();
         e.preventDefault();
-        $('.foxtel-now-jumbotron').toggle('slow',function(){})
+        $('.foxtel-now-jumbotron').slideToggle({
+          duration: 400
+        });
     });
 
     //Remove pack from shopping cart
