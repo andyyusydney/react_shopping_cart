@@ -337,6 +337,9 @@
 	@extend .foxtel-now-list;
 	display: flex;
 	justify-content: space-between;
+	@include breakpoint(mobileOnly) {
+      flex-direction: column;
+    }
 	li {
 		display: inline;
 	}
