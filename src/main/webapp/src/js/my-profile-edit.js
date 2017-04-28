@@ -192,7 +192,7 @@ $(function () {
           email: response.iEmail,
           password: 'password',
           mobile: response.iContactTelephone,
-          dateOfBirth: response.kDOB.replace(/\//g, '-'),
+          dateOfBirth:moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"),
           address: response.kBillAddress1,
           suburb: response.kBillCity,
           state: response.kBillState,
