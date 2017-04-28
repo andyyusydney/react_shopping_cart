@@ -206,6 +206,9 @@ $(function () {
 
       updateKenan: function (formData) {
         var payload = {
+          firstName:formData.firstName,
+          lastName:formData.lastName,
+          dataOfBirth:formData.dateOfBirth.replace(/\//g,'-'),
           custEmail: formData.email,
           dayPhone: formData.mobile,
           billAddressOne: formData.address,
