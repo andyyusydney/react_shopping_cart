@@ -46,7 +46,8 @@ $(document).ready(function () {
               name: 'SECONDARY_ACCOUNT_MY_ACCOUNT_HOME',
               closeEnabled: true
             });
-            $(".foxtel-now-btn--ghost").addClass('disabled');
+            $("#divCancelMemberShipLink .foxtel-now-btn--ghost").addClass('disabled');
+            $("#divChangeMyPackageButton .foxtel-now-btn").addClass('disabled');
         }
 
         //deactivated account
