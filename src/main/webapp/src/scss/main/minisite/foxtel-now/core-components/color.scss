@@ -64,3 +64,10 @@ COLOR
 .foxtel-now-color-orange {
 	color: $foxtel-now-orange !important;
 }
+
+/*********************
+SHADOW
+*********************/
+.foxtel-now-box-shadow {
+	box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2) !important;
+}

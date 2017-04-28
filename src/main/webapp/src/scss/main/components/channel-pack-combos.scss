@@ -17,6 +17,15 @@
   @media (min-width: 1024px) {
      width: 356.3px;
   }
+  .channel-pack-combos__top__headline {
+    font-size: $font-size--md;
+    margin-top: 30px;
+  }
+  .channel-pack-combos__top__price {
+    font-size: $font-size--sm;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
   &.channel-pack-combos-highlight {
     background-color: $color--body;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
@@ -111,6 +120,11 @@
       margin-bottom: 30px;
     }
   }
+
+  &.build-yours {
+    box-shadow: none;
+  }
+
   a.channel-pack-combos__build-yours {
     color: $color--white;
     width: 151px;

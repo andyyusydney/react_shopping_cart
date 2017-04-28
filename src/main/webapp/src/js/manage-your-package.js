@@ -9,7 +9,9 @@ $(function () {
     var ManageYourPackageView = Backbone.View.extend({
       initialize: function () {
         FOX.context.subscribe("updated:cart", this.handleCartUpdated.bind(this));
-        this.$submitButton = $('.foxtel-now-jumbotron--shopping-cart__summary button');
+        this.buttonContainerSelector = '.foxtel-now-jumbotron--shopping-cart__summary__checkout';
+        this.$submitButton = $(this.buttonContainerSelector + ' button');
+        this.$submitButton.removeClass('disabled');
       },
 
       events: {
@@ -21,11 +23,16 @@ $(function () {
 
       handleSubmit: function (event) {
         event.preventDefault();
-        $(event.currentTarget).addClass('is-disabled');
+        var $submitButton = $(event.currentTarget);
+        var $buttonContainer = $submitButton.parents(this.buttonContainerSelector);
+
+        $buttonContainer.css('min-width', $buttonContainer.width());
+        $submitButton.addClass('is-loading');
+
         // If the cart is empty redirect the user to cancel subscription
         if (Foxtel.ShopCartManager.isEmpty()) {
           window.location = '/now/my-account/deactivate.html';
-          return;
+          return false;
         // Otherwise, make the update call.
         } else {
           $.post('/bin/foxtel/now/updatecart', {})
@@ -37,7 +44,8 @@ $(function () {
       },
 
       handleUpdateSuccess: function (response) {
-        var $submitButton = $('.foxtel-now-jumbotron--shopping-cart__summary button');
+        var $submitButton = $(this.buttonContainerSelector + ' button');
+        var $buttonContainer = $submitButton.parents(this.buttonContainerSelector);
 
         if (response.status === 'ERROR') {
           this.genericError();
@@ -48,22 +56,29 @@ $(function () {
           });
         }
 
-        $submitButton.removeClass('is-disabled');
+        $submitButton.removeClass('is-loading').addClass('is-valid');
+        setTimeout(function () {
+          $submitButton.removeClass('is-valid');
+          $buttonContainer.css('min-width', 'initial');
+        }, 1000);
       },
 
       handleUpdateError: function (xhr, status, error) {
         var $submitButton = $('.foxtel-now-jumbotron--shopping-cart__summary button');
-        
+        var $buttonContainer = $submitButton.parents(this.buttonContainerSelector);
+
         this.genericError();
-        $submitButton.removeClass('is-disabled');
+        $submitButton.removeClass('is-loading');
+        $buttonContainer.css('min-width', 'initial');
       },
 
       handleCartUpdated: function (data) {
-        var $submitButton = $('.foxtel-now-jumbotron--shopping-cart__summary__checkout button');
+        var $submitButton = $(this.buttonContainerSelector + ' button');
 
         if (this.loaded) {
             if (Foxtel.ShopCartManager.isEmpty()) {
               $submitButton.html(this.$submitButton.data('button-cancel-label'));
+              $submitButton.removeClass('disabled');
             } else {
               $submitButton.html(this.$submitButton.data('button-edit-label'));
             }

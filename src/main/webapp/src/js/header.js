@@ -53,7 +53,7 @@ $(function () {
 
       handleGetDetailsResponse: function (response) {
         this.set({
-          name: response.firstName
+          name: response.iFirstName
         });
         this.trigger('fetched:details');
       }
