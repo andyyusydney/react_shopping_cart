@@ -196,3 +196,17 @@ Handlebars.registerHelper("shopCartTimeConverter",function(cartResponse,options)
   return time;
 
 });
+
+Handlebars.registerHelper("shopCartStringToDateConverter",function(cartResponse,options) {
+
+  var months = {'Jan':'01', 'Feb':'02', 'Mar':'03', 'Apr':'04', 'May':'05', 'Jun':'06', 'Jul':'07', 'Aug':'08', 'Sep':'09', 'Oct':'10', 'Nov':'11', 'Dec':'12'};
+  var dateStr = cartResponse.split(" ");
+  var yearStr = dateStr[1];
+  var monthStr = dateStr[0];
+  var year = yearStr.slice(-2);
+  var month = months[monthStr];
+  var date = month + '-' + year;
+
+  return date;
+
+});

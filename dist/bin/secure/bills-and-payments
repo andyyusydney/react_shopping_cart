@@ -119,6 +119,9 @@
             }]
         },
         "paymentProfile": {
+            "cardExpiryDate": "May 2017",
+            "cardNumber": "**** **** **** 8760",
+            "cardType": "VISA",
             "paymentProfileId": 24321449003,
             "ongoingFlag": true,
             "customerName": "test Account test Account",
