@@ -13,27 +13,49 @@ $(function () {
         this.$el.parsley();
         this.$submitButton = this.$el.find('#update-details-button');
         this.initializeSelectBoxes();
-        this.model.getProfile();
-        this.model.on('completed:update', this.handleUpdateComplete.bind(this));
         this.model.on('fetched:details', this.handleFetchedDetails.bind(this));
+        this.model.on('completed:update', this.handleUpdateComplete.bind(this));
         this.$emailField = this.$el.find("[data-id='email']");
         this.$emailField.parsley().subscribe('parsley:field:error', this.handleEmailError);
         this.$emailField.parsley().subscribe('parsley:field:success', this.handleEmailValid);
+        this.$emailField.data('unchanged', true);
+        this.$dobField = this.$el.find("[data-id='dateOfBirth']");
+        this.$dobField.parsley().subscribe('parsley:field:error', this.handleDobError);
+        this.$dobField.parsley().subscribe('parsley:field:success', this.handleDobValid);
+        this.model.getProfile();
       },
 
-      handleEmailValid: function() {
+      handleEmailValid: function () {
         FOX.context.broadcast('HIDE_BANNER', {
           name: 'EMAIL_TAKEN'
         });
       },
 
-      handleEmailError:  function($parsleyField) {
+      handleEmailError: function ($parsleyField) {
         var assertName = $parsleyField.validationResult[0].assert.name;
 
-        if(assertName === "verifyemail") {
+        if (assertName === "verifyemail") {
           FOX.context.broadcast('SHOW_BANNER', {
             name: 'EMAIL_TAKEN',
             email: $parsleyField.$element.val(),
+            closeEnabled: true
+          });
+        }
+      },
+
+      handleDobValid: function () {
+        FOX.context.broadcast('HIDE_BANNER', {
+          name: 'UNDER_18'
+        });
+      },
+
+      handleDobError: function ($parsleyField) {
+        var assertName = $parsleyField.validationResult[0].assert.name;
+        debugger;
+
+        if (assertName === "overeighteennow") {
+          FOX.context.broadcast('SHOW_BANNER', {
+            name: 'UNDER_18',
             closeEnabled: true
           });
         }
@@ -147,13 +169,21 @@ $(function () {
         $.get(this.getDetailsEndpoint, this.handleGetDetailsResponse.bind(this));
       },
 
-
       // Event handlers
       // --------------
 
       handleGetDetailsResponse: function (response) {
         // Store non-form data in the model.
         this.setNonFormData(response);
+
+        // Hide default addresses
+        var defaultAddresses = [
+          '5 THOMAS HOLT DRIVE',
+          '1 Foxtel now road'
+        ];
+        if (_(defaultAddresses).contains(response.kBillAddress1)) {
+          response.kBillAddress1 = "";
+        }
 
         // Prepare data for the html form.
         var formData =  {
@@ -162,7 +192,7 @@ $(function () {
           email: response.iEmail,
           password: 'password',
           mobile: response.iContactTelephone,
-          dateOfBirth: response.kDOB,
+          dateOfBirth: response.kDOB.replace(/\//g, '-'),
           address: response.kBillAddress1,
           suburb: response.kBillCity,
           state: response.kBillState,
@@ -206,6 +236,9 @@ $(function () {
 
       updateKenan: function (formData) {
         var payload = {
+          firstName:formData.firstName,
+          lastName:formData.lastName,
+          dataOfBirth:formData.dateOfBirth.replace(/\//g,'-'),
           custEmail: formData.email,
           dayPhone: formData.mobile,
           billAddressOne: formData.address,

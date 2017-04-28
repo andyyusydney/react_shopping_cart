@@ -19,7 +19,7 @@
           		border: solid 2px rgb(240, 240, 240);
           	}
   	}
-  	.foxtel-now-btn.enable {
+  	.v.enable {
   	    color: black;
   		span{
   			&:before {
@@ -43,6 +43,7 @@
   			margin-left: -15px;
   			padding-left: 15px;
   			padding-right: 35px;
+  			margin-bottom: 15px;
   			p {
   				margin-top: 1rem;
   				display: table-cell;
