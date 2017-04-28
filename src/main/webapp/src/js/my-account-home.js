@@ -57,7 +57,7 @@ $(document).ready(function () {
         }
 
         //pending deactivation account
-        if(data.accountStatus.pendingDeactivated){
+        if(data.accountStatus.pendingDeactivated && data.accountStatus.activated){
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'PENDING_DEACTIVATION_MY_ACCOUNT_HOME',
               nextBillingDate:moment(data.accountStatus.nextBillingDate).format("MMM Do YY"),
