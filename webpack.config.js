@@ -55,6 +55,7 @@ module.exports = {
       }
     ]
   },
+  devtool: 'inline-source-map',
   plugins: [
     // enable HMR globally
     new webpack.HotModuleReplacementPlugin()

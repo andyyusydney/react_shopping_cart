@@ -26,6 +26,7 @@ $br: 4px;
 .foxtel-now-form-container {
   @include placeholder('input', transparent);
   @include placeholder('input:focus', $foxtel-now-dark-grey);
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.15);
 
 /* Parsley classes */
 
@@ -56,7 +57,6 @@ $br: 4px;
     padding: 20px;
   }
   border-radius:$br;
-  box-shadow:0 4px 10px 4px rgba($form-bg,.3);
 	.foxtel-now-form-container__tab-group {
 	  list-style:none;
 	  padding:0;
