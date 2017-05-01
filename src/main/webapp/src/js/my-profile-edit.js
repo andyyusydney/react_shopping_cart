@@ -183,6 +183,8 @@ $(function () {
         ];
         if (_(defaultAddresses).contains(response.kBillAddress1)) {
           response.kBillAddress1 = "";
+          response.kBillCity = "";
+          response.kBillZip = "";
         }
 
         // Prepare data for the html form.
