@@ -192,7 +192,7 @@ $(function () {
           email: response.iEmail,
           password: 'password',
           mobile: response.iContactTelephone,
-          dateOfBirth: response.kDOB.replace(/\//g, '-'),
+          dateOfBirth:moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"),
           address: response.kBillAddress1,
           suburb: response.kBillCity,
           state: response.kBillState,
@@ -236,6 +236,9 @@ $(function () {
 
       updateKenan: function (formData) {
         var payload = {
+          firstName:formData.firstName,
+          lastName:formData.lastName,
+          dataOfBirth:formData.dateOfBirth.replace(/\//g,'-'),
           custEmail: formData.email,
           dayPhone: formData.mobile,
           billAddressOne: formData.address,
