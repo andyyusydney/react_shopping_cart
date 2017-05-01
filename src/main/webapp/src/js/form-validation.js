@@ -92,7 +92,25 @@ $(function () {
     } else {
       newValue = replacedValue;
     }
-    $(this).val(newValue);
+
+    // Update the value if there is a change to make.
+    if (value !== newValue) {
+      // Store current position in variables.
+      var start = this.selectionStart;
+      var end = this.selectionEnd;
+
+      // If the next character is a delimiter, increment the position.
+      var nextChar = newValue.slice(start, start + 1);
+      if (nextChar === '-') {
+        start += 1;
+        end += 1;
+      }
+
+      $(this).val(newValue);
+
+      // Restore position from variables.
+      this.setSelectionRange(start, end);
+    }
   });
 
   $('[data-dob-formatter]').on('keydown', function (event) {
@@ -101,18 +119,20 @@ $(function () {
     var replacedValue = value.replace(/-/g, "");
     var replacedLength = replacedValue.length;
 
+    var controlKeys = [
+      37, 38, 39, 40, 8, 9
+    ];
+
     // Do nothing if the key pressed is not a number.
     if (!((event.keyCode >= 48 && event.keyCode <= 57)
       || (event.keyCode >= 96 && event.keyCode <= 105)
-      // Allow backspace.
-      || event.keyCode === 8
-      // Allow tab.
-      || event.keyCode === 9)) {
+      // Allow control keys
+      || _(controlKeys).contains(event.keyCode))) {
       return false;
     }
 
     // Do nothing if we've reached the right length.
-    if (replacedLength > 7 && event.keyCode !== 8) {
+    if (replacedLength > 7 && !_(controlKeys).contains(event.keyCode)) {
       return false;
     }
   });
