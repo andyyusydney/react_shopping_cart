@@ -10,23 +10,11 @@
   @media (max-width: 767px) { height: 367px; }
   @media (min-width: 768px) and (max-width: 992px) { height: 428px; }
 
-  .iq-banner__caption  {
-    font-weight: bold;
-    font-size: $font-size--md;
-
+  .font--md--bold  {
     @media (max-width: 767px) { font-size: $font-size--base; }
   }
 
-  .iq-banner__desc-1 {
-    font-weight: bold;
-    font-size: $font-size--lg;
-    @media (max-width: 767px) { font-size: $font-size--md; }
-  }
-
-  .iq-banner__desc-2 {
-    font-size: $font-size--lg;
-    font-weight: normal;
-
+  .font--lg--bold, .font--lg {
     @media (max-width: 767px) { font-size: $font-size--md; }
   }
 }
