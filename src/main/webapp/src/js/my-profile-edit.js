@@ -51,7 +51,6 @@ $(function () {
 
       handleDobError: function ($parsleyField) {
         var assertName = $parsleyField.validationResult[0].assert.name;
-        debugger;
 
         if (assertName === "overeighteennow") {
           FOX.context.broadcast('SHOW_BANNER', {
