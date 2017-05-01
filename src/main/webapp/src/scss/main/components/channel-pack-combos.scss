@@ -132,11 +132,13 @@
 
   a.channel-pack-combos__build-yours {
     color: $color--white;
-    width: 151px;
+    min-width: 151px;
     height: 42px;
     border-radius: 100px;
     background-color: $color--brand;
     display: inline-block;
     line-height: 42px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 }
