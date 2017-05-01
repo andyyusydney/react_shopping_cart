@@ -8,17 +8,21 @@
 }
 
 .meta-data--h {
-    display: table;
+    display: table-row;
     width: 100%;
     margin-bottom: 20px;
     .meta-data__icon {
         display: table-cell;
         vertical-align: middle;
-        padding-right: 20px;
+        padding-bottom: 20px;
+        img {
+           margin-right: 20px;
+        }
     }
     .meta-data__desc {
         display: table-cell;
         vertical-align: middle;
+        padding-bottom: 20px;
     }
 }
 
