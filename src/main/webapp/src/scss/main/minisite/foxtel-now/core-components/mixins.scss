@@ -118,14 +118,14 @@
 	display: block;
 	border-radius: $radius;
 	-webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
-  padding: 15px;
-  color: black;
-  background-color: $foxtel-now-green;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    padding: 15px;
+    color: black;
+    background-color: $foxtel-now-green;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
 	transition: border $transition-time ease,
 		border-radius $transition-time ease,
 		background-color $transition-time ease,
@@ -150,8 +150,8 @@
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-    background-color: transparent;
-    border: 3px solid #f0f0f0;
+        background-color: transparent;
+        border: 3px solid #f0f0f0;
 		border-left-color: $foxtel-now-green;
 		animation: rotating 2s 250ms linear infinite, in 2s 0 ease-in;
 	}
@@ -209,8 +209,12 @@
 	border-width: 2px;
 }
 
-.border--dark {
+.border--black {
 	border-color: rgb(74, 74, 74);
+}
+
+.border--grey {
+	border-color: $foxtel-now-grey;
 }
 
 .foxtel-now-table-row {
