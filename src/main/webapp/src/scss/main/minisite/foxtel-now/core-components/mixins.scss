@@ -326,13 +326,14 @@
 
 .foxtel-now-list {
 	padding-left: 0;
-	list-style: none;
+	margin-top: 1rem;
+	list-style-position: inside;
 	li {
-		&:before {
-			content: "\2022";
-			color: rgb(47, 218, 110);
-			font-size: 1.5em;
-			padding-right: 10px;
+		color: rgb(47, 218, 110);
+		margin-top: 10px;
+		p {
+		    color: initial;
+		    display: inline;
 		}
 	}
 }
