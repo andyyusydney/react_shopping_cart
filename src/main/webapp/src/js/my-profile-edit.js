@@ -179,7 +179,7 @@ $(function () {
         // Hide default addresses
         var defaultAddresses = [
           '5 THOMAS HOLT DRIVE',
-          '1 Foxtel now road'
+          '1 FOXTEL NOW ROAD'
         ];
         if (_(defaultAddresses).contains(response.kBillAddress1)) {
           response.kBillAddress1 = "";
