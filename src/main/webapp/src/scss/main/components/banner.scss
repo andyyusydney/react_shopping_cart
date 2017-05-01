@@ -30,9 +30,9 @@
 }
 .foxtel-banner__content--vCenter{
   width:100%;
-  padding-top:60px;
-  @media (min-width: 768px) {
-    padding-top:0;
+  @media (max-width: 767px) {
+    text-align: center;
+    padding-top:60px;
   }
 }
 .foxtel-banner__content--vBtm{
