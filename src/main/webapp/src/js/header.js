@@ -32,6 +32,7 @@ $(function () {
 
         if (this.state.open && !$settings.is($target) && $settings.has($target).length === 0) {
           event.preventDefault();
+          this.state.open = false;
           this.$dropdown.removeClass('open');
         }
       },
