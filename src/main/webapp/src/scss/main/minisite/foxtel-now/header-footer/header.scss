@@ -108,6 +108,10 @@
         outline: 0;
         width: 17px;
 
+        @include breakpoint(mobileOnly) {
+          margin-right: 10px;
+        }
+
         .settings-icon {
           vertical-align: middle;
           cursor: pointer;
