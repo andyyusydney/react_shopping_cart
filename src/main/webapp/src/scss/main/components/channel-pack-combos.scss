@@ -103,12 +103,14 @@
     }
     a.channel-pack-combos__bottom__btn1 {
       color: $color--body;
-      width: 133px;
+      min-width: 133px;
+      padding-left: 25px;
+      padding-right: 25px;
       border: solid 1px $color--grey-bec0c2;
     }
     a.channel-pack-combos__bottom__btn2 {
       color: $color--white;
-      width: 69px;
+      min-width: 69px;
       background-color: $color--brand;
     }
     .channel-pack-combos__bottom__desc {
@@ -123,15 +125,20 @@
 
   &.build-yours {
     box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   a.channel-pack-combos__build-yours {
     color: $color--white;
-    width: 151px;
+    min-width: 151px;
     height: 42px;
     border-radius: 100px;
     background-color: $color--brand;
     display: inline-block;
     line-height: 42px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 }

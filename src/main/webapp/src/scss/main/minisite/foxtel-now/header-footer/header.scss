@@ -4,7 +4,6 @@
 //addition header style for foxtel now site only
 .foxtel-now-header{
   height: 70px;
-  margin-top: 10px;
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
@@ -30,6 +29,7 @@
 
     .left-section {
       display: inline-block;
+      font-size: 0;
 
       .logo {
         height: 100%;
@@ -60,11 +60,11 @@
         cursor: pointer;
         padding: 0;
         margin: 0 25px;
-        font-size: 20px;
+        font-size: 18px;
         position: relative;
         height: 100%;
         line-height: 70px;
-        font-weight: 700;
+        font-weight: 400;
 
         @include breakpoint(tablet) {
           display: inline-block;
@@ -106,7 +106,11 @@
         margin-left: 20px;
         height: 100%;
         outline: 0;
-        width: 30px;
+        width: 17px;
+
+        @include breakpoint(mobileOnly) {
+          margin-right: 10px;
+        }
 
         .settings-icon {
           vertical-align: middle;
@@ -217,7 +221,7 @@
           position: relative;
           display: inline-block;
           margin-right: 20px;
-          margin-top: 4px;
+          margin-top: 12px;
 
           @include breakpoint(tablet) {
             margin-right: 50px;
@@ -227,8 +231,8 @@
             position: absolute;
             top: -5px;
             right: -15px;
-            background-color: $foxtel-now-green;
-            color: black;
+            background-color: $foxtel-now-pink;
+            color: white;
             border-radius: 50%;
             width: 30px;
             height: 30px;

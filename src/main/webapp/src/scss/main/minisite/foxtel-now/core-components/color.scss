@@ -1,19 +1,19 @@
 // Colour variables
 // ----------------
 
-$foxtel-now-blue: #141432;
 $grey-blue: #818190;
 $grey-light: #F0F0F0;
 $grey-dark: #888;
 $soft-white: rgba(255, 255, 255, 0.8);
 
-$foxtel-now-green: #2dcc67;
-$foxtel-now-orange: #da6e2f;
-$foxtel-now-light-grey: #f0f0f0;
-$foxtel-now-disabled-grey: #b4b4b4;
-$foxtel-now-dark-grey: #505050;
-$foxtel-now-very-dark-grey: #0a0a0a;
-$foxtel-now-grey: #ebebeb;
+$foxtel-now-pink: #FF5050;
+$foxtel-now-green: #00f0a0;
+$foxtel-now-orange: #ff904f;
+$foxtel-now-light-grey: #F0EDEB;
+$foxtel-now-disabled-grey: #BEC0C2;
+$foxtel-now-dark-grey: #32323C;
+$foxtel-now-very-dark-grey: #32323C;
+$foxtel-now-grey: #F0EDEB;
 
 
 /*********************
@@ -21,7 +21,7 @@ BACKGROUND
 *********************/
 
 .foxtel-now-background-green {
-	background-color: $foxtel-now-green !important;
+	background-color: $foxtel-now-pink !important;
 }
 
 .foxtel-now-background-black {
@@ -54,7 +54,7 @@ COLOR
 }
 
 .foxtel-now-color-grey {
-	color: $foxtel-now-dark-grey !important;
+	color: $foxtel-now-grey !important;
 }
 
 .foxtel-now-color-darkgrey {
