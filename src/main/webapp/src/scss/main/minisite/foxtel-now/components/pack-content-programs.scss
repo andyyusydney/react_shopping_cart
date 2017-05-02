@@ -1,5 +1,5 @@
 .pack-content-programs {
-  background-color: $foxtel-now-blue;
+  background-color: $foxtel-now-dark-grey;
   padding-top: 50px;
   padding-bottom: 50px;
   font-weight: 300;
@@ -27,7 +27,7 @@
     .pack-content__item__inner {
       border: 1px solid transparent;
       transition: margin-top 100ms linear;
-      background-color: $foxtel-now-blue;
+      background-color: $foxtel-now-dark-grey;
 
       &.is-active {
         z-index: 1;

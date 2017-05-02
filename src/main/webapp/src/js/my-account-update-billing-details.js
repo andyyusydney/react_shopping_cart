@@ -49,7 +49,7 @@ $(document).ready(function(){
         postDataObj.cardExpireMonth = $("input[data-id='cardExpiry']").val().split("-")[0];
         postDataObj.cardExpireYear = $("input[data-id='cardNumber']").val().split("-")[1];
         postDataObj.cvc = $("input[data-id='cvc']").val();
-        postDataObj.customerName = trim($("div.customer-name").text());
+        postDataObj.customerName = $("div.customer-name").text().trim();
 
         var postData = "";
 
@@ -58,6 +58,7 @@ $(document).ready(function(){
         })
 
         postData = postData.slice(0,-1);
+        postData = encodeURI(postData);
 
         var $complete = function(){
             $this.removeAttr('disabled').removeClass('is-loading');
