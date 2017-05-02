@@ -221,7 +221,7 @@
           position: relative;
           display: inline-block;
           margin-right: 20px;
-          margin-top: 4px;
+          margin-top: 12px;
 
           @include breakpoint(tablet) {
             margin-right: 50px;
@@ -231,8 +231,8 @@
             position: absolute;
             top: -5px;
             right: -15px;
-            background-color: $foxtel-now-green;
-            color: black;
+            background-color: $foxtel-now-pink;
+            color: white;
             border-radius: 50%;
             width: 30px;
             height: 30px;

@@ -10,7 +10,7 @@
   	border: solid 2px rgb(240, 240, 240);
   	&:hover {
   		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-  		border: solid 2px rgb(47, 218, 110);
+  		border: solid 2px $foxtel-now-pink;
   	}
 
   	&.is-disabled {
@@ -121,8 +121,8 @@
     -moz-border-radius: $radius;
     -ms-border-radius: $radius;
     padding: 15px;
-    color: black;
-    background-color: $foxtel-now-green;
+    color: white;
+    background-color: $foxtel-now-pink;
     cursor: pointer;
     width: 100%;
     text-align: center;
@@ -134,7 +134,7 @@
 
   &:hover {
   	text-decoration: none;
-  	color: black;
+  	color: white;
   	opacity: 0.8;
   }
 
@@ -152,7 +152,7 @@
 		border-radius: 50%;
         background-color: transparent;
         border: 3px solid #f0f0f0;
-		border-left-color: $foxtel-now-green;
+		border-left-color: $foxtel-now-pink;
 		animation: rotating 2s 250ms linear infinite, in 2s 0 ease-in;
 	}
 
@@ -282,7 +282,7 @@
 
 // A Corner ribbon
 .ribbon-wrapper {
-	$background-color: $foxtel-now-green;
+	$background-color: $foxtel-now-pink;
 	$font-color: white;
 
 	z-index: 2;
@@ -294,7 +294,7 @@
 	left: -2px;
 
 	.ribbon {
-		color: $foxtel-now-very-dark-grey;
+		color: white;
 		text-align: center;
 		position: relative;
 		padding: 7px 30px 7px 0;
@@ -328,8 +328,15 @@
 	padding-left: 0;
 	margin-top: 1rem;
 	list-style-position: inside;
+	list-style: none;
 	li {
-		color: rgb(47, 218, 110);
+		&:before {
+		  content: "• ";
+		  color: $foxtel-now-pink;
+			font-size: 20px;
+		}
+
+		color: $foxtel-now-dark-grey;
 		margin-top: 10px;
 		p {
 		    color: initial;
