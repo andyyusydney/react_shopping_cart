@@ -135,16 +135,42 @@ $br: 4px;
 	    padding: 0;
 	}
 
-    select {
-      border: solid 0.5px rgb(153, 153, 153);
-      border-radius:0;
-      transition:border-color .25s ease, box-shadow .25s ease;
-      width: 100%;
-      font-size: 90%;
-      &:focus {
-            outline:0;
-            border-color:initial;
-      }
+    .dropdown {
+        .custom-select {
+          border: solid 0.5px rgb(153, 153, 153);
+          border-radius:0;
+          transition:border-color .25s ease, box-shadow .25s ease;
+          width: 100%;
+          font-size: 90%;
+          -webkit-appearance: listbox;
+          white-space: normal;
+          min-height: 3.5em;
+          &:focus {
+                outline:0;
+                border-color:initial;
+          }
+          p {
+            text-align: left;
+            margin-bottom: initial;
+          }
+        }
+
+        .dropdown-menu {
+            width: 100%;
+        }
+
+        .dropdown-item {
+            white-space: normal;
+        }
+
+        .dropdown-toggle::after {
+            content: "";
+            display: none;
+        }
+
+        .show>.dropdown-menu {
+            width: 100%;
+        }
     }
 
 	/* Base for label styling */
