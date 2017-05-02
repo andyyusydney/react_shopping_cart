@@ -58,6 +58,11 @@ $(document).ready(function () {
             });
         }
 
+        if(data.accountStatus.pendingDeactivated) {
+            $("#divCancelMemberShipLink .foxtel-now-btn--ghost").show().addClass('disabled');
+            $("#divChangeMyPackageButton .foxtel-now-btn").addClass('disabled');
+        }
+
         //pending deactivation account
         if(data.accountStatus.pendingDeactivated && data.accountStatus.activated){
             FOX.context.broadcast('SHOW_BANNER', {
