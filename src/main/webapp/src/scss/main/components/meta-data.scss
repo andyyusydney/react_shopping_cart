@@ -33,3 +33,7 @@
         margin-top: 20px;
     }
 }
+
+.meta-data-hide-in-mobile {
+   @media (max-width: 767px) { font-size: $font-size--md; }
+}
