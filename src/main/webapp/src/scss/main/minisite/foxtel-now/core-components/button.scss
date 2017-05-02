@@ -41,9 +41,11 @@
 .foxtel-now-btn--ghost {
 	@extend .foxtel-now-btn;
 	background: transparent;
-	border: 1px solid rgb(47,218,110);
+	border: 1px solid $foxtel-now-pink;
+	color: $foxtel-now-dark-grey;
 	&:hover{
 		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+		color: $foxtel-now-dark-grey;
 	}
 }
 
@@ -58,7 +60,7 @@
 	@extend .foxtel-now-btn;
 
 	background-color: transparent;
-	color: black;
+	color: white;
 	border: solid 1px rgb(222, 222, 222);
 	padding: 10px;
 }
