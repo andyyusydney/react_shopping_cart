@@ -149,10 +149,10 @@ $(document).ready(function(){
     });
 
     //Click card to trigger Find out more
-    $(document).on('click','.foxtel-now-card',function(){
+    $(document).on('click','.foxtel-now-card',function(e){
         var url = $(this).find('.foxtel-now-card__title__link a').attr('href');
         Foxtel.navigator(url);
-    });
+    },false);
 
     FOX.context.subscribe("SHOP_CART_LOADED",function(data){
         updatePackBtns(data);
