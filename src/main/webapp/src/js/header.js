@@ -5,7 +5,7 @@ $(function () {
     var HeaderView = Backbone.View.extend({
       initialize: function () {
         $(window).on('click', this.closeSettingsDropdown.bind(this));
-        this.model.on('fetched:details', this.renderName.bind(this));
+        this.model.on('fetched:userInfo', this.handleUserInfo.bind(this));
         this.$dropdown = this.$el.find('.dropdown');
         this.state = {
           open: false
@@ -37,26 +37,38 @@ $(function () {
         }
       },
 
-      renderName: function () {
-        this.$el.find('.settings .username').html('Hi, ' + this.model.get('name'));
+      handleUserInfo: function () {
+        // Set the logged-in status of the header.
+        if (this.model.get('loggedIn')) {
+          this.$el.addClass('is-logged-in');
+          // Update the username in settings.
+          this.$el.find('.settings .username').html('Hi, ' + this.model.get('name'));
+        } else {
+          this.$el.addClass('container');
+        }
+        // Show the header.
+        this.$el.addClass('is-loaded');
       }
     });
 
     var Header = Backbone.Model.extend({
-      getDetailsEndpoint: '/bin/secure/profileSettings',
+      userInfoEndpoint: '/bin/foxtel/userInfo',
 
-      getProfile: function () {
-        $.get(this.getDetailsEndpoint, this.handleGetDetailsResponse.bind(this));
+      getUserInfo: function () {
+        $.get(this.userInfoEndpoint, this.handleUserInfoResponse.bind(this));
       },
 
       // Event handlers
       // --------------
 
-      handleGetDetailsResponse: function (response) {
-        this.set({
-          name: response.iFirstName
-        });
-        this.trigger('fetched:details');
+      handleUserInfoResponse: function (response) {
+        if (response.user && response.user.account && response.user.account.accountNumber) {
+          this.set({
+            name: response.user.account.iFirstName,
+            loggedIn: true
+          });
+        }
+        this.trigger('fetched:userInfo');
       }
     });
 
@@ -67,6 +79,6 @@ $(function () {
       model: header
     });
 
-    header.getProfile();
+    header.getUserInfo();
   }
 });

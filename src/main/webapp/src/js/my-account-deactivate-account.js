@@ -10,6 +10,8 @@ $(document).ready(function(){
         return;
     }
 
+    Utilities.selectDropDownText();
+
     $formDirectDebit = $('#foxtel-now-cancel-membership-form');
     $submitBtn = $('#cancel-member-form-submit');
 
@@ -38,11 +40,11 @@ $(document).ready(function(){
             extraComment: ""
         }
 
-        postDataObj.reason.code = parseInt($("select[data-id='deactiveReason'] option:selected").val());
-        postDataObj.reason.text = $("select[data-id='deactiveReason'] option:selected").text();
-        postDataObj.device.code = $("select[data-id='deviceUsed'] option:selected").val();
-        postDataObj.device.text = $("select[data-id='deviceUsed'] option:selected").text();
-        postDataObj.extraComment = $("textarea[data-id='extraComment']").val();
+        postDataObj.reason.code = parseInt($("[data-id='deactiveReason']").attr('data-code'));
+        postDataObj.reason.text = $("[data-id='deactiveReason']").attr('data-text');
+        postDataObj.device.code = $("[data-id='deviceUsed']").attr('data-code');
+        postDataObj.device.text = $("[data-id='deviceUsed']").attr('data-text');
+        postDataObj.extraComment = $("[data-id='extraComment']").val();
 
         var $complete = function(){
             $this.removeAttr('disabled').removeClass('is-loading');

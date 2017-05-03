@@ -61,3 +61,14 @@ Utilities.registerJqueryExtensions = function () {
   })(jQuery);
 };
 Utilities.registerJqueryExtensions();
+
+Utilities.selectDropDownText = function () {
+
+    (function($){
+        $(".dropdown-menu").on('click touchend', '.dropdown-item', function(e){
+                  $(this).parents(".dropdown").find('.btn').find('span').text($(this).text());
+                  $(this).parents(".dropdown").find('.btn').attr('data-text',$(this).text());
+                  $(this).parents(".dropdown").find('.btn').attr('data-code',$(this).attr('value'));
+        })
+    })(jQuery)
+}
