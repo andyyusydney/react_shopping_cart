@@ -149,7 +149,8 @@ $br: 4px;
                 outline:0;
                 border-color:initial;
           }
-          p {
+          span {
+            display: inline-block;
             text-align: left;
             margin-bottom: initial;
           }

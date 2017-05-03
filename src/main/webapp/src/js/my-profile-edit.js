@@ -193,7 +193,7 @@ $(function () {
           email: response.iEmail,
           password: 'password',
           mobile: response.iContactTelephone,
-          dateOfBirth:moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"),
+          dateOfBirth: response.kDOB.replace(/\//g, '-'),
           address: response.kBillAddress1,
           suburb: response.kBillCity,
           state: response.kBillState,
@@ -239,7 +239,7 @@ $(function () {
         var payload = {
           firstName:formData.firstName,
           lastName:formData.lastName,
-          dataOfBirth:formData.dateOfBirth.replace(/\//g,'-'),
+          dateOfBirth:moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"),
           custEmail: formData.email,
           dayPhone: formData.mobile,
           billAddressOne: formData.address,
