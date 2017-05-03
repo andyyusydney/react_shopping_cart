@@ -152,16 +152,15 @@ $(function () {
 
     var UpdateDetails = Backbone.Model.extend({
       getDetailsEndpoint: '/bin/secure/profileSettings',
-      idmEndpoint: '/bin/secure/profile-settings/update-my-details',
-      kenanEndpoint: '/bin/secure/profile-settings/update-contact-details',
+      updateDetailsEndpoint: '/bin/secure/now/accountProfileSubmit',
+
 
       updateDetails: function (formData) {
         this.set({
           idmUpdated: false,
           kenanUpdated: false
         });
-        this.updateIDM(formData);
-        this.updateKenan(formData);
+        this.updateDetails(formData);
       },
 
       getProfile: function () {
@@ -205,16 +204,9 @@ $(function () {
         this.trigger('fetched:details');
       },
 
-      handleIDMUpdateResponse: function (response) {
+        handleUpdateResponse: function (response) {
         this.set({
           idmUpdated: true
-        });
-        this.updated();
-      },
-
-      handleKenanUpdateResponse: function (response) {
-        this.set({
-          kenanUpdated: true
         });
         this.updated();
       },
@@ -222,35 +214,28 @@ $(function () {
       // Private
       // -------
 
-      updateIDM: function (formData) {
-        var payload = {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          contactTelephone: formData.mobile,
-          foxtelAccountId: this.get('accountId'),
-          username: this.get('username')
-        };
-
-        $.post(this.idmEndpoint, payload, this.handleIDMUpdateResponse.bind(this));
-      },
-
-      updateKenan: function (formData) {
-        var payload = {
-          firstName:formData.firstName,
-          lastName:formData.lastName,
-          dateOfBirth:moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"),
-          custEmail: formData.email,
-          dayPhone: formData.mobile,
-          billAddressOne: formData.address,
-          billCity: formData.suburb,
-          billState: formData.state,
-          billZip: formData.postcode,
-          foxtelAccountId: this.get('accountId'),
-          accountInternalId: this.get('accountId')
-        };
-
-        $.post(this.kenanEndpoint, payload, this.handleKenanUpdateResponse.bind(this));
+      updateDetails: function (formData) {
+          var payload = {
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              email: formData.email,
+              contactTelephone: formData.mobile,
+              dateOfBirth:moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"),
+              address: formData.address,
+              suburb: formData.suburb,
+              state: formData.state,
+              postcode: formData.postcode
+          };
+          $.ajax({
+              type: "POST",
+              url: this.updateDetailsEndpoint,
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              data: JSON.stringify(payload),
+              success: function(data) {
+                  this.handleUpdateResponse.bind(this);
+              }
+          });
       },
 
       updated: function () {
