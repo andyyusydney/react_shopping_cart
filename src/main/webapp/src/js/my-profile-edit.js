@@ -82,10 +82,16 @@ $(function () {
                 selectBox.setValueByChoice(formData[key]);
               }
             case 'INPUT':
-              // Prefill the value.
-              $field.val(formData[key])
-                // Add active value to label to show populated state.
-                .siblings('label').addClass('active');
+              if ($field.attr('type') === 'text') {
+                // Prefill the value.
+                $field.val(formData[key])
+                  // Add active value to label to show populated state.
+                  .siblings('label').addClass('active');
+              } else if ($field.attr('type') === 'checkbox') {
+                if (formData[key]) {
+                  $field.click();
+                }
+              }
           }
         })
       },
@@ -196,7 +202,8 @@ $(function () {
           address: response.kBillAddress1,
           suburb: response.kBillCity,
           state: response.kBillState,
-          postcode: response.kBillZip
+          postcode: response.kBillZip,
+          marketOpt: response.kenanMktFlag
         };
         this.set({
           prefillFormData: formData
