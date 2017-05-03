@@ -58,9 +58,8 @@ $(function () {
 
         $submitButton.removeClass('is-loading').addClass('is-valid');
         setTimeout(function () {
-          $submitButton.removeClass('is-valid');
-          $buttonContainer.css('min-width', 'initial');
-        }, 1000);
+          window.location = '/now/my-account.html';
+        }, 2000);
       },
 
       handleUpdateError: function (xhr, status, error) {
