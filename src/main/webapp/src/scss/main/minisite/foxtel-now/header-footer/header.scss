@@ -7,11 +7,37 @@
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0;
+
+  &.is-loaded {
+    transition: opacity 100ms ease-in;
+    opacity: 1.0;
+  }
 
   &.is-logged-in {
     max-width: none;
     padding-left: 5%;
     padding-right: 5%;
+
+    .menu-bar {
+      .left-section {
+        .menu-item {
+          @include breakpoint(tablet) {
+            display: inline-block;
+          }
+        }
+      }
+
+      .right-section {
+        .settings {
+          display: inline-block;
+        }
+
+        .foxtel-now-header__btn-container {
+          display: none;
+        }
+      }
+    }
   }
 
   .menu-bar {
@@ -60,15 +86,11 @@
         cursor: pointer;
         padding: 0;
         margin: 0 25px;
-        font-size: 22px;
+        font-size: 18px;
         position: relative;
         height: 100%;
         line-height: 70px;
         font-weight: 400;
-
-        @include breakpoint(tablet) {
-          display: inline-block;
-        }
 
         a {
           transition: color .3s ease;
@@ -102,7 +124,7 @@
       box-sizing: border-box;
 
       .settings {
-        display: inline-block;
+        display: none;
         margin-left: 20px;
         height: 100%;
         outline: 0;
