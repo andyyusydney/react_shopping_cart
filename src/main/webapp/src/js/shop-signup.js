@@ -94,7 +94,7 @@
             requestObject.password = self.options.$form.find("[data-id='password']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
-            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").val();
+            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").attr('data-code');
             return requestObject;
         },
         fillForm:function(data){
@@ -118,7 +118,7 @@
             requestObject.lastName = self.options.$form.find("[data-id='lastName']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
-            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").val();
+            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").attr('data-code');
             return requestObject;
         },
         fillForm:function(data){
@@ -168,6 +168,8 @@ $(document).ready(function(){
     if(!hasForm){
         return;
     }
+
+    Utilities.selectDropDownText();
 
     $emailField = $form.find("[data-id='email']");
     //email in use listener
