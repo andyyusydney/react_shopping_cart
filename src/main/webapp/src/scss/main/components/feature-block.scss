@@ -45,8 +45,10 @@
 .shop-feature-block--lg__image{
   display: flex;
   align-items: center;
+  margin-bottom:30px;
   @media (min-width: 768px) {
     height:360px;
+    margin-bottom:0;
   }
   img{
     width:100%;
