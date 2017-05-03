@@ -9,6 +9,10 @@ $(document).ready(function(){
     // SCROLL SENSITIVITY TO ADJUST SCROLL BEHAVIOURS
     var sensitivity = 3;
 
+
+    //Foxtel.applyMaxHeight(".channel-pack-combos");
+
+
     $(window).scroll(function() {
         // GET CURRENT PAGE AXIS
         var nextScroll = $(this).scrollTop();
