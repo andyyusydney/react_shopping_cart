@@ -19,7 +19,7 @@
     display:inline;
     &:after{
       content:">";
-      color:#0a0a0a;
+      color:$color--body;
       margin:0 10px;
     }
     &:last-child{
@@ -28,11 +28,11 @@
         content:"";
       }
       a{
-        border-bottom:3px solid #0a0a0a;
+        border-bottom:3px solid $color--body;
       }
     }
     a{
-      color:#0a0a0a;
+      color:$color--body;
       display:inline-block;
       margin-top:13px;
       padding-bottom:13px;
