@@ -105,10 +105,12 @@ $(document).ready(function(){
     });
 
     //Hide or show Cart
-    $(document).on('click','.foxtel-now-header__btn-cart__icon',function(e){
+    $(document).on('click','.foxtel-now-header__btn-cart',function(e){
         e.stopImmediatePropagation();
         e.preventDefault();
-        $('.foxtel-now-jumbotron').toggle('slow',function(){})
+        $('.foxtel-now-jumbotron').slideToggle({
+          duration: 400
+        });
     });
 
     //Remove pack from shopping cart
@@ -146,6 +148,11 @@ $(document).ready(function(){
         }
     });
 
+    //Click card to trigger Find out more
+    $(document).on('click','.foxtel-now-card',function(e){
+        var url = $(this).find('.foxtel-now-card__title__link a').attr('href');
+        Foxtel.navigator(url);
+    },false);
 
     FOX.context.subscribe("SHOP_CART_LOADED",function(data){
         updatePackBtns(data);

@@ -1,7 +1,6 @@
 /**
  * This javascript is for update billing details in my account
  */
-var Utilities = require('./utilities');
 
 $(document).ready(function(){
 
@@ -12,13 +11,17 @@ $(document).ready(function(){
     $formDirectDebit = $('#foxtel-now-credit-card-details-form');
     $submitBtn = $('#credit-card-form-submit');
 
+    $formDirectDebit.hide();
+    $('.foxtel-now-display-div-template-container').on('click','.edit-link',function(){
+        $formDirectDebit.slideToggle();
+    })
 
     $submitBtn.on('click', function (e) {
         e.preventDefault();
 
         //hide notification bar
         FOX.context.broadcast('HIDE_BANNER', {
-          name: 'PAYMENT_GATEWAY_ERROR',
+          name: 'PROFILE_UPDATED',
           closeEnabled: true
         });
 
@@ -46,6 +49,7 @@ $(document).ready(function(){
         postDataObj.cardExpireMonth = $("input[data-id='cardExpiry']").val().split("-")[0];
         postDataObj.cardExpireYear = $("input[data-id='cardNumber']").val().split("-")[1];
         postDataObj.cvc = $("input[data-id='cvc']").val();
+        postDataObj.customerName = $("div.customer-name").text().trim();
 
         var postData = "";
 
@@ -54,25 +58,42 @@ $(document).ready(function(){
         })
 
         postData = postData.slice(0,-1);
+        postData = encodeURI(postData);
 
         var $complete = function(){
             $this.removeAttr('disabled').removeClass('is-loading');
-        }
+        };
 
-        var $callback = function(data){
-            if ((typeof data !== 'undefined') || !($.isEmptyObject(data))) {
-                if(data.DirectDebit.successFlag){
-                    Foxtel.navigator($this.data("redirect-url"));
-                }
-            }
-
-            //notification bar
+        var updateBillingDetailsError = function (response) {
             FOX.context.broadcast('SHOW_BANNER', {
-              name: 'PAYMENT_GATEWAY_ERROR',
+              name: 'PROFILE_UPDATE_ERROR',
               closeEnabled: true
             });
         };
 
-        Utilities.getPostData(postData,"/bin/secure/bills-and-payments",$callback,$complete);
+        var $callback = function(data){
+            if ((typeof data !== 'undefined') || !($.isEmptyObject(data))) {
+                if(data.DirectDebit.success){
+                    //Show success notification bar.
+                    FOX.context.broadcast('SHOW_BANNER', {
+                      name: 'PROFILE_UPDATED',
+                      closeEnabled: true
+                    });
+
+                    // Show success button state.
+                    $this.addClass('is-valid');
+
+                    // Redirect
+                    setTimeout(function () {
+                      Foxtel.navigator($this.data("redirect-url"));
+                    }, 2000);
+                } else {
+                  updateBillingDetailsError();
+                }
+            }
+        };
+
+        var xhr = Utilities.getPostData(postData,"/bin/secure/bills-and-payments",$callback,$complete);
+        xhr.fail(updateBillingDetailsError);
     });
 });

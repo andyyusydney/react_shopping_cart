@@ -58,7 +58,7 @@ $(document).ready(function () {
 
         _(data.play.tiers).select(function (tier) {
           if (tier.tierId === parseInt(buttonData.tierId, 10)) {
-            $addToCartButton.addClass('is-disabled').html(buttonData.addToCartText);
+            $addToCartButton.addClass('is-disabled').html(buttonData.addedText);
             // Update the sliding background to the buy it now button.
             $addToCartButton.siblings('.buy-it-now').trigger('mouseover');
           }
@@ -71,9 +71,9 @@ $(document).ready(function () {
         var $link = $(event.currentTarget);
         var tierId = $link.data('tier-id');
 
-        if (!this.model.get('addedToCart')) {
-          event.preventDefault();
-          self.addToCart(tierId, function () {
+        event.preventDefault();
+
+        var callback = function () {
             // If the cart contains a premium pack but no starter ones,
             // redirect to the page to prompt them to add a starter pack.
             if (self.cart.hasPremiumPackAndNoStarter()) {
@@ -82,7 +82,12 @@ $(document).ready(function () {
             } else {
               window.location.href = $link.attr('href');
             }
-          });
+        };
+
+        if (!this.model.get('addedToCart')) {
+          self.addToCart(tierId, callback);
+        }else{
+          callback();
         }
       },
 

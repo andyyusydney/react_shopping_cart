@@ -1,0 +1,20 @@
+.iq-banner {
+  width: 100%;
+  height: 428px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: $color--body;
+
+  @media (max-width: 767px) { height: 367px; }
+  @media (min-width: 768px) and (max-width: 992px) { height: 428px; }
+
+  .font--md--bold  {
+    @media (max-width: 767px) { font-size: $font-size--base; }
+  }
+
+  .font--lg--bold, .font--lg {
+    @media (max-width: 767px) { font-size: $font-size--md; }
+  }
+}

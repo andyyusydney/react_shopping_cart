@@ -26,6 +26,7 @@ $br: 4px;
 .foxtel-now-form-container {
   @include placeholder('input', transparent);
   @include placeholder('input:focus', $foxtel-now-dark-grey);
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.15);
 
 /* Parsley classes */
 
@@ -56,7 +57,6 @@ $br: 4px;
     padding: 20px;
   }
   border-radius:$br;
-  box-shadow:0 4px 10px 4px rgba($form-bg,.3);
 	.foxtel-now-form-container__tab-group {
 	  list-style:none;
 	  padding:0;
@@ -120,29 +120,58 @@ $br: 4px;
 	  background-image:none;
 	  border: solid 0.5px rgb(153, 153, 153);
 	  border-radius:0;
-	  line-height: 2.25;
+	  height: 3em;
 	  transition:border-color .25s ease, box-shadow .25s ease;
 	  &:focus {
 			outline:0;
 			border-color:initial;
 	  }
-
+      &::-ms-clear {
+        display: none;
+      }
 	}
 
 	textarea {
 	    padding: 0;
 	}
 
-    select {
-      border: solid 0.5px rgb(153, 153, 153);
-      border-radius:0;
-      transition:border-color .25s ease, box-shadow .25s ease;
-      width: 100%;
-      font-size: 90%;
-      &:focus {
-            outline:0;
-            border-color:initial;
-      }
+    .dropdown {
+        .custom-select {
+          border: solid 0.5px rgb(153, 153, 153);
+          border-radius:0;
+          transition:border-color .25s ease, box-shadow .25s ease;
+          width: 100%;
+          font-size: 90%;
+          -webkit-appearance: listbox;
+          white-space: normal;
+          min-height: 3.5em;
+          &:focus {
+                outline:0;
+                border-color:initial;
+          }
+          span {
+            display: inline-block;
+            text-align: left;
+            margin-bottom: initial;
+          }
+        }
+
+        .dropdown-menu {
+            width: 100%;
+        }
+
+        .dropdown-item {
+            white-space: normal;
+        }
+
+        .dropdown-toggle::after {
+            content: "";
+            display: none;
+        }
+
+        .show>.dropdown-menu {
+            width: 100%;
+        }
     }
 
 	/* Base for label styling */
@@ -191,7 +220,7 @@ $br: 4px;
 	  transform: scale(1);
 	}
 	[type="checkbox"]:checked + label:before {
-	  background: $foxtel-now-green;
+	  background: $foxtel-now-pink;
 	}
 	/* disabled checkbox */
 	[type="checkbox"]:disabled:not(:checked) + label:before,
@@ -260,7 +289,7 @@ $br: 4px;
 	  }
 	  .tooltips-container {
 	  	position: absolute;
-	  	bottom: 45px;
+	  	bottom: 65px;
 	  	right: 2px;
 	  	opacity: 0;
 	  }
@@ -303,7 +332,7 @@ $br: 4px;
 	}
 
 	sub	{
-		line-height: initial;
+		line-height: normal;
 	}
 
   .form-control--has-button {

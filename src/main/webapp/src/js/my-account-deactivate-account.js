@@ -2,7 +2,6 @@
  * This javascript is for view my bills in my account
  */
 
-var Utilities = require('./utilities');
 
 
 $(document).ready(function(){
@@ -10,6 +9,8 @@ $(document).ready(function(){
     if($('#foxtel-now-cancel-membership-form').length < 1){
         return;
     }
+
+    Utilities.selectDropDownText();
 
     $formDirectDebit = $('#foxtel-now-cancel-membership-form');
     $submitBtn = $('#cancel-member-form-submit');
@@ -39,11 +40,11 @@ $(document).ready(function(){
             extraComment: ""
         }
 
-        postDataObj.reason.code = parseInt($("input[data-id='deactiveReason'] option:selected").val());
-        postDataObj.reason.text = $("input[data-id='deactiveReason'] option:selected").text();
-        postDataObj.device.code = $("input[data-id='deviceUsed'] option:selected").val();
-        postDataObj.device.text = $("input[data-id='deviceUsed'] option:selected").text();
-        postDataObj.extraComment = $("input[data-id='extraComment']").val();
+        postDataObj.reason.code = parseInt($("[data-id='deactiveReason']").attr('data-code'));
+        postDataObj.reason.text = $("[data-id='deactiveReason']").attr('data-text');
+        postDataObj.device.code = $("[data-id='deviceUsed']").attr('data-code');
+        postDataObj.device.text = $("[data-id='deviceUsed']").attr('data-text');
+        postDataObj.extraComment = $("[data-id='extraComment']").val();
 
         var $complete = function(){
             $this.removeAttr('disabled').removeClass('is-loading');
@@ -61,6 +62,6 @@ $(document).ready(function(){
             });
         };
 
-        Utilities.getPostData(postDataObj,"/bin/foxtel/now/my-account/deactivate",$callback,$complete);
+        Utilities.getPostData(JSON.stringify(postDataObj),"/bin/foxtel/now/my-account/deactivate",$callback,$complete);
     });
 });

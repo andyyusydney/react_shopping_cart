@@ -94,7 +94,7 @@
             requestObject.password = self.options.$form.find("[data-id='password']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
-            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").val();
+            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").attr('data-code');
             return requestObject;
         },
         fillForm:function(data){
@@ -116,9 +116,10 @@
             var requestObject = {};
             requestObject.firstName = self.options.$form.find("[data-id='firstName']").val();
             requestObject.lastName = self.options.$form.find("[data-id='lastName']").val();
+            requestObject.password = self.options.$form.find("[data-id='password']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
-            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").val();
+            requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").attr('data-code');
             return requestObject;
         },
         fillForm:function(data){
@@ -149,25 +150,27 @@ $(document).ready(function(){
             submitAjaxUrl:"/bin/foxtel/now/customerDetails",
             loadAjaxUrl:"/bin/foxtel/now/customerDetailLanding"
         });
-        return;
     }
 
-    $form = $("#reactivation-personal-details-form");
-    if($form.length > 0){
-        hasForm = true;
-        new com.foxtel.now.ReactivationCustomerDetailsForm().config({
-            submitBtnSelector:"#sign-up-form-submit",
-            $form:$form,
-            submitAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetails",
-            loadAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetailLanding"
-        });
-        return;
+    if(!hasForm){
+        $form = $("#reactivation-personal-details-form");
+        if($form.length > 0){
+            hasForm = true;
+            new com.foxtel.now.ReactivationCustomerDetailsForm().config({
+                submitBtnSelector:"#sign-up-form-submit",
+                $form:$form,
+                submitAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetails",
+                loadAjaxUrl:"/bin/foxtel/now/my-account/reactivation/customerDetailLanding"
+            });
+        }
     }
 
     //stop loading if there is no form
     if(!hasForm){
         return;
     }
+
+    Utilities.selectDropDownText();
 
     $emailField = $form.find("[data-id='email']");
     //email in use listener

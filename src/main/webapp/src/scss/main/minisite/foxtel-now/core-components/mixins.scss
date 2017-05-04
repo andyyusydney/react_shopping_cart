@@ -10,9 +10,16 @@
   	border: solid 2px rgb(240, 240, 240);
   	&:hover {
   		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-  		border: solid 2px rgb(47, 218, 110);
+  		border: solid 2px $foxtel-now-pink;
   	}
-  	.foxtel-now-btn.enable {
+
+  	&.is-disabled {
+  	      	&:hover {
+          		box-shadow: none;
+          		border: solid 2px rgb(240, 240, 240);
+          	}
+  	}
+  	.v.enable {
   	    color: black;
   		span{
   			&:before {
@@ -29,13 +36,12 @@
 		.foxtel-now-card__image-wrapper__promo {
 			text-align: left;
 			color: rgb(74, 74, 74);
-			background-color: rgb(240, 240, 240);
-  			box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2);
   			height: 36px;
   			display: table;
   			margin-left: -15px;
   			padding-left: 15px;
   			padding-right: 35px;
+  			margin-bottom: 15px;
   			p {
   				margin-top: 1rem;
   				display: table-cell;
@@ -112,14 +118,14 @@
 	display: block;
 	border-radius: $radius;
 	-webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
-  padding: 15px;
-  color: black;
-  background-color: $foxtel-now-green;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    padding: 15px;
+    color: white;
+    background-color: $foxtel-now-pink;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
 	transition: border $transition-time ease,
 		border-radius $transition-time ease,
 		background-color $transition-time ease,
@@ -128,7 +134,7 @@
 
   &:hover {
   	text-decoration: none;
-  	color: black;
+  	color: white;
   	opacity: 0.8;
   }
 
@@ -137,16 +143,16 @@
 	}
 
 	&.is-loading {
-		text-indent: -1000em;
+		color: transparent;
 		background-color: transparent;
 		pointer-events: none;
 		content: "";
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-    background-color: transparent;
-    border: 3px solid #f0f0f0;
-		border-left-color: $foxtel-now-green;
+        background-color: transparent;
+        border: 3px solid #f0f0f0;
+		border-left-color: $foxtel-now-pink;
 		animation: rotating 2s 250ms linear infinite, in 2s 0 ease-in;
 	}
 
@@ -164,7 +170,7 @@
 		&:after {
 			display: inherit;
 	    content: "\f00c";
-	    background-image: url(/content/dam/now/Icons/check.svg);
+	    background-image: url(/content/dam/now/icons/check.svg);
 	    background-size: 30%;
 	    background-position: 50%;
 	    background-repeat: no-repeat;
@@ -203,8 +209,12 @@
 	border-width: 2px;
 }
 
-.border--dark {
+.border--black {
 	border-color: rgb(74, 74, 74);
+}
+
+.border--grey {
+	border-color: $foxtel-now-grey;
 }
 
 .foxtel-now-table-row {
@@ -272,7 +282,7 @@
 
 // A Corner ribbon
 .ribbon-wrapper {
-	$background-color: $foxtel-now-green;
+	$background-color: $foxtel-now-pink;
 	$font-color: white;
 
 	z-index: 2;
@@ -284,7 +294,7 @@
 	left: -2px;
 
 	.ribbon {
-		color: $foxtel-now-very-dark-grey;
+		color: white;
 		text-align: center;
 		position: relative;
 		padding: 7px 30px 7px 0;
@@ -316,13 +326,21 @@
 
 .foxtel-now-list {
 	padding-left: 0;
+	margin-top: 1rem;
+	list-style-position: inside;
 	list-style: none;
 	li {
 		&:before {
-			content: "\2022";
-			color: rgb(47, 218, 110);
-			font-size: 1.5em;
-			padding-right: 10px;
+		  content: "• ";
+		  color: $foxtel-now-pink;
+			font-size: 20px;
+		}
+
+		color: $foxtel-now-dark-grey;
+		margin-top: 10px;
+		p {
+		    color: initial;
+		    display: inline;
 		}
 	}
 }
@@ -331,6 +349,9 @@
 	@extend .foxtel-now-list;
 	display: flex;
 	justify-content: space-between;
+	@include breakpoint(mobileOnly) {
+      flex-direction: column;
+    }
 	li {
 		display: inline;
 	}
