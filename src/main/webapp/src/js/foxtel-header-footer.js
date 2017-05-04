@@ -9,6 +9,8 @@ $(document).ready(function(){
     var topnavStatus;
     var currentScroll = 0;
 
+    $('body').prepend('<div style="height:' + topnavH + 'px;"></div>');
+
     // SCROLL SENSITIVITY TO ADJUST SCROLL BEHAVIOURS
     var sensitivity = 2;
 
@@ -64,8 +66,7 @@ $(document).ready(function(){
             // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
         } else {
             topnav.removeClass('foxtel-header-breadcrumb--pop');
-            //topnav.css('position','relative');
-            topnav.css({'position':'absolute','z-index':100});
+            topnav.css({'position': 'absolute', 'z-index': 100});
         }
 
         // SET CURRENT AS LAST SCROLL

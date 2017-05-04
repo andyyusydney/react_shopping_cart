@@ -1,7 +1,7 @@
 .family-comparison {
   min-width: 300px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: $color--white;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   text-align: center;
   color: $color--body;
@@ -21,7 +21,7 @@
     margin: 0;
   }
   li {
-    border-bottom: 1px solid #f0edeb;
+    border-bottom: 1px solid $color--grey-f0edeb;
     padding-bottom: 10px;
     display: flex;
     flex-direction: row;
@@ -43,7 +43,7 @@
       }
     }
     &.family-comparison__unavailable-feature:before {
-      border-color: #bec0c2;
+      border-color: $color--grey-bec0c2;
     }
     &:before {
       content: ' ';
