@@ -82,15 +82,15 @@ $(function () {
                 selectBox.setValueByChoice(formData[key]);
               }
             case 'INPUT':
-              if ($field.attr('type') === 'text') {
-                // Prefill the value.
-                $field.val(formData[key])
+              if (($field.attr('type') === 'text') || ($field.attr('type') === 'tel'))  {
+                  // Prefill the value.
+                  $field.val(formData[key])
                   // Add active value to label to show populated state.
-                  .siblings('label').addClass('active');
+                      .siblings('label').addClass('active');
               } else if ($field.attr('type') === 'checkbox') {
-                if (formData[key]) {
-                  $field.click();
-                }
+                  if (!!formData[key]) {
+                      $field.click();
+                  }
               }
           }
         })
@@ -195,7 +195,7 @@ $(function () {
         var formData =  {
           firstName: response.iFirstName,
           lastName: response.iLastName,
-          email: response.iEmail,
+          email: response.kCustEmail,
           password: 'password',
           mobile: response.iContactTelephone,
           dateOfBirth: response.kDOB.replace(/\//g, '-'),
@@ -211,9 +211,10 @@ $(function () {
         this.trigger('fetched:details');
       },
 
-        handleUpdateResponse: function (response) {
+      handleUpdateResponse: function (response) {
         this.set({
-          idmUpdated: true
+          idmUpdated: true,
+          kenanUpdated:true
         });
         this.updated();
       },
@@ -240,7 +241,7 @@ $(function () {
               dataType: "json",
               data: JSON.stringify(payload),
               success: function(data) {
-                  this.handleUpdateResponse.bind(this);
+                  updateDetails.handleUpdateResponse(data);
               }
           });
       },
