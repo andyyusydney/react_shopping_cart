@@ -32,7 +32,7 @@ $(document).ready(function(){
                             topnavStatus = false;
 
                             // TOPNAV SLIDES BACK AWAY
-                            topnav.clearQueue().stop().animate({marginTop: -topnavH}, 300, function () {
+                            topnav.clearQueue().stop().animate({marginTop: 0}, 300, function () {
 
                                 //TO DISTINCUISH FOXTEL NOW HEADER
                                 if (topnav.find('header').hasClass('foxtel-now-header')) {

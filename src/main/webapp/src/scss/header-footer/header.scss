@@ -71,7 +71,7 @@
     }
   }
 }
-.foxtel-header__left__nav__more{
+.foxtel-header__left__nav__more {
   position:relative;
   margin-right:0 !important;
   @include breakpoint(tablet) {
@@ -154,6 +154,11 @@
   .foxtel-header__right__logout__dropdown {
     @extend .foxtel-header__left__nav__more__dropdown;
     display: none;
+
+    >li>a {
+        padding: 15px 38px;
+    }
+
   }
 
   &.active{
@@ -174,11 +179,14 @@
     font-family: inherit;
     color: #191919;
     white-space: nowrap;
-    padding: 15px;
+    padding: 15px 38px;
     border-bottom: 1px solid #efefef;
     display: flex;
     cursor: pointer;
     width: 100%;
+    @include breakpoint(mobileOnly) {
+        padding: 15px;
+    }
   }
 }
 

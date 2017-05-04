@@ -1,5 +1,6 @@
 .channel-pack-combos {
-  width: 300px;
+  min-width: 300px;
+  width: 100%;
   border-radius: 1px;
   background-color: $color--white;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
@@ -9,13 +10,13 @@
 
   @media (max-width: 767px) {
     margin-bottom: 15px;
-    width: 290px;
+    width: 100%;
   }
   @media (min-width: 768px) and (max-width: 992px) {
-    width: 345px;
+    min-width: 345px;
   }
   @media (min-width: 1024px) {
-     width: 356.3px;
+    min-width: 356.3px;
   }
   .channel-pack-combos__top__headline {
     font-size: $font-size--md;
@@ -128,6 +129,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: none;
   }
 
   a.channel-pack-combos__build-yours {

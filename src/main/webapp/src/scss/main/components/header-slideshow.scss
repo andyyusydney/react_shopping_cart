@@ -4,6 +4,8 @@
     height: calc( 100vh - 65px - 45px );    /* 65px - header`s height; 45px - margin left till bottom */
     position: relative;
     margin-bottom: 30px;
+    z-index: 1;
+    background-color: $color--body;
 
     @media (max-width: 767px) { height: 520px; }
 }

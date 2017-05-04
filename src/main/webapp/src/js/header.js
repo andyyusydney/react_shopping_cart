@@ -2,6 +2,9 @@ $(function () {
   var $header = $('.foxtel-now-header');
 
   if ($header.length) {
+    // HeaderView
+    // ----------
+
     var HeaderView = Backbone.View.extend({
       initialize: function () {
         $(window).on('click', this.closeSettingsDropdown.bind(this));
@@ -44,6 +47,9 @@ $(function () {
           // Update the username in settings.
           this.$el.find('.settings .username').html('Hi, ' + this.model.get('name'));
         } else {
+          if (this.model.onLoginPage()) {
+            this.$el.addClass('log-in');
+          }
           this.$el.addClass('container');
         }
         // Show the header.
@@ -51,11 +57,18 @@ $(function () {
       }
     });
 
+    // Header
+    // ------
+
     var Header = Backbone.Model.extend({
       userInfoEndpoint: '/bin/foxtel/userInfo',
 
       getUserInfo: function () {
         $.get(this.userInfoEndpoint, this.handleUserInfoResponse.bind(this));
+      },
+
+      onLoginPage: function () {
+        return window.location.href.match(/\/now\/login\.html/);
       },
 
       // Event handlers
