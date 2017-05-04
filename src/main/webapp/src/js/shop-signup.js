@@ -116,6 +116,7 @@
             var requestObject = {};
             requestObject.firstName = self.options.$form.find("[data-id='firstName']").val();
             requestObject.lastName = self.options.$form.find("[data-id='lastName']").val();
+            requestObject.password = self.options.$form.find("[data-id='password']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
             requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").attr('data-code');
