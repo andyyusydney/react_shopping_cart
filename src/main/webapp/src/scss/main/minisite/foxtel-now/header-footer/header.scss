@@ -40,6 +40,16 @@
     }
   }
 
+  &.log-in {
+    .menu-bar {
+      .right-section {
+        .foxtel-now-header__btn-container {
+          display: none;
+        }
+      }
+    }
+  }
+
   .menu-bar {
     font-family: "ProximaNova", arial, sans-serif;
     min-width: 300px;
