@@ -62,22 +62,38 @@ $(document).ready(function(){
 
         var $complete = function(){
             $this.removeAttr('disabled').removeClass('is-loading');
-        }
+        };
 
-        var $callback = function(data){
-            if ((typeof data !== 'undefined') || !($.isEmptyObject(data))) {
-                if(data.DirectDebit.successFlag){
-                    Foxtel.navigator($this.data("redirect-url"));
-                }
-            }
-
-            //notification bar
+        var updateBillingDetailsError = function (response) {
             FOX.context.broadcast('SHOW_BANNER', {
-              name: 'PROFILE_UPDATED',
+              name: 'PROFILE_UPDATE_ERROR',
               closeEnabled: true
             });
         };
 
-        Utilities.getPostData(postData,"/bin/secure/bills-and-payments",$callback,$complete);
+        var $callback = function(data){
+            if ((typeof data !== 'undefined') || !($.isEmptyObject(data))) {
+                if(data.DirectDebit.success){
+                    //Show success notification bar.
+                    FOX.context.broadcast('SHOW_BANNER', {
+                      name: 'PROFILE_UPDATED',
+                      closeEnabled: true
+                    });
+
+                    // Show success button state.
+                    $this.addClass('is-valid');
+
+                    // Redirect
+                    setTimeout(function () {
+                      Foxtel.navigator($this.data("redirect-url"));
+                    }, 2000);
+                } else {
+                  updateBillingDetailsError();
+                }
+            }
+        };
+
+        var xhr = Utilities.getPostData(postData,"/bin/secure/bills-and-payments",$callback,$complete);
+        xhr.fail(updateBillingDetailsError);
     });
 });
