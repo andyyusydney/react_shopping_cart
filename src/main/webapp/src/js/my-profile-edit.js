@@ -167,7 +167,7 @@ $(function () {
           idmUpdated: false,
           kenanUpdated: false
         });
-        this.updateDetails(formData);
+        this.updateAllDetails(formData);
       },
 
       getProfile: function () {
@@ -223,7 +223,7 @@ $(function () {
       // Private
       // -------
 
-      updateDetails: function (formData) {
+      updateAllDetails: function (formData) {
           var payload = {
               firstName: formData.firstName,
               lastName: formData.lastName,
@@ -233,7 +233,8 @@ $(function () {
               address: formData.address,
               suburb: formData.suburb,
               state: formData.state,
-              postcode: formData.postcode
+              postcode: formData.postcode,
+              marketOpt:formData['market-opt'] === "on"
           };
           $.ajax({
               type: "POST",
