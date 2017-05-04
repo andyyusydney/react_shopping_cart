@@ -9,6 +9,9 @@ var jsonFile = require('jsonfile');
 var LOCAL_AEM_SERVER = "http://127.0.0.1:4502";
 var LOCAL_ASSET_SERVER = "http://127.0.0.1:9000";
 
+
+var proxy = httpProxy.createProxyServer();
+
 /**
  * This is main access point
  *
@@ -25,6 +28,19 @@ http.createServer(function (req, res) {
         return;
     }
 
+    if(/.*shop-checkout.js/.test(url)){
+        res.writeHead(200, {"Content-Type": "text/plain"});
+        res.end("");
+        return;
+    }
+
+    if(/.*foxtel-main-ui.css/.test(url)){
+        // Main css will be bundled with js.
+        res.writeHead(200, {"Content-Type": "text/plain"});
+        res.end("Blank\n");
+        return;
+    }
+
     if(/\/bin\/foxtel\/now.*/.test(url)){
         proxy.web(req, res, {
            target: LOCAL_ASSET_SERVER
@@ -34,7 +50,14 @@ http.createServer(function (req, res) {
 
     if(/\/bin\/secure\.*/.test(url)){
         proxy.web(req, res, {
-           target: LOCAL_ASSET_SERVER
+           target: LOCAL_WEBPACK_SERVER
+        });
+        return;
+    }
+
+    if(/.*hot-update.json/.test(url)){
+        proxy.web(req, res, {
+          target: LOCAL_WEBPACK_SERVER
         });
         return;
     }
@@ -45,6 +68,7 @@ http.createServer(function (req, res) {
     });
 
 }).listen(80);
+
 
 
 /**
