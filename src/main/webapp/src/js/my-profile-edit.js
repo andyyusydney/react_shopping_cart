@@ -82,9 +82,10 @@ $(function () {
                 selectBox.setValueByChoice(formData[key]);
               }
             case 'INPUT':
-              if (($field.attr('type') === 'text') || ($field.attr('type') === 'tel'))  {
-                  // Prefill the value.
-                  $field.val(formData[key])
+              var textTypes = ['text', 'tel'];
+              if (_(textTypes).contains($field.attr('type'))) {
+                // Prefill the value.
+                $field.val(formData[key])
                   // Add active value to label to show populated state.
                       .siblings('label').addClass('active');
               } else if ($field.attr('type') === 'checkbox') {
@@ -203,7 +204,7 @@ $(function () {
           suburb: response.kBillCity,
           state: response.kBillState,
           postcode: response.kBillZip,
-          marketOpt: response.kenanMktFlag
+          marketOpt: response.kenanMktFlag === "ON"
         };
         this.set({
           prefillFormData: formData
