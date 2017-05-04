@@ -51,7 +51,6 @@ $(function () {
 
       handleDobError: function ($parsleyField) {
         var assertName = $parsleyField.validationResult[0].assert.name;
-        debugger;
 
         if (assertName === "overeighteennow") {
           FOX.context.broadcast('SHOW_BANNER', {
@@ -83,7 +82,8 @@ $(function () {
                 selectBox.setValueByChoice(formData[key]);
               }
             case 'INPUT':
-              if ($field.attr('type') === 'text') {
+              var textTypes = ['text', 'tel'];
+              if (_(textTypes).contains($field.attr('type'))) {
                 // Prefill the value.
                 $field.val(formData[key])
                   // Add active value to label to show populated state.
@@ -205,7 +205,7 @@ $(function () {
           suburb: response.kBillCity,
           state: response.kBillState,
           postcode: response.kBillZip,
-          marketOpt: response.kenanMktFlag
+          marketOpt: response.kenanMktFlag === "ON"
         };
         this.set({
           prefillFormData: formData

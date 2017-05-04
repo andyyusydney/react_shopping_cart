@@ -1,0 +1,119 @@
+{
+  "iFirstName": "",
+  "iLastName": "",
+  "iFoxtelScreenName": "",
+  "iAccountType": "",
+  "iEmail": "",
+  "iContactTelephone": "",
+  "iUsername": "",
+  "iFoxtelAccountId": "",
+  "iSecurityQuestion": "",
+  "iSecurityAnswer": "",
+  "offer": "OFF",
+  "iSecondaryAccounts": {
+    "iSecondaryAccount": ""
+  },
+  "securityQuestions": {
+    "securityQuestions": [
+      "What is your Mother's maiden name?",
+      "What is your favourite sporting team?",
+      "What is your pet's name?",
+      "What is the name of your favourite musician?",
+      "What is your main frequent flyer number?",
+      "What is the last name of your childhood best friend?",
+      "What is the name of the hospital you were born at?",
+      "What is the last name of your favourite author?"
+    ]
+  },
+  "responseSuccessFlag": false,
+  "kFirstName": "Reneetest",
+  "kAccountStatus": "-1",
+  "kLastName": "Wheelerrtest",
+  "kDOB": "10/12/1980",
+  "kServiceAddress1": "3 21 DEAN STREET",
+  "kServiceAddress2": "",
+  "kServiceAddress3": "",
+  "kServiceAddress4": "",
+  "kServiceCity": "MOONEE PONDS",
+  "kServiceState": "VIC",
+  "kServicePostalCode": "3039",
+  "kCustEmail": "renee@12345.com.au",
+  "kContact1Phone": "0432089411",
+  "kContact2Phone": "",
+  "kBillAddress1": "11 Foxtel now road",
+  "kBillAddress2": "",
+  "kBillAddress3": "",
+  "kBillCity": "MOONEE PONDS",
+  "kBillState": "VIC",
+  "kBillZip": "3039",
+  "kAccountInternalId": "13736652",
+  "kenanMktFlag": "ON",
+  "partnerDeals": "ON",
+  "kSecurityQuestion": "What is your pet's name?",
+  "kSecurityQuestionId": "1",
+  "kSecurityAnswer": "QU5TV0VS",
+  "kSecurityQuestions": [
+    {
+      "kQuestionId": "1",
+      "kQuestionText": "What is your pet's name?"
+    },
+    {
+      "kQuestionId": "2",
+      "kQuestionText": "What is your favourite sporting team?"
+    },
+    {
+      "kQuestionId": "3",
+      "kQuestionText": "What is your Mother's maiden name?"
+    },
+    {
+      "kQuestionId": "4",
+      "kQuestionText": "What is the name of your favourite musician?"
+    },
+    {
+      "kQuestionId": "5",
+      "kQuestionText": "What is your main frequent flyer number?"
+    },
+    {
+      "kQuestionId": "6",
+      "kQuestionText": "What is the last name of your childhood best friend?"
+    },
+    {
+      "kQuestionId": "7",
+      "kQuestionText": "What is the name of the hospital you were born at?"
+    },
+    {
+      "kQuestionId": "8",
+      "kQuestionText": "What is the last name of your favourite author?"
+    }
+  ],
+  "isTelstraCustomer": false,
+  "specialOffer": "OFF",
+  "localResultCode": "KENAN_SUCCESS_FLAG_TRUE",
+  "isSuccess": true,
+  "account": {
+    "rateClassDefault": "1000",
+    "firstName": "Reneetest"
+  },
+  "roles": {
+    "primary": 1,
+    "foxtelPlay": 1,
+    "foxtelPlayXboxPpvOnly": 1,
+    "foxtelXboxAndStbCombined": 0,
+    "setTopBox": 0,
+    "foxtelGuest": 0
+  },
+  "headerCounter": 0,
+  "redirectUrl": "/error/generic-error.html",
+  "username": "renee@12345.com",
+  "idmAccount": {
+    "firstName": "Reneetest",
+    "userId": "renee@12345.com",
+    "accountId": "13736652",
+    "state": "VIC"
+  },
+  "packages": {
+    "hasTv": true,
+    "hasBroadband": false,
+    "hasPhone": false
+  }
+}
