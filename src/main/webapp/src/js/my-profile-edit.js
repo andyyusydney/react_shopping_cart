@@ -166,8 +166,6 @@ $(function () {
       // --------------
 
       handleGetDetailsResponse: function (response) {
-        response = JSON.parse(response);
-
         // Store non-form data in the model.
         this.setNonFormData(response);
 
