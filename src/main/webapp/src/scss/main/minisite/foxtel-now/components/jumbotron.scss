@@ -76,12 +76,12 @@
 				    	sub {
 				    	    padding: 0 13px;
 				    	}
-				    }	
+				    }
 				}
 				.foxtel-now-jumbotron__pack-tag--transparent {
 					display: none;
 				    background: transparent;
-				    color: white;	
+				    color: white;
 				}
 			}
 		}
@@ -152,7 +152,7 @@
 				p:nth-child(2),
 				p:last-child {
 					display: inline-block;
-				}		
+				}
 			}
 		}
 	}
@@ -162,7 +162,7 @@
 		    display: none;
 		    &.total {
 		        display: table-cell;
-                width: 60%;
+                width: 75%;
 		    }
 		    @include breakpoint(mobileOnly){
 		        width: initial;
