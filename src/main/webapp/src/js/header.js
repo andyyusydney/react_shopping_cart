@@ -41,11 +41,15 @@ $(function () {
       },
 
       handleUserInfo: function () {
+        var $logoLink = this.$el.find('.logo a');
+
         // Set the logged-in status of the header.
         if (this.model.get('loggedIn')) {
           this.$el.addClass('is-logged-in');
           // Update the username in settings.
           this.$el.find('.settings .username').html('Hi, ' + this.model.get('name'));
+          // Update logo link
+          $logoLink.attr('href', $logoLink.data('logged-in-url'));
         } else {
           if (this.model.onLoginPage()) {
             this.$el.addClass('log-in');
