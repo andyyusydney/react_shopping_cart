@@ -1,10 +1,10 @@
 .toast-popup {
-  border-bottom: 1px solid #ffffff;
-  color: #ffffff;
+  border-bottom: 1px solid $color--white;
+  color: $color--white;
   text-align: center;
   line-height: 80px;
   height: 80px;
-  background-color: #0a0a0a;
+  background-color: $color--body;
   @media (max-width: 1024px) {
     visibility: hidden;
     display: none;
@@ -25,6 +25,15 @@
      }
   }
   .toast-popup__btn {
-    display: inline-block; font-family: ProximaNova; font-size: 18px; font-weight: bold; text-align: center; color: #ffffff; width: 185px; height: 52px; border-radius: 100px; background-color: #f54e13;  line-height: 52px; margin-left: 20px;
+    display: inline-block;
+    font-family: ProximaNova;
+    font-size: $font-size--base;
+    font-weight: bold;
+    text-align: center;
+    color: $color--white;
+    width: 185px;
+    height: 52px; border-radius: 100px; background-color: $color--brand;
+    line-height: 52px;
+    margin-left: 20px;
   }
 }

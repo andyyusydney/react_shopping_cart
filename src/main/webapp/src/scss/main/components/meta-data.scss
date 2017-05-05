@@ -35,5 +35,5 @@
 }
 
 .meta-data-hide-in-mobile {
-   @media (max-width: 767px) { font-size: $font-size--md; }
+   @media (max-width: 767px) { display: none; }
 }

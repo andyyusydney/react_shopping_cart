@@ -5,6 +5,7 @@ $(function () {
   var $form = $('#my-profile-edit');
 
   if ($form.length) {
+
     // UpdateDetailsView
     // -----------------
 
@@ -12,7 +13,6 @@ $(function () {
       initialize: function () {
         this.$el.parsley();
         this.$submitButton = this.$el.find('#update-details-button');
-        this.initializeSelectBoxes();
         this.model.on('fetched:details', this.handleFetchedDetails.bind(this));
         this.model.on('completed:update', this.handleUpdateComplete.bind(this));
         this.$emailField = this.$el.find("[data-id='email']");
@@ -23,6 +23,12 @@ $(function () {
         this.$dobField.parsley().subscribe('parsley:field:error', this.handleDobError);
         this.$dobField.parsley().subscribe('parsley:field:success', this.handleDobValid);
         this.model.getProfile();
+
+        $(".dropdown-menu").on('click touchend', '.dropdown-item', function(e){
+          $(this).parents(".dropdown").find('.btn').find('span').text($(this).text());
+          $(this).parents(".dropdown").find('.btn').attr('data-text',$(this).text());
+          $(this).parents(".dropdown").find('.btn').attr('data-code',$(this).attr('value'));
+        })
       },
 
       handleEmailValid: function () {
@@ -51,7 +57,6 @@ $(function () {
 
       handleDobError: function ($parsleyField) {
         var assertName = $parsleyField.validationResult[0].assert.name;
-        debugger;
 
         if (assertName === "overeighteennow") {
           FOX.context.broadcast('SHOW_BANNER', {
@@ -77,13 +82,12 @@ $(function () {
           var $field = $('[data-id="' + key + '"]');
 
           switch ($field.prop('tagName')) {
-            case 'SELECT':
-              if (self.selectBoxes) {
-                var selectBox = self.selectBoxes[key]
-                selectBox.setValueByChoice(formData[key]);
-              }
+            case 'BUTTON': // dropdown
+              var $item = $field.siblings('ul').find('[value="' + formData[key] + '"]');
+              $item.click();
             case 'INPUT':
-              if ($field.attr('type') === 'text') {
+              var textTypes = ['text', 'tel'];
+              if (_(textTypes).contains($field.attr('type'))) {
                 // Prefill the value.
                 $field.val(formData[key])
                   // Add active value to label to show populated state.
@@ -103,6 +107,10 @@ $(function () {
         if(!this.$el.parsley().validate()){
           return;
         }
+
+        // Add 'select' element value for state.
+        personalDetailsData.state = this.$el.find('[data-id="state"]').data('code');
+
         // Mark request as pending.
         this.$submitButton.addClass('is-loading');
         // Trigger the update details request.
@@ -134,26 +142,6 @@ $(function () {
         if (prefillFormData && value === prefillFormData.email) {
           $emailField.data('unchanged', true);
         }
-      },
-
-      // Private
-      // -------
-
-      initializeSelectBoxes: function () {
-        var self = this;
-
-        self.$el.find('select.foxtel-now-select').each(function () {
-          var element = $(this).get(0);
-          var choices = new Choices(element, {
-            search: false,
-            placeholderValue: $(this).data('placeholder'),
-            shouldSort: false
-          });
-          var fieldId = $(this).data('id')
-
-          self.selectBoxes = self.selectBoxes || {};
-          self.selectBoxes[fieldId] = choices;
-        });
       }
     });
 
@@ -179,6 +167,8 @@ $(function () {
       // --------------
 
       handleGetDetailsResponse: function (response) {
+        response = JSON.parse(response);
+
         // Store non-form data in the model.
         this.setNonFormData(response);
 
@@ -205,7 +195,7 @@ $(function () {
           suburb: response.kBillCity,
           state: response.kBillState,
           postcode: response.kBillZip,
-          marketOpt: response.kenanMktFlag
+          marketOpt: response.kenanMktFlag === "ON"
         };
         this.set({
           prefillFormData: formData

@@ -144,7 +144,8 @@ $br: 4px;
           font-size: 90%;
           -webkit-appearance: listbox;
           white-space: normal;
-          min-height: 3.5em;
+          min-height: 3em;
+          text-align: left;
           &:focus {
                 outline:0;
                 border-color:initial;
@@ -340,7 +341,7 @@ $br: 4px;
   }
 
   .password-edit {
-    $inputHeight: 60px;
+    $inputHeight: 3em;
 
     .btn {
       margin-top: 20px;
