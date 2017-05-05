@@ -1,7 +1,7 @@
 /* Extend Bootstrap album.scss card class */
 
 .foxtel-now-album {
-	background: transparent;	
+	background: transparent;
 }
 
 .foxtel-now-card {
@@ -21,7 +21,15 @@
 }
 
 .foxtel-now-card--basic {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+
 	.foxtel-now-card__title {
 		background-color: transparent;
 	}
+	.foxtel-now-card__title__price {
+        font-size: $font-size--md;
+    }
 }
