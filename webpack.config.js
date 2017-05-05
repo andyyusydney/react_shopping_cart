@@ -85,7 +85,9 @@ http.createServer(function (req, res) {
         return;
     }
 
-    if(/.*shop-checkout.js/.test(url)){
+    if(/.*shop-checkout.js/.test(url)
+      || /.*foxtel-header-footer-ui.js/.test(url) // Loaded with main-ui glob above
+    ){
         res.writeHead(200, {"Content-Type": "text/plain"});
         res.end("");
         return;
