@@ -66,7 +66,7 @@ $(document).ready(function(){
             // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
         } else {
             topnav.removeClass('foxtel-header-breadcrumb--pop');
-            topnav.css({'position': 'absolute', 'z-index': 100});
+            topnav.css({'position': 'absolute'});
         }
 
         // SET CURRENT AS LAST SCROLL
