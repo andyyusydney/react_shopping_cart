@@ -210,3 +210,12 @@ Handlebars.registerHelper("shopCartStringToDateConverter",function(cartResponse,
   return date;
 
 });
+
+Handlebars.registerHelper("shopCartDecimalConverter",function(DecimalPos,totalValue,options) {
+
+  if (totalValue == "") totalValue = 0;
+  var sum = totalValue / Math.pow(10,DecimalPos);
+
+  return sum.toFixed(2);
+
+});

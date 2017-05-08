@@ -27,6 +27,13 @@ VARIABLE
 *********************/
 $header-footer-image-path: "/etc/designs/foxtel/assets/foxtel-ui/header-footer/";
 
+$color--brand: #ff5050;
+$color--body: #32323c;
+$color--white: #fff;
+$color--grey-efefef: #efefef;
+$color--grey-bec0c2: #bec0c2;
+$color--grey-f0edeb: #f0edeb;
+
 /*********************
 MIXIN
 *********************/
@@ -96,9 +103,9 @@ COMMON STYLE
 BUTTON STYLE
 *********************/
 .foxtel-header__btn--white{
-  @include make-foxtel-header-btn(#3a3a3a, #fff);
-  border: 1px solid #ccc;
+  @include make-foxtel-header-btn($color--body, $color--white);
+  border: 1px solid $color--grey-bec0c2;
 }
 .foxtel-header__btn--black{
-  @include make-foxtel-header-btn(#fff, #0a0a0a);
+  @include make-foxtel-header-btn($color--white, $color--body);
 }
