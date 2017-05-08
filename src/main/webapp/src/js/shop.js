@@ -152,7 +152,7 @@ $(document).ready(function(){
     $(document).on('click','.foxtel-now-album',function(e){
         var url = $(this).find('.foxtel-now-card__title__link a').attr('href');
         var target = $(e.target);
-        if(target.is("a")||target.is(".foxtel-now-card__add-to-card-btn")){
+        if(target.is("a span")||target.is("a.foxtelNowProductAddToCart")){
             e.preventDefault();
             return false;}
         else{

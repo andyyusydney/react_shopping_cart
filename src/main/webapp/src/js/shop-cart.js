@@ -246,7 +246,7 @@ $(document).ready(function(){
 
     // Shopping Cart SMART SCROLLING FEATURE
     var shoppingcart = $('.foxtel-now-jumbotron');
-    var shoppingcartH = shoppingcart.height();
+    var shoppingcartH = shoppingcart.outerHeight();
     var shoppingcartStatus;
     var currentScroll = 0;
 
@@ -269,6 +269,7 @@ $(document).ready(function(){
                     // shoppingcart SLIDES BACK AWAY
                     shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
                     shoppingcart.css('position','fixed');
+                    shoppingcart.siblings('div.container').first().css('margin-top',shoppingcartH*1.30+"px");
                 }
 
                 // WHEN SCROLL UPWARDS
@@ -282,6 +283,7 @@ $(document).ready(function(){
         } else {
             shoppingcart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
             shoppingcart.css('position','relative');
+            shoppingcart.siblings('div.container').first().css('margin-top','initial');
         }
 
         // SET CURRENT AS LAST SCROLL
