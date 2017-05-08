@@ -44,6 +44,9 @@
   svg{
     & path{
       //fill: $color--brand;
+      /*the logo text is not a correct svg image, therefore we can't change the color by css,
+        instead we upload a new image with the pink color.
+        Designer will provide a correct svg image in a later stage.*/
     }
   }
 }
