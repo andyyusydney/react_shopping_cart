@@ -211,10 +211,10 @@ Handlebars.registerHelper("shopCartStringToDateConverter",function(cartResponse,
 
 });
 
-Handlebars.registerHelper("shopCartDecimalConverter",function(DecimalPos,cartResponse,options) {
+Handlebars.registerHelper("shopCartDecimalConverter",function(DecimalPos,totalValue,options) {
 
-  if (cartResponse == "") cartResponse = 0;
-  var sum = cartResponse / Math.pow(10,DecimalPos);
+  if (totalValue == "") totalValue = 0;
+  var sum = totalValue / Math.pow(10,DecimalPos);
 
   return sum.toFixed(2);
 
