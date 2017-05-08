@@ -136,6 +136,11 @@ $br: 4px;
 	}
 
     .dropdown {
+        &.open {
+            .custom-select {
+                background-image: url(/content/dam/now/icons/arrow-bottom.svg);
+            }
+        }
         .custom-select {
           border: solid 0.5px rgb(153, 153, 153);
           border-radius:0;
@@ -146,6 +151,8 @@ $br: 4px;
           white-space: normal;
           min-height: 3em;
           text-align: left;
+          background-image: url(/content/dam/now/icons/arrow-top.svg);
+          background-size: 12px 10px;
           &:focus {
                 outline:0;
                 border-color:initial;
