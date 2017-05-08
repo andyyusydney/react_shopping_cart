@@ -44,6 +44,9 @@
   svg{
     & path{
       //fill: $color--brand;
+      /*the logo text is not a correct svg image, therefore we can't change the color by css,
+        instead we upload a new image with the pink color.
+        Designer will provide a correct svg image in a later stage.*/
     }
   }
 }
@@ -159,11 +162,6 @@
   .foxtel-header__right__logout__dropdown {
     @extend .foxtel-header__left__nav__more__dropdown;
     display: none;
-
-    >li>a {
-        padding: 15px 38px;
-    }
-
   }
 
   &.active{
@@ -184,14 +182,11 @@
     font-family: inherit;
     color: #191919;
     white-space: nowrap;
-    padding: 15px 38px;
+    padding: 15px;
     border-bottom: 1px solid #efefef;
     display: flex;
     cursor: pointer;
     width: 100%;
-    @include breakpoint(mobileOnly) {
-        padding: 15px;
-    }
   }
 }
 
