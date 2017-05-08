@@ -6,6 +6,9 @@
     font-size: $font-size--md;
     font-weight: bold;
     margin-bottom: 60px;
+    &:first-child {
+      margin-top: 90px;
+    }
   }
   .inclusions-cmp-wrapper {
     position: relative;
@@ -33,6 +36,7 @@
       margin-bottom: 20px;
       cursor: pointer;
       color: $color--body;
+      display: inline-block;
     }
     &:not(:first-child) {
       margin-top: 120px;
