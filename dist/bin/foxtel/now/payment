@@ -1,0 +1,8 @@
+{
+   "status":"ERROR",
+   "error":{
+      "code":"800",
+      "transactionId":null,
+      "message":"Failed to create order"
+   }
+}
