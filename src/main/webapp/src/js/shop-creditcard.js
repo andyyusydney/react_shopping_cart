@@ -31,6 +31,9 @@ $(document).ready(function(){
             return;
         }
 
+        //clear all the banners
+        FOX.context.broadcast('HIDE_ALL_BANNER');
+
         $this.attr("disabled","disabled");
         $this.addClass('is-loading');
 
