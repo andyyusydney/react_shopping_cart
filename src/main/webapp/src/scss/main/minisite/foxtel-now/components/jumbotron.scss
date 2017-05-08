@@ -20,10 +20,17 @@
 	.foxtel-now-jumbotron--shopping-cart__description,
 	.foxtel-now-jumbotron--shopping-cart__summary {
 		display: table-cell;
-		padding: 0 50px;
 		@media (max-width: 767px)  {
 			display: table-row;
 		}
+	}
+
+	.foxtel-now-jumbotron--shopping-cart__description {
+	    padding: 0 20px 0 0;
+	}
+
+	.foxtel-now-jumbotron--shopping-cart__summary {
+	    padding: 0 0 0 20px;
 	}
 
 	.foxtel-now-jumbotron--shopping-cart__description {
@@ -76,12 +83,13 @@
 				    	sub {
 				    	    padding: 0 13px;
 				    	}
-				    }	
+				    }
 				}
 				.foxtel-now-jumbotron__pack-tag--transparent {
 					display: none;
-				    background: transparent;
-				    color: white;	
+			    background: transparent;
+			    color: white;
+					padding: 10px;
 				}
 			}
 		}
@@ -123,9 +131,6 @@
             @include breakpoint(mobileOnly){
                 border-top: solid 1px rgba(255, 255, 255, 0.2);
             }
-			p:first-child {
-				width: 50%;
-			}
 			p:last-child {
                 font-size: $font-size--md;
             }
@@ -152,17 +157,17 @@
 				p:nth-child(2),
 				p:last-child {
 					display: inline-block;
-				}		
+				}
 			}
 		}
 	}
 	.foxtel-now-jumbotron--shopping-cart__summary {
-	    width: 40%;
+	    width: 30%;
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
 		    display: none;
 		    &.total {
 		        display: table-cell;
-                width: 60%;
+                width: 70%;
 		    }
 		    @include breakpoint(mobileOnly){
 		        width: initial;
@@ -177,6 +182,9 @@
 			}
 			p:last-child {
 				text-align: right;
+                white-space: nowrap;
+                width: 86%;
+                padding-right: 20px;
 			}
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
@@ -193,9 +201,5 @@
             min-width: initial;
 		}
 
-	}
-	.foxtel-now-jumbotron--shopping-cart__description,
-	.foxtel-now-jumbotron--shopping-cart__summary {
-		padding: 0 20px;
 	}
 }

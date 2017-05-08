@@ -18,6 +18,13 @@
             "type":"PREMIUM"
          },
          {
+            "tierId":990703,
+            "price":"29",
+            "discountedPrice":"29",
+            "title":"Movies",
+            "type":"PREMIUM"
+         },
+         {
             "tierId":991145,
             "price":"0",
             "discountedPrice":"0",
