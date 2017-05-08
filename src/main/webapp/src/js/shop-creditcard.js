@@ -18,6 +18,8 @@ $(document).ready(function(){
 
     $form.parsley();
 
+    //see at com.foxtel.now.common.ErrorCodes.java
+    var PAYMENT_ERROR_CODE = "800";
 
     var $submitButton = $("#credit-card-form-submit");
 
@@ -44,7 +46,27 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success:function(data){
+
+                //check response to see if there is any error
+                if(!Foxtel.checkResponseErrorObj(data)){
+
+                    //payment error?
+                    if(data.error && data.error.code && PAYMENT_ERROR_CODE == data.error.code){
+                        FOX.context.broadcast('SHOW_BANNER', {
+                          name: 'PAYMENT_GATEWAY_ERROR',
+                          closeEnabled: true
+                        });
+                    }else{
+                        FOX.context.broadcast('SHOW_BANNER', {
+                          name: 'KENAN_ERROR',
+                          closeEnabled: true
+                        });
+                    }
+                    return;
+                }
+
                 Foxtel.navigator($this.data("redirect-url"));
+
             },
             complete:function(){
                 $this.removeClass("is-loading");
