@@ -4,18 +4,12 @@ Colour scss placeholders
 Colour classes for Producers (will add to the new Style Guide in the future)
 ******************************************/
 
-.color--white, %color--white{
-  color:$color--white !important;
-}
-.color--black, %color--black{
-  color:$color--black !important;
-}
-.color--orange, %color--orange{
-  color:$color--orange !important;
-}
 .color--brand, %color--brand{
   color:$color--brand !important;
 }
 .color--body, %color--body{
   color:$color--body !important;
+}
+.color--white, %color--white{
+  color:$color--white !important;
 }
