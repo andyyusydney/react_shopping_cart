@@ -8,6 +8,12 @@
     background-color: $color--body;
 
     @media (max-width: 767px) { height: 520px; }
+
+    /* make sure that a tags work under this slideshow */
+    a {
+        position: relative;
+        z-index: 10;
+    }
 }
 .foxtel-slideshow li {
     background-size: cover;
