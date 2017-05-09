@@ -87,8 +87,8 @@
 				}
 				.foxtel-now-jumbotron__pack-tag--transparent {
 					display: none;
-			    background: transparent;
-			    color: white;
+                    background: transparent;
+                    color: white;
 					padding: 10px;
 				}
 			}
@@ -155,7 +155,7 @@
 				}
 				p:first-child,
 				p:nth-child(2),
-				p:last-child {
+				p.foxtel-now-jumbotron__pack-tag--transparent {
 					display: inline-block;
 				}
 			}
