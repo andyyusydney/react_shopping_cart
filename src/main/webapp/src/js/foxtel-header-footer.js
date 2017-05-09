@@ -66,7 +66,7 @@ $(document).ready(function(){
             // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
         } else {
             topnav.removeClass('foxtel-header-breadcrumb--pop');
-            topnav.css({'position': 'absolute'});
+            topnav.css({'position': 'absolute', 'z-index': '1000'});
         }
 
         // SET CURRENT AS LAST SCROLL
@@ -137,6 +137,9 @@ var DisplayNameFunc = window.DisplayNameFunc || function () {
         };
 
         var toggleLogIn = function (username, loggedIn) {
+            if (username.length > 7) {
+                username = username.slice(0, 7) + "...";
+            }
             username = username || "";
             loggedIn = loggedIn || false;
 

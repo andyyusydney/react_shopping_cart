@@ -196,6 +196,15 @@ com.foxtel.ShopCartManager = function() {
       });
     }
 
+    // Has the user added any premium packs?
+    function hasPremium () {
+      var packsInCart = this.shopCartResponseData.play.tiers;
+
+      return _(packsInCart).any(function (pack) {
+        return pack.type === 'PREMIUM';
+      });
+    }
+
     // Has the user added any premium packs to the cart but not yet any starter
     // packs?
     function hasPremiumPackAndNoStarter () {
@@ -232,6 +241,7 @@ com.foxtel.ShopCartManager = function() {
         getEPLWithSportTierIds:getEPLWithSportTierIds,
         getEPLWithOutSportTierIds:getEPLWithOutSportTierIds,
         hasStarter:hasStarter,
+        hasPremium:hasPremium,
         hasPremiumPackAndNoStarter:hasPremiumPackAndNoStarter,
         isEmpty: isEmpty
     }
@@ -246,7 +256,7 @@ $(document).ready(function(){
 
     // Shopping Cart SMART SCROLLING FEATURE
     var shoppingcart = $('.foxtel-now-jumbotron');
-    var shoppingcartH = shoppingcart.height();
+    var shoppingcartH = shoppingcart.outerHeight();
     var shoppingcartStatus;
     var currentScroll = 0;
 
@@ -269,6 +279,7 @@ $(document).ready(function(){
                     // shoppingcart SLIDES BACK AWAY
                     shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
                     shoppingcart.css('position','fixed');
+                    shoppingcart.siblings('div.container').first().css('margin-top',shoppingcartH*1.30+"px");
                 }
 
                 // WHEN SCROLL UPWARDS
@@ -282,6 +293,7 @@ $(document).ready(function(){
         } else {
             shoppingcart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
             shoppingcart.css('position','relative');
+            shoppingcart.siblings('div.container').first().css('margin-top','initial');
         }
 
         // SET CURRENT AS LAST SCROLL
