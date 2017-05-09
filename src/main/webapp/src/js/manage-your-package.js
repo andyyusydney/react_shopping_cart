@@ -35,9 +35,21 @@ $(function () {
           return false;
         // Otherwise, make the update call.
         } else {
-          $.post('/bin/foxtel/now/updatecart', {})
-            .done(this.handleUpdateSuccess.bind(this))
-            .fail(this.handleUpdateError.bind(this));
+
+            var self = this;
+            $.ajax({
+                url: '/bin/foxtel/now/updatecart',
+                data:JSON.stringify({}),
+                type:"POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success:function(data){
+                    self.handleUpdateSuccess(data);
+                },
+                error:function(){
+                    self.handleUpdateError(data);
+                }
+             });
         }
         // Prevent default shop handlers from running.
         return false;
