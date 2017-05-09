@@ -81,7 +81,7 @@ $(function () {
       handleUserInfoResponse: function (response) {
         if (response.user && response.user.account && response.user.account.accountNumber) {
           this.set({
-            name: response.user.account.iFirstName,
+            name: response.user.account.firstName,
             loggedIn: true
           });
         }

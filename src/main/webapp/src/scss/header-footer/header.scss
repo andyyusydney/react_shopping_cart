@@ -1,19 +1,19 @@
 .foxtel-header-breadcrumb-wrapper{
-  // position and top property is important for top nav
-  position: absolute;
-  background: $color--white;
+  background-color: $color--white;
+  box-shadow: 0 0 30px rgba(0,0,0,0.15);
   width:100%;
-  top: 0;
 }
 
 /*foxtel header breadcrumb scrolling up pop state section*/
 
 .foxtel-header-breadcrumb--pop {
-  left:0;
-  right:0;
-  background-color: $color--white;
-  box-shadow: 0 0 30px rgba(0,0,0,0.15);
-  z-index:1000;
+  position: fixed;
+  z-index: 1000;
+}
+
+.foxtel-header-breadcrumb--default {
+  position: absolute;
+  z-index: 1000;
 }
 
 /* Foxtel header styles */
