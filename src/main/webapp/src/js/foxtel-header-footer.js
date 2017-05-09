@@ -9,8 +9,6 @@ $(document).ready(function(){
     var topnavStatus;
     var currentScroll = 0;
 
-    $('body').prepend('<div style="height:' + topnavH + 'px;"></div>');
-
     // SCROLL SENSITIVITY TO ADJUST SCROLL BEHAVIOURS
     var sensitivity = 2;
 
@@ -24,7 +22,6 @@ $(document).ready(function(){
         // IF SCROLLED OR LEFT FROM 0 Y-AXIS
         if($(this).scrollTop() > 0) {
             // ONLY TRIGGER WHEN NOT IN THE Y-AXIS RANGE, 0 - TOP NAV HEIGHT
-            if ($(this).scrollTop() > topnavH*2) {
                 // WHEN SCROLL DOWNWARDS
                 if (nextScroll > currentScroll) {
                     if (scrollDelta > sensitivity) {
@@ -32,14 +29,14 @@ $(document).ready(function(){
                             topnavStatus = false;
 
                             // TOPNAV SLIDES BACK AWAY
-                            topnav.clearQueue().stop().animate({marginTop: 0}, 300, function () {
+                            topnav.clearQueue().stop().animate({marginTop: -topnavH}, 300, function () {
 
                                 //TO DISTINCUISH FOXTEL NOW HEADER
                                 if (topnav.find('header').hasClass('foxtel-now-header')) {
                                     return;
                                 } else {
-                                    topnav.css('position', 'fixed');
-                                    topnav.removeClass('foxtel-header-breadcrumb--pop');
+                                    topnav.addClass('foxtel-header-breadcrumb--default')
+                                          .removeClass('foxtel-header-breadcrumb--pop');
                                 }
                             });
                         }
@@ -58,15 +55,15 @@ $(document).ready(function(){
                         if (topnav.find('header').hasClass('foxtel-now-header')) {
                             return;
                         } else {
-                            topnav.addClass('foxtel-header-breadcrumb--pop');
+                            topnav.addClass('foxtel-header-breadcrumb--pop')
+                                  .removeClass('foxtel-header-breadcrumb--default');
                         }
                     }
                 }
-            }
             // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
         } else {
-            topnav.removeClass('foxtel-header-breadcrumb--pop');
-            topnav.css({'position': 'absolute', 'z-index': '1000'});
+            topnav.removeClass('foxtel-header-breadcrumb--pop')
+                  addClass('foxtel-header-breadcrumb--default');
         }
 
         // SET CURRENT AS LAST SCROLL
