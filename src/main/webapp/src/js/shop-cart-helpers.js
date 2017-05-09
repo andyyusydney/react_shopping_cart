@@ -65,6 +65,14 @@ Handlebars.registerHelper("shopDefaultPackage",function(cartResponse,options) {
     }
 });
 
+Handlebars.registerHelper("shopPremiumPackage",function(cartResponse,options) {
+    if (Foxtel.ShopCartManager.hasPremium()) {
+        return options.fn(this);
+    }else {
+        return options.inverse(this);
+    }
+});
+
 Handlebars.registerHelper("shopEPLRules",function(cartResponse,options) {
 
     var EPL_CHANNEL_TIERS = Foxtel.ShopCartManager.getEPLTiers();
