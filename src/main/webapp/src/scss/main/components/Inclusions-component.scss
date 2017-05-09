@@ -21,8 +21,8 @@
         1. This class aims at shrinking the Foxtel Store image from both sides when tablets or mobiles hit.
         2. This class works along with the following js code:
         jQuery(".inclusions-cmp-img__overflow")
-            .addClass("inclusions-cmp-img__overflow--special")
-                .css("height",  jQuery(".inclusions-cmp-img__overflow img").height());
+             .css("height", jQuery(".inclusions-cmp-img__overflow img").height())
+                   .addClass("inclusions-cmp-img__overflow--special");
       */
       &.inclusions-cmp-img__overflow-shrink {
         width: 100%;
