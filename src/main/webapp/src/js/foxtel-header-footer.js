@@ -137,6 +137,9 @@ var DisplayNameFunc = window.DisplayNameFunc || function () {
         };
 
         var toggleLogIn = function (username, loggedIn) {
+            if (username.length > 7) {
+                username = username.slice(0, 7) + "...";
+            }
             username = username || "";
             loggedIn = loggedIn || false;
 
