@@ -63,7 +63,7 @@ $(document).ready(function(){
             // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
         } else {
             topnav.removeClass('foxtel-header-breadcrumb--pop')
-                  addClass('foxtel-header-breadcrumb--default');
+                  .addClass('foxtel-header-breadcrumb--default');
         }
 
         // SET CURRENT AS LAST SCROLL
