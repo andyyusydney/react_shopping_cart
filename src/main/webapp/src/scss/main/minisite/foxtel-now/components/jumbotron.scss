@@ -12,6 +12,10 @@
   	box-shadow:         2px 3px 10px 0px #ccc;
   	z-index: 9;
   	top: 0;
+  	&.foxtel-now-jumbotron--pop {
+        left: 0;
+        right: 0;
+     }
 }
 
 .foxtel-now-jumbotron--shopping-cart {
