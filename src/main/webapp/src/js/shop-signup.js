@@ -17,11 +17,27 @@
 
             self.options.$form.parsley();
 
+            $primaryDevice = $('[data-id="primaryDevice"]');
+            $primaryDeviceList = $primaryDevice.siblings('.dropdown-menu');
+            $primaryDeviceParent = $primaryDevice.parent('.field-wrap');
+            $primaryDeviceFormGroup = $primaryDevice.closest('.form-group');
+            $primaryDeviceList.on('click', 'li', function(){
+                if ($primaryDevice.data('text')) { // check if a valid value has been selected to remove error.
+                    $primaryDeviceParent.removeClass('parsley-error');
+                    $primaryDeviceFormGroup.find('.primary-device-errors-list').remove();
+                }
+            })
             //submit event handler
             $submitButton.click(function(){
                 $this = $(this);
+
                 //validated form?
-                if(! self.options.$form.parsley().validate()){
+                if(!self.options.$form.parsley().validate() && !$primaryDevice.data('text')){
+                    // manually add error for primary device.
+                    $primaryDeviceParent.addClass('parsley-error');
+                    var errMsg = $primaryDeviceList.data('foxtelRequiredMessage');
+                    $primaryDeviceFormGroup.append($('<ul class="primary-device-errors-list parsley-errors-list filled" id="parsley-id-0386"><li class="parsley-required">'+errMsg+'</li></ul>'));
+
                     return;
                 }
 
@@ -43,6 +59,25 @@
                         $this.removeAttr("disabled","disabled");
                     }
                 });
+            });
+
+            //update submit button text
+            FOX.dyc.subscribeEvent("modelShopCart",function(data){
+                var hasFreeTrial = false;
+                for(var i=0;i<data.quote.monthlyCostItems.length;i++){
+                    var monthlyCostItem = data.quote.monthlyCostItems[i];
+                    if(monthlyCostItem.len == 0){
+                        //free trial
+                        hasFreeTrial = true;
+                        break;
+                    }
+                }
+                if(hasFreeTrial){
+                    var btnTextWithFreeTrial = $submitButton.data("text-with-free-trial");
+                    if(btnTextWithFreeTrial){
+                        $submitButton.text(btnTextWithFreeTrial);
+                    }
+                }
             });
         },
 
@@ -168,6 +203,8 @@ $(document).ready(function(){
     if(!hasForm){
         return;
     }
+
+
 
     Utilities.selectDropDownText();
 
