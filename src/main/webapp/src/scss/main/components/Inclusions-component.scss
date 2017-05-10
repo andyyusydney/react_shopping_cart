@@ -22,7 +22,7 @@
         2. This class works along with the following js code:
         jQuery(".inclusions-cmp-img__overflow")
              .css("height", jQuery(".inclusions-cmp-img__overflow img").height())
-                   .addClass("inclusions-cmp-img__overflow--special");
+                   .addClass("inclusions-cmp-img__overflow-shrink");
       */
       &.inclusions-cmp-img__overflow-shrink {
         width: 100%;
@@ -37,11 +37,10 @@
       }
     }
 
-    /*
     :not(.inclusions-cmp-img__overflow) img {
       max-width: 100%;
     }
-    */
+
     .inclusions-cmp-wrapper__title {
       font-size: $font-size--md;
       margin-bottom: 20px;
