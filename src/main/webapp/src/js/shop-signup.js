@@ -60,6 +60,25 @@
                     }
                 });
             });
+
+            //update submit button text
+            FOX.dyc.subscribeEvent("modelShopCart",function(data){
+                var hasFreeTrial = false;
+                for(var i=0;i<data.quote.monthlyCostItems.length;i++){
+                    var monthlyCostItem = data.quote.monthlyCostItems[i];
+                    if(monthlyCostItem.len == 0){
+                        //free trial
+                        hasFreeTrial = true;
+                        break;
+                    }
+                }
+                if(hasFreeTrial){
+                    var btnTextWithFreeTrial = $submitButton.data("text-with-free-trial");
+                    if(btnTextWithFreeTrial){
+                        $submitButton.text(btnTextWithFreeTrial);
+                    }
+                }
+            });
         },
 
         updateField:function ($field,value){
@@ -184,6 +203,8 @@ $(document).ready(function(){
     if(!hasForm){
         return;
     }
+
+
 
     Utilities.selectDropDownText();
 
