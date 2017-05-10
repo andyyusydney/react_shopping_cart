@@ -17,27 +17,12 @@
 
             self.options.$form.parsley();
 
-            $primaryDevice = $('[data-id="primaryDevice"]');
-            $primaryDeviceList = $primaryDevice.siblings('.dropdown-menu');
-            $primaryDeviceParent = $primaryDevice.parent('.field-wrap');
-            $primaryDeviceFormGroup = $primaryDevice.closest('.form-group');
-            $primaryDeviceList.on('click', 'li', function(){
-                if ($primaryDevice.data('text')) { // check if a valid value has been selected to remove error.
-                    $primaryDeviceParent.removeClass('parsley-error');
-                    $primaryDeviceFormGroup.find('.primary-device-errors-list').remove();
-                }
-            })
             //submit event handler
             $submitButton.click(function(){
                 $this = $(this);
 
                 //validated form?
-                if(!self.options.$form.parsley().validate() && !$primaryDevice.data('text')){
-                    // manually add error for primary device.
-                    $primaryDeviceParent.addClass('parsley-error');
-                    var errMsg = $primaryDeviceList.data('foxtelRequiredMessage');
-                    $primaryDeviceFormGroup.append($('<ul class="primary-device-errors-list parsley-errors-list filled" id="parsley-id-0386"><li class="parsley-required">'+errMsg+'</li></ul>'));
-
+                if(!self.options.$form.parsley().validate()){
                     return;
                 }
 
