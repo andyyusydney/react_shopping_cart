@@ -13,8 +13,9 @@
   &.iq-nav-position__fixed {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
+    z-index: 100;
+    width: 100%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
   }
   a {
     margin-left: 30px;
