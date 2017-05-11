@@ -9,10 +9,6 @@
   margin-right: auto;
   opacity: 0;
 
-  svg {
-    display: none;
-  }
-
   &.is-loaded {
     transition: opacity 100ms ease-in;
     opacity: 1.0;
