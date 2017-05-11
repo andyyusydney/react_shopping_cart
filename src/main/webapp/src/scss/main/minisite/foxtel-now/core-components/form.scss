@@ -138,7 +138,7 @@ $br: 4px;
     .dropdown {
         &.open {
             .custom-select {
-                background-image: url(/content/dam/now/icons/arrow-bottom.svg);
+                background-image: url(/content/dam/now/icons/arrow-top.svg);
             }
         }
         .custom-select {
@@ -151,7 +151,7 @@ $br: 4px;
           white-space: normal;
           min-height: 3em;
           text-align: left;
-          background-image: url(/content/dam/now/icons/arrow-top.svg);
+          background-image: url(/content/dam/now/icons/arrow-bottom.svg);
           background-size: 12px 10px;
           &:focus {
                 outline:0;
