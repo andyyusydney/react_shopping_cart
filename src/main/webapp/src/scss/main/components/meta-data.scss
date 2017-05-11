@@ -37,5 +37,6 @@
    max-height: 40px;
 }
 .meta-data-hide-in-mobile {
-   @media (max-width: 767px) { display: none; }
+   @include breakpoint(mobileOnly) { display: none; }
+   /* @media (max-width: 767px) { display: none; } */
 }
