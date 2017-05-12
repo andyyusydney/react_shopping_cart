@@ -74,3 +74,15 @@ Utilities.selectDropDownText = function () {
         })
     })(jQuery)
 }
+
+Utilities.setUpdatePackage = function () {
+    $.cookie("isPackUpdated", 1,{path: '/'});
+}
+
+Utilities.getUpdatePackage = function () {
+    return $.cookie("isPackUpdated");
+}
+
+Utilities.removeUpdatePackageCookie = function () {
+    $.removeCookie("isPackUpdated");
+}

@@ -264,7 +264,6 @@ $(document).ready(function(){
     var sensitivity = 2;
 
     $(window).scroll(function() {
-        console.log($(this).scrollTop());
         // GET CURRENT PAGE AXIS
         var nextScroll = $(this).scrollTop();
 

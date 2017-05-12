@@ -58,6 +58,7 @@ $(function () {
       handleUpdateSuccess: function (response) {
         var $submitButton = $(this.buttonContainerSelector + ' button');
         var $buttonContainer = $submitButton.parents(this.buttonContainerSelector);
+        Utilities.isPackageUpdated = false;
 
         if (response.status === 'ERROR') {
           this.genericError();
@@ -69,6 +70,7 @@ $(function () {
         }
 
         $submitButton.removeClass('is-loading').addClass('is-valid');
+        Utilities.setUpdatePackage();
         setTimeout(function () {
           window.location = '/now/my-account.html';
         }, 2000);
