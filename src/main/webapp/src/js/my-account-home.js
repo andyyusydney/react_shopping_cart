@@ -83,6 +83,15 @@ $(document).ready(function () {
             });
         }
 
+        //show update banner
+        if(Utilities.getUpdatePackage()){
+            FOX.context.broadcast('SHOW_BANNER', {
+              name: 'PACKAGE_UPDATE_SUCCESS',
+              closeEnabled: true
+            });
+            Utilities.removeUpdatePackageCookie();
+         }
+
     });
 
 
