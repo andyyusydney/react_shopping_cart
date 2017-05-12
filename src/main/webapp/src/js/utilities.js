@@ -76,13 +76,14 @@ Utilities.selectDropDownText = function () {
 }
 
 Utilities.setUpdatePackage = function () {
-    $.cookie("isPackUpdated", 1,{path: '/'});
+    FOX.storage.data("isPackUpdated", 1);
 }
 
 Utilities.getUpdatePackage = function () {
-    return $.cookie("isPackUpdated");
+    return FOX.storage.data("isPackUpdated");
+
 }
 
 Utilities.removeUpdatePackageCookie = function () {
-    $.removeCookie("isPackUpdated");
+    return FOX.storage.removeData("isPackUpdated");
 }
