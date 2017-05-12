@@ -34,6 +34,9 @@ $(function () {
           window.location = '/now/my-account/deactivate.html';
           return false;
         // Otherwise, make the update call.
+        } else if(Foxtel.ShopCartManager.hasPremiumPackAndNoStarter()) {
+            var buttonWithoutStarterUrl = $(this).data("button-without-starter-url");
+            Foxtel.navigator(buttonWithoutStarterUrl);
         } else {
 
             var self = this;
