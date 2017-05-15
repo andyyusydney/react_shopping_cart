@@ -193,6 +193,15 @@ var digitalDataManager = {
         digitalData.page.clientSideFormErrors = "";
         digitalData.page.serverSideFormErrors = "";
 
+        FOX.context.subscribe("SHOP_CART_LOADED", function(data) {
+            try {
+                FOX.storage.data("analytics-shopping-cart", JSON.stringify(data.play));
+            }
+            catch (e) {
+                console.log(e);
+            }
+        });
+
         $("#shop-credit-card-form input").on("focus", function() {
             if (digitalDataManager.formStarted == false) {
                 digitalData.pldl.event.eventName = "form_start";
@@ -234,6 +243,23 @@ var digitalDataManager = {
         digitalData.page.pageInfo.pageName = "signup thank you";
         digitalData.page.formName = "sign up";
         digitalData.page.formStep = "thank you";
+
+        var shoppingCart = JSON.parse(FOX.storage.data("analytics-shopping-cart"));
+        var purchasedProducts = [];
+
+        for (var i = 0; i < shoppingCart.tiers.length; i++) {
+            var product = {
+                product_name: shoppingCart.tiers[i].title,
+                product_id: shoppingCart.tiers[i].tierId,
+                product_price: shoppingCart.tiers[i].price,
+                qty: 1
+            };
+            purchasedProducts.push(product);
+        }
+
+        digitalData.transaction.products = purchasedProducts;
+        digitalData.transaction.totalRevenue = shoppingCart.monthlyCostIncludingOffer;
+        digitalData.transaction.totalQty = shoppingCart.tiers.length;
 
         $(".foxtel-now-welcome-message-wrapper a").on("click", function() {
             digitalData.pldl.event.eventName = "button_click";
