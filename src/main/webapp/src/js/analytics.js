@@ -111,10 +111,10 @@ var digitalDataManager = {
                 digitalData.user.account.loginStatus = "logged out";
                 digitalData.user.account.userId = "";
 
-                var accountType = $.cookie("account-type");
+                var accountType = $.cookie("analytics-account-type");
                 if (typeof accountType === "undefined" || accountType != "existing") {
                     digitalData.user.account.type = "prospect";
-                    $.cookie("account-type", "prospect", {path: '/'});
+                    $.cookie("analytics-account-type", "prospect", {path: '/'});
                 }
             }
             catch (e) {
@@ -125,7 +125,7 @@ var digitalDataManager = {
             try {
                 digitalData.user.account.loginStatus = "logged in";
                 digitalData.user.account.type = "existing";
-                $.cookie("account-type", "existing", {path: '/'});
+                $.cookie("analytics-account-type", "existing", {path: '/'});
                 digitalData.user.account.userId = user.userId;
             }
             catch (e) {
@@ -143,7 +143,7 @@ var digitalDataManager = {
         digitalData.site.section = "checkout";
         digitalData.site.subSection = "";
         digitalData.site.subSubSection = "";
-        digitalData.page.pageInfo.pageName = "signup personal details";
+        digitalData.page.pageInfo.pageName = "signup details";
         digitalData.page.formName = "sign up";
         digitalData.page.formStep = "personal details";
         digitalData.page.clientSideFormErrors = "";
@@ -176,9 +176,9 @@ var digitalDataManager = {
         });
 
         $("#sign-up-form-submit").on("click", function() {
-            digitalData.pldl.event.eventName = "button_click";
+            digitalData.pldl.event.eventName = "form_submit";
             digitalData.pldl.event.eventInfo = {
-                eventAction: "login click",
+                eventAction: "form submit",
                 time: new Date().getTime()
             };
         });
@@ -244,6 +244,9 @@ var digitalDataManager = {
         digitalData.page.formName = "sign up";
         digitalData.page.formStep = "thank you";
 
+        digitalData.user.account.type = "existing";
+        $.cookie("analytics-account-type", "existing", {path: '/'});
+
         var shoppingCart = JSON.parse(FOX.storage.data("analytics-shopping-cart"));
         var purchasedProducts = [];
 
@@ -273,12 +276,47 @@ var digitalDataManager = {
         digitalData.site.subSection = "";
         digitalData.site.subSubSection = "";
         digitalData.page.pageInfo.pageName = "all packs";
+
+        var products = [];
+        $(".foxtel-now-card").each(
+            function() {
+                var priceText = $(this).find(".foxtel-now-card__title__price").text();
+                var start = priceText.indexOf("$");
+                var end = priceText.indexOf("/");
+                var price = priceText.substring(start + 1, end);
+                if (price != "0") {
+                    var name = $(this).find(".foxtel-now-card__title__name").text();
+                    var id = $(this).find(".foxtelNowProductAddToCart [data-tier-id]").attr("data-tier-id");
+                    var product = {
+                        product_name: name,
+                        product_id: id,
+                        product_price: price,
+                        qty: 1
+                    };
+                    products.push(product);
+                }
+            }
+        )
+        digitalData.transaction.products = products;
     },
     analysePackDetail : function() {
         digitalData.site.section = "shop";
         digitalData.site.subSection = "";
         digitalData.site.subSubSection = "";
-        digitalData.page.pageInfo.pageName = "{product/pack name}";
+        digitalData.page.pageInfo.pageName = document.title;
+
+        var digitalData.transaction.products = [];
+        var $product = $(".foxtel-now-pack-details");
+        var name = $product.find("[itemprop='name']").text();
+        var price = $product.find("[itemprop='price']").text();
+        var id = $product.find(".add-to-cart[data-tier-id]").attr("data-tier-id");
+        var product = {
+            product_name: name,
+            product_id: id,
+            product_price: price,
+            qty: 1
+        };
+        digitalData.transaction.products.push(product);
     },
     analyseShoppingCart : function() {
         digitalData.site.section = "shop";

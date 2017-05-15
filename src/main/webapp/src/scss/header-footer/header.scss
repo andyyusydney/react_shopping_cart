@@ -88,10 +88,8 @@ li.foxtel-header__left__nav__more {
   @include breakpoint(tablet) {
     display:none;
   }
-  &:hover{
-    ul{
-      display:block;
-    }
+  a{
+    cursor:pointer;
   }
 }
 .foxtel-header__left__nav__more__text{

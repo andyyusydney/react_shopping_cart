@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    topnavMobileFunc.dropdown();
+
     var displayNameFunc = new DisplayNameFunc();
 
     displayNameFunc.init("logged-in");
@@ -175,3 +177,21 @@ var DisplayNameFunc = window.DisplayNameFunc || function () {
 
 
     };
+
+var topnavMobileFunc = {
+    dropdown: function(){
+        var $topnavMobileMore = $('#topnavMobileMore');
+        var $topnavMobileMoreDropdown = $('#topnavMobileMoreDropdown');
+
+        $topnavMobileMore.on("click touch", function(e) {
+            e.stopPropagation();
+            $topnavMobileMoreDropdown.toggle();
+        });
+        $topnavMobileMoreDropdown.on("click touchstart", function(e) {
+            e.stopPropagation();
+        });
+        $(document).on("click touchstart", function(e) {
+            $topnavMobileMoreDropdown.hide();
+        });
+    }
+}

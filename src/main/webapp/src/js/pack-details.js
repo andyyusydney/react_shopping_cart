@@ -113,6 +113,7 @@ $(document).ready(function () {
 
       updateSlidingBackground: function () {
         var $activeAnchor = this.$actions.find('.active');
+		if($activeAnchor.length<1)return;
 
         this.$slider.show().css({
           'left': $activeAnchor.position().left,
