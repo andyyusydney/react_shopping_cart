@@ -34,15 +34,17 @@ $(function() {
                 case "/now/shop/welcome":
                     digitalDataManager.analyseSignUpThankYou();
                     break;
+                case "/now/shop":
+                    digitalDataManager.analysePackListing();
+                    break;
                 case "/now/pop":
                 case "/now/drama":
                 case "/now/docos":
                 case "/now/lifestyle":
                 case "/now/kids":
+                case "/now/movies":
+                case "/now/sport":
                     digitalDataManager.analysePackDetail();
-                    break;
-                case "/now/my-account":
-                    digitalDataManager.analyseMyAccountHome();
                     break;
                 case "/now/my-account":
                     digitalDataManager.analyseMyAccountHome();
@@ -56,9 +58,6 @@ $(function() {
                 case "/now/my-account/view-bills":
                     digitalDataManager.analyseMyAccountViewBills();
                     break;
-                case "/now/my-account/view-bills":
-                    digitalDataManager.analyseMyAccountViewBills();
-                    break;
                 case "/now/my-account/add":
                     digitalDataManager.analyseMyAccountCreateSecondaryAccount();
                     break;
@@ -67,6 +66,12 @@ $(function() {
                     break;
                 case "/now/my-account/manage-your-package":
                     digitalDataManager.analyseMyAccountManagePackage();
+                    break;
+                case "/now/my-account/reactivate/packs":
+                    digitalDataManager.analyseMyAccountReactivateChoosePackages();
+                    break;
+                case "/now/my-account/reactivate/personal-details":
+                    digitalDataManager.analyseMyAccountReactivateEnterDetails();
                     break;
                 case "/now/my-account/reactivate/welcome-back":
                     digitalDataManager.analyseMyAccountReactivateComplete();
@@ -84,6 +89,23 @@ $(function() {
 
 var digitalDataManager = {
     analyseBase : function() {
+        // initialize analytics object
+        digitalData.pldl = {};
+        digitalData.pldl.event = {};
+        digitalData.site.section = "";
+        digitalData.site.subSection = "";
+        digitalData.site.subSubSection = "";
+        digitalData.page = {};
+        digitalData.page.pageInfo = {};
+        digitalData.page.pageInfo.pageName = "";
+        digitalData.page.pageInfo.funnelName = "";
+        digitalData.user.account = {};
+        digitalData.user.account.loginStatus = "logged out";
+        digitalData.user.account.type = "";
+        digitalData.user.account.userId = "";
+        digitalData.transaction = {};
+        digitalData.cart = {};
+
         FOX.context.subscribe("ANALYTICS_USER_NOT_LOGGED_IN", function() {
             try {
                 digitalData.user.account.loginStatus = "logged out";
@@ -220,6 +242,12 @@ var digitalDataManager = {
             };
         });
     },
+    analysePackListing : function() {
+        digitalData.site.section = "shop";
+        digitalData.site.subSection = "";
+        digitalData.site.subSubSection = "";
+        digitalData.page.pageInfo.pageName = "all packs";
+    },
     analysePackDetail : function() {
         digitalData.site.section = "shop";
         digitalData.site.subSection = "";
@@ -290,6 +318,60 @@ var digitalDataManager = {
         digitalData.site.subSection = "manage";
         digitalData.site.subSubSection = "";
         digitalData.page.pageInfo.pageName = "package";
+    },
+    analyseMyAccountReactivateChoosePackages : function() {
+        digitalData.site.section = "build";
+        digitalData.site.subSection = "manage";
+        digitalData.site.subSubSection = "";
+        digitalData.page.pageInfo.pageName = "reactivate - choose packages"
+        digitalData.page.formName = "reactivate";
+        digitalData.page.formStep = "choose packages";
+        digitalData.page.clientSideFormErrors = "";
+        digitalData.page.serverSideFormErrors = "";
+    },
+    analyseMyAccountReactivateEnterDetails : function() {
+        digitalData.site.section = "build";
+        digitalData.site.subSection = "manage";
+        digitalData.site.subSubSection = "";
+        digitalData.page.pageInfo.pageName = "reactivate - enter details"
+        digitalData.page.formName = "reactivate";
+        digitalData.page.formStep = "enter details";
+        digitalData.page.clientSideFormErrors = "";
+        digitalData.page.serverSideFormErrors = "";
+
+        $("#reactivation-personal-details-form input").on("focus", function() {
+            if (digitalDataManager.formStarted == false) {
+                digitalData.pldl.event.eventName = "form_start";
+                digitalData.pldl.event.eventInfo = {
+                    eventAction: "form start",
+                    time: new Date().getTime()
+                };
+                digitalDataManager.formStarted = true;
+            }
+        });
+
+        $("#reactivation-personal-details-form input").on("blur", function() {
+            digitalData.page.clientSideFormErrors = $("#reactivation-personal-details-form ul.parsley-errors-list.filled li")
+                    .map(function() {
+                        return $(this).text();
+                    }).get().join("|");
+        });
+
+        $("#reactivation-personal-details-form input").on("change", function() {
+            digitalData.pldl.event.eventName = "form_field_interaction";
+            digitalData.pldl.event.eventInfo = {
+                eventAction: "form field interaction",
+                fieldName: this.getAttribute("data-id")
+            };
+        });
+
+        $("#sign-up-form-submit").on("click", function() {
+            digitalData.pldl.event.eventName = "form_submit";
+            digitalData.pldl.event.eventInfo = {
+                eventAction: "form submit",
+                time: new Date().getTime()
+            };
+        });
     },
     analyseMyAccountReactivateComplete : function() {
         digitalData.site.section = "build";
