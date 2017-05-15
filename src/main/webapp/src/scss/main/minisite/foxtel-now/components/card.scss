@@ -13,11 +13,27 @@
 
 .foxtel-now-card--myaccount {
 	@include foxtel-now-card();
+
 	width: inherit;
 	height: 204px;
-	margin-left: 15px;
 	margin-bottom: 27px;
 	text-align: center;
+
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    .foxtel-now-card--myaccount__content {
+        >img {
+            width: 71px;
+            height: auto;
+        }
+        >p {
+            text-align: center;
+        }
+    }
 }
 
 .foxtel-now-card--basic {

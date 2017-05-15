@@ -17,7 +17,6 @@
         padding-bottom: 20px;
         img {
            margin-right: 20px;
-           max-height: 40px;
         }
     }
     .meta-data__desc {
@@ -34,7 +33,10 @@
         margin-top: 20px;
     }
 }
-
+.meta-data__icon img {
+   max-height: 40px;
+}
 .meta-data-hide-in-mobile {
-   @media (max-width: 767px) { display: none; }
+   @include breakpoint(mobileOnly) { display: none; }
+   /* @media (max-width: 767px) { display: none; } */
 }

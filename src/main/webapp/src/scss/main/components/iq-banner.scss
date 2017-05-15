@@ -7,14 +7,18 @@
   text-align: center;
   color: $color--body;
 
-  @media (max-width: 767px) { height: 367px; }
+  @include breakpoint(mobileOnly) { height: 367px; }
+  /* @media (max-width: 767px) { height: 367px; } */
+
   @media (min-width: 768px) and (max-width: 992px) { height: 428px; }
 
   .font--md--bold  {
-    @media (max-width: 767px) { font-size: $font-size--base; }
+    @include breakpoint(mobileOnly) { font-size: $font-size--base; }
+    /* @media (max-width: 767px) { font-size: $font-size--base; } */
   }
 
   .font--lg--bold, .font--lg {
-    @media (max-width: 767px) { font-size: $font-size--md; }
+    @include breakpoint(mobileOnly) { font-size: $font-size--md; }
+    /* @media (max-width: 767px) { font-size: $font-size--md; } */
   }
 }

@@ -66,9 +66,24 @@ Utilities.selectDropDownText = function () {
 
     (function($){
         $(".dropdown-menu").on('click touchend', '.dropdown-item', function(e){
-                  $(this).parents(".dropdown").find('.btn').find('span').text($(this).text());
-                  $(this).parents(".dropdown").find('.btn').attr('data-text',$(this).text());
-                  $(this).parents(".dropdown").find('.btn').attr('data-code',$(this).attr('value'));
+                var $btnElem = $(this).parents(".dropdown").find('.btn');
+                $btnElem.find('span').text($(this).text());
+                $btnElem.attr('data-text',$(this).text());
+                $btnElem.attr('data-code',$(this).attr('value'));
+                $btnElem.val($(this).attr('value'));
         })
     })(jQuery)
+}
+
+Utilities.setUpdatePackage = function () {
+    FOX.storage.data("isPackUpdated", 1);
+}
+
+Utilities.getUpdatePackage = function () {
+    return FOX.storage.data("isPackUpdated");
+
+}
+
+Utilities.removeUpdatePackageCookie = function () {
+    return FOX.storage.removeData("isPackUpdated");
 }

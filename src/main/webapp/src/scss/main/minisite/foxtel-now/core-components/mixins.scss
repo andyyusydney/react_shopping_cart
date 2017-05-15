@@ -10,7 +10,6 @@
   	border: solid 2px rgb(240, 240, 240);
   	&:hover {
   		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-  		border: solid 2px $foxtel-now-pink;
   	}
 
   	&.is-disabled {
@@ -92,6 +91,13 @@
 			color: rgb(40, 40, 40);
 		}
 	}
+
+
+	.foxtel-now-card__legal-text-wrapper {
+		text-align: left;
+        height: 36px;
+	}
+
 
 	.foxtel-now-price-symbol {
 		@include foxtel-now-price-symbol();

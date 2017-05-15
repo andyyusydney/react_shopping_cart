@@ -84,6 +84,12 @@ $(function () {
             name: response.user.account.firstName,
             loggedIn: true
           });
+          FOX.context.broadcast('ANALYTICS_USER_LOGGED_IN', {
+            userId: response.user.account.accountNumber
+          });
+        }
+        else {
+          FOX.context.broadcast('ANALYTICS_USER_NOT_LOGGED_IN');
         }
         this.trigger('fetched:userInfo');
       }

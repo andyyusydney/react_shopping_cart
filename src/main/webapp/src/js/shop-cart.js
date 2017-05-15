@@ -256,7 +256,7 @@ $(document).ready(function(){
 
     // Shopping Cart SMART SCROLLING FEATURE
     var shoppingcart = $('.foxtel-now-jumbotron');
-    var shoppingcartH = shoppingcart.outerHeight();
+    var shoppingcartH = shoppingcart.height();
     var shoppingcartStatus;
     var currentScroll = 0;
 
@@ -278,21 +278,26 @@ $(document).ready(function(){
                 if (scrollDelta > sensitivity){
                     // shoppingcart SLIDES BACK AWAY
                     shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+                    shoppingcart.find('.add-packs-text').addClass('hidden');
                     shoppingcart.css('position','fixed');
-                    shoppingcart.siblings('div.container').first().css('margin-top',shoppingcartH*1.30+"px");
+                    shoppingcart.siblings('div.container').first().css('margin-top',shoppingcartH*2+"px");
+                    $('.foxtel-header-breadcrumb-wrapper').css({'position':'absolute',"top":"0"});
                 }
 
                 // WHEN SCROLL UPWARDS
             } else {
                 if (scrollDelta < -sensitivity){
                     shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+                    shoppingcart.find('.add-packs-text').addClass('hidden');
                 }
             }
 
             // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
         } else {
             shoppingcart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+            shoppingcart.find('.add-packs-text').removeClass('hidden');
             shoppingcart.css('position','relative');
+            $('.foxtel-header-breadcrumb-wrapper').css('position','initial');
             shoppingcart.siblings('div.container').first().css('margin-top','initial');
         }
 
