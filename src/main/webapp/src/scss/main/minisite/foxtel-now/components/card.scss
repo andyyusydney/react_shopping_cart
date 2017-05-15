@@ -13,6 +13,7 @@
 
 .foxtel-now-card--myaccount {
 	@include foxtel-now-card();
+
 	width: inherit;
 	height: 204px;
 	margin-bottom: 27px;
@@ -24,7 +25,7 @@
     align-items: center;
 
     cursor: pointer;
-	&__content {
+    .foxtel-now-card--myaccount__content {
         >img {
             width: 71px;
             height: auto;
