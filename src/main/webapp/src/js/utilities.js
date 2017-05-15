@@ -74,3 +74,16 @@ Utilities.selectDropDownText = function () {
         })
     })(jQuery)
 }
+
+Utilities.setUpdatePackage = function () {
+    FOX.storage.data("isPackUpdated", 1);
+}
+
+Utilities.getUpdatePackage = function () {
+    return FOX.storage.data("isPackUpdated");
+
+}
+
+Utilities.removeUpdatePackageCookie = function () {
+    return FOX.storage.removeData("isPackUpdated");
+}

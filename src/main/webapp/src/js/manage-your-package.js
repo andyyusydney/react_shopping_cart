@@ -34,6 +34,9 @@ $(function () {
           window.location = '/now/my-account/deactivate.html';
           return false;
         // Otherwise, make the update call.
+        } else if(Foxtel.ShopCartManager.hasPremiumPackAndNoStarter()) {
+            var buttonWithoutStarterUrl = $(this).data("button-without-starter-url");
+            Foxtel.navigator(buttonWithoutStarterUrl);
         } else {
 
             var self = this;
@@ -58,6 +61,7 @@ $(function () {
       handleUpdateSuccess: function (response) {
         var $submitButton = $(this.buttonContainerSelector + ' button');
         var $buttonContainer = $submitButton.parents(this.buttonContainerSelector);
+        Utilities.isPackageUpdated = false;
 
         if (response.status === 'ERROR') {
           this.genericError();
@@ -69,6 +73,7 @@ $(function () {
         }
 
         $submitButton.removeClass('is-loading').addClass('is-valid');
+        Utilities.setUpdatePackage();
         setTimeout(function () {
           window.location = '/now/my-account.html';
         }, 2000);

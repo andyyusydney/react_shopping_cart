@@ -7,7 +7,8 @@
     z-index: 1;
     background-color: $color--body;
 
-    @media (max-width: 767px) { height: 520px; }
+    @include breakpoint(mobileOnly) { height: 520px; }
+    /* @media (max-width: 767px) { height: 520px; } */
 
     /* make sure that a tags work under this slideshow */
     a {
