@@ -303,7 +303,20 @@ var digitalDataManager = {
         digitalData.site.section = "shop";
         digitalData.site.subSection = "";
         digitalData.site.subSubSection = "";
-        digitalData.page.pageInfo.pageName = "{product/pack name}";
+        digitalData.page.pageInfo.pageName = document.title;
+
+        var digitalData.transaction.products = [];
+        var $product = $(".foxtel-now-pack-details");
+        var name = $product.find("[itemprop='name']").text();
+        var price = $product.find("[itemprop='price']").text();
+        var id = $product.find(".add-to-cart[data-tier-id]").attr("data-tier-id");
+        var product = {
+            product_name: name,
+            product_id: id,
+            product_price: price,
+            qty: 1
+        };
+        digitalData.transaction.products.push(product);
     },
     analyseShoppingCart : function() {
         digitalData.site.section = "shop";
