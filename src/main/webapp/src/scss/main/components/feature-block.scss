@@ -75,6 +75,7 @@
   height: 360px;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   margin-bottom:15px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   @include breakpoint(tablet) {
