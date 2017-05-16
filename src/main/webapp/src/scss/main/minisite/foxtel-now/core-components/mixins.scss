@@ -92,6 +92,13 @@
 		}
 	}
 
+
+	.foxtel-now-card__legal-text-wrapper {
+		text-align: left;
+        height: 36px;
+	}
+
+
 	.foxtel-now-price-symbol {
 		@include foxtel-now-price-symbol();
 	}
