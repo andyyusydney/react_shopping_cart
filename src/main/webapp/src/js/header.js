@@ -87,6 +87,9 @@ $(function () {
           FOX.context.broadcast('ANALYTICS_USER_LOGGED_IN', {
             userId: response.user.account.accountNumber
           });
+          if(!response.user.account.accountStatus){
+            $('.menu-item.f-title').remove();
+          }
         }
         else {
           FOX.context.broadcast('ANALYTICS_USER_NOT_LOGGED_IN');
