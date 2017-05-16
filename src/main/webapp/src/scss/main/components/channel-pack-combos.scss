@@ -33,6 +33,14 @@
     font-size: $font-size--base;
     font-weight: bold;
     margin-bottom: 12px;
+    sup {
+      position: initial;
+      margin-left: -4px;
+      font-size: 100%;
+    }
+    sub {
+      font-size: $font-size--sm;
+    }
   }
   &.channel-pack-combos-highlight {
     background-color: $color--body;
