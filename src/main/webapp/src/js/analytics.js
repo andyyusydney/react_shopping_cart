@@ -67,7 +67,7 @@ $(function() {
                 case "/now/my-account/manage-your-package":
                     digitalDataManager.analyseMyAccountManagePackage();
                     break;
-                case "/now/my-account/reactivate/packs":
+                case "/now/my-account/reactivate":
                     digitalDataManager.analyseMyAccountReactivateChoosePackages();
                     break;
                 case "/now/my-account/reactivate/personal-details":
@@ -305,7 +305,7 @@ var digitalDataManager = {
         digitalData.site.subSubSection = "";
         digitalData.page.pageInfo.pageName = document.title;
 
-        var digitalData.transaction.products = [];
+        digitalData.transaction.products = [];
         var $product = $(".foxtel-now-pack-details");
         var name = $product.find("[itemprop='name']").text();
         var price = $product.find("[itemprop='price']").text();
@@ -443,6 +443,24 @@ var digitalDataManager = {
         digitalData.page.formStep = "choose packages";
         digitalData.page.clientSideFormErrors = "";
         digitalData.page.serverSideFormErrors = "";
+
+        FOX.context.subscribe("SHOP_CART_LOADED", function(data) {
+            try {
+                FOX.storage.data("analytics-shopping-cart", JSON.stringify(data.play));
+            }
+            catch (e) {
+                console.log(e);
+            }
+        });
+
+        FOX.context.subscribe("SHOP_CART_REFRESHED", function(data) {
+            try {
+                FOX.storage.data("analytics-shopping-cart", JSON.stringify(data.play));
+            }
+            catch (e) {
+                console.log(e);
+            }
+        });
     },
     analyseMyAccountReactivateEnterDetails : function() {
         digitalData.site.section = "build";
@@ -497,6 +515,23 @@ var digitalDataManager = {
         digitalData.page.formStep = "complete";
         digitalData.page.clientSideFormErrors = "";
         digitalData.page.serverSideFormErrors = "";
+
+        var shoppingCart = JSON.parse(FOX.storage.data("analytics-shopping-cart"));
+        var purchasedProducts = [];
+
+        for (var i = 0; i < shoppingCart.tiers.length; i++) {
+            var product = {
+                product_name: shoppingCart.tiers[i].title,
+                product_id: shoppingCart.tiers[i].tierId,
+                product_price: shoppingCart.tiers[i].price,
+                qty: 1
+            };
+            purchasedProducts.push(product);
+        }
+
+        digitalData.transaction.products = purchasedProducts;
+        digitalData.transaction.totalRevenue = shoppingCart.monthlyCostIncludingOffer;
+        digitalData.transaction.totalQty = shoppingCart.tiers.length;
     },
     analyseError : function() {
         digitalData.site.section = "error";
