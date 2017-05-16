@@ -31,9 +31,14 @@
     font-weight: bold;
     text-align: center;
     color: $color--white;
-    width: 185px; h
-    eight: 52px; border-radius: 100px; background-color: $color--brand;
+    width: 185px;
+    height: 52px; border-radius: 100px; background-color: $color--brand;
     line-height: 52px;
     margin-left: 20px;
+
+    a, a:hover {
+      color: $color--white;
+      text-decoration: none;
+    }
   }
 }

@@ -24,11 +24,16 @@
      table-layout: fixed;
      /* border-spacing: 80px 0; */
      width: 100%;
-     @media (max-width: 767px) { display: block; }
+
+     @include breakpoint(mobileOnly) { display: block; }
+
+     /* @media (max-width: 767px) { display: block; } */
 
      .iq-content-bottom__content {
        display: table-row;
-       @media (max-width: 767px) { display: block; }
+
+       @include breakpoint(mobileOnly) { display: block; }
+       /* @media (max-width: 767px) { display: block; } */
 
        .iq-content-bottom__content__wrapper {
          display: table-cell;

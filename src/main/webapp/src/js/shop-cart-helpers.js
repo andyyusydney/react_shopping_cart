@@ -65,6 +65,14 @@ Handlebars.registerHelper("shopDefaultPackage",function(cartResponse,options) {
     }
 });
 
+Handlebars.registerHelper("shopPremiumPackage",function(cartResponse,options) {
+    if (Foxtel.ShopCartManager.hasPremium()) {
+        return options.fn(this);
+    }else {
+        return options.inverse(this);
+    }
+});
+
 Handlebars.registerHelper("shopEPLRules",function(cartResponse,options) {
 
     var EPL_CHANNEL_TIERS = Foxtel.ShopCartManager.getEPLTiers();
@@ -208,5 +216,14 @@ Handlebars.registerHelper("shopCartStringToDateConverter",function(cartResponse,
   var date = month + '-' + year;
 
   return date;
+
+});
+
+Handlebars.registerHelper("shopCartDecimalConverter",function(DecimalPos,totalValue,options) {
+
+  if (totalValue == "") totalValue = 0;
+  var sum = totalValue / Math.pow(10,DecimalPos);
+
+  return sum.toFixed(2);
 
 });

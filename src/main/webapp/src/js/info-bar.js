@@ -53,6 +53,8 @@ $(document).ready(function () {
       }
     });
 
+    var bannerViewList = [];
+
     FOX.context.subscribe('SHOW_BANNER', function (data) {
       var $template = $('#foxtel-now-info-bar-template--' + data.name);
       var $infoBar = $('#foxtel-now-info-bar-container--' + data.name + ' .foxtel-now-info-bar');
@@ -67,8 +69,19 @@ $(document).ready(function () {
 
         $('#foxtel-now-info-bar-container--' + data.name).append(view.$el);
         view.$el.trigger('show');
+
+        bannerViewList.push(view);
       }
     });
+
+    FOX.context.subscribe('HIDE_ALL_BANNER', function () {
+        _.each(bannerViewList,function(item){
+            if(item){
+                item.handleClose();
+            }
+        });
+    });
+
 
   }
 });

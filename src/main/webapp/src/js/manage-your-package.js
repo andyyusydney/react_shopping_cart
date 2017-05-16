@@ -34,10 +34,25 @@ $(function () {
           window.location = '/now/my-account/deactivate.html';
           return false;
         // Otherwise, make the update call.
+        } else if(Foxtel.ShopCartManager.hasPremiumPackAndNoStarter()) {
+            var buttonWithoutStarterUrl = $(this).data("button-without-starter-url");
+            Foxtel.navigator(buttonWithoutStarterUrl);
         } else {
-          $.post('/bin/foxtel/now/updatecart', {})
-            .done(this.handleUpdateSuccess.bind(this))
-            .fail(this.handleUpdateError.bind(this));
+
+            var self = this;
+            $.ajax({
+                url: '/bin/foxtel/now/updatecart',
+                data:JSON.stringify({}),
+                type:"POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success:function(data){
+                    self.handleUpdateSuccess(data);
+                },
+                error:function(){
+                    self.handleUpdateError(data);
+                }
+             });
         }
         // Prevent default shop handlers from running.
         return false;
@@ -46,6 +61,7 @@ $(function () {
       handleUpdateSuccess: function (response) {
         var $submitButton = $(this.buttonContainerSelector + ' button');
         var $buttonContainer = $submitButton.parents(this.buttonContainerSelector);
+        Utilities.isPackageUpdated = false;
 
         if (response.status === 'ERROR') {
           this.genericError();
@@ -57,6 +73,7 @@ $(function () {
         }
 
         $submitButton.removeClass('is-loading').addClass('is-valid');
+        Utilities.setUpdatePackage();
         setTimeout(function () {
           window.location = '/now/my-account.html';
         }, 2000);

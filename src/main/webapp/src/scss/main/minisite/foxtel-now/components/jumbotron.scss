@@ -12,22 +12,33 @@
   	box-shadow:         2px 3px 10px 0px #ccc;
   	z-index: 9;
   	top: 0;
+  	&.foxtel-now-jumbotron--pop {
+        left: 0;
+        right: 0;
+     }
 }
 
 .foxtel-now-jumbotron--shopping-cart {
-	display: table;
-	width: 100%;
 	.foxtel-now-jumbotron--shopping-cart__description,
 	.foxtel-now-jumbotron--shopping-cart__summary {
-		display: table-cell;
-		padding: 0 50px;
 		@media (max-width: 767px)  {
 			display: table-row;
 		}
 	}
 
 	.foxtel-now-jumbotron--shopping-cart__description {
-		width: 70%;
+	    padding: 0 20px 0 0;
+	}
+
+	.foxtel-now-jumbotron--shopping-cart__summary {
+	    @include flexbox;
+	    flex-direction: row;
+        flex-wrap: wrap;
+        width: auto;
+	}
+
+	.foxtel-now-jumbotron--shopping-cart__description {
+		float: left;
 		.foxtel-now-jumbotron--shopping-cart__description-wrapper {
 			display: table;
 			.cart-title-wrapper {
@@ -76,23 +87,24 @@
 				    	sub {
 				    	    padding: 0 13px;
 				    	}
-				    }	
+				    }
 				}
 				.foxtel-now-jumbotron__pack-tag--transparent {
 					display: none;
-				    background: transparent;
-				    color: white;	
+                    background: transparent;
+                    color: white;
+					padding: 10px;
 				}
 			}
 		}
 	}
 
 	.foxtel-now-jumbotron--shopping-cart__summary {
-		width: 30%;
-	}
-
-	.foxtel-now-jumbotron--shopping-cart__summary {
 		 border-left: solid 1px rgba(255, 255, 255, 0.2);
+         @include breakpoint(mobileOnly){
+             border: none;
+             border-top: solid 1px rgba(255, 255, 255, 0.2);
+         }
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost,
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
 			display: table;
@@ -120,12 +132,6 @@
 			}
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
-            @include breakpoint(mobileOnly){
-                border-top: solid 1px rgba(255, 255, 255, 0.2);
-            }
-			p:first-child {
-				width: 50%;
-			}
 			p:last-child {
                 font-size: $font-size--md;
             }
@@ -150,19 +156,23 @@
 				}
 				p:first-child,
 				p:nth-child(2),
-				p:last-child {
+				p.foxtel-now-jumbotron__pack-tag--transparent {
 					display: inline-block;
-				}		
+				}
 			}
 		}
 	}
 	.foxtel-now-jumbotron--shopping-cart__summary {
-	    width: 40%;
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
 		    display: none;
+		    flex: 0 1 100%;
+
 		    &.total {
-		        display: table-cell;
-                width: 60%;
+                flex: 1 0 50%;
+                @include flexbox;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: baseline;
 		    }
 		    @include breakpoint(mobileOnly){
 		        width: initial;
@@ -176,11 +186,13 @@
 				display: inline-block;
 			}
 			p:last-child {
-				text-align: right;
+                white-space: nowrap;
+                padding-right: 20px;
 			}
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
             display: table-cell;
+            flex: 1 0 50%;
             @include breakpoint(mobileOnly){
                 .foxtel-now-btn {
                     margin-top: 15px;
@@ -193,9 +205,5 @@
             min-width: initial;
 		}
 
-	}
-	.foxtel-now-jumbotron--shopping-cart__description,
-	.foxtel-now-jumbotron--shopping-cart__summary {
-		padding: 0 20px;
 	}
 }

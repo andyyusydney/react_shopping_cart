@@ -1,0 +1,9 @@
+{
+   "page":"",
+   "allowed":{
+      "code":"0",
+      "message":"SUCCESS",
+      "description":"Successfully matched condition",
+      "success":true
+   }
+}

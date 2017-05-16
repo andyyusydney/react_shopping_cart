@@ -41,11 +41,15 @@ $(function () {
       },
 
       handleUserInfo: function () {
+        var $logoLink = this.$el.find('.logo a');
+
         // Set the logged-in status of the header.
         if (this.model.get('loggedIn')) {
           this.$el.addClass('is-logged-in');
           // Update the username in settings.
           this.$el.find('.settings .username').html('Hi, ' + this.model.get('name'));
+          // Update logo link
+          $logoLink.attr('href', $logoLink.data('logged-in-url'));
         } else {
           if (this.model.onLoginPage()) {
             this.$el.addClass('log-in');
@@ -77,9 +81,15 @@ $(function () {
       handleUserInfoResponse: function (response) {
         if (response.user && response.user.account && response.user.account.accountNumber) {
           this.set({
-            name: response.user.account.iFirstName,
+            name: response.user.account.firstName,
             loggedIn: true
           });
+          FOX.context.broadcast('ANALYTICS_USER_LOGGED_IN', {
+            userId: response.user.account.accountNumber
+          });
+        }
+        else {
+          FOX.context.broadcast('ANALYTICS_USER_NOT_LOGGED_IN');
         }
         this.trigger('fetched:userInfo');
       }

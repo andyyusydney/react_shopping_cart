@@ -20,8 +20,9 @@
             //submit event handler
             $submitButton.click(function(){
                 $this = $(this);
+
                 //validated form?
-                if(! self.options.$form.parsley().validate()){
+                if(!self.options.$form.parsley().validate()){
                     return;
                 }
 
@@ -43,6 +44,25 @@
                         $this.removeAttr("disabled","disabled");
                     }
                 });
+            });
+
+            //update submit button text
+            FOX.dyc.subscribeEvent("modelShopCart",function(data){
+                var hasFreeTrial = false;
+                for(var i=0;i<data.quote.monthlyCostItems.length;i++){
+                    var monthlyCostItem = data.quote.monthlyCostItems[i];
+                    if(monthlyCostItem.len == 0){
+                        //free trial
+                        hasFreeTrial = true;
+                        break;
+                    }
+                }
+                if(hasFreeTrial){
+                    var btnTextWithFreeTrial = $submitButton.data("text-with-free-trial");
+                    if(btnTextWithFreeTrial){
+                        $submitButton.text(btnTextWithFreeTrial);
+                    }
+                }
             });
         },
 
@@ -116,7 +136,6 @@
             var requestObject = {};
             requestObject.firstName = self.options.$form.find("[data-id='firstName']").val();
             requestObject.lastName = self.options.$form.find("[data-id='lastName']").val();
-            requestObject.password = self.options.$form.find("[data-id='password']").val();
             requestObject.mobile = self.options.$form.find("[data-id='mobile']").val();
             requestObject.postcode = self.options.$form.find("[data-id='postcode']").val();
             requestObject.primaryDevice = self.options.$form.find("[data-id='primaryDevice']").attr('data-code');
@@ -169,6 +188,8 @@ $(document).ready(function(){
     if(!hasForm){
         return;
     }
+
+
 
     Utilities.selectDropDownText();
 

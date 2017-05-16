@@ -15,7 +15,7 @@ $(document).ready(function () {
         if(data.accountStatus.freeTrial){
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'FREE_TRIAL_MY_ACCOUNT_HOME',
-              freeTrialEndDate: moment(data.accountStatus.freeTrialEndDate).format("MMM Do YY"),
+              freeTrialEndDate: moment(data.accountStatus.freeTrialEndDate).format('DD MMMM, YYYY'),
               closeEnabled: true
             });
         }
@@ -60,7 +60,7 @@ $(document).ready(function () {
         if(data.accountStatus.pendingDeactivated && data.accountStatus.activated){
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'PENDING_DEACTIVATION_MY_ACCOUNT_HOME',
-              nextBillingDate:moment(data.accountStatus.nextBillingDate).format("MMM Do YY"),
+              nextBillingDate:moment(data.accountStatus.nextBillingDate).format('DD MMMM, YYYY'),
               closeEnabled: true
             });
         }
@@ -75,6 +75,15 @@ $(document).ready(function () {
                 Foxtel.navigator($(this).data('url'));
             });
         }
+
+        //show update banner
+        if(Utilities.getUpdatePackage()){
+            FOX.context.broadcast('SHOW_BANNER', {
+              name: 'PACKAGE_UPDATE_SUCCESS',
+              closeEnabled: true
+            });
+            Utilities.removeUpdatePackageCookie();
+         }
 
     });
 

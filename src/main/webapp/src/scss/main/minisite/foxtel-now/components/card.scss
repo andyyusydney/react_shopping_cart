@@ -1,7 +1,7 @@
 /* Extend Bootstrap album.scss card class */
 
 .foxtel-now-album {
-	background: transparent;	
+	background: transparent;
 }
 
 .foxtel-now-card {
@@ -13,15 +13,39 @@
 
 .foxtel-now-card--myaccount {
 	@include foxtel-now-card();
+
 	width: inherit;
 	height: 204px;
-	margin-left: 15px;
 	margin-bottom: 27px;
 	text-align: center;
+
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    .foxtel-now-card--myaccount__content {
+        >img {
+            width: 71px;
+            height: auto;
+        }
+        >p {
+            text-align: center;
+        }
+    }
 }
 
 .foxtel-now-card--basic {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+
 	.foxtel-now-card__title {
 		background-color: transparent;
 	}
+	.foxtel-now-card__title__price {
+        font-size: $font-size--md;
+    }
 }
