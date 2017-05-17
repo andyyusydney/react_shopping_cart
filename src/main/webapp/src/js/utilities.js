@@ -87,3 +87,12 @@ Utilities.getUpdatePackage = function () {
 Utilities.removeUpdatePackageCookie = function () {
     return FOX.storage.removeData("isPackUpdated");
 }
+
+Utilities.checkEditMode = function () {
+    if(window.location.origin.includes("localhost")){
+        if(!window.location.href.includes("?wcmmode=disabled")){
+            return true;
+        }
+    }
+    return false;
+}
