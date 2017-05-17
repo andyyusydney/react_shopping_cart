@@ -174,10 +174,15 @@ $(function () {
           '5 THOMAS HOLT DRIVE',
           '1 FOXTEL NOW ROAD'
         ];
-        if (_(defaultAddresses).contains(response.kBillAddress1)) {
-          response.kBillAddress1 = "";
-          response.kBillCity = "";
-          response.kBillZip = "";
+        for (let defaultAddress of defaultAddresses) {
+            var billAddress = response.kBillAddress1;
+            var trimmedBillAddress = billAddress.trim().toUpperCase();
+            if (defaultAddress == trimmedBillAddress) {
+                response.kBillAddress1 = "";
+                response.kBillCity = "";
+                response.kBillState = "";
+                break;
+            }
         }
 
         // Prepare data for the html form.
