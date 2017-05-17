@@ -5,71 +5,44 @@ $(document).ready(function(){
 
     displayNameFunc.init("logged-in");
 
-    // TOP NAV SMART SCROLLING FEATURE
-    var topnav = $('.foxtel-header-breadcrumb-wrapper');
-    var topnavH = topnav.height();
-    var topnavStatus;
-    var currentScroll = 0;
+    // Hide Header on on scroll down
+    var didScroll;
+    var lastScrollTop = 0;
+    var delta = 3;
+    var navbarHeight = $('.foxtel-header-breadcrumb-wrapper').outerHeight();
 
-    // SCROLL SENSITIVITY TO ADJUST SCROLL BEHAVIOURS
-    var sensitivity = 2;
+    $(window).scroll(function(event){
+        didScroll = true;
+    });
 
-    $(window).scroll(function() {
-        // GET CURRENT PAGE AXIS
-        var nextScroll = $(this).scrollTop();
+    setInterval(function() {
+        if (didScroll) {
+            hasScrolled();
+            didScroll = false;
+        }
+    }, 250);
 
-        // GET SCROLL DELTA
-        var scrollDelta = nextScroll - currentScroll;
+    function hasScrolled() {
+        var st = $(this).scrollTop();
 
-        // IF SCROLLED OR LEFT FROM 0 Y-AXIS
-        if($(this).scrollTop() > 0) {
-            // ONLY TRIGGER WHEN NOT IN THE Y-AXIS RANGE, 0 - TOP NAV HEIGHT
-                // WHEN SCROLL DOWNWARDS
-                if (nextScroll > currentScroll) {
-                    if (scrollDelta > sensitivity) {
-                        if (topnavStatus) {
-                            topnavStatus = false;
+        // Make sure they scroll more than delta
+        if(Math.abs(lastScrollTop - st) <= delta)
+            return;
 
-                            // TOPNAV SLIDES BACK AWAY
-                            topnav.clearQueue().stop().animate({marginTop: -topnavH}, 300, function () {
-
-                                //TO DISTINCUISH FOXTEL NOW HEADER
-                                if (topnav.find('header').hasClass('foxtel-now-header')) {
-                                    return;
-                                } else {
-                                    topnav.addClass('foxtel-header-breadcrumb--default')
-                                          .removeClass('foxtel-header-breadcrumb--pop');
-                                }
-                            });
-                        }
-                    }
-
-                    // WHEN SCROLL UPWARDS
-                } else {
-                    if (scrollDelta < -sensitivity) {
-                        if (!topnavStatus) {
-                            topnavStatus = true;
-
-                            // TOPNAV POPS DOWN
-                            topnav.clearQueue().stop().css('margin-top', -topnavH).animate({marginTop: 0}, 300);
-                        }
-                        //TO DISTINCUISH FOXTEL NOW HEADER
-                        if (topnav.find('header').hasClass('foxtel-now-header')) {
-                            return;
-                        } else {
-                            topnav.addClass('foxtel-header-breadcrumb--pop')
-                                  .removeClass('foxtel-header-breadcrumb--default');
-                        }
-                    }
-                }
-            // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
+        // If they scrolled down and are past the navbar, add class .nav-up.
+        // This is necessary so you never see what is "behind" the navbar.
+        if (st > lastScrollTop && st > navbarHeight){
+            // Scroll Down
+            $('.foxtel-header-breadcrumb-wrapper').removeClass('nav-down').addClass('nav-up');
         } else {
-            topnav.removeClass('foxtel-header-breadcrumb--pop');
+            // Scroll Up
+            if(st + $(window).height() < $(document).height()) {
+                $('.foxtel-header-breadcrumb-wrapper').removeClass('nav-up').addClass('nav-down');
+            }
         }
 
-        // SET CURRENT AS LAST SCROLL
-        currentScroll = nextScroll;
-    });
+        lastScrollTop = st;
+    }
 });
 
 var DisplayNameFunc = window.DisplayNameFunc || function () {

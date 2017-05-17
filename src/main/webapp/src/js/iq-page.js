@@ -50,39 +50,41 @@ $(document).ready(function () {
     }
 
     var ancnav = $('.iq-nav');
-    var currentScroll = 0;
-    var initAnchorTop = ancnav.offset().top;
-    var previousTop = 0;
+    if (ancnav != undefined) {
+        var currentScroll = 0;
+        var initAnchorTop = ancnav.offset().top;
+        var previousTop = 0;
 
-    $(window).scroll(function() {
-        var nextScroll = $(this).scrollTop();
-            // WHEN SCROLLED UP TO THE ANCHOR NAV POSITION
-            if($(this).scrollTop() > ancnav.offset().top) {
-                // WHEN SCROLL DOWNWARDS
-                if (nextScroll > currentScroll){
-                    ancnav.addClass('iq-nav-position__fixed');
+        $(window).scroll(function() {
+            var nextScroll = $(this).scrollTop();
+                // WHEN SCROLLED UP TO THE ANCHOR NAV POSITION
+                if($(this).scrollTop() > ancnav.offset().top) {
+                    // WHEN SCROLL DOWNWARDS
+                    if (nextScroll > currentScroll){
+                        ancnav.addClass('iq-nav-position__fixed');
+                    }
+                } else {
+                    // WHEN SCROLL UPWARDS
+                    if (nextScroll < currentScroll){
+                        ancnav.removeClass('iq-nav-position__fixed');
+                    }
                 }
-            } else {
-                // WHEN SCROLL UPWARDS
-                if (nextScroll < currentScroll){
-                    ancnav.removeClass('iq-nav-position__fixed');
-                }
-            }
-            // SET CURRENT AS LAST SCROLL
-            currentScroll = nextScroll;
-        inView();
-    });
+                // SET CURRENT AS LAST SCROLL
+                currentScroll = nextScroll;
+            inView();
+        });
 
-    // SMOOTH SCROLLING FOR ANCHOR NAVIGATION
-    $(document).on('click', 'a', function(event){
-        event.preventDefault();
-        $('html, body').animate({
-            scrollTop: $( $.attr(this, 'href') ).offset().top - 270
-        }, 300);
-    });
+        // SMOOTH SCROLLING FOR ANCHOR NAVIGATION
+        $(document).on('click', 'a', function(event){
+            event.preventDefault();
+            $('html, body').animate({
+                scrollTop: $( $.attr(this, 'href') ).offset().top - 270
+            }, 300);
+        });
 
-     /* the following code is used to shrink the Foxtel Store image, the really wide one, from both side when tablets or mobile hit. */
-    jQuery(".inclusions-cmp-img__overflow")
-        .css("height",  jQuery(".inclusions-cmp-img__overflow img").height())
-            .addClass("inclusions-cmp-img__overflow-shrink");
+         /* the following code is used to shrink the Foxtel Store image, the really wide one, from both side when tablets or mobile hit. */
+        jQuery(".inclusions-cmp-img__overflow")
+            .css("height",  jQuery(".inclusions-cmp-img__overflow img").height())
+                .addClass("inclusions-cmp-img__overflow-shrink");
+    }
 });

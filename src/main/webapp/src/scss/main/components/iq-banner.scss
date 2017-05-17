@@ -6,19 +6,18 @@
   justify-content: center;
   text-align: center;
   color: $color--body;
+  padding-left: 10px;
+  padding-right: 10px;
 
   @include breakpoint(mobileOnly) { height: 367px; }
-  /* @media (max-width: 767px) { height: 367px; } */
 
   @media (min-width: 768px) and (max-width: 992px) { height: 428px; }
 
   .font--md--bold  {
     @include breakpoint(mobileOnly) { font-size: $font-size--base; }
-    /* @media (max-width: 767px) { font-size: $font-size--base; } */
   }
 
   .font--lg--bold, .font--lg {
     @include breakpoint(mobileOnly) { font-size: $font-size--md; }
-    /* @media (max-width: 767px) { font-size: $font-size--md; } */
   }
 }
