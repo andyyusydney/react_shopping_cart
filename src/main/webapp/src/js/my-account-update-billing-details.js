@@ -11,7 +11,9 @@ $(document).ready(function(){
     $formDirectDebit = $('#foxtel-now-credit-card-details-form');
     $submitBtn = $('#credit-card-form-submit');
 
-    $formDirectDebit.hide();
+    if(!Utilities.checkEditMode()){
+        $formDirectDebit.hide();
+    }
     $('.foxtel-now-display-div-template-container').on('click','.edit-link',function(){
         $formDirectDebit.slideToggle();
     })

@@ -15,7 +15,7 @@ $(document).ready(function () {
         if(data.accountStatus.freeTrial){
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'FREE_TRIAL_MY_ACCOUNT_HOME',
-              freeTrialEndDate: moment(data.accountStatus.freeTrialEndDate).format("MMM Do YY"),
+              freeTrialEndDate: moment(data.accountStatus.freeTrialEndDate).format('DD MMMM, YYYY'),
               closeEnabled: true
             });
         }
@@ -67,12 +67,18 @@ $(document).ready(function () {
         if(data.accountStatus.pendingDeactivated && data.accountStatus.activated){
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'PENDING_DEACTIVATION_MY_ACCOUNT_HOME',
-              nextBillingDate:moment(data.accountStatus.nextBillingDate).format("MMM Do YY"),
+              nextBillingDate:moment(data.accountStatus.nextBillingDate).format('DD MMMM, YYYY'),
               closeEnabled: true
             });
         }
 
-
+        //active primary account
+        if(!data.accountStatus.pendingDeactivated && data.accountStatus.activated && data.accountStatus.primary){
+            FOX.context.broadcast('SHOW_BANNER', {
+                name: 'CART_PREFILLED',
+                closeEnabled: true
+            });
+        }
 
         //show change my package button for activate accounts
         if(data.accountStatus.activated){

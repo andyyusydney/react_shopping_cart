@@ -47,6 +47,15 @@ Handlebars.registerHelper("shopCartMonthlyOffer",function(cartResponse,options) 
     cartResponse.hasFreeTrial = hasFreeTrial;
     cartResponse.quote.monthlyCostItems = monthlyCostItems;
 
+    var monthlyOfferItems = [];
+    for(var i=0;i<cartResponse.quote.monthlyOfferItems.length;i++){
+        var monthlyOfferItem = cartResponse.quote.monthlyOfferItems[i];
+        if(monthlyOfferItem.length != 0){
+            monthlyOfferItems.push(monthlyOfferItem);
+        }
+    }
+    cartResponse.quote.monthlyOfferItems = monthlyOfferItems;
+
 });
 
 Handlebars.registerHelper("shopCartEmptyCart",function(cartResponse,options) {

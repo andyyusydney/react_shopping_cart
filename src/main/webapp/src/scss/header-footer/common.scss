@@ -53,22 +53,23 @@ MIXIN
   }
 }
 
+//width = bootstrap 4 container width - 30px (as bootstrap 4 container includes 15px on each side)
 @mixin make-foxtel-container{
   width:100%;
   padding-left:15px;
   padding-right:15px;
   @include breakpoint(tablet) {
-    width:720px;
+    width:690px;
     padding-left:0;
     padding-right:0;
   }
   @include breakpoint(laptop) {
-    width:960px;
+    width:930px;
     padding-left:0;
     padding-right:0;
   }
   @include breakpoint(desktop) {
-    width:1140px;
+    width:1110px;
     padding-left:0;
     padding-right:0;
   }

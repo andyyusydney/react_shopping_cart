@@ -1,5 +1,10 @@
+#Channel_Pack_Combos {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) inset;
+  @include breakpoint(mobileOnly) {
+    box-shadow: none;
+  }
+}
 .channel-pack-combos {
-  min-width: 300px;
   width: 100%;
   border-radius: 1px;
   background-color: $color--white;
@@ -9,8 +14,7 @@
   margin-bottom: 30px;
 
   @include breakpoint(mobileOnly) {
-    margin-bottom: 15px;
-    width: 100%;
+    margin-bottom: 25px;
   }
 
   /*
@@ -27,6 +31,14 @@
     font-size: $font-size--base;
     font-weight: bold;
     margin-bottom: 12px;
+    sup {
+      position: initial;
+      margin-left: -4px;
+      font-size: 100%;
+    }
+    sub {
+      font-size: $font-size--sm;
+    }
   }
   &.channel-pack-combos-highlight {
     background-color: $color--body;
