@@ -305,7 +305,7 @@ var digitalDataManager = {
         digitalData.site.subSubSection = "";
         digitalData.page.pageInfo.pageName = document.title;
 
-        var digitalData.transaction.products = [];
+        digitalData.transaction.products = [];
         var $product = $(".foxtel-now-pack-details");
         var name = $product.find("[itemprop='name']").text();
         var price = $product.find("[itemprop='price']").text();

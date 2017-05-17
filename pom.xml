@@ -24,48 +24,6 @@
 
     <build>
         <plugins>
-
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                    <execution>
-                        <id>install node and yarn</id>
-                        <goals>
-                            <goal>install-node-and-yarn</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                    </execution>
-
-                    <execution>
-                        <id>yarn install</id>
-                        <goals>
-                            <goal>yarn</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>install</arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>yarn webpack</id>
-                        <goals>
-                            <goal>yarn</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>webpack</arguments>
-                        </configuration>
-                    </execution>
-
-                </executions>
-                <configuration>
-                    <nodeVersion>v6.9.1</nodeVersion>
-                    <yarnVersion>v0.22.0</yarnVersion>
-                    <npmVersion>3.10.8</npmVersion>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.jasig.maven</groupId>
                 <artifactId>sass-maven-plugin</artifactId>
@@ -172,9 +130,9 @@
                             </outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>dist/js</directory>
+                                    <directory>dist</directory>
                                     <includes>
-                                        <include>**/*.js</include>
+                                        <include>foxtelnow.js</include>
                                     </includes>
                                 </resource>
                             </resources>

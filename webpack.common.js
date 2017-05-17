@@ -6,9 +6,6 @@ var glob = require("glob");
 var webpack = require("webpack");
 
 module.exports = {
-  entry: {
-    foxtelnow: glob.sync('./src/main/webapp/src/js/*')
-  },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
@@ -39,11 +36,6 @@ module.exports = {
         }
       }
     ]
-  },
-  devtool: 'inline-source-map',
-  plugins: [
-    // enable HMR globally
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  }
 };
 
