@@ -67,26 +67,28 @@
         position: absolute;
         bottom: -60px;
         content: ' ';
-        width:  22px;
+        width: 1px;
         height: 22px;
         border: 2px solid #32323c;
         border-top: transparent;
         border-bottom: transparent;
         border-left: transparent;
-        right: -2px;
         left: 0;
         margin: auto;
+        right: 0;
       }
       &:before {
         position: absolute;
         bottom: -50px;
         content: ' ';
-        width:  22px;
-        height: 22px;
+        width: 22px;
         border: 2px solid #32323c;
         border-top: transparent;
         border-left: transparent;
         border-right: transparent;
+        left: 0;
+        right: 0;
+        margin: auto;
       }
     }
   }

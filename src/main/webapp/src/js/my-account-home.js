@@ -65,7 +65,13 @@ $(document).ready(function () {
             });
         }
 
-
+        //active primary account
+        if(!data.accountStatus.pendingDeactivated && data.accountStatus.activated && data.accountStatus.primary){
+            FOX.context.broadcast('SHOW_BANNER', {
+                name: 'CART_PREFILLED',
+                closeEnabled: true
+            });
+        }
 
         //show change my package button for activate accounts
         if(data.accountStatus.activated){
