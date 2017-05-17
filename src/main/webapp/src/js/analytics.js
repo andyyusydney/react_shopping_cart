@@ -22,9 +22,6 @@ $(function() {
                 case "/now/index":
                     digitalDataManager.analyseHome();
                     break;
-                case "/now/login":
-                    digitalDataManager.analyseLogin();
-                    break;
                 case "/now/shop/sign-up":
                     digitalDataManager.analyseSignUpPersonalDetails();
                     break;
@@ -459,17 +456,6 @@ var digitalDataManager = {
         digitalData.site.subSection = "";
         digitalData.site.subSubSection = "";
         digitalData.page.pageInfo.pageName = "404 Not Found";
-    },
-    analyseLogin : function() {
-        $("#login-form-submit").on("click", function() {
-            digitalData.pldl.event.eventName = "button_click";
-            digitalData.pldl.event.eventInfo = {
-                eventAction: "login click",
-            };
-        });
-        FOX.context.subscribe("FOXTELNOW_LOGIN_SUCCESS", function() {
-            digitalData.pldl.event.eventName = "login";
-        });
     },
     formStarted : false,
     oldShoppingCart : [],
