@@ -132,6 +132,19 @@ var digitalDataManager = {
 
         digitalDataManager.analyseShoppingCartOnEvent("SHOP_CART_LOADED");
         digitalDataManager.analyseShoppingCartOnEvent("SHOP_CART_REFRESHED");
+
+        $("div[data-id='freeTrial'] a").on("click", function() {
+            digitalData.pldl.event.eventName = "button_click";
+            digitalData.pldl.event.eventInfo = {
+                eventAction: "free trial click"
+            };
+         });
+        $("div[data-id='logIn'] a").on("click", function() {
+            digitalData.pldl.event.eventName = "button_click";
+            digitalData.pldl.event.eventInfo = {
+                eventAction: "login click"
+            };
+         });
     },
     analyseHome : function() {
         digitalData.site.section = "";
