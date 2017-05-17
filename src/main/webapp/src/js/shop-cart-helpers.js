@@ -160,7 +160,7 @@ Handlebars.registerHelper("shopCartTierLegalText",function(tierLegalTextArrayStr
 });
 
 Handlebars.registerHelper("shopCartShowFirstMonthCost",function(cartResponse,options) {
-    if(ShopCartHelpers.hasSportTier(cartResponse)){
+    if(ShopCartHelpers.hasSportTier(cartResponse) && cartResponse.play.showFirstMonthCost){
         return options.fn(this);
     }else{
         return options.inverse(this);
