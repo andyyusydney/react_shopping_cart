@@ -39,7 +39,7 @@ $(document).ready(function(){
 
         var requestObject = {};
         requestObject.cardNumber = $form.find("[data-id='cardNumber']").val().replace(/ /g, "");
-        requestObject.cardExpiry = $form.find("[data-id='cardExpiry']").val();
+        requestObject.cardExpiry = $form.find("[data-id='cardExpiry']").val().replace(/-/g, "");
         requestObject.cvc = $form.find("[data-id='cvc']").val();
 
         $.ajax({
