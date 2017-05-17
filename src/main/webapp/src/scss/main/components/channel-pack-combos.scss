@@ -38,6 +38,7 @@
     }
     sub {
       font-size: $font-size--sm;
+      position: initial;
     }
   }
   &.channel-pack-combos-highlight {
