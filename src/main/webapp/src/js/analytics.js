@@ -58,9 +58,6 @@ $(function() {
                 case "/now/my-account/view-bills":
                     digitalDataManager.analyseMyAccountViewBills();
                     break;
-                case "/now/my-account/add":
-                    digitalDataManager.analyseMyAccountCreateSecondaryAccount();
-                    break;
                 case "/now/my-account/deactivate":
                     digitalDataManager.analyseMyAccountDeactivate();
                     break;
@@ -132,6 +129,9 @@ var digitalDataManager = {
                 console.log(e);
             }
         });
+
+        digitalDataManager.analyseShoppingCartOnEvent("SHOP_CART_LOADED");
+        digitalDataManager.analyseShoppingCartOnEvent("SHOP_CART_REFRESHED");
     },
     analyseHome : function() {
         digitalData.site.section = "";
@@ -299,15 +299,6 @@ var digitalDataManager = {
             qty: 1
         };
         digitalData.page.products.push(product);
-    },
-    analyseShoppingCart : function() {
-        digitalData.site.section = "shop";
-        digitalData.site.subSection = "";
-        digitalData.site.subSubSection = "";
-        digitalData.page.pageInfo.pageName = "shopping cart";
-        FOX.context.subscribe("SHOP_CART_REFRESHED", function(data) {
-            digitalData.pldl.event.eventName = "login";
-        });
     },
     analyseMyAccountHome : function() {
         digitalData.site.section = "build";
@@ -511,27 +502,29 @@ var digitalDataManager = {
         return additionalProducts;
     },
     analyseShoppingCartOnEvent : function(eventName) {
-        try {
-            var shoppingCart = data.play;
-            var products = [];
+        FOX.context.subscribe(eventName, function(data) {
+            try {
+                var shoppingCart = data.play;
+                var products = [];
 
-            for (var i = 0; i < shoppingCart.tiers.length; i++) {
-                var product = {
-                    product_name: shoppingCart.tiers[i].title,
-                    product_id: shoppingCart.tiers[i].tierId,
-                    product_price: shoppingCart.tiers[i].price,
-                    qty: 1
-                };
-                products.push(product);
+                for (var i = 0; i < shoppingCart.tiers.length; i++) {
+                    var product = {
+                        product_name: shoppingCart.tiers[i].title,
+                        product_id: shoppingCart.tiers[i].tierId,
+                        product_price: shoppingCart.tiers[i].price,
+                        qty: 1
+                    };
+                    products.push(product);
+                }
+
+                digitalData.cart.products = products;
+                digitalData.cart.totalvalue = shoppingCart.monthlyCostIncludingOffer;
+                digitalData.cart.totalQty = shoppingCart.tiers.length;
             }
-
-            digitalData.cart.products = products;
-            digitalData.cart.totalvalue = shoppingCart.monthlyCostIncludingOffer;
-            digitalData.cart.totalQty = shoppingCart.tiers.length;
-        }
-        catch (e) {
-            console.log(e);
-        }
+            catch (e) {
+                console.log(e);
+            }
+        });
     },
     storeShoppingCartOnEvent : function(eventName) {
         FOX.context.subscribe(eventName, function(data) {
