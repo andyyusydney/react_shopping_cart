@@ -149,6 +149,8 @@ var digitalDataManager = {
         digitalData.page.clientSideFormErrors = "";
         digitalData.page.serverSideFormErrors = "";
 
+        digitalDataManager.analyseServerFormErrorsOnMessage();
+
         $("#shop-sign-up-form input").on("focus", function() {
             if (digitalDataManager.formStarted == false) {
                 digitalData.pldl.event.eventName = "form_start";
@@ -192,6 +194,8 @@ var digitalDataManager = {
         digitalData.page.formStep = "credit card";
         digitalData.page.clientSideFormErrors = "";
         digitalData.page.serverSideFormErrors = "";
+
+        digitalDataManager.analyseServerFormErrorsOnMessage();
 
         digitalDataManager.storeShoppingCart("SHOP_CART_LOADED");
 
@@ -403,6 +407,8 @@ var digitalDataManager = {
         digitalData.page.clientSideFormErrors = "";
         digitalData.page.serverSideFormErrors = "";
 
+        digitalDataManager.analyseServerFormErrorsOnMessage();
+
         digitalDataManager.storeShoppingCartOnEvent("SHOP_CART_LOADED");
         digitalDataManager.storeShoppingCartOnEvent("SHOP_CART_REFRESHED");
     },
@@ -415,6 +421,8 @@ var digitalDataManager = {
         digitalData.page.formStep = "enter details";
         digitalData.page.clientSideFormErrors = "";
         digitalData.page.serverSideFormErrors = "";
+
+        digitalDataManager.analyseServerFormErrorsOnMessage();
 
         $("#reactivation-personal-details-form input").on("focus", function() {
             if (digitalDataManager.formStarted == false) {
@@ -457,8 +465,6 @@ var digitalDataManager = {
         digitalData.page.pageInfo.pageName = "reactivate - complete"
         digitalData.page.formName = "reactivate";
         digitalData.page.formStep = "complete";
-        digitalData.page.clientSideFormErrors = "";
-        digitalData.page.serverSideFormErrors = "";
 
         digitalDataManager.loadAndAnalyseShoppingCart();
     },
@@ -481,6 +487,17 @@ var digitalDataManager = {
     },
     formStarted : false,
     oldShoppingCart : [],
+    analyseServerFormErrorsOnMessage : function() {
+        FOX.context.subscribe("SHOW_BANNER", function(data) {
+            switch (data.name) {
+                case "EMAIL_TAKEN":
+                case "PAYMENT_GATEWAY_ERROR":
+                case "KENAN_ERROR":
+                    digitalData.page.serverSideFormErrors = data.name;
+                    break;
+            }
+        });
+    },
     getAdditionalProducts : function(arrayOfProducts, arrayWithAdditionalProducts) {
         var additionalProducts = "";
         for (var i = 0; i < arrayWithAdditionalProducts.length; i++) {
