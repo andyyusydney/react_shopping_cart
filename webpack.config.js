@@ -114,6 +114,14 @@ http.createServer(function (req, res) {
         return;
     }
 
+    //context check servlet
+    if(/\/bin\/foxtel\/fnsalescontextcheck/.test(url)){
+        proxy.web(req, res, {
+           target: LOCAL_WEBPACK_SERVER
+        });
+        return;
+    }
+
     if(/.*hot-update.json/.test(url)){
         proxy.web(req, res, {
           target: LOCAL_WEBPACK_SERVER
