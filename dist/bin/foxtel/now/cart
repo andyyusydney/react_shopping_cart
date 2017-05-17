@@ -58,7 +58,15 @@
             "offerEndDate":"",
             "target":"PLAY",
             "percentage":"100"
-         }
+         },
+         {
+             "offerTierId": 102088,
+             "title": "Presto - Free pop for 3 months",
+             "length": 3,
+             "offerEndDate": "",
+             "target": "PLAY",
+             "value": "15"
+          }
       ],
       "monthlyCostItems":[
          {
@@ -66,6 +74,11 @@
             "len":0,
             "value":"0"
          },
+         {
+             "name":"Month 1-4",
+             "len":3,
+             "value":"20"
+          },
          {
             "name":"Month 1-12",
             "len":11,
