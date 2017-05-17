@@ -493,6 +493,29 @@ var digitalDataManager = {
         }
         return additionalProducts;
     },
+    analyseShoppingCartOnEvent : function(eventName) {
+        try {
+            var shoppingCart = data.play;
+            var products = [];
+
+            for (var i = 0; i < shoppingCart.tiers.length; i++) {
+                var product = {
+                    product_name: shoppingCart.tiers[i].title,
+                    product_id: shoppingCart.tiers[i].tierId,
+                    product_price: shoppingCart.tiers[i].price,
+                    qty: 1
+                };
+                products.push(product);
+            }
+
+            digitalData.cart.products = products;
+            digitalData.cart.totalvalue = shoppingCart.monthlyCostIncludingOffer;
+            digitalData.cart.totalQty = shoppingCart.tiers.length;
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
     storeShoppingCartOnEvent : function(eventName) {
         FOX.context.subscribe(eventName, function(data) {
             try {
