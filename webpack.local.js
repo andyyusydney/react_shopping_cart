@@ -68,12 +68,7 @@ http.createServer(function (req, res) {
         return;
     }
 
-    if(/.*foxtel-main-ui.css/.test(url)){
-        // Main css will be bundled with js.
-        res.writeHead(200, {"Content-Type": "text/plain"});
-        res.end("Blank\n");
-        return;
-    }
+
 
     if(/\/bin\/foxtel\/now.*/.test(url)){
         proxy.web(req, res, {
@@ -84,7 +79,7 @@ http.createServer(function (req, res) {
 
     if(/\/bin\/secure\.*/.test(url)){
         proxy.web(req, res, {
-           target: LOCAL_WEBPACK_SERVER
+           target: LOCAL_ASSET_SERVER
         });
         return;
     }
@@ -98,7 +93,7 @@ http.createServer(function (req, res) {
 
     if(/.*hot-update.json/.test(url)){
         proxy.web(req, res, {
-          target: LOCAL_WEBPACK_SERVER
+          target: LOCAL_ASSET_SERVER
         });
         return;
     }

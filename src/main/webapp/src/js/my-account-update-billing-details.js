@@ -49,7 +49,7 @@ $(document).ready(function(){
             cvc: ""
         }
 
-        postDataObj.cardNumber = $("input[data-id='cardNumber']").val();
+        postDataObj.cardNumber = $("input[data-id='cardNumber']").val().replace(/ /g, "");
         postDataObj.cardExpireMonth = $("input[data-id='cardExpiry']").val().split("-")[0];
         postDataObj.cardExpireYear = $("input[data-id='cardExpiry']").val().split("-")[1];
         postDataObj.cvc = $("input[data-id='cvc']").val();
