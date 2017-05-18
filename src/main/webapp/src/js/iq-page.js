@@ -50,7 +50,7 @@ $(document).ready(function () {
     }
 
     var ancnav = $('.iq-nav');
-    if (ancnav != undefined) {
+    if (ancnav != undefined && ancnav.offset() != undefined) {
         var currentScroll = 0;
         var initAnchorTop = ancnav.offset().top;
         var previousTop = 0;
