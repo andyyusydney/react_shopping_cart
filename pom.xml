@@ -24,6 +24,48 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>install node and yarn</id>
+                        <goals>
+                            <goal>install-node-and-yarn</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
+
+                    <execution>
+                        <id>yarn install</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>yarn webpack</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>webpack -- --config webpack.prod.js</arguments>
+                        </configuration>
+                    </execution>
+
+                </executions>
+                <configuration>
+                    <nodeVersion>v6.9.1</nodeVersion>
+                    <yarnVersion>v0.22.0</yarnVersion>
+                    <npmVersion>3.10.8</npmVersion>
+                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
+                    <yarnInheritsProxyConfigFromMaven>false</yarnInheritsProxyConfigFromMaven>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>org.jasig.maven</groupId>
@@ -84,7 +126,9 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel-ui/resources/vendor</outputDirectory>
+                            <outputDirectory>
+                                ${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel-ui/resources/vendor
+                            </outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/webapp/vendor</directory>
@@ -103,7 +147,9 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel-ui/resources/css</outputDirectory>
+                            <outputDirectory>
+                                ${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel-ui/resources/css
+                            </outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}/dist/build/static</directory>
@@ -122,12 +168,14 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel-ui/resources/js</outputDirectory>
+                            <outputDirectory>
+                                ${project.build.directory}/vault-work/jcr_root/etc/designs/foxtel-ui/resources/js
+                            </outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>src/main/webapp/src/js</directory>
+                                    <directory>dist</directory>
                                     <includes>
-                                        <include>**/*.js</include>
+                                        <include>foxtelnow.js</include>
                                     </includes>
                                 </resource>
                             </resources>

@@ -22,9 +22,6 @@ $(function() {
                 case "/now/index":
                     digitalDataManager.analyseHome();
                     break;
-                case "/now/login":
-                    digitalDataManager.analyseLogin();
-                    break;
                 case "/now/shop/sign-up":
                     digitalDataManager.analyseSignUpPersonalDetails();
                     break;
@@ -57,9 +54,6 @@ $(function() {
                     break;
                 case "/now/my-account/view-bills":
                     digitalDataManager.analyseMyAccountViewBills();
-                    break;
-                case "/now/my-account/add":
-                    digitalDataManager.analyseMyAccountCreateSecondaryAccount();
                     break;
                 case "/now/my-account/deactivate":
                     digitalDataManager.analyseMyAccountDeactivate();
@@ -132,6 +126,22 @@ var digitalDataManager = {
                 console.log(e);
             }
         });
+
+        digitalDataManager.analyseShoppingCartOnEvent("SHOP_CART_LOADED");
+        digitalDataManager.analyseShoppingCartOnEvent("SHOP_CART_REFRESHED");
+
+        $("div[data-id='freeTrial'] a").on("click", function() {
+            digitalData.pldl.event.eventName = "button_click";
+            digitalData.pldl.event.eventInfo = {
+                eventAction: "free trial click"
+            };
+         });
+        $("div[data-id='logIn'] a").on("click", function() {
+            digitalData.pldl.event.eventName = "button_click";
+            digitalData.pldl.event.eventInfo = {
+                eventAction: "login click"
+            };
+         });
     },
     analyseHome : function() {
         digitalData.site.section = "";
@@ -259,27 +269,7 @@ var digitalDataManager = {
         digitalData.site.subSubSection = "";
         digitalData.page.pageInfo.pageName = "all packs";
 
-        var products = [];
-        $(".foxtel-now-card").each(
-            function() {
-                var priceText = $(this).find(".foxtel-now-card__title__price").text();
-                var start = priceText.indexOf("$");
-                var end = priceText.indexOf("/");
-                var price = priceText.substring(start + 1, end);
-                if (price != "0") {
-                    var name = $(this).find(".foxtel-now-card__title__name").text();
-                    var id = $(this).find(".foxtelNowProductAddToCart [data-tier-id]").attr("data-tier-id");
-                    var product = {
-                        product_name: name,
-                        product_id: id,
-                        product_price: price,
-                        qty: 1
-                    };
-                    products.push(product);
-                }
-            }
-        )
-        digitalData.page.products = products;
+        digitalDataManager.analyseAllProductsInPage();
     },
     analysePackDetail : function() {
         digitalData.site.section = "shop";
@@ -299,15 +289,6 @@ var digitalDataManager = {
             qty: 1
         };
         digitalData.page.products.push(product);
-    },
-    analyseShoppingCart : function() {
-        digitalData.site.section = "shop";
-        digitalData.site.subSection = "";
-        digitalData.site.subSubSection = "";
-        digitalData.page.pageInfo.pageName = "shopping cart";
-        FOX.context.subscribe("SHOP_CART_REFRESHED", function(data) {
-            digitalData.pldl.event.eventName = "login";
-        });
     },
     analyseMyAccountHome : function() {
         digitalData.site.section = "build";
@@ -407,10 +388,12 @@ var digitalDataManager = {
         digitalData.page.clientSideFormErrors = "";
         digitalData.page.serverSideFormErrors = "";
 
-        digitalDataManager.analyseServerFormErrorsOnMessage();
-
         digitalDataManager.storeShoppingCartOnEvent("SHOP_CART_LOADED");
         digitalDataManager.storeShoppingCartOnEvent("SHOP_CART_REFRESHED");
+
+        digitalDataManager.analyseServerFormErrorsOnMessage();
+
+        digitalDataManager.analyseAllProductsInPage();
     },
     analyseMyAccountReactivateEnterDetails : function() {
         digitalData.site.section = "build";
@@ -474,17 +457,6 @@ var digitalDataManager = {
         digitalData.site.subSubSection = "";
         digitalData.page.pageInfo.pageName = "404 Not Found";
     },
-    analyseLogin : function() {
-        $("#login-form-submit").on("click", function() {
-            digitalData.pldl.event.eventName = "button_click";
-            digitalData.pldl.event.eventInfo = {
-                eventAction: "login click",
-            };
-        });
-        FOX.context.subscribe("FOXTELNOW_LOGIN_SUCCESS", function() {
-            digitalData.pldl.event.eventName = "login";
-        });
-    },
     formStarted : false,
     oldShoppingCart : [],
     analyseServerFormErrorsOnMessage : function() {
@@ -510,28 +482,58 @@ var digitalDataManager = {
         }
         return additionalProducts;
     },
-    analyseShoppingCartOnEvent : function(eventName) {
+    analyseAllProductsInPage : function() {
         try {
-            var shoppingCart = data.play;
             var products = [];
-
-            for (var i = 0; i < shoppingCart.tiers.length; i++) {
-                var product = {
-                    product_name: shoppingCart.tiers[i].title,
-                    product_id: shoppingCart.tiers[i].tierId,
-                    product_price: shoppingCart.tiers[i].price,
-                    qty: 1
-                };
-                products.push(product);
-            }
-
-            digitalData.cart.products = products;
-            digitalData.cart.totalvalue = shoppingCart.monthlyCostIncludingOffer;
-            digitalData.cart.totalQty = shoppingCart.tiers.length;
+            $(".foxtel-now-card").each(
+                function() {
+                    var priceText = $(this).find(".foxtel-now-card__title__price").text();
+                    var start = priceText.indexOf("$");
+                    var end = priceText.indexOf("/");
+                    var price = priceText.substring(start + 1, end);
+                    if (price != "0") {
+                        var name = $(this).find(".foxtel-now-card__title__name").text();
+                        var id = $(this).find(".foxtelNowProductAddToCart [data-tier-id]").attr("data-tier-id");
+                        var product = {
+                            product_name: name,
+                            product_id: id,
+                            product_price: price,
+                            qty: 1
+                        };
+                        products.push(product);
+                    }
+                }
+            )
+            digitalData.page.products = products;
         }
         catch (e) {
             console.log(e);
         }
+    },
+    analyseShoppingCartOnEvent : function(eventName) {
+        FOX.context.subscribe(eventName, function(data) {
+            try {
+                var shoppingCart = data.play;
+                var products = [];
+
+                for (var i = 0; i < shoppingCart.tiers.length; i++) {
+                    var product = {
+                        product_name: shoppingCart.tiers[i].title,
+                        product_id: shoppingCart.tiers[i].tierId,
+                        product_price: shoppingCart.tiers[i].price,
+                        qty: 1
+                    };
+                    products.push(product);
+                }
+
+                digitalData.cart.products = products;
+                digitalData.cart.totalvalue = shoppingCart.monthlyCostIncludingOffer;
+                digitalData.cart.totalQty = shoppingCart.tiers.length;
+            }
+            catch (e) {
+                console.log(e);
+            }
+        });
     },
     storeShoppingCartOnEvent : function(eventName) {
         FOX.context.subscribe(eventName, function(data) {

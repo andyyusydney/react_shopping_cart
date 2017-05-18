@@ -2,7 +2,7 @@
  * This javascript is for view my bills in my account
  */
 
-
+var Utilities = require('./utilities.js');
 
 $(document).ready(function(){
 
