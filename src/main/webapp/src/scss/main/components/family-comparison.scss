@@ -36,13 +36,11 @@
     }
 
     &.family-comparison__unavailable-feature {
-      color: #bec0c2;
-      @include breakpoint(mobileOnly) { display: none; }
-      /*
-      @media (max-width: 767px) {
-        display: none;
+      display: none;
+      @include breakpoint(tablet) {
+        color: #bec0c2;
+        display: block;
       }
-      */
     }
     &.family-comparison__unavailable-feature:before {
       border-color: $color--grey-bec0c2;
