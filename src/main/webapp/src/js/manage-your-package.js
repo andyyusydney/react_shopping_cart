@@ -1,6 +1,8 @@
 // JavaScript for manage my package page
 // -------------------------------------
 
+var Utilities = require('./utilities.js');
+
 $(function () {
   var onManageYourPackagePage = window.location.pathname.match(/manage-your-package/);
   var $cart = $('#cartCollection-container');
@@ -61,7 +63,6 @@ $(function () {
       handleUpdateSuccess: function (response) {
         var $submitButton = $(this.buttonContainerSelector + ' button');
         var $buttonContainer = $submitButton.parents(this.buttonContainerSelector);
-        Utilities.isPackageUpdated = false;
 
         if (response.status === 'ERROR') {
           this.genericError();

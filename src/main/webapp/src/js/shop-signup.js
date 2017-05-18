@@ -4,6 +4,8 @@
  * personal details form in reactivation flow
  */
 
+var Utilities = require('./utilities.js');
+
 (function($) {
     com.foxtel.now.CustomerDetailsForm =  {
 
