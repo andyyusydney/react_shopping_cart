@@ -62,6 +62,8 @@
                     <nodeVersion>v6.9.1</nodeVersion>
                     <yarnVersion>v0.22.0</yarnVersion>
                     <npmVersion>3.10.8</npmVersion>
+                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
+                    <yarnInheritsProxyConfigFromMaven>false</yarnInheritsProxyConfigFromMaven>
                 </configuration>
             </plugin>
 
