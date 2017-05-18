@@ -1,7 +1,7 @@
 /**
  * This file is for my account home page
  */
-
+var Utilities = require('./utilities.js');
 
 $(document).ready(function () {
     var $myAccountHomePanel = $('#divMyAccountPanel');

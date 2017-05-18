@@ -1,4 +1,4 @@
-#Channel_Pack_Combos {
+#anchor_loop_0 {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) inset;
   @include breakpoint(mobileOnly) {
     box-shadow: none;
@@ -26,6 +26,8 @@
   .channel-pack-combos__top__headline {
     font-size: $font-size--md;
     margin-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .channel-pack-combos__top__price {
     font-size: $font-size--base;
@@ -38,6 +40,7 @@
     }
     sub {
       font-size: $font-size--sm;
+      position: initial;
     }
   }
   &.channel-pack-combos-highlight {
