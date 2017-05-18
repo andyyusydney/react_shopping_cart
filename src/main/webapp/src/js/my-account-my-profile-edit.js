@@ -194,6 +194,7 @@ $(function () {
         }
 
         var formData =  {
+          primary: response.roles.primary,
           firstName: response.iFirstName,
           lastName: response.iLastName,
           email: response.kCustEmail,
@@ -206,6 +207,24 @@ $(function () {
           postcode: response.kBillZip,
           marketOpt: response.kenanMktFlag === "ON"
         };
+        if(!formData.primary){
+            formData.email = "";
+            formData.dateOfBirth = "";
+            formData.address = "";
+            formData.suburb = "";
+            formData.mobile = "";
+            formData.state = "";
+            formData.postcode = "";
+            $("[data-id='email']").closest('.field-wrap').hide();
+            $("[data-id='email']").closest('.form-group').siblings('.wysiwyg').hide();
+            $("[data-id='suburb']").closest('.field-wrap').hide();
+            $("[data-id='mobile']").closest('.field-wrap').hide();
+            $("[data-id='dateOfBirth']").closest('.field-wrap').hide();
+            $("[data-id='address']").closest('.field-wrap').hide();
+            $("[data-id='suburb']").closest('.field-wrap').hide();
+            $("[data-id='state']").hide();
+            $("[data-id='postcode']").closest('.field-wrap').hide();
+        }
         this.set({
           prefillFormData: formData
         });
@@ -236,12 +255,26 @@ $(function () {
               postcode: formData.postcode,
               marketOpt:formData['market-opt'] === "on"
           };
+            var payloadNonPrimary = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: "",
+                contactTelephone: "",
+                dateOfBirth:"",
+                address: "",
+                suburb: "",
+                state: "",
+                postcode: "",
+                marketOpt:formData['market-opt'] === "on"
+            };
           $.ajax({
               type: "POST",
               url: this.updateDetailsEndpoint,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
-              data: JSON.stringify(payload),
+              beforeSend: function(formData){
+                if(formData.primary){this.data = JSON.stringify(payload)}else{this.data = JSON.stringify(payloadNonPrimary)}
+              },
               success: function(data) {
                   updateDetails.handleUpdateResponse(data);
               }

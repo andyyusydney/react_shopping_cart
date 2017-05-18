@@ -3,7 +3,7 @@
   "localResultCode": "KENAN_SUCCESS_FLAG_TRUE",
   "headerCounter": 0,
   "roles": {
-    "primary": 0,
+    "primary": 1,
     "foxtelPlay": 1,
     "foxtelPlayXboxPpvOnly": 0,
     "foxtelXboxAndStbCombined": 0,
