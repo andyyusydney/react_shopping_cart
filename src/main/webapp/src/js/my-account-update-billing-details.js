@@ -2,8 +2,6 @@
  * This javascript is for update billing details in my account
  */
 
-var Utilities = require('./utilities.js');
-
 $(document).ready(function(){
 
     if($('#foxtel-now-credit-card-details-form').length < 1){
