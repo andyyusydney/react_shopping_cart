@@ -19,6 +19,11 @@ $(document).ready(function(){
         return;
     }
 
+    if(Foxtel.isEditOrDesignMode()){
+        //allow author the page
+        return;
+    }
+
     $form.parsley();
 
     //check the cookie and update value in page

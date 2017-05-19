@@ -2,8 +2,6 @@
  * This javascript is for view my bills in my account
  */
 
-var Utilities = require('./utilities.js');
-
 $(document).ready(function(){
 
     if($('#foxtel-now-cancel-membership-form').length < 1){
