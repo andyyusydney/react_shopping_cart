@@ -27,11 +27,23 @@
     cursor: pointer;
     .foxtel-now-card--myaccount__content {
         >img {
-            width: 71px;
+            width: 80px;
             height: auto;
         }
         >p {
             text-align: center;
+            margin-top: 20px;
+        }
+
+    }
+
+    &.is-disabled {
+        cursor: none;
+        pointer-events: none;
+        .foxtel-now-card--myaccount__content {
+            >p {
+                opacity: 0.5;
+            }
         }
     }
 }
