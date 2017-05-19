@@ -1,16 +1,17 @@
 .foxtel-slideshow {
     padding: 0;
     display: block;
-    height: calc( 100vh - 65px - 45px );    /* 65px - header`s height; 45px - margin left till bottom */
+    height: 520px;    /* 65px - header`s height; 45px - margin left till bottom */
     position: relative;
     margin-bottom: 30px;
     z-index: 1;
     background-color: $color--body;
 
-    @include breakpoint(mobileOnly) { height: 520px; }
-    /* @media (max-width: 767px) { height: 520px; } */
+    @include breakpoint(tablet) {
+      height: calc( 100vh - 65px - 45px );
+    }
 
-    /* make sure that a tags work under this slideshow */
+    /* make sure that all the a tags clickable under this slideshow */
     a {
         position: relative;
         z-index: 10;

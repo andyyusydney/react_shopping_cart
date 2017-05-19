@@ -254,56 +254,54 @@ $(document).ready(function(){
 
     Foxtel.ShopCartManager.init();
 
-    // Shopping Cart SMART SCROLLING FEATURE
-    var shoppingcart = $('.foxtel-now-jumbotron');
-    var shoppingcartH = shoppingcart.height();
-    var shoppingcartStatus;
-    var currentScroll = 0;
+    // Hide Header on on scroll down
+    var didScroll;
+    var lastScrollTop = 0;
+    var delta = 3;
+    var shoppingCart = $('.foxtel-now-jumbotron');
+    var shoppingCartHeight = $('.foxtel-now-jumbotron').outerHeight();
 
-    // SCROLL SENSITIVITY TO ADJUST SCROLL BEHAVIOURS
-    var sensitivity = 2;
-
-    $(window).scroll(function() {
-        // GET CURRENT PAGE AXIS
-        var nextScroll = $(this).scrollTop();
-
-        // GET SCROLL DELTA
-        var scrollDelta = nextScroll - currentScroll;
-
-        // IF SCROLLED OR LEFT FROM 0 Y-AXIS
-        if($(this).scrollTop() > 0) {
-
-            // WHEN SCROLL DOWNWARDS
-            if (nextScroll > currentScroll){
-                if (scrollDelta > sensitivity){
-                    // shoppingcart SLIDES BACK AWAY
-                    shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
-                    shoppingcart.find('.add-packs-text').addClass('hidden');
-                    shoppingcart.css('position','fixed');
-                    shoppingcart.siblings('div.container').first().css('margin-top',shoppingcartH*2+"px");
-                    $('.foxtel-header-breadcrumb-wrapper').css({'position':'absolute',"top":"0"});
-                }
-
-                // WHEN SCROLL UPWARDS
-            } else {
-                if (scrollDelta < -sensitivity){
-                    shoppingcart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
-                    shoppingcart.find('.add-packs-text').addClass('hidden');
-                }
-            }
-
-            // IF COMPLETLEY BACK TO TOP, 0 Y-AXIS
-        } else {
-            shoppingcart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
-            shoppingcart.find('.add-packs-text').removeClass('hidden');
-            shoppingcart.css('position','relative');
-            $('.foxtel-header-breadcrumb-wrapper').css('position','initial');
-            shoppingcart.siblings('div.container').first().css('margin-top','initial');
-        }
-
-        // SET CURRENT AS LAST SCROLL
-        currentScroll = nextScroll;
+    $(window).scroll(function(event){
+        didScroll = true;
     });
 
+    setInterval(function() {
+        if (didScroll) {
+            hasScrolled();
+            didScroll = false;
+        }else if(lastScrollTop == 0){
+            initState();
+        }
+
+    }, 50);
+
+    function initState() {
+        shoppingCart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+        shoppingCart.find('.add-packs-text').removeClass('hidden');
+    }
+
+    function hasScrolled() {
+        var st = $(this).scrollTop();
+
+        // Make sure they scroll more than delta
+        if(Math.abs(lastScrollTop - st) <= delta)
+            return;
+
+        shoppingCart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+        shoppingCart.find('.add-packs-text').addClass('hidden');
+        // If they scrolled down and are past the navbar, add class .nav-up.
+        // This is necessary so you never see what is "behind" the navbar.
+        if (st > lastScrollTop && st > shoppingCartHeight){
+            // Scroll Down
+            $('.foxtel-now-jumbotron').removeClass('shoppingCart-nav-down').addClass('shoppingCart-nav-up');
+        } else {
+            // Scroll Up
+            if(st + $(window).height() < $(document).height()) {
+                $('.foxtel-now-jumbotron').removeClass('shoppingCart-nav-up').addClass('shoppingCart-nav-down');
+            }
+        }
+
+        lastScrollTop = st;
+    }
 
 });
