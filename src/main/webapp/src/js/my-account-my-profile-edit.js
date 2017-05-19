@@ -146,7 +146,7 @@ $(function () {
     });
 
     var UpdateDetails = Backbone.Model.extend({
-      getDetailsEndpoint: '/bin/secure/profileSettings',
+      getDetailsEndpoint: '/bin/secure/my-account/profile-settings',
       updateDetailsEndpoint: '/bin/secure/now/accountProfileSubmit',
 
 
@@ -159,7 +159,7 @@ $(function () {
       },
 
       getProfile: function () {
-        $.get(this.getDetailsEndpoint, this.handleGetDetailsResponse.bind(this));
+        $.post(this.getDetailsEndpoint, this.handleGetDetailsResponse.bind(this));
       },
 
       // Event handlers
@@ -176,29 +176,55 @@ $(function () {
         ];
         for (let defaultAddress of defaultAddresses) {
             var billAddress = response.kBillAddress1;
-            var trimmedBillAddress = billAddress.trim().toUpperCase();
-            if (defaultAddress == trimmedBillAddress) {
-                response.kBillAddress1 = "";
-                response.kBillCity = "";
-                response.kBillState = "";
-                break;
+            if(billAddress){
+                var trimmedBillAddress = billAddress.trim().toUpperCase();
+                if (defaultAddress == trimmedBillAddress) {
+                    response.kBillAddress1 = "";
+                    response.kBillCity = "";
+                    response.kBillState = "";
+                    break;
+                }
             }
         }
 
         // Prepare data for the html form.
+        var dobValue = response.kDOB;
+        if(dobValue){
+            dobValue = dobValue.replace(/\//g, '-');
+        }
+
         var formData =  {
+          primary: response.roles.primary,
           firstName: response.iFirstName,
           lastName: response.iLastName,
           email: response.kCustEmail,
           password: 'password',
           mobile: response.iContactTelephone,
-          dateOfBirth: response.kDOB.replace(/\//g, '-'),
+          dateOfBirth: dobValue,
           address: response.kBillAddress1,
           suburb: response.kBillCity,
           state: response.kBillState,
           postcode: response.kBillZip,
           marketOpt: response.kenanMktFlag === "ON"
         };
+        if(!formData.primary){
+            formData.email = "";
+            formData.dateOfBirth = "";
+            formData.address = "";
+            formData.suburb = "";
+            formData.mobile = "";
+            formData.state = "";
+            formData.postcode = "";
+            $("[data-id='email']").closest('.field-wrap').hide();
+            $("[data-id='email']").closest('.form-group').siblings('.wysiwyg').hide();
+            $("[data-id='suburb']").closest('.field-wrap').hide();
+            $("[data-id='mobile']").closest('.field-wrap').hide();
+            $("[data-id='dateOfBirth']").closest('.field-wrap').hide();
+            $("[data-id='address']").closest('.field-wrap').hide();
+            $("[data-id='suburb']").closest('.field-wrap').hide();
+            $("[data-id='state']").hide();
+            $("[data-id='postcode']").closest('.field-wrap').hide();
+        }
         this.set({
           prefillFormData: formData
         });
@@ -229,12 +255,26 @@ $(function () {
               postcode: formData.postcode,
               marketOpt:formData['market-opt'] === "on"
           };
+            var payloadNonPrimary = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: "",
+                contactTelephone: "",
+                dateOfBirth:"",
+                address: "",
+                suburb: "",
+                state: "",
+                postcode: "",
+                marketOpt:formData['market-opt'] === "on"
+            };
           $.ajax({
               type: "POST",
               url: this.updateDetailsEndpoint,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
-              data: JSON.stringify(payload),
+              beforeSend: function(formData){
+                if(formData.primary){this.data = JSON.stringify(payload)}else{this.data = JSON.stringify(payloadNonPrimary)}
+              },
               success: function(data) {
                   updateDetails.handleUpdateResponse(data);
               }
