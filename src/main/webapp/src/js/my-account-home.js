@@ -19,10 +19,10 @@ $(document).ready(function () {
             });
         }
 
-        var isMobile = Foxtel.AndroidOS || Foxtel.AppleOS;
+        var isMobile = Foxtel.osDetect.AndroidOS || Foxtel.osDetect.AppleOS;
 
         //android device
-        if(Foxtel.AndroidOS){
+        if(Foxtel.osDetect.AndroidOS){
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'MOBILE_DEVICE_USER_MY_ACCOUNT_HOME',
               isAndroid:true,
@@ -31,7 +31,7 @@ $(document).ready(function () {
         }
 
         //apple device
-        if(Foxtel.AppleOS){
+        if(Foxtel.osDetect.AppleOS){
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'MOBILE_DEVICE_USER_MY_ACCOUNT_HOME',
               isAndroid:false,
