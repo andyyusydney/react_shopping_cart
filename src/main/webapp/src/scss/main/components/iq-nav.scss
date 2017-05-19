@@ -7,9 +7,8 @@
   background-color: $color--white;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.15s ease-in-out;
-
-  @include breakpoint(mobileOnly) { display: none; }
-  /* @media (max-width: 767px) { display: none; } */
+  display: none;
+  @include breakpoint(tablet) { display: block; }
 
   &.iq-nav-position__fixed {
     position: fixed;

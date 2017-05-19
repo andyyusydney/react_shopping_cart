@@ -10,11 +10,15 @@
 	-webkit-box-shadow: 2px 3px 10px 0px #ccc;
   	-moz-box-shadow:    2px 3px 10px 0px #ccc;
   	box-shadow:         2px 3px 10px 0px #ccc;
-  	z-index: 9;
+  	z-index: 99999;
   	top: 0;
   	&.foxtel-now-jumbotron--pop {
         left: 0;
         right: 0;
+     }
+
+     .shoppingCart-nav-up {
+        padding-top: -80px;
      }
 }
 
