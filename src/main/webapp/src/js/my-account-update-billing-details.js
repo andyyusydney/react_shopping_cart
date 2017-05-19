@@ -2,8 +2,6 @@
  * This javascript is for update billing details in my account
  */
 
-var Utilities = require('./utilities.js');
-
 $(document).ready(function(){
 
     if($('#foxtel-now-credit-card-details-form').length < 1){
@@ -13,9 +11,6 @@ $(document).ready(function(){
     $formDirectDebit = $('#foxtel-now-credit-card-details-form');
     $submitBtn = $('#credit-card-form-submit');
 
-    if(!Utilities.checkEditMode()){
-        $formDirectDebit.hide();
-    }
     $('.foxtel-now-display-div-template-container').on('click','.edit-link',function(){
         $formDirectDebit.slideToggle();
     })
