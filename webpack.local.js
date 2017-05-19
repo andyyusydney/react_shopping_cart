@@ -79,7 +79,7 @@ http.createServer(function (req, res) {
 
     if(/\/bin\/secure\.*/.test(url)){
         proxy.web(req, res, {
-           target: LOCAL_WEBPACK_SERVER
+           target: LOCAL_ASSET_SERVER
         });
         return;
     }
@@ -93,7 +93,7 @@ http.createServer(function (req, res) {
 
     if(/.*hot-update.json/.test(url)){
         proxy.web(req, res, {
-          target: LOCAL_WEBPACK_SERVER
+          target: LOCAL_ASSET_SERVER
         });
         return;
     }
