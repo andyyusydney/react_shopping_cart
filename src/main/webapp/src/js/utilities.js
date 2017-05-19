@@ -96,5 +96,3 @@ Utilities.checkEditMode = function () {
     }
     return false;
 }
-
-module.exports = Utilities;

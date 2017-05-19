@@ -1,5 +1,5 @@
 // --------------------------------------------------
-// CQ author mode only styles
+// CQ author edit mode styles
 // --------------------------------------------------
 .author-mode-wrapper{
     border:3px dashed blue;
@@ -40,4 +40,15 @@
             left: 23%;
         }
     }
+}
+/*author edit mode style for 'column control (bootstrap 4)' component*/
+.col-ctrl-border-blue{
+    border:1px solid #0066FF;
+}
+.col-ctrl-border-green{
+    border:1px solid #19D1A3;}
+.col-ctrl-border-red{border:1px solid #FF4D4D;
+}
+.col-ctrl-border-black{
+    border:1px solid #000000;
 }

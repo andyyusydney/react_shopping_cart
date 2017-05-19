@@ -2,8 +2,6 @@
  * This javascript is for update billing details in my account
  */
 
-var Utilities = require('./utilities.js');
-
 $(document).ready(function(){
 
     if($('#foxtel-now-credit-card-details-form').length < 1){
@@ -49,7 +47,7 @@ $(document).ready(function(){
             cvc: ""
         }
 
-        postDataObj.cardNumber = $("input[data-id='cardNumber']").val();
+        postDataObj.cardNumber = $("input[data-id='cardNumber']").val().replace(/ /g, "");
         postDataObj.cardExpireMonth = $("input[data-id='cardExpiry']").val().split("-")[0];
         postDataObj.cardExpireYear = $("input[data-id='cardExpiry']").val().split("-")[1];
         postDataObj.cvc = $("input[data-id='cvc']").val();

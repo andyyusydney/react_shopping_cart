@@ -1,8 +1,6 @@
 // JavaScript for manage my package page
 // -------------------------------------
 
-var Utilities = require('./utilities.js');
-
 $(function () {
   var onManageYourPackagePage = window.location.pathname.match(/manage-your-package/);
   var $cart = $('#cartCollection-container');
