@@ -64,9 +64,10 @@ $(document).ready(function () {
 
         //pending deactivation account
         if(data.accountStatus.pendingDeactivated && data.accountStatus.activated){
+            var nextBillingDateMinusOneDay = moment(data.accountStatus.nextBillingDate).add(-1,'days');
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'PENDING_DEACTIVATION_MY_ACCOUNT_HOME',
-              nextBillingDate:moment(data.accountStatus.nextBillingDate).format('DD MMMM, YYYY'),
+              nextBillingDate:nextBillingDateMinusOneDay.format('DD MMMM, YYYY'),
               closeEnabled: true
             });
         }

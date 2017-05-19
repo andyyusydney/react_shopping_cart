@@ -174,7 +174,7 @@ $(function () {
           '5 THOMAS HOLT DRIVE',
           '1 FOXTEL NOW ROAD'
         ];
-        for (let defaultAddress of defaultAddresses) {
+        for (var defaultAddress in defaultAddresses) {
             var billAddress = response.kBillAddress1;
             if(billAddress){
                 var trimmedBillAddress = billAddress.trim().toUpperCase();
