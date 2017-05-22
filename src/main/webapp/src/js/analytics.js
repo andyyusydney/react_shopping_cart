@@ -78,6 +78,13 @@ $(function() {
             case "/now/my-account/reactivate/welcome-back":
                 digitalDataManager.analyseMyAccountReactivateComplete();
                 break;
+
+            // need to implement for each offer page
+            case "/now/offer/tvpass.html":
+            case "/now/offer/presto.html":
+                digitalDataManager.analyseOfferPage();
+                break;
+
             case "/now/error/404":
                 digitalDataManager.analyseError();
                 break;
@@ -529,6 +536,13 @@ var digitalDataManager = {
             console.log(e);
         }
     },
+    analyseOfferPage : function(){
+        FOX.context.subscribe("PROMO_CODE_SUBMITTED",function(data){
+            var analyticsInfo = digitalDataManager.readAnalyticsInfo();
+            analyticsInfo.promoCode = data.code;
+            digitalDataManager.updateAnalyticsInfo(analyticsInfo);
+        });
+    },
     analyseShoppingCartOnEvent : function(eventName) {
         FOX.context.subscribe(eventName, function(data) {
             try {
@@ -567,7 +581,7 @@ var digitalDataManager = {
     updateAnalyticsInfo : function(analyticsInfo) {
         try{
             if(!analyticsInfo.transactionId){
-                analyticsInfo.transactionId = new Date().getUTCMilliseconds();
+                analyticsInfo.transactionId = new Date().valueOf();
             }
             FOX.storage.data("analytics-info", JSON.stringify(analyticsInfo));
         }catch (e) {
@@ -625,6 +639,10 @@ var digitalDataManager = {
             digitalData.user.account.userId = analyticsInfo.userId;
             digitalData.transaction.transactionId = analyticsInfo.transactionId;
 
+            //promo code
+            if(analyticsInfo.promoCode){
+                digitalData.transaction.offerCode = analyticsInfo.promoCode;
+            }
         }
         catch (e) {
             console.log(e);

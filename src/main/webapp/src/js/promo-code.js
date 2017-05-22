@@ -36,8 +36,9 @@ $(document).ready(function(){
         $this.attr("disabled","disabled");
         $this.addClass('is-loading');
 
+        var promoCode = $form.find("[data-id='promo-code']").val();
         var requestObject = {};
-        requestObject.code = $form.find("[data-id='promo-code']").val();
+        requestObject.code = promoCode;
 
         $promoErrorMsg = $form.find("#promoErrorMsg").val();
 
@@ -52,6 +53,7 @@ $(document).ready(function(){
                 //checking result
                 var validResult = data.result;
                 if("VALID" === validResult){
+                    FOX.context.broadcast("PROMO_CODE_SUBMITTED",{"code":promoCode});
                     Foxtel.navigator($this.data("redirect-url"));
                 }else if("EXPIRED" === validResult){
                     jQuery('#promoErrorMsg').text('Hey there, it looks like this promotional code has already expired. You will not be able to sign up with this code.');
