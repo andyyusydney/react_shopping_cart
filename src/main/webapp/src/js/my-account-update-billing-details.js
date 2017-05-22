@@ -63,9 +63,16 @@ $(document).ready(function(){
             $this.removeAttr('disabled').removeClass('is-loading');
         };
 
-        var updateBillingDetailsError = function (response) {
+        var updateBillingDetailsError = function () {
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'PROFILE_UPDATE_ERROR',
+              closeEnabled: true
+            });
+        };
+
+        var invalidCreditCardError = function () {
+            FOX.context.broadcast('SHOW_BANNER', {
+              name: 'PAYMENT_GATEWAY_ERROR',
               closeEnabled: true
             });
         };
@@ -87,10 +94,18 @@ $(document).ready(function(){
                       Foxtel.navigator($this.data("redirect-url"));
                     }, 2000);
                 } else {
-                  updateBillingDetailsError();
+                  var kenanError = data.DirectDebit.kenanError;
+                  if (kenanError == 'Invalid credit card') {
+                    invalidCreditCardError();
+                  } else {
+                    updateBillingDetailsError();
+                  }
                 }
             }
         };
+
+        //clear all the banners
+        FOX.context.broadcast('HIDE_ALL_BANNER');
 
         var xhr = Utilities.getPostData(postData,"/bin/secure/bills-and-payments",$callback,$complete);
         xhr.fail(updateBillingDetailsError);
