@@ -1,55 +1,49 @@
-  .iq-content {
-    text-align: center;
-    margin-bottom: 40px;
-    .iq-content-top-1 {
-     margin-bottom: 25px;
-     font-size: $font-size--base;
-    }
-    .iq-content-top-2 {
-     margin-bottom: 10px;
-     font-size: $font-size--md;
-     font-weight: bold;
-    }
-    .iq-content-top-3 {
-     font-size: $font-size--base;
-    }
-    .iq-content-middle {
-     margin-bottom: 30px;
-     width: 100%;
-     height: auto;
-    }
-    .iq-content-bottom {
-     display: table;
-     margin: auto;
-     table-layout: fixed;
-     /* border-spacing: 80px 0; */
-     width: 100%;
+.iq-content {
+  text-align: center;
+  margin-bottom: 40px;
+  .iq-content-top-1 {
+    margin-bottom: 25px;
+    font-size: $font-size--base;
+  }
+  .iq-content-top-2 {
+    margin-bottom: 10px;
+    font-size: $font-size--md;
+    font-weight: bold;
+  }
+  .iq-content-top-3 {
+    font-size: $font-size--base;
+  }
+  .iq-content-middle {
+    margin-bottom: 30px;
+    width: 100%;
+    height: auto;
+  }
+  .iq-content-bottom {
+    display: block;
+    margin: auto;
+    table-layout: fixed;
+    width: 100%;
 
-     @include breakpoint(mobileOnly) { display: block; }
+    @include breakpoint(tablet) { display: table; }
 
-     /* @media (max-width: 767px) { display: block; } */
+    .iq-content-bottom__content {
+      display: block;
 
-     .iq-content-bottom__content {
-       display: table-row;
+      @include breakpoint(tablet) { display: table-row; }
 
-       @include breakpoint(mobileOnly) { display: block; }
-       /* @media (max-width: 767px) { display: block; } */
+      .iq-content-bottom__content__wrapper {
+        display: block;
+        margin-bottom: 30px;
+        @include breakpoint(tablet) { display: table-cell; }
 
-       .iq-content-bottom__content__wrapper {
-         display: table-cell;
-         @media (max-width: 767px) {
-           display: block;
-           margin-bottom: 30px;
-         }
-
-         img {
-           margin: auto;
-           width: 60px;
-           height: auto;
-           display: block;
-           margin-bottom: 20px;
-         }
-       }
-     }
+        img {
+          margin: auto;
+          width: 60px;
+          height: auto;
+          display: block;
+          margin-bottom: 20px;
+        }
+      }
     }
   }
+}

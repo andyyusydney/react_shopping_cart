@@ -12,17 +12,21 @@ $(document).ready(function () {
 
         //free trial accounts
         if(data.accountStatus.freeTrial){
-            FOX.context.broadcast('SHOW_BANNER', {
-              name: 'FREE_TRIAL_MY_ACCOUNT_HOME',
-              freeTrialEndDate: moment(data.accountStatus.freeTrialEndDate).format('DD MMMM, YYYY'),
-              closeEnabled: true
-            });
+            var then = moment(data.accountStatus.freeTrialEndDate,"YYYY-MM-DD");
+            var now = moment().format("YYYY-MM-DD");
+            if(now > then){
+                FOX.context.broadcast('SHOW_BANNER', {
+                  name: 'FREE_TRIAL_MY_ACCOUNT_HOME',
+                  freeTrialEndDate: moment(data.accountStatus.freeTrialEndDate).format('DD MMMM, YYYY'),
+                  closeEnabled: true
+                });
+            }
         }
 
-        var isMobile = Foxtel.AndroidOS || Foxtel.AppleOS;
+        var isMobile = Foxtel.osDetect.AndroidOS || Foxtel.osDetect.AppleOS;
 
         //android device
-        if(Foxtel.AndroidOS){
+        if(Foxtel.osDetect.AndroidOS){
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'MOBILE_DEVICE_USER_MY_ACCOUNT_HOME',
               isAndroid:true,
@@ -31,7 +35,7 @@ $(document).ready(function () {
         }
 
         //apple device
-        if(Foxtel.AppleOS){
+        if(Foxtel.osDetect.AppleOS){
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'MOBILE_DEVICE_USER_MY_ACCOUNT_HOME',
               isAndroid:false,
@@ -64,9 +68,10 @@ $(document).ready(function () {
 
         //pending deactivation account
         if(data.accountStatus.pendingDeactivated && data.accountStatus.activated){
+            var nextBillingDateMinusOneDay = moment(data.accountStatus.nextBillingDate).add(-1,'days');
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'PENDING_DEACTIVATION_MY_ACCOUNT_HOME',
-              nextBillingDate:moment(data.accountStatus.nextBillingDate).format('DD MMMM, YYYY'),
+              nextBillingDate:nextBillingDateMinusOneDay.format('DD MMMM, YYYY'),
               closeEnabled: true
             });
         }

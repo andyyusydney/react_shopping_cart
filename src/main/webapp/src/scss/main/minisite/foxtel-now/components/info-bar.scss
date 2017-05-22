@@ -20,6 +20,9 @@
 
       p {
         margin-bottom: 0;
+        @include breakpoint(mobileOnly) {
+            text-align: center;
+        }
       }
 
       .foxtel-now-info-bar__icon-main {
@@ -51,6 +54,9 @@
 
       .wysiwyg {
         display: inline-block;
+        @include breakpoint(mobileOnly) {
+            display: initial;
+        }
       }
 
       .btn {
