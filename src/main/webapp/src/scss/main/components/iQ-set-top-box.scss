@@ -14,10 +14,14 @@
     font-size: $font-size--base;
   }
   .iq-content-middle {
-    margin-bottom: 30px;
-    width: 100%;
-    height: auto;
-  }
+      margin-bottom: 30px;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(mobileOnly) {
+        width: initial;
+      }
+    }
   .iq-content-bottom {
     display: block;
     margin: auto;

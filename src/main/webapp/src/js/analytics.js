@@ -8,77 +8,96 @@ $(function() {
     }
 
     var pathName = $(location).attr('href');
-    if (pathName.length) {
-        try {
-            var start = pathName.indexOf("/now/");
-            var end = pathName.indexOf(".html");
-            if (start < 0 || end < 0) {
-                return;
-            }
-            var pageName = pathName.substring(start, end);
+    if(!pathName){
+        return;
+    }
 
-            digitalDataManager.analyseBase();
-            switch (pageName) {
-                case "/now/index":
-                    digitalDataManager.analyseHome();
-                    break;
-                case "/now/shop/sign-up":
-                    digitalDataManager.analyseSignUpPersonalDetails();
-                    break;
-                case "/now/shop/payment":
-                    digitalDataManager.analyseSignUpCreditCard();
-                    break;
-                case "/now/shop/welcome":
-                    digitalDataManager.analyseSignUpThankYou();
-                    break;
-                case "/now/shop":
-                    digitalDataManager.analysePackListing();
-                    break;
-                case "/now/pop":
-                case "/now/drama":
-                case "/now/docos":
-                case "/now/lifestyle":
-                case "/now/kids":
-                case "/now/movies":
-                case "/now/sport":
-                    digitalDataManager.analysePackDetail();
-                    break;
-                case "/now/my-account":
-                    digitalDataManager.analyseMyAccountHome();
-                    break;
-                case "/now/my-account/personal-details":
-                    digitalDataManager.analyseMyAccountUpdatePersonalDetails();
-                    break;
-                case "/now/my-account/billing-details":
-                    digitalDataManager.analyseMyAccountUpdateBilling();
-                    break;
-                case "/now/my-account/view-bills":
-                    digitalDataManager.analyseMyAccountViewBills();
-                    break;
-                case "/now/my-account/deactivate":
-                    digitalDataManager.analyseMyAccountDeactivate();
-                    break;
-                case "/now/my-account/manage-your-package":
-                    digitalDataManager.analyseMyAccountManagePackage();
-                    break;
-                case "/now/my-account/reactivate":
-                    digitalDataManager.analyseMyAccountReactivateChoosePackages();
-                    break;
-                case "/now/my-account/reactivate/personal-details":
-                    digitalDataManager.analyseMyAccountReactivateEnterDetails();
-                    break;
-                case "/now/my-account/reactivate/welcome-back":
-                    digitalDataManager.analyseMyAccountReactivateComplete();
-                    break;
-                case "/now/error/404":
-                    digitalDataManager.analyseError();
-                    break;
-            }
-        }
-        catch (e) {
-            console.log(e);
+    //URL normalisation,see more at https://en.wikipedia.org/wiki/URL_normalization
+    // 1) double slash
+    // 2) lower case
+    pathName = pathName.replace(/\/\//g,'/').toLowerCase();
+
+    function doPageAnalytics(pathName){
+       var start = pathName.indexOf("/now/");
+       var end = pathName.indexOf(".html");
+       if (start < 0 || end < 0) {
+           return;
+       }
+       var pageName = pathName.substring(start, end);
+
+        digitalDataManager.analyseBase();
+        switch (pageName) {
+            case "/now/index":
+                digitalDataManager.analyseHome();
+                break;
+            case "/now/shop/sign-up":
+                digitalDataManager.analyseSignUpPersonalDetails();
+                break;
+            case "/now/shop/payment":
+                digitalDataManager.analyseSignUpCreditCard();
+                break;
+            case "/now/shop/welcome":
+                digitalDataManager.analyseSignUpThankYou();
+                break;
+            case "/now/shop":
+                digitalDataManager.analysePackListing();
+                break;
+            case "/now/pop":
+            case "/now/drama":
+            case "/now/docos":
+            case "/now/lifestyle":
+            case "/now/kids":
+            case "/now/movies":
+            case "/now/sport":
+                digitalDataManager.analysePackDetail();
+                break;
+            case "/now/my-account":
+                digitalDataManager.analyseMyAccountHome();
+                break;
+            case "/now/my-account/personal-details":
+                digitalDataManager.analyseMyAccountUpdatePersonalDetails();
+                break;
+            case "/now/my-account/billing-details":
+                digitalDataManager.analyseMyAccountUpdateBilling();
+                break;
+            case "/now/my-account/view-bills":
+                digitalDataManager.analyseMyAccountViewBills();
+                break;
+            case "/now/my-account/deactivate":
+                digitalDataManager.analyseMyAccountDeactivate();
+                break;
+            case "/now/my-account/manage-your-package":
+                digitalDataManager.analyseMyAccountManagePackage();
+                break;
+            case "/now/my-account/reactivate":
+                digitalDataManager.analyseMyAccountReactivateChoosePackages();
+                break;
+            case "/now/my-account/reactivate/personal-details":
+                digitalDataManager.analyseMyAccountReactivateEnterDetails();
+                break;
+            case "/now/my-account/reactivate/welcome-back":
+                digitalDataManager.analyseMyAccountReactivateComplete();
+                break;
+
+            // need to implement for each offer page
+            case "/now/offer/tvpass.html":
+            case "/now/offer/presto.html":
+                digitalDataManager.analyseOfferPage();
+                break;
+
+            case "/now/error/404":
+                digitalDataManager.analyseError();
+                break;
         }
     }
+
+    try {
+        doPageAnalytics(pathName);
+    }
+    catch (e) {
+        console.log(e);
+    }
+
 });
 
 var digitalDataManager = {
@@ -188,11 +207,10 @@ var digitalDataManager = {
         });
 
         $("#sign-up-form-submit").on("click", function() {
-            digitalData.pldl.event.eventName = "form_submit";
-            digitalData.pldl.event.eventInfo = {
-                eventAction: "form submit",
-                time: new Date().getTime()
-            };
+            //get user email id
+            var analyticsInfo = digitalDataManager.readAnalyticsInfo();
+            analyticsInfo.userId = $("[data-id='email']").val();
+            digitalDataManager.updateAnalyticsInfo(analyticsInfo);
         });
     },
     analyseSignUpCreditCard : function() {
@@ -303,6 +321,14 @@ var digitalDataManager = {
         digitalData.page.pageInfo.pageName = "personaldetails";
         digitalData.page.formName = "personal details";
         digitalData.page.formStep = "update personal details";
+
+        //record user id
+        $("#sign-up-form-submit").on("click", function() {
+            //get user email id
+            var analyticsInfo = digitalDataManager.readAnalyticsInfo();
+            analyticsInfo.userId = $("[data-id='email']").val();
+            digitalDataManager.updateAnalyticsInfo(analyticsInfo);
+        });
     },
     analyseMyAccountUpdateBilling : function() {
         digitalData.site.section = "build";
@@ -510,6 +536,13 @@ var digitalDataManager = {
             console.log(e);
         }
     },
+    analyseOfferPage : function(){
+        FOX.context.subscribe("PROMO_CODE_SUBMITTED",function(data){
+            var analyticsInfo = digitalDataManager.readAnalyticsInfo();
+            analyticsInfo.promoCode = data.code;
+            digitalDataManager.updateAnalyticsInfo(analyticsInfo);
+        });
+    },
     analyseShoppingCartOnEvent : function(eventName) {
         FOX.context.subscribe(eventName, function(data) {
             try {
@@ -545,24 +578,71 @@ var digitalDataManager = {
             }
         });
     },
+    updateAnalyticsInfo : function(analyticsInfo) {
+        try{
+            if(!analyticsInfo.transactionId){
+                analyticsInfo.transactionId = new Date().valueOf();
+            }
+            FOX.storage.data("analytics-info", JSON.stringify(analyticsInfo));
+        }catch (e) {
+             console.log(e);
+         }
+    },
+    readAnalyticsInfo : function() {
+        try {
+            var analyticsInfoText = FOX.storage.data("analytics-info");
+
+            if(!analyticsInfoText){
+                return {}
+            }
+
+            var analyticsInfo = JSON.parse(analyticsInfoText);
+            return analyticsInfo?analyticsInfo:{};
+        }
+        catch (e) {
+            console.log(e);
+        }
+        return {};
+    },
     loadAndAnalyseShoppingCart : function() {
         try {
             var shoppingCart = JSON.parse(FOX.storage.data("analytics-shopping-cart"));
             var products = [];
 
+            var discountInfo = "";
+
             for (var i = 0; i < shoppingCart.tiers.length; i++) {
                 var product = {
                     product_name: shoppingCart.tiers[i].title,
                     product_id: shoppingCart.tiers[i].tierId,
-                    product_price: shoppingCart.tiers[i].price,
+                    product_price: shoppingCart.tiers[i].discountedPrice,
                     qty: 1
                 };
                 products.push(product);
+
+                //calculate discount price
+                var priceDiscount = shoppingCart.tiers[i].price - shoppingCart.tiers[i].discountedPrice
+                if(priceDiscount > 0){
+                    discountInfo += shoppingCart.tiers[i].title+" "+priceDiscount+" DISCOUNT";
+                }
             }
 
             digitalData.transaction.products = products;
             digitalData.transaction.totalRevenue = shoppingCart.monthlyCostIncludingOffer;
             digitalData.transaction.totalQty = shoppingCart.tiers.length;
+
+            //add discount information
+            digitalData.transaction.discountType = discountInfo;
+
+            //user id & transaction id
+            var analyticsInfo = digitalDataManager.readAnalyticsInfo();
+            digitalData.user.account.userId = analyticsInfo.userId;
+            digitalData.transaction.transactionId = analyticsInfo.transactionId;
+
+            //promo code
+            if(analyticsInfo.promoCode){
+                digitalData.transaction.offerCode = analyticsInfo.promoCode;
+            }
         }
         catch (e) {
             console.log(e);
