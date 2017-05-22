@@ -200,11 +200,10 @@ var digitalDataManager = {
         });
 
         $("#sign-up-form-submit").on("click", function() {
-            digitalData.pldl.event.eventName = "form_submit";
-            digitalData.pldl.event.eventInfo = {
-                eventAction: "form submit",
-                time: new Date().getTime()
-            };
+            //get user email id
+            var analyticsInfo = digitalDataManager.readAnalyticsInfo();
+            analyticsInfo.userId = $("[data-id='email']").val();
+            digitalDataManager.updateAnalyticsInfo(analyticsInfo);
         });
     },
     analyseSignUpCreditCard : function() {
@@ -315,6 +314,14 @@ var digitalDataManager = {
         digitalData.page.pageInfo.pageName = "personaldetails";
         digitalData.page.formName = "personal details";
         digitalData.page.formStep = "update personal details";
+
+        //record user id
+        $("#sign-up-form-submit").on("click", function() {
+            //get user email id
+            var analyticsInfo = digitalDataManager.readAnalyticsInfo();
+            analyticsInfo.userId = $("[data-id='email']").val();
+            digitalDataManager.updateAnalyticsInfo(analyticsInfo);
+        });
     },
     analyseMyAccountUpdateBilling : function() {
         digitalData.site.section = "build";
@@ -557,6 +564,32 @@ var digitalDataManager = {
             }
         });
     },
+    updateAnalyticsInfo : function(analyticsInfo) {
+        try{
+            if(!analyticsInfo.transactionId){
+                analyticsInfo.transactionId = new Date().getUTCMilliseconds();
+            }
+            FOX.storage.data("analytics-info", JSON.stringify(analyticsInfo));
+        }catch (e) {
+             console.log(e);
+         }
+    },
+    readAnalyticsInfo : function() {
+        try {
+            var analyticsInfoText = FOX.storage.data("analytics-info");
+
+            if(!analyticsInfoText){
+                return {}
+            }
+
+            var analyticsInfo = JSON.parse(analyticsInfoText);
+            return analyticsInfo?analyticsInfo:{};
+        }
+        catch (e) {
+            console.log(e);
+        }
+        return {};
+    },
     loadAndAnalyseShoppingCart : function() {
         try {
             var shoppingCart = JSON.parse(FOX.storage.data("analytics-shopping-cart"));
@@ -586,6 +619,11 @@ var digitalDataManager = {
 
             //add discount information
             digitalData.transaction.discountType = discountInfo;
+
+            //user id & transaction id
+            var analyticsInfo = digitalDataManager.readAnalyticsInfo();
+            digitalData.user.account.userId = analyticsInfo.userId;
+            digitalData.transaction.transactionId = analyticsInfo.transactionId;
 
         }
         catch (e) {
