@@ -568,4 +568,4 @@ var digitalDataManager = {
             console.log(e);
         }
     }
-}
+};
