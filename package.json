@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server -d --config webpack.config.js --content-base public/ --progress --colors"
+  },
   "dependencies": {
     "css-loader": "^0.28.0",
     "glob": "^7.1.1",
