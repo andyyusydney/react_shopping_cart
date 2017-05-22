@@ -75,12 +75,12 @@ $(document).ready(function () {
         });
 
         // SMOOTH SCROLLING FOR ANCHOR NAVIGATION
-       /* $(document).on('click', 'a', function(event){
+        $(document).on('click', '.iq-nav a', function(event){
             event.preventDefault();
             $('html, body').animate({
                 scrollTop: $( $.attr(this, 'href') ).offset().top - 270
             }, 300);
-        }); */
+        });
 
          /* the following code is used to shrink the Foxtel Store image, the really wide one, from both side when tablets or mobile hit. */
         jQuery(".inclusions-cmp-img__overflow")
