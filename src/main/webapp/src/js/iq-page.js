@@ -78,7 +78,7 @@ $(document).ready(function () {
         $(document).on('click', '.iq-nav a', function(event){
             event.preventDefault();
             $('html, body').animate({
-                scrollTop: $( $.attr(this, 'href') ).offset().top - 270
+                scrollTop: $( $.attr(this, 'href') ).offset().top - 50
             }, 300);
         });
 
