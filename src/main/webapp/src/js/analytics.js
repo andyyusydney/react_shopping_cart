@@ -8,77 +8,89 @@ $(function() {
     }
 
     var pathName = $(location).attr('href');
-    if (pathName.length) {
-        try {
-            var start = pathName.indexOf("/now/");
-            var end = pathName.indexOf(".html");
-            if (start < 0 || end < 0) {
-                return;
-            }
-            var pageName = pathName.substring(start, end);
+    if(!pathName){
+        return;
+    }
 
-            digitalDataManager.analyseBase();
-            switch (pageName) {
-                case "/now/index":
-                    digitalDataManager.analyseHome();
-                    break;
-                case "/now/shop/sign-up":
-                    digitalDataManager.analyseSignUpPersonalDetails();
-                    break;
-                case "/now/shop/payment":
-                    digitalDataManager.analyseSignUpCreditCard();
-                    break;
-                case "/now/shop/welcome":
-                    digitalDataManager.analyseSignUpThankYou();
-                    break;
-                case "/now/shop":
-                    digitalDataManager.analysePackListing();
-                    break;
-                case "/now/pop":
-                case "/now/drama":
-                case "/now/docos":
-                case "/now/lifestyle":
-                case "/now/kids":
-                case "/now/movies":
-                case "/now/sport":
-                    digitalDataManager.analysePackDetail();
-                    break;
-                case "/now/my-account":
-                    digitalDataManager.analyseMyAccountHome();
-                    break;
-                case "/now/my-account/personal-details":
-                    digitalDataManager.analyseMyAccountUpdatePersonalDetails();
-                    break;
-                case "/now/my-account/billing-details":
-                    digitalDataManager.analyseMyAccountUpdateBilling();
-                    break;
-                case "/now/my-account/view-bills":
-                    digitalDataManager.analyseMyAccountViewBills();
-                    break;
-                case "/now/my-account/deactivate":
-                    digitalDataManager.analyseMyAccountDeactivate();
-                    break;
-                case "/now/my-account/manage-your-package":
-                    digitalDataManager.analyseMyAccountManagePackage();
-                    break;
-                case "/now/my-account/reactivate":
-                    digitalDataManager.analyseMyAccountReactivateChoosePackages();
-                    break;
-                case "/now/my-account/reactivate/personal-details":
-                    digitalDataManager.analyseMyAccountReactivateEnterDetails();
-                    break;
-                case "/now/my-account/reactivate/welcome-back":
-                    digitalDataManager.analyseMyAccountReactivateComplete();
-                    break;
-                case "/now/error/404":
-                    digitalDataManager.analyseError();
-                    break;
-            }
-        }
-        catch (e) {
-            console.log(e);
+    //URL normalisation,see more at https://en.wikipedia.org/wiki/URL_normalization
+    // 1) double slash
+    // 2) lower case
+    pathName = pathName.replace(/\/\//g,'/').toLowerCase();
+
+    function doPageAnalytics(pathName){
+       var start = pathName.indexOf("/now/");
+       var end = pathName.indexOf(".html");
+       if (start < 0 || end < 0) {
+           return;
+       }
+       var pageName = pathName.substring(start, end);
+
+        digitalDataManager.analyseBase();
+        switch (pageName) {
+            case "/now/index":
+                digitalDataManager.analyseHome();
+                break;
+            case "/now/shop/sign-up":
+                digitalDataManager.analyseSignUpPersonalDetails();
+                break;
+            case "/now/shop/payment":
+                digitalDataManager.analyseSignUpCreditCard();
+                break;
+            case "/now/shop/welcome":
+                digitalDataManager.analyseSignUpThankYou();
+                break;
+            case "/now/shop":
+                digitalDataManager.analysePackListing();
+                break;
+            case "/now/pop":
+            case "/now/drama":
+            case "/now/docos":
+            case "/now/lifestyle":
+            case "/now/kids":
+            case "/now/movies":
+            case "/now/sport":
+                digitalDataManager.analysePackDetail();
+                break;
+            case "/now/my-account":
+                digitalDataManager.analyseMyAccountHome();
+                break;
+            case "/now/my-account/personal-details":
+                digitalDataManager.analyseMyAccountUpdatePersonalDetails();
+                break;
+            case "/now/my-account/billing-details":
+                digitalDataManager.analyseMyAccountUpdateBilling();
+                break;
+            case "/now/my-account/view-bills":
+                digitalDataManager.analyseMyAccountViewBills();
+                break;
+            case "/now/my-account/deactivate":
+                digitalDataManager.analyseMyAccountDeactivate();
+                break;
+            case "/now/my-account/manage-your-package":
+                digitalDataManager.analyseMyAccountManagePackage();
+                break;
+            case "/now/my-account/reactivate":
+                digitalDataManager.analyseMyAccountReactivateChoosePackages();
+                break;
+            case "/now/my-account/reactivate/personal-details":
+                digitalDataManager.analyseMyAccountReactivateEnterDetails();
+                break;
+            case "/now/my-account/reactivate/welcome-back":
+                digitalDataManager.analyseMyAccountReactivateComplete();
+                break;
+            case "/now/error/404":
+                digitalDataManager.analyseError();
+                break;
         }
     }
+
+    try {
+        doPageAnalytics(pathName);
+    }
+    catch (e) {
+        console.log(e);
+    }
+
 });
 
 var digitalDataManager = {
@@ -550,19 +562,31 @@ var digitalDataManager = {
             var shoppingCart = JSON.parse(FOX.storage.data("analytics-shopping-cart"));
             var products = [];
 
+            var discountInfo = "";
+
             for (var i = 0; i < shoppingCart.tiers.length; i++) {
                 var product = {
                     product_name: shoppingCart.tiers[i].title,
                     product_id: shoppingCart.tiers[i].tierId,
-                    product_price: shoppingCart.tiers[i].price,
+                    product_price: shoppingCart.tiers[i].discountedPrice,
                     qty: 1
                 };
                 products.push(product);
+
+                //calculate discount price
+                var priceDiscount = shoppingCart.tiers[i].price - shoppingCart.tiers[i].discountedPrice
+                if(priceDiscount > 0){
+                    discountInfo += shoppingCart.tiers[i].title+" "+priceDiscount+" DISCOUNT";
+                }
             }
 
             digitalData.transaction.products = products;
             digitalData.transaction.totalRevenue = shoppingCart.monthlyCostIncludingOffer;
             digitalData.transaction.totalQty = shoppingCart.tiers.length;
+
+            //add discount information
+            digitalData.transaction.discountType = discountInfo;
+
         }
         catch (e) {
             console.log(e);
