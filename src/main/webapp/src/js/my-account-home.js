@@ -12,11 +12,15 @@ $(document).ready(function () {
 
         //free trial accounts
         if(data.accountStatus.freeTrial){
-            FOX.context.broadcast('SHOW_BANNER', {
-              name: 'FREE_TRIAL_MY_ACCOUNT_HOME',
-              freeTrialEndDate: moment(data.accountStatus.freeTrialEndDate).format('DD MMMM, YYYY'),
-              closeEnabled: true
-            });
+            var then = moment(data.accountStatus.freeTrialEndDate,"YYYY-MM-DD");
+            var now = moment().format("YYYY-MM-DD");
+            if(now > then){
+                FOX.context.broadcast('SHOW_BANNER', {
+                  name: 'FREE_TRIAL_MY_ACCOUNT_HOME',
+                  freeTrialEndDate: moment(data.accountStatus.freeTrialEndDate).format('DD MMMM, YYYY'),
+                  closeEnabled: true
+                });
+            }
         }
 
         var isMobile = Foxtel.osDetect.AndroidOS || Foxtel.osDetect.AppleOS;
