@@ -426,7 +426,8 @@ var SmartBanner = function () {
     key: 'publish',
     value: function publish() {
       if (Object.keys(this.options).length === 0) {
-        throw new Error('No options detected. Please consult documentation.');
+        //throw new Error('No options detected. Please consult documentation.');
+        return false;
       }
 
       if (_bakery2.default.baked) {
@@ -444,13 +445,15 @@ var SmartBanner = function () {
         return false;
       }
 
-      var bannerDiv = document.createElement('div');
-      document.querySelector('#'+this.options.containerId).appendChild(bannerDiv);
-      bannerDiv.outerHTML = this.html;
-      if (!this.positioningDisabled) {
-        setContentPosition(this.height);
+      if (this.options.containerId && document.querySelector('#'+this.options.containerId)) {
+          var bannerDiv = document.createElement('div');
+          document.querySelector('#'+this.options.containerId).appendChild(bannerDiv);
+          bannerDiv.outerHTML = this.html;
+          if (!this.positioningDisabled) {
+            setContentPosition(this.height);
+          }
+          addEventListeners(this);
       }
-      addEventListeners(this);
     }
   }, {
     key: 'exit',
