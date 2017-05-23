@@ -57,7 +57,7 @@
 		}
 		figcaption {
 			text-align: right;
-			color: rgb(137, 137, 137);
+			color: $foxtel-now-disabled-grey;
 		}
 	}
 
@@ -94,8 +94,9 @@
 
 
 	.foxtel-now-card__legal-text-wrapper {
-		text-align: left;
-        height: 36px;
+        color: $foxtel-now-disabled-grey;
+        line-height: 1em;
+        margin-top: 1em;
 	}
 
 
