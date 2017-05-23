@@ -132,6 +132,7 @@
     background-color: $foxtel-now-pink;
     cursor: pointer;
     width: 100%;
+    max-width: 480px;
     text-align: center;
 	transition: border $transition-time ease,
 		border-radius $transition-time ease,
