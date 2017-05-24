@@ -185,6 +185,8 @@
 				var banner = document.querySelector('.js_smartbanner');
 				document.querySelector('#' + this.options.containerId).removeChild(banner);
 				_bakery2['default'].bake();
+
+				$($('.foxtel-now-info-bar')[0]).css('margin-top', '-90px');
 			}
 		}, {
 			key: 'originalTop',
