@@ -144,6 +144,7 @@
 		_createClass(SmartBanner, [{
 			key: 'publish',
 			value: function publish() {
+			    $(document.querySelector('#' + this.options.containerId)).css('height', '0');
 				if (Object.keys(this.options).length === 0) {
 					//throw new Error('No options detected. Please consult documentation.');
 					return false;
@@ -166,6 +167,8 @@
 				
 				//this.options.containerId = "foxtel-now-info-bar-container--MOBILE_DEVICE_USER_MY_ACCOUNT_HOME";
 				if (this.options.containerId && document.querySelector('#'+this.options.containerId)) {
+				  $(document.querySelector('#' + this.options.containerId)).css('height', '90px');
+
 				  var bannerDiv = document.createElement('div');
 				  document.querySelector('#'+this.options.containerId).appendChild(bannerDiv);
 				  bannerDiv.outerHTML = this.html;
