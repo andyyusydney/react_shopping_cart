@@ -135,8 +135,8 @@
 			var parser = new _optionparser2['default']();
 			this.options = parser.parse();
 			console.log("this.options=", this.options);
-			//this.platform = _detector2['default'].platform();
-			this.platform = 'android';
+			this.platform = _detector2['default'].platform();
+			//this.platform = 'android';
 		}
 
 		// DEPRECATED. Will be removed.
