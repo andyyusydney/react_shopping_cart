@@ -57,7 +57,6 @@ $(document).ready(function(){
         })
 
         postData = postData.slice(0,-1);
-        postData = encodeURI(postData);
 
         var $complete = function(){
             $this.removeAttr('disabled').removeClass('is-loading');
