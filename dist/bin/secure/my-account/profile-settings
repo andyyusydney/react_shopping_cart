@@ -1,0 +1,64 @@
+{
+  "isSuccess": true,
+  "localResultCode": "KENAN_SUCCESS_FLAG_TRUE",
+  "headerCounter": 0,
+  "roles": {
+    "primary": 1,
+    "foxtelPlay": 1,
+    "foxtelPlayXboxPpvOnly": 0,
+    "foxtelXboxAndStbCombined": 0,
+    "setTopBox": 0,
+    "foxtelGuest": 0
+  },
+  "account": {
+    "rateClassDefault": "1000",
+    "firstName": "Play34",
+    "accountInternalId": 13738550,
+    "accountCategory": 1,
+    "dateActive": 1492437600000,
+    "accountStatus": -1,
+    "collectionStatus": 0,
+    "serviceHouseNumber": "4",
+    "serviceStreetName": "HYNE",
+    "serviceStreetSuffix": "COURT",
+    "serviceCity": "LEEMING",
+    "serviceState": "WA",
+    "servicePostalCode": "6149"
+  },
+  "username": "Play34secondary@refresh.com",
+  "specialOffer": "ON",
+  "idmAccount": {
+    "firstName": "Play34",
+    "userId": "Play34secondary@refresh.com",
+    "accountId": "13738550",
+    "state": null
+  },
+  "iFirstName": "Playsecondaryrefreshcom",
+  "iLastName": "Playsecondaryrefreshcom",
+  "iAccountType": "SECONDARY",
+  "iEmail": "Play34secondary@refresh.com",
+  "iContactTelephone": "0243282565",
+  "iUsername": "Play34secondary@refresh.com",
+  "iFoxtelAccountId": "13738550",
+  "iSecurityAnswer": "",
+  "offer": "ON",
+  "responseSuccessFlag": true,
+  "telstraCustomer": false,
+  "packages": {
+    "hasTv": true,
+    "hasBroadband": false,
+    "hasPhone": false
+  },
+  "securityQuestions": {
+    "securityQuestions": [
+      "What is your Mother's maiden name?",
+      "What is your favourite sporting team?",
+      "What is your pet's name?",
+      "What is the name of your favourite musician?",
+      "What is your main frequent flyer number?",
+      "What is the last name of your childhood best friend?",
+      "What is the name of the hospital you were born at?",
+      "What is the last name of your favourite author?"
+    ]
+  }
+}

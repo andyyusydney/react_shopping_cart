@@ -91,11 +91,11 @@ $(function () {
                 // Prefill the value.
                 $field.val(formData[key])
                   // Add active value to label to show populated state.
-                  .siblings('label').addClass('active');
+                      .siblings('label').addClass('active');
               } else if ($field.attr('type') === 'checkbox') {
-                if (formData[key]) {
-                  $field.click();
-                }
+                  if (!!formData[key]) {
+                      $field.click();
+                  }
               }
           }
         })
@@ -146,21 +146,20 @@ $(function () {
     });
 
     var UpdateDetails = Backbone.Model.extend({
-      getDetailsEndpoint: '/bin/secure/profileSettings',
-      idmEndpoint: '/bin/secure/profile-settings/update-my-details',
-      kenanEndpoint: '/bin/secure/profile-settings/update-contact-details',
+      getDetailsEndpoint: '/bin/secure/my-account/profile-settings',
+      updateDetailsEndpoint: '/bin/secure/now/accountProfileSubmit',
+
 
       updateDetails: function (formData) {
         this.set({
           idmUpdated: false,
           kenanUpdated: false
         });
-        this.updateIDM(formData);
-        this.updateKenan(formData);
+        this.updateAllDetails(formData);
       },
 
       getProfile: function () {
-        $.get(this.getDetailsEndpoint, this.handleGetDetailsResponse.bind(this));
+        $.post(this.getDetailsEndpoint, this.handleGetDetailsResponse.bind(this));
       },
 
       // Event handlers
@@ -177,45 +176,65 @@ $(function () {
         ];
         for (var defaultAddress in defaultAddresses) {
             var billAddress = response.kBillAddress1;
-            var trimmedBillAddress = billAddress.trim().toUpperCase();
-            if (defaultAddress == trimmedBillAddress) {
-                response.kBillAddress1 = "";
-                response.kBillCity = "";
-                response.kBillState = "";
-                break;
+            if(billAddress){
+                var trimmedBillAddress = billAddress.trim().toUpperCase();
+                if (defaultAddress == trimmedBillAddress) {
+                    response.kBillAddress1 = "";
+                    response.kBillCity = "";
+                    response.kBillState = "";
+                    break;
+                }
             }
         }
 
         // Prepare data for the html form.
+        var dobValue = response.kDOB;
+        if(dobValue){
+            dobValue = dobValue.replace(/\//g, '-');
+        }
+
         var formData =  {
+          primary: response.roles.primary,
           firstName: response.iFirstName,
           lastName: response.iLastName,
-          email: response.iEmail,
+          email: response.kCustEmail,
           password: 'password',
           mobile: response.iContactTelephone,
-          dateOfBirth: response.kDOB.replace(/\//g, '-'),
+          dateOfBirth: dobValue,
           address: response.kBillAddress1,
           suburb: response.kBillCity,
           state: response.kBillState,
           postcode: response.kBillZip,
           marketOpt: response.kenanMktFlag === "ON"
         };
+        if(!formData.primary){
+            formData.email = "";
+            formData.dateOfBirth = "";
+            formData.address = "";
+            formData.suburb = "";
+            formData.mobile = "";
+            formData.state = "";
+            formData.postcode = "";
+            $("[data-id='email']").closest('.field-wrap').hide();
+            $("[data-id='email']").closest('.form-group').siblings('.wysiwyg').hide();
+            $("[data-id='suburb']").closest('.field-wrap').hide();
+            $("[data-id='mobile']").closest('.field-wrap').hide();
+            $("[data-id='dateOfBirth']").closest('.field-wrap').hide();
+            $("[data-id='address']").closest('.field-wrap').hide();
+            $("[data-id='suburb']").closest('.field-wrap').hide();
+            $("[data-id='state']").hide();
+            $("[data-id='postcode']").closest('.field-wrap').hide();
+        }
         this.set({
           prefillFormData: formData
         });
         this.trigger('fetched:details');
       },
 
-      handleIDMUpdateResponse: function (response) {
+      handleUpdateResponse: function (response) {
         this.set({
-          idmUpdated: true
-        });
-        this.updated();
-      },
-
-      handleKenanUpdateResponse: function (response) {
-        this.set({
-          kenanUpdated: true
+          idmUpdated: true,
+          kenanUpdated:true
         });
         this.updated();
       },
@@ -223,35 +242,43 @@ $(function () {
       // Private
       // -------
 
-      updateIDM: function (formData) {
-        var payload = {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          contactTelephone: formData.mobile,
-          foxtelAccountId: this.get('accountId'),
-          username: this.get('username')
-        };
-
-        $.post(this.idmEndpoint, payload, this.handleIDMUpdateResponse.bind(this));
-      },
-
-      updateKenan: function (formData) {
-        var payload = {
-          firstName:formData.firstName,
-          lastName:formData.lastName,
-          dateOfBirth:moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"),
-          custEmail: formData.email,
-          dayPhone: formData.mobile,
-          billAddressOne: formData.address,
-          billCity: formData.suburb,
-          billState: formData.state,
-          billZip: formData.postcode,
-          foxtelAccountId: this.get('accountId'),
-          accountInternalId: this.get('accountId')
-        };
-
-        $.post(this.kenanEndpoint, payload, this.handleKenanUpdateResponse.bind(this));
+      updateAllDetails: function (formData) {
+          var payload = {
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              email: formData.email,
+              contactTelephone: formData.mobile,
+              dateOfBirth:moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"),
+              address: formData.address,
+              suburb: formData.suburb,
+              state: formData.state,
+              postcode: formData.postcode,
+              marketOpt:formData['market-opt'] === "on"
+          };
+            var payloadNonPrimary = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: "",
+                contactTelephone: "",
+                dateOfBirth:"",
+                address: "",
+                suburb: "",
+                state: "",
+                postcode: "",
+                marketOpt:formData['market-opt'] === "on"
+            };
+          $.ajax({
+              type: "POST",
+              url: this.updateDetailsEndpoint,
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              beforeSend: function(formData){
+                if(formData.primary){this.data = JSON.stringify(payload)}else{this.data = JSON.stringify(payloadNonPrimary)}
+              },
+              success: function(data) {
+                  updateDetails.handleUpdateResponse(data);
+              }
+          });
       },
 
       updated: function () {

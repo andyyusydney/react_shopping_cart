@@ -74,7 +74,15 @@ $(document).ready(function(){
         return;
       }
       var $container = $('.foxtel-now-header__btn-cart');
-      if (cartResponse.play.tiers.length > 0) {
+      // Filter out the epl channels in the cart quantity display.
+      var templateData = $.extend(true, {}, cartResponse);
+      templateData.play.tiers = _(templateData.play.tiers).select(function (pack) {
+        var eplIds = _(Foxtel.ShopCartManager.EPL_CHANNEL_TIERS).map(function (epl) {
+          return epl.tierIdWithSports;
+        });
+        return !_(eplIds).contains(pack.tierId);
+      });
+      if (templateData.play.tiers.length > 0) {
         $container.show();
       } else {
         $container.hide();
@@ -82,7 +90,7 @@ $(document).ready(function(){
       }
       var source = $('#icon-basket-template').html();
       var template = Handlebars.compile(source);
-      var html = template(cartResponse);
+      var html = template(templateData);
       $('#icon-basket-template-container').html(html);
   };
 

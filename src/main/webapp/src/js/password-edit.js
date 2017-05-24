@@ -47,7 +47,7 @@ $(function () {
     });
 
     var EditPassword = Backbone.Model.extend({
-      updatePasswordEndpoint: '/bin/active/profile-settings/update-login-details',
+      updatePasswordEndpoint: '/bin/secure/profile-settings/update-login-details',
       getDetailsEndpoint: '/bin/secure/profileSettings',
 
       initialize: function () {

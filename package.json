@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server -d --config webpack.config.js --content-base public/ --progress --colors"
+    "start": "webpack-dev-server -d --config webpack.local.js --content-base public/ --progress --colors"
   },
   "dependencies": {
     "css-loader": "^0.28.0",

@@ -9,6 +9,9 @@
 	&.foxtel-now-price-symbol {
 		@include foxtel-now-price-symbol();
 	}
+	.foxtel-now-btn.enable {
+		color: black;
+	}
 }
 
 .foxtel-now-card--myaccount {
