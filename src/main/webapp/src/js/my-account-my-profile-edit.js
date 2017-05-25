@@ -149,7 +149,18 @@ $(function () {
       },
 
       getProfile: function () {
-        $.post(this.getDetailsEndpoint, this.handleGetDetailsResponse.bind(this));
+        var self = this;
+        $.ajax({
+            type: "POST",
+            url: this.getDetailsEndpoint,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+              self.handleGetDetailsResponse(data);
+              return;
+            }
+
+          });
       },
 
       // Event handlers
@@ -164,7 +175,6 @@ $(function () {
           '5 THOMAS HOLT DRIVE',
           '1 FOXTEL NOW ROAD'
         ];
-
         for (var defaultAddressIx in defaultAddresses) {
             var defaultAddress = defaultAddresses[defaultAddressIx];
             var billAddress = response.kBillAddress1;
