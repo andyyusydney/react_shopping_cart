@@ -10,6 +10,9 @@ $(document).ready(function(){
     var lastScrollTop = 0;
     var delta = 3;
     var navbarHeight = $('.foxtel-header-breadcrumb-wrapper').outerHeight();
+    if ($('.foxtel-header-breadcrumb-wrapper').length) {
+        $("body").css("padding-top", navbarHeight);
+    }
 
     $(window).scroll(function(event){
         didScroll = true;
