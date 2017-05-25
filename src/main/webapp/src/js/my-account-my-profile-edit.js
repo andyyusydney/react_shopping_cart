@@ -120,11 +120,6 @@ $(function () {
       handleUpdateComplete: function (event) {
         var self = this;
 
-        // Show notification banner for successful update.
-        FOX.context.broadcast('SHOW_BANNER', {
-          name: 'PROFILE_UPDATED',
-          closeEnabled: true
-        });
         // Update button state to show successful update.
         self.$submitButton.removeClass('is-loading').addClass('is-valid');
         setTimeout(function () {
@@ -149,12 +144,7 @@ $(function () {
       getDetailsEndpoint: '/bin/secure/my-account/profile-settings',
       updateDetailsEndpoint: '/bin/secure/now/accountProfileSubmit',
 
-
       updateDetails: function (formData) {
-        this.set({
-          idmUpdated: false,
-          kenanUpdated: false
-        });
         this.updateAllDetails(formData);
       },
 
@@ -174,6 +164,7 @@ $(function () {
           '5 THOMAS HOLT DRIVE',
           '1 FOXTEL NOW ROAD'
         ];
+
         for (var defaultAddressIx in defaultAddresses) {
             var defaultAddress = defaultAddresses[defaultAddressIx];
             var billAddress = response.kBillAddress1;
@@ -208,6 +199,7 @@ $(function () {
           postcode: response.kBillZip,
           marketOpt: response.kenanMktFlag === "ON"
         };
+
         if(!formData.primary){
             formData.email = "";
             formData.dateOfBirth = "";
@@ -233,18 +225,35 @@ $(function () {
       },
 
       handleUpdateResponse: function (response) {
-        this.set({
-          idmUpdated: true,
-          kenanUpdated:true
+
+        // Show notification banner for successful update.
+        FOX.context.broadcast('SHOW_BANNER', {
+          name: 'PROFILE_UPDATED',
+          closeEnabled: true
         });
-        this.updated();
+
+        this.trigger('completed:update');
+      },
+
+      handleUpdateFailed: function (response) {
+        FOX.context.broadcast('SHOW_BANNER', {
+            name: 'KENAN_ERROR',
+            closeEnabled: true
+        });
+
+        this.trigger('completed:update');
       },
 
       // Private
       // -------
 
       updateAllDetails: function (formData) {
-          var payload = {
+            var self = this;
+
+            //hide all banner first
+            FOX.context.broadcast('HIDE_ALL_BANNER');
+
+            var payload = {
               firstName: formData.firstName,
               lastName: formData.lastName,
               email: formData.email,
@@ -255,7 +264,8 @@ $(function () {
               state: formData.state,
               postcode: formData.postcode,
               marketOpt:formData['market-opt'] === "on"
-          };
+            };
+
             var payloadNonPrimary = {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
@@ -268,24 +278,33 @@ $(function () {
                 postcode: "",
                 marketOpt:formData['market-opt'] === "on"
             };
-          $.ajax({
+
+            // secondary?
+            if(!self.get('prefillFormData').primary){
+                payload = payloadNonPrimary;
+            }
+
+            $.ajax({
               type: "POST",
               url: this.updateDetailsEndpoint,
               contentType: "application/json; charset=utf-8",
+              data:JSON.stringify(payload),
               dataType: "json",
-              beforeSend: function(formData){
-                if(formData.primary){this.data = JSON.stringify(payload)}else{this.data = JSON.stringify(payloadNonPrimary)}
-              },
               success: function(data) {
-                  updateDetails.handleUpdateResponse(data);
-              }
-          });
-      },
 
-      updated: function () {
-        if (this.get('kenanUpdated') && this.get('idmUpdated')) {
-          this.trigger('completed:update');
-        }
+                //check response to see if there is any error
+                if(!Foxtel.checkResponseErrorObj(data)){
+                    updateDetails.handleUpdateFailed();
+                    return;
+                }
+
+                updateDetails.handleUpdateResponse(data);
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                updateDetails.handleUpdateFailed();
+              }
+
+            });
       },
 
       // Parse response and set user meta data.
