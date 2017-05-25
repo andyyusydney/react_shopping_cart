@@ -2,18 +2,18 @@
 @import "../../../../header-footer/common";
 
 //addition header style for foxtel now site only
-body {
+.foxtel-now-body-wrapper {
   padding-top: 80px;
 }
 
-.foxtel-header-breadcrumb-wrapper{
+.foxtel-now-header-breadcrumb-wrapper{
   height: 80px;
   height: 80px;
+  &.nav-up {
+    top: -80px;
+  }
 }
 
-.nav-up {
-  top: -80px;
-}
 
 .foxtel-now-header{
   height: 70px;
@@ -278,7 +278,7 @@ body {
             position: absolute;
             top: -5px;
             right: -15px;
-            background-color: $foxtel-now-pink;
+            background-color: $foxtel-now-orange;
             color: white;
             border-radius: 50%;
             width: 30px;
