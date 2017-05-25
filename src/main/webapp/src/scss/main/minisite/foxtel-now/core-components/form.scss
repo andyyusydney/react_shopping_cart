@@ -228,7 +228,7 @@ $br: 4px;
 	  transform: scale(1);
 	}
 	[type="checkbox"]:checked + label:before {
-	  background: $foxtel-now-pink;
+	  background: $foxtel-now-orange;
 	}
 	/* disabled checkbox */
 	[type="checkbox"]:disabled:not(:checked) + label:before,

@@ -6,22 +6,21 @@ $grey-light: #F0F0F0;
 $grey-dark: #888;
 $soft-white: rgba(255, 255, 255, 0.8);
 
-$foxtel-now-pink: #FF5050;
-$foxtel-now-green: #00f0a0;
-$foxtel-now-orange: #ffb64f;
-$foxtel-now-light-grey: #F0EDEB;
-$foxtel-now-disabled-grey: #BEC0C2;
-$foxtel-now-dark-grey: #32323C;
-$foxtel-now-very-dark-grey: #32323C;
-$foxtel-now-grey: #32323c;
-
+$foxtel-now-blue: #32323C ;
+$foxtel-now-green: #FF5050 ;
+$foxtel-now-orange: #FF5050 ;
+$foxtel-now-light-grey: #F0EDEB ;
+$foxtel-now-disabled-grey: #BEC0C2 ;
+$foxtel-now-dark-grey: #32323C ;
+$foxtel-now-very-dark-grey: #32323C ;
+$foxtel-now-grey: #F0EDEB ;
 
 /*********************
 BACKGROUND
 *********************/
 
 .foxtel-now-background-green {
-	background-color: $foxtel-now-pink !important;
+	background-color: $foxtel-now-orange !important;
 }
 
 .foxtel-now-background-black {

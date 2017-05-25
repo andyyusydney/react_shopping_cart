@@ -50,7 +50,7 @@
 
 		figure {
 			width: 100%;
-			height: 186px;
+			height: 208px;
 			img{
 			    width: 100%;
 			}
@@ -89,6 +89,7 @@
 
 		.foxtel-now-card__title__price {
 			color: rgb(40, 40, 40);
+			margin-bottom: 0;
 		}
 	}
 
@@ -129,7 +130,7 @@
     -ms-border-radius: $radius;
     padding: 15px;
     color: white;
-    background-color: $foxtel-now-pink;
+    background-color: $foxtel-now-orange;
     cursor: pointer;
     width: 100%;
     max-width: 480px;
@@ -160,7 +161,7 @@
 		border-radius: 50%;
         background-color: transparent;
         border: 3px solid #f0f0f0;
-		border-left-color: $foxtel-now-pink;
+		border-left-color: $foxtel-now-orange;
 		animation: rotating 2s 250ms linear infinite, in 2s 0 ease-in;
 	}
 
@@ -290,7 +291,7 @@
 
 // A Corner ribbon
 .ribbon-wrapper {
-	$background-color: $foxtel-now-pink;
+	$background-color: $foxtel-now-orange;
 	$font-color: white;
 
 	z-index: 2;
@@ -340,7 +341,7 @@
 	li {
 		&:before {
 		  content: "• ";
-		  color: $foxtel-now-pink;
+		  color: $foxtel-now-orange;
 			font-size: 20px;
 		}
 
