@@ -23,6 +23,15 @@ $(document).ready(function () {
             }
         }
 
+        //eligible for free trail
+        if(data.accountStatus.eligibleFreeTrial && !data.accountStatus.activated && !data.accountStatus.pendingDeactivated){
+            FOX.context.broadcast('SHOW_BANNER', {
+              name: 'ELIGIBLE_FREE_TRIAL_MY_ACCOUNT_HOME',
+              isAndroid:true,
+              closeEnabled: true
+            });
+        }
+
         var isMobile = Foxtel.osDetect.AndroidOS || Foxtel.osDetect.AppleOS;
 
         //android device
