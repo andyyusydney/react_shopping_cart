@@ -1,9 +1,12 @@
 .foxtel-now-info-bar {
-  background-color: $foxtel-now-green;
+  background-color: #00F0A0;
 
   &.warn {
-    background-color: $foxtel-now-orange;
+    background-color: #FFB64F;
   }
+  &.neutral {
+      background-color: $foxtel-now-grey;
+    }
 
   .foxtel-now-info-bar__inner {
     position: relative;

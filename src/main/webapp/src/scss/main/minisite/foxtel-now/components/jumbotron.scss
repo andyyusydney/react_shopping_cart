@@ -12,10 +12,6 @@
   	box-shadow:         2px 3px 10px 0px #ccc;
   	z-index: 99999;
   	top: 0;
-  	&.foxtel-now-jumbotron--pop {
-        left: 0;
-        right: 0;
-     }
 
      .shoppingCart-nav-up {
         padding-top: -80px;
@@ -136,6 +132,12 @@
 		.foxtel-now-jumbotron--shopping-cart__summary__total-cost {
 			&.total {
 			    font-family: $font-family--Bold;
+			    @include  breakpoint(mobileOnly){
+			        font-family: $font-family--regular;
+                    p:last-child {
+                        font-size: 2em;
+                    }
+			    }
 			}
 		}
 		.foxtel-now-jumbotron--shopping-cart__summary__checkout {
@@ -145,6 +147,12 @@
 }
 
 .foxtel-now-jumbotron--minimized {
+    position: fixed;
+    left: 0;
+    right: 0;
+    @include breakpoint(mobileOnly) {
+        padding-top: 0;
+    }
 	.foxtel-now-jumbotron--shopping-cart__description {
 	    width: 60%;
 	    @include breakpoint(mobileOnly){
@@ -174,6 +182,11 @@
                 flex-direction: row;
                 justify-content: space-around;
                 align-items: center;
+                @include breakpoint(mobileOnly) {
+                    p:last-child {
+                        font-size: inherit;
+                    }
+                }
 		    }
 		    @include breakpoint(mobileOnly){
 		        width: initial;
