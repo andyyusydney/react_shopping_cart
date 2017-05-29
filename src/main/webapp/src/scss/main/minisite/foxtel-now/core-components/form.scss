@@ -103,6 +103,11 @@ $br: 4px;
 	  	margin:2px;
 	  	color:$main;
 	  }
+	  &.checkbox-label {
+        margin: 0.5rem 0.75rem;
+        top: 0;
+        margin-bottom: 1.2em;
+	  }
 	}
 
 	label.active {
