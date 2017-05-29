@@ -4,6 +4,9 @@
   &.warn {
     background-color: #FFB64F;
   }
+  &.neutral {
+      background-color: $foxtel-now-grey;
+    }
 
   .foxtel-now-info-bar__inner {
     position: relative;
