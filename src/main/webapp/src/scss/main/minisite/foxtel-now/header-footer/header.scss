@@ -1,20 +1,6 @@
 @import "../core-components/color";
 @import "../../../../header-footer/common";
-
-//addition header style for foxtel now site only
-.foxtel-now-body-wrapper {
-  padding-top: 80px;
-}
-
-.foxtel-now-header-breadcrumb-wrapper{
-  height: 80px;
-  height: 80px;
-  &.nav-up {
-    top: -80px;
-  }
-}
-
-
+// HEADING FIX:  NO foxtel-header-breadcrumb-wrapper CLASS REQUIRED
 .foxtel-now-header{
   height: 70px;
   max-width: 1140px;

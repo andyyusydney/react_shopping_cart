@@ -276,7 +276,7 @@ $(document).ready(function(){
     }, 50);
 
     function initState() {
-        shoppingCart.removeClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+        shoppingCart.removeClass('foxtel-now-jumbotron--minimized');
         shoppingCart.find('.add-packs-text').removeClass('hidden');
     }
 
@@ -287,7 +287,7 @@ $(document).ready(function(){
         if(Math.abs(lastScrollTop - st) <= delta)
             return;
 
-        shoppingCart.addClass('foxtel-header-breadcrumb--pop foxtel-now-jumbotron--minimized');
+        shoppingCart.addClass('foxtel-now-jumbotron--minimized');
         shoppingCart.find('.add-packs-text').addClass('hidden');
         // If they scrolled down and are past the navbar, add class .nav-up.
         // This is necessary so you never see what is "behind" the navbar.
