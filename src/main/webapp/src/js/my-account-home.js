@@ -13,7 +13,7 @@ $(document).ready(function () {
         //free trial accounts
         if(data.accountStatus.freeTrial){
             var then = moment(data.accountStatus.freeTrialEndDate,"YYYY-MM-DD");
-            var now = moment().format("YYYY-MM-DD");
+            var now = moment();
             if(now > then){
                 FOX.context.broadcast('SHOW_BANNER', {
                   name: 'FREE_TRIAL_MY_ACCOUNT_HOME',
