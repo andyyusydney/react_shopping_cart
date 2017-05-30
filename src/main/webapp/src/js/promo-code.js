@@ -56,16 +56,21 @@ $(document).ready(function(){
                     FOX.context.broadcast("PROMO_CODE_SUBMITTED",{"code":promoCode});
                     Foxtel.navigator($this.data("redirect-url"));
                 }else if("EXPIRED" === validResult){
-                    jQuery('#promoErrorMsg').text('Hey there, it looks like this promotional code has already expired. You will not be able to sign up with this code.');
-                    jQuery('#promoErrorMsg').show();
+                    FOX.context.broadcast('SHOW_BANNER', {
+                      name: 'PROMO_CODE_EXPIRED',
+                      closeEnabled: true
+                    });
                 }else if("NOT_FOUND" === validResult){
-                    jQuery('#promoErrorMsg').text('Hey there, it looks like this promotional code is invalid. You will not be able to sign up with this code.');
-                    jQuery('#promoErrorMsg').show();
+                    FOX.context.broadcast('SHOW_BANNER', {
+                      name: 'PROMO_CODE_NOT_FOUND',
+                      closeEnabled: true
+                    });
                 }else{
-                    jQuery('#promoErrorMsg').text('Hey there, it looks like this promotional code is invalid. You will not be able to sign up with this code.');
-                    jQuery('#promoErrorMsg').show();
+                    FOX.context.broadcast('SHOW_BANNER', {
+                      name: 'PROMO_CODE_GENERAL_ERROR',
+                      closeEnabled: true
+                    });
                 }
-
             },
             complete:function(){
                 $this.removeClass("is-loading");
@@ -73,5 +78,19 @@ $(document).ready(function(){
             }
         });
 
+    });
+
+
+    //check if it's logged in customer
+    var servletURL = "/bin/foxtel/display-name.json";
+
+    $.get(servletURL, function (response) {
+        if(!response && !response.first_name){
+            //logged in
+            FOX.context.broadcast('SHOW_BANNER', {
+              name: 'PROMO_CODE_LOGGED_CUSTOMER',
+              closeEnabled: true
+            });
+        }
     });
 });
