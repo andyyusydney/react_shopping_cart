@@ -175,7 +175,7 @@ Handlebars.registerHelper("shopCartView",function(cartResponse,options) {
     //4:has offer, no free trial
     var state = 0;
 
-    if(cartResponse.hasFreeTrial){
+    if(cartResponse.hasFreeTrial || cartResponse.play.eligibleFreeTrial){
         if(cartResponse.quote.monthlyCostItems.length >1){
             state = 3;
         }else{
