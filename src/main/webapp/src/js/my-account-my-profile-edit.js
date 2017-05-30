@@ -83,8 +83,9 @@ $(function () {
 
           switch ($field.prop('tagName')) {
             case 'BUTTON': // dropdown
-              var $item = $field.siblings('ul').find('[value="' + formData[key] + '"]');
-              $item.click();
+                if(''!= formData[key]){
+                    $field.find('span').html(formData[key]);
+                }
             case 'INPUT':
               var textTypes = ['text', 'tel'];
               if (_(textTypes).contains($field.attr('type'))) {
