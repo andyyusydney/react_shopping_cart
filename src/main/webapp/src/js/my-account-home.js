@@ -23,6 +23,35 @@ $(document).ready(function () {
             }
         }
 
+        //eligible for free trail
+        if(data.accountStatus.eligibleFreeTrial && !data.accountStatus.activated && !data.accountStatus.pendingDeactivated){
+            FOX.context.broadcast('SHOW_BANNER', {
+              name: 'ELIGIBLE_FREE_TRIAL_MY_ACCOUNT_HOME',
+              isAndroid:true,
+              closeEnabled: true
+            });
+        }
+
+        var isMobile = Foxtel.osDetect.AndroidOS || Foxtel.osDetect.AppleOS;
+
+        //android device
+        if(Foxtel.osDetect.AndroidOS){
+            FOX.context.broadcast('SHOW_BANNER', {
+              name: 'MOBILE_DEVICE_USER_MY_ACCOUNT_HOME',
+              isAndroid:true,
+              closeEnabled: true
+            });
+        }
+
+        //apple device
+        if(Foxtel.osDetect.AppleOS){
+            FOX.context.broadcast('SHOW_BANNER', {
+              name: 'MOBILE_DEVICE_USER_MY_ACCOUNT_HOME',
+              isAndroid:false,
+              closeEnabled: true
+            });
+        }
+
         //secondary account
         if(!data.accountStatus.primary){
             FOX.context.broadcast('SHOW_BANNER', {
