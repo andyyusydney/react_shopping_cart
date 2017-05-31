@@ -65,7 +65,12 @@ $(document).ready(function(){
                       name: 'PROMO_CODE_NOT_FOUND',
                       closeEnabled: true
                     });
-                }else{
+                }else if("ALREADY_USED" === validResult){
+                     FOX.context.broadcast('SHOW_BANNER', {
+                       name: 'PROMO_CODE_ALREADY_USED',
+                       closeEnabled: true
+                     });
+                 }else{
                     FOX.context.broadcast('SHOW_BANNER', {
                       name: 'PROMO_CODE_GENERAL_ERROR',
                       closeEnabled: true
@@ -85,7 +90,7 @@ $(document).ready(function(){
     var servletURL = "/bin/foxtel/display-name.json";
 
     $.get(servletURL, function (response) {
-        if(!response && response.first_name){
+        if(response && response.first_name){
             //logged in
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'PROMO_CODE_LOGGED_CUSTOMER',
