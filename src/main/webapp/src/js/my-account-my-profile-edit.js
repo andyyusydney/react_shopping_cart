@@ -269,7 +269,7 @@ $(function () {
               lastName: formData.lastName,
               email: formData.email,
               contactTelephone: formData.mobile,
-              dateOfBirth:moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"),
+              dateOfBirth:(formData.dateOfBirth?moment(formData.dateOfBirth,"DD-MM-YYYY").format("YYYY-MM-DD"):''),
               address: formData.address,
               suburb: formData.suburb,
               state: formData.state,
