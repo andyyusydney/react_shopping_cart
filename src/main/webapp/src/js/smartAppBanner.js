@@ -144,7 +144,6 @@
 		_createClass(SmartBanner, [{
 			key: 'publish',
 			value: function publish() {
-			    $(document.querySelector('#' + this.options.containerId)).css('height', '0');
 				if (Object.keys(this.options).length === 0) {
 					//throw new Error('No options detected. Please consult documentation.');
 					return false;
@@ -190,7 +189,6 @@
 				_bakery2['default'].bake();
 
                 $(document.querySelector('#' + this.options.containerId)).css('height', '0');
-				$($('.foxtel-now-info-bar')[0]).css('margin-top', '-90px');
 			}
 		}, {
 			key: 'originalTop',
