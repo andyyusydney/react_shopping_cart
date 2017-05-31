@@ -85,7 +85,7 @@ $(document).ready(function(){
     var servletURL = "/bin/foxtel/display-name.json";
 
     $.get(servletURL, function (response) {
-        if(!response && response.first_name){
+        if(response && response.first_name){
             //logged in
             FOX.context.broadcast('SHOW_BANNER', {
               name: 'PROMO_CODE_LOGGED_CUSTOMER',
