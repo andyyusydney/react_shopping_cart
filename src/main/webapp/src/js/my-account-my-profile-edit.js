@@ -275,7 +275,7 @@ $(function () {
               state: formData.state,
               postcode: formData.postcode,
               marketOpt:formData['market-opt'] === "on"
-            };
+            };0
 
             var payloadNonPrimary = {
                 firstName: formData.firstName,

@@ -7,12 +7,18 @@ var webpack = require("webpack");
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './src/main/webapp/src/js'),
     filename: '[name].js',
     publicPath: '/'
   },
+  resolve: {
+      // Add '.ts' and '.tsx' as resolvable extensions.
+      extensions: [".ts", ".tsx", ".js", ".json"]
+  },
   module: {
     rules: [
+      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.scss$/,
         use: [{
@@ -36,6 +42,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  externals: {
+      "react": "React",
+      "react-dom": "ReactDOM"
+  },
 };
 
