@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		//"sourceMap" true, //this option causes the issue of "Module build failed: TypeError: Cannot read property 'compilerOptions' of undefined"
+		"noImplicitAny": true,
+		"module": "commonjs",
+		"target": "es5",
+		"jsx": "react"
+	},
+	"include": [
+		"./src/main/webapp/src/js/typescript/**/*"
+	]
+}

@@ -11,8 +11,15 @@ module.exports = {
     filename: '[name].js',
     publicPath: '/'
   },
+  devtool: "source-map",
+  resolve: {
+	// Add '.ts' and '.tsx' as resolvable extensions.
+	extensions: [".ts", ".tsx", ".js", ".json"]
+  },
   module: {
     rules: [
+	  { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+	  { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.scss$/,
         use: [{
@@ -27,7 +34,6 @@ module.exports = {
           }
         }]
       },
-
       {
         test: /\.svg/,
         use: {
