@@ -7,7 +7,7 @@ var webpack = require("webpack");
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, './src/main/webapp/src/js/dist'),
+    path: path.resolve(__dirname, './src/main/webapp/src/dist'),
     filename: '[name].js',
     publicPath: '/'
   },
