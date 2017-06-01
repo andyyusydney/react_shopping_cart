@@ -7,7 +7,7 @@ var webpack = require("webpack");
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './src/main/webapp/src/js'),
     filename: '[name].js',
     publicPath: '/'
   },
@@ -42,6 +42,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  externals: {
+      "react": "React",
+      "react-dom": "ReactDOM"
+  },
 };
 

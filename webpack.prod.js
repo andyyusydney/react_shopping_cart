@@ -9,6 +9,8 @@ module.exports = function(env) {
     entry: {
         foxtelnow: glob.sync('./src/main/webapp/src/js/**/*.*!(styles.js)')
 		//foxtelnow: glob.sync('./src/main/webapp/src/js/**/*.tsx') // compile tsx only
+
+        //foxtelnow: glob.sync('./src/main/webapp/src/js/ts') // Lin's change
     },
     plugins: [
 
