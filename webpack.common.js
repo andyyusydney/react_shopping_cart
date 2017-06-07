@@ -19,6 +19,14 @@ module.exports = {
   module: {
     rules: [
 	  { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+	  {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react']
+        }
+      },
 	  { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.scss$/,
@@ -43,9 +51,11 @@ module.exports = {
       }
     ]
   },
+  /*
   externals: {
       "react": "React",
       "react-dom": "ReactDOM"
   },
+  */
 };
 

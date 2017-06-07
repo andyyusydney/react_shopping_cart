@@ -14,7 +14,8 @@ var jsonFile = require('jsonfile')
 module.exports = function(env) {
   return Merge(CommonConfig, {
     entry: {
-        foxtelnow: glob.sync('./src/main/webapp/src/js/*.js')
+        //foxtelnow: glob.sync('./src/main/webapp/src/js/*.js')
+		bundle: glob.sync('./src/main/webapp/src/js/typescript/index.tsx')
     },
     devServer: {
         contentBase: path.resolve(__dirname, './dist'),
