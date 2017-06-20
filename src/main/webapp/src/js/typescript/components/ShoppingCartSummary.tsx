@@ -1,0 +1,39 @@
+import * as React from "react";
+import * as ReactDom from "react-dom";
+import { connect } from "react-redux";
+import * as $ from "jquery";
+
+import { Description } from "./Description";
+
+interface ShoppingCartSummaryState {
+    descriptionTitle: string;
+};
+
+class ShoppingCartSummary extends React.Component<any, ShoppingCartSummaryState> {
+    constructor(props: any, context: any) {
+        const shoppingCartDataObj = $("#shoppingCartCompData").data("shoppingCartComp");
+        console.log("shoppingCartDataObj=", shoppingCartDataObj);
+
+        super(props, context);
+
+        this.state = {
+            descriptionTitle: shoppingCartDataObj.descriptionTitle
+        };
+    }
+
+    render() {
+        return (
+            <div className="foxtel-now-jumbotron">
+                <div className="container">
+                    <div id="cartCollection-container" className="foxtel-now-jumbotron--shopping-cart row">
+                        <div className="foxtel-now-jumbotron--shopping-cart__description col-md-8 col-sm-12">
+                            <Description title={this.state.descriptionTitle} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default ShoppingCartSummary

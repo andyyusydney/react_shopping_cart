@@ -51,10 +51,10 @@ module.exports = {
       }
     ]
   },
+  /*
   plugins: [
 	new webpack.optimize.UglifyJsPlugin({minimize: true})
   ]
-  /*
   externals: {
       "react": "React",
       "react-dom": "ReactDOM"

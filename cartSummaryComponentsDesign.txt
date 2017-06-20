@@ -1,0 +1,27 @@
+Components Hierarchy:
+
+ShoppingCart(c)
+ - Description(c) (Props: title)
+   - Title
+   - Added Items(c) (Props: defaultMsg)
+     - default msg
+     - Items list wrap(c) (Props: itemsMsg)
+       - Items list(c) (Props: items)
+         - Item Wrap(c)
+           - Item Pack(c) (Props: name, price)
+             - Pack name
+             - Price
+           - remove button
+       - More
+       - Items msg
+
+ - Summary(c)
+   - total wrap(c)
+     - Free trial(c) (Props: freeTrial)
+     - Offer ends price tag - total cost(c) (Props: suffixText)
+       - Offer ends text
+       - Price tag(c) (Props: price, unit)
+     - Total monthly cost - total cost(c) (Props: suffixText)
+       - Total text
+       - Price tag(c) (Props: price, unit)
+   - checkout button(c) (Props: checkoutUrl, checkoutNoStarterUrl, btnLabel)
