@@ -9,8 +9,10 @@ export class Description extends React.Component<DescriptionProps, undefined> {
     render() {
         return (
             <div className="foxtel-now-jumbotron--shopping-cart__description-wrapper">
-                <p>{this.props.title}</p>
-                <ItemsContent></ItemsContent>
+                <div className="cart-title-wrapper">
+                    <p>{this.props.title}</p>
+                </div>
+                <ItemsContent />
             </div>
         )
     }
