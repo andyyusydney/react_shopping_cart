@@ -1,24 +1,34 @@
 import Action from "../actions/action";
 
 type PACK = {
-    packName: string[],
-    packTierId: string[]
+    discountedPrice: string,
+    price: string,
+    removable: boolean,
+    tierId: number,
+    title: string,
+    type: string
 }
 export type PackageState = Array<PACK>;
 
-export const Packs = (state: PackageState = [], action: Action<PACK>): PackageState => {
+export const packs = (state: Array<PACK> = [], action: Action<PACK>): PackageState => {
     console.log("PackageReducer.ts state=", state);
     switch (action.type) {
         case 'ADD_PACK':
             return [
                 ...state,
                 {
-                    packTierId: action.payload.packTierId,
-                    packName: action.payload.packName
+                    tierId: action.payload.tierId,
+                    price: action.payload.price,
+                    discountedPrice: action.payload.discountedPrice,
+                    title: action.payload.title,
+                    type: action.payload.type,
+                    removable: action.payload.removable
                 }
             ];
         case 'REMOVE_PACK':
-            return state.filter((item, index) => item.packTierId !== action.payload.packTierId);
+            return state.filter(
+                (item:any, index:number) => item.tierId !== action.payload.tierId
+            );
         default:
             return state;
     }

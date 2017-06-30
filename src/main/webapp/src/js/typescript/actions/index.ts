@@ -1,11 +1,18 @@
-type PackName = string[];
-
-export const addPackage = (packName: PackName) => ({
+export const addPackage = (tier: any) => ({
     type: 'ADD_PACK',
-    packName
+    payload: {
+        tierId: tier.tierId,
+        price: tier.price,
+        discountedPrice: tier.discountedPrice,
+        title: tier.title,
+        type: tier.type,
+        removable: tier.removable
+    }
 })
 
-export const removePackage = (packName: PackName) => ({
+export const removePackage = (id: number) => ({
     type: 'REMOVE_PACK',
-    packName
+    payload: {
+        tierId: id
+    }
 })

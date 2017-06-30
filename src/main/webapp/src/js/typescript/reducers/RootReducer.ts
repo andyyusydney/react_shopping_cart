@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { Packs } from "./PackageReducer";
+import { packs } from "./PackageReducer";
 
 const rootReducer = combineReducers({
-    Packs
+    packs
 });
 
 export default rootReducer;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ItemsContent} from "./ItemsContent";
+import {ItemsContentConnect} from "./ItemsContent";
 
 export interface DescriptionProps { title: string; }
 
@@ -12,7 +12,7 @@ export class Description extends React.Component<DescriptionProps, undefined> {
                 <div className="cart-title-wrapper">
                     <p>{this.props.title}</p>
                 </div>
-                <ItemsContent />
+                <ItemsContentConnect />
             </div>
         )
     }
