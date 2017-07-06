@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/jquery": "^2.0.46",
+    "@types/lodash": "^4.14.68",
     "@types/react": "^15.0.25",
     "@types/react-dom": "^15.5.0",
     "@types/react-redux": "^4.4.44",
@@ -19,6 +20,7 @@
     "jshint": "^2.9.4",
     "jshint-loader": "^0.8.4",
     "jsonfile": "^2.4.0",
+    "lodash": "^4.17.4",
     "node-sass": "^4.5.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

@@ -21,6 +21,8 @@ interface ItemsContentProps {
 }
 
 declare const FOX: any;
+declare const Foxtel: any;
+declare const _: any;
 
 export class ItemsContent extends React.Component<any, ItemsContentStates> {
     constructor(props: ItemsContentProps, context: any) {
@@ -28,17 +30,18 @@ export class ItemsContent extends React.Component<any, ItemsContentStates> {
 
         super(props, context);
 
-        FOX.dyc.subscribeEvent("modelShopCart", this.initStatePacks.bind(this));
-        FOX.context.subscribe("SHOP_CART_REFRESHED", this.initStatePacks.bind(this));
+        FOX.dyc.subscribeEvent("modelShopCart", this.updatePacks.bind(this));
+        FOX.context.subscribe("SHOP_CART_REFRESHED", this.updatePacks.bind(this));
 
         this.state = {
             defaultMsg: shoppingCartDataObj.descriptionMsg
         };
     }
 
-    initStatePacks(data: any) {
+    updatePacks(data: any) {
         console.log("Shop cart's data is loaded! data=", data);
-        /*
+        console.log("this.props.packs=", this.props.packs);
+        /* test data
         data.play.tiers = [
             {
                 discountedPrice: "15",
@@ -81,16 +84,26 @@ export class ItemsContent extends React.Component<any, ItemsContentStates> {
         ];
         */
 
-        if (data.play.tiers && data.play.tiers.length > 0) {
-            const tiers: Array<TIERS> = data.play.tiers;
-            tiers.map((tier) => {
-               this.props.dispatch(addPackage(tier));
-            });
-        }
+        const tiers: Array<TIERS> = data.play.tiers;
+        tiers.map((tier: any) => { // add
+            if (!_.some(this.props.packs, tier)) {
+                this.props.dispatch(addPackage(tier));
+            }
+        });
+
+        this.props.packs.map((pack: any) => { // remove
+            var isPackExist = _.find(tiers, function(tier: any) {
+                return tier.tierId === pack.tierId;
+            })
+
+            if (!isPackExist) {
+                this.props.dispatch(removePackage(pack));
+            }
+        });
     }
 
     onRemovePackClick(tierId: number, tierTitle: string) {
-        this.props.onRemovePackClick(tierId, tierTitle);
+        Foxtel.ShopCartManager.removePlayTier(tierId);
     }
 
     render() {
@@ -100,7 +113,7 @@ export class ItemsContent extends React.Component<any, ItemsContentStates> {
             this.props.packs.map((tier: any) => {
                 ItemsListRender.push(
                     <p key={tier.tierId} className="foxtel-now-jumbotron__pack-tag" data-tier-id={tier.tierId}>
-                        <span>{tier.title}</span> - $<span>{tier.price}</span>/month
+                        <span>{tier.title}</span> - $<span>{tier.discountedPrice}</span>/month
                         <sub onClick={(e) => this.onRemovePackClick(tier.tierId, tier.title)}>⨯</sub>
                     </p>
                 );

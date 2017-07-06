@@ -10,9 +10,9 @@ export const addPackage = (tier: any) => ({
     }
 })
 
-export const removePackage = (id: number) => ({
+export const removePackage = (pack: any) => ({
     type: 'REMOVE_PACK',
     payload: {
-        tierId: id
+        tierId: pack.tierId
     }
 })

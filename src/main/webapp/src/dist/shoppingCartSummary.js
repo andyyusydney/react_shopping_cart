@@ -21350,10 +21350,10 @@ exports.addPackage = function (tier) { return ({
         removable: tier.removable
     }
 }); };
-exports.removePackage = function (id) { return ({
+exports.removePackage = function (pack) { return ({
     type: 'REMOVE_PACK',
     payload: {
-        tierId: id
+        tierId: pack.tierId
     }
 }); };
 
@@ -21452,17 +21452,18 @@ var ItemsContent = (function (_super) {
         var _this = this;
         var shoppingCartDataObj = $("#shoppingCartCompData").data("shoppingCartComp");
         _this = _super.call(this, props, context) || this;
-        FOX.dyc.subscribeEvent("modelShopCart", _this.initStatePacks.bind(_this));
-        FOX.context.subscribe("SHOP_CART_REFRESHED", _this.initStatePacks.bind(_this));
+        FOX.dyc.subscribeEvent("modelShopCart", _this.updatePacks.bind(_this));
+        FOX.context.subscribe("SHOP_CART_REFRESHED", _this.updatePacks.bind(_this));
         _this.state = {
             defaultMsg: shoppingCartDataObj.descriptionMsg
         };
         return _this;
     }
-    ItemsContent.prototype.initStatePacks = function (data) {
+    ItemsContent.prototype.updatePacks = function (data) {
         var _this = this;
         console.log("Shop cart's data is loaded! data=", data);
-        /*
+        console.log("this.props.packs=", this.props.packs);
+        /* test data
         data.play.tiers = [
             {
                 discountedPrice: "15",
@@ -21504,15 +21505,23 @@ var ItemsContent = (function (_super) {
             }
         ];
         */
-        if (data.play.tiers && data.play.tiers.length > 0) {
-            var tiers = data.play.tiers;
-            tiers.map(function (tier) {
+        var tiers = data.play.tiers;
+        tiers.map(function (tier) {
+            if (!_.some(_this.props.packs, tier)) {
                 _this.props.dispatch(index_1.addPackage(tier));
+            }
+        });
+        this.props.packs.map(function (pack) {
+            var isPackExist = _.find(tiers, function (tier) {
+                return tier.tierId === pack.tierId;
             });
-        }
+            if (!isPackExist) {
+                _this.props.dispatch(index_1.removePackage(pack));
+            }
+        });
     };
     ItemsContent.prototype.onRemovePackClick = function (tierId, tierTitle) {
-        this.props.onRemovePackClick(tierId, tierTitle);
+        Foxtel.ShopCartManager.removePlayTier(tierId);
     };
     ItemsContent.prototype.render = function () {
         var _this = this;
@@ -21523,7 +21532,7 @@ var ItemsContent = (function (_super) {
                 ItemsListRender.push(React.createElement("p", { key: tier.tierId, className: "foxtel-now-jumbotron__pack-tag", "data-tier-id": tier.tierId },
                     React.createElement("span", null, tier.title),
                     " - $",
-                    React.createElement("span", null, tier.price),
+                    React.createElement("span", null, tier.discountedPrice),
                     "/month",
                     React.createElement("sub", { onClick: function (e) { return _this.onRemovePackClick(tier.tierId, tier.title); } }, "\u2A2F")));
             });
@@ -21665,16 +21674,23 @@ var PriceTag_1 = __webpack_require__(102);
 var TotalMonthlyCostPrice = (function (_super) {
     __extends(TotalMonthlyCostPrice, _super);
     function TotalMonthlyCostPrice(props, context) {
-        var _this = this;
-        var shoppingCartDataObj = $("#shoppingCartCompData").data("shoppingCartComp");
-        console.log("shoppingCartDataObj=", shoppingCartDataObj);
-        _this = _super.call(this, props, context) || this;
+        var _this = _super.call(this, props, context) || this;
+        FOX.dyc.subscribeEvent("modelShopCart", _this.updatePrice.bind(_this));
+        FOX.context.subscribe("SHOP_CART_REFRESHED", _this.updatePrice.bind(_this));
+        _this.state = {
+            price: "0"
+        };
         return _this;
     }
+    TotalMonthlyCostPrice.prototype.updatePrice = function (data) {
+        this.setState({
+            price: data.play.monthlyCostIncludingOffer
+        });
+    };
     TotalMonthlyCostPrice.prototype.render = function () {
         return (React.createElement("div", { className: "foxtel-now-jumbotron--shopping-cart__summary__total-cost total" },
             React.createElement("p", null, "Total"),
-            React.createElement(PriceTag_1.PriceTag, { price: "44", unit: "month" })));
+            React.createElement(PriceTag_1.PriceTag, { price: this.state.price, unit: "month" })));
     };
     return TotalMonthlyCostPrice;
 }(React.Component));
