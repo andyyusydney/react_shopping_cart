@@ -6,13 +6,18 @@ import * as $ from "jquery";
 import { Description } from "./Description";
 import { TotalMonthlyCostPrice } from "./TotalMonthlyCostPrice";
 import { CheckoutBtn } from "./CheckoutBtn";
+import { FreeTrail } from "./FreeTrail";
 
 interface ShoppingCartSummaryState {
     descriptionTitle: string;
     checkoutBtnLabel: string;
     checkoutURL: string;
     checkoutWithoutStarterURL: string;
+    freeTrail: boolean;
 };
+
+declare const FOX: any;
+declare const Foxtel: any;
 
 class ShoppingCartSummary extends React.Component<any, ShoppingCartSummaryState> {
     constructor(props: any, context: any) {
@@ -21,12 +26,22 @@ class ShoppingCartSummary extends React.Component<any, ShoppingCartSummaryState>
 
         super(props, context);
 
+        FOX.dyc.subscribeEvent("modelShopCart", this.setFreeTrail.bind(this));
+        FOX.context.subscribe("SHOP_CART_REFRESHED", this.setFreeTrail.bind(this));
+
         this.state = {
             descriptionTitle: shoppingCartDataObj.descriptionTitle,
             checkoutBtnLabel: shoppingCartDataObj.checkoutBtnLabel,
             checkoutURL: shoppingCartDataObj.checkoutURL,
-            checkoutWithoutStarterURL: shoppingCartDataObj.checkoutWithoutStarterURL
+            checkoutWithoutStarterURL: shoppingCartDataObj.checkoutWithoutStarterURL,
+            freeTrail: false
         };
+    }
+
+    setFreeTrail(data: any) {
+        this.setState({
+            freeTrail: data.hasFreeTrial || data.play.eligibleFreeTrial || false
+        });
     }
 
     render() {
@@ -38,6 +53,15 @@ class ShoppingCartSummary extends React.Component<any, ShoppingCartSummaryState>
                             <Description title={this.state.descriptionTitle} />
                         </div>
                         <div className="foxtel-now-jumbotron--shopping-cart__summary col-md-4 col-sm-12">
+                            {
+                                (() => {
+                                    if (this.state.freeTrail) {
+                                        return (
+                                            <FreeTrail />
+                                        );
+                                    }
+                                })()
+                            }
                             <TotalMonthlyCostPrice />
                             <CheckoutBtn checkoutUrl={this.state.checkoutURL} checkoutNoStarterUrl={this.state.checkoutWithoutStarterURL} btnLabel={this.state.checkoutBtnLabel} />
                         </div>
