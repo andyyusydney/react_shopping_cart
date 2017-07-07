@@ -21606,8 +21606,27 @@ var ItemsContent = (function (_super) {
             ItemsContentRender = (React.createElement("div", { className: "cart-item-wrapper" }, ItemsListRender));
         }
         else {
-            ItemsContentRender = (React.createElement("div", { className: "add-packs-text" },
-                React.createElement("p", null, this.state.defaultMsg)));
+            var hasStarter = void 0;
+            try {
+                hasStarter = Foxtel.ShopCartManager.hasStarter();
+            }
+            catch (err) {
+                hasStarter = false;
+            }
+            if (hasStarter) {
+                React.createElement("div", null,
+                    React.createElement("p", { className: "foxtel-now-jumbotron__pack-tag--ghost foxtelNowProductAddToCart" },
+                        React.createElement("span", { "data-tier-id": "991148" }, "Pop"),
+                        " - $",
+                        React.createElement("span", null, "15"),
+                        "/mth",
+                        React.createElement("sub", null, "&plus;")),
+                    React.createElement("p", null, "To access Premium packs or Extra channels, please add at least one of our starter packs"));
+            }
+            else {
+                ItemsContentRender = (React.createElement("div", { className: "add-packs-text" },
+                    React.createElement("p", { dangerouslySetInnerHTML: { __html: this.state.defaultMsg } })));
+            }
         }
         return (React.createElement("div", null, ItemsContentRender));
     };
@@ -21738,7 +21757,7 @@ var ShoppingCartSummary = (function (_super) {
                                     return (React.createElement(OfferEndsPrice_1.OfferEndsPrice, { price: _this.state.monthlyCostItems[1].value }));
                                 }
                                 else {
-                                    // return ();
+                                    // return (); // return empty
                                 }
                             }
                         })(),

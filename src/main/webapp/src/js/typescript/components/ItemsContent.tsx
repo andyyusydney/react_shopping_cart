@@ -109,6 +109,7 @@ export class ItemsContent extends React.Component<any, ItemsContentStates> {
     render() {
         let ItemsContentRender: Object;
         let ItemsListRender: Array<any> = [];
+
         if (this.props.packs && this.props.packs.length > 0) {
             this.props.packs.map((tier: any) => {
                 ItemsListRender.push(
@@ -124,11 +125,28 @@ export class ItemsContent extends React.Component<any, ItemsContentStates> {
                 </div>
             )
         } else {
-            ItemsContentRender = (
-                <div className="add-packs-text">
-                    <p>{this.state.defaultMsg}</p>
+            let hasStarter: boolean;
+            try {
+                hasStarter = Foxtel.ShopCartManager.hasStarter();
+            } catch(err) {
+                hasStarter = false;
+            }
+
+            if (hasStarter) {
+                <div>
+                    <p className="foxtel-now-jumbotron__pack-tag--ghost foxtelNowProductAddToCart">
+                        <span data-tier-id="991148">Pop</span> - $<span>15</span>/mth
+                        <sub>&plus;</sub>
+                    </p>
+                    <p>To access Premium packs or Extra channels, please add at least one of our starter packs</p>
                 </div>
-            )
+            } else {
+                ItemsContentRender = (
+                    <div className="add-packs-text">
+                        <p dangerouslySetInnerHTML={{ __html: this.state.defaultMsg }}></p>
+                    </div>
+                )
+            }
         }
 
         return (
