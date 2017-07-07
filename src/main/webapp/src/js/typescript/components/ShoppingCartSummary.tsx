@@ -13,6 +13,7 @@ interface ShoppingCartSummaryState {
     checkoutWithoutStarterURL: string;
     freeTrail: boolean;
     monthlyCostItems: Array<any>;
+    didScroll: boolean;
 };
 
 declare const FOX: any;
@@ -34,8 +35,57 @@ class ShoppingCartSummary extends React.Component<any, ShoppingCartSummaryState>
             checkoutURL: shoppingCartDataObj.checkoutURL,
             checkoutWithoutStarterURL: shoppingCartDataObj.checkoutWithoutStarterURL,
             freeTrail: false,
-            monthlyCostItems: []
+            monthlyCostItems: [],
+            didScroll: false
         };
+    }
+
+    scrollConfig() {
+        // Hide Header on on scroll down
+        let lastScrollTop = 0;
+        const delta = 3;
+        const shoppingCart = $('.foxtel-now-jumbotron');
+        const shoppingCartHeight = $('.foxtel-now-jumbotron').outerHeight();
+
+        setInterval((function() {
+            if (this.state.didScroll) {
+                hasScrolled();
+                this.setState({
+                    didScroll: false
+                });
+            }else if(lastScrollTop == 0){
+                initState();
+            }
+        }).bind(this), 50);
+
+        function initState() {
+            shoppingCart.removeClass('foxtel-now-jumbotron--minimized');
+            shoppingCart.find('.add-packs-text').removeClass('hidden');
+        }
+
+        function hasScrolled() {
+            var st = $(window).scrollTop();
+
+            // Make sure they scroll more than delta
+            if(Math.abs(lastScrollTop - st) <= delta)
+                return;
+
+            shoppingCart.addClass('foxtel-now-jumbotron--minimized');
+            shoppingCart.find('.add-packs-text').addClass('hidden');
+            // If they scrolled down and are past the navbar, add class .nav-up.
+            // This is necessary so you never see what is "behind" the navbar.
+            if (st > lastScrollTop && st > shoppingCartHeight){
+                // Scroll Down
+                $('.foxtel-now-jumbotron').removeClass('shoppingCart-nav-down').addClass('shoppingCart-nav-up');
+            } else {
+                // Scroll Up
+                if(st + $(window).height() < $(document).height()) {
+                    $('.foxtel-now-jumbotron').removeClass('shoppingCart-nav-up').addClass('shoppingCart-nav-down');
+                }
+            }
+
+            lastScrollTop = st;
+        }
     }
 
     setFreeTrail(data: any) {
@@ -43,6 +93,21 @@ class ShoppingCartSummary extends React.Component<any, ShoppingCartSummaryState>
             freeTrail: data.hasFreeTrial || data.play.eligibleFreeTrial || false,
             monthlyCostItems: data.quote.monthlyCostItems
         });
+    }
+
+    handleScroll() {
+        this.setState({
+            didScroll: true
+        });
+    }
+
+    componentDidMount() {
+        this.scrollConfig();
+        window.addEventListener("scroll", this.handleScroll.bind(this));
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.handleScroll);
     }
 
     render() {
