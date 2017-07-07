@@ -7,6 +7,7 @@ import { Description } from "./Description";
 import { TotalMonthlyCostPrice } from "./TotalMonthlyCostPrice";
 import { CheckoutBtn } from "./CheckoutBtn";
 import { FreeTrail } from "./FreeTrail";
+import { OfferEndsPrice } from "./OfferEndsPrice";
 
 interface ShoppingCartSummaryState {
     descriptionTitle: string;
@@ -14,6 +15,7 @@ interface ShoppingCartSummaryState {
     checkoutURL: string;
     checkoutWithoutStarterURL: string;
     freeTrail: boolean;
+    monthlyCostItems: Array<any>;
 };
 
 declare const FOX: any;
@@ -34,13 +36,15 @@ class ShoppingCartSummary extends React.Component<any, ShoppingCartSummaryState>
             checkoutBtnLabel: shoppingCartDataObj.checkoutBtnLabel,
             checkoutURL: shoppingCartDataObj.checkoutURL,
             checkoutWithoutStarterURL: shoppingCartDataObj.checkoutWithoutStarterURL,
-            freeTrail: false
+            freeTrail: false,
+            monthlyCostItems: []
         };
     }
 
     setFreeTrail(data: any) {
         this.setState({
-            freeTrail: data.hasFreeTrial || data.play.eligibleFreeTrial || false
+            freeTrail: data.hasFreeTrial || data.play.eligibleFreeTrial || false,
+            monthlyCostItems: data.quote.monthlyCostItems
         });
     }
 
@@ -56,9 +60,26 @@ class ShoppingCartSummary extends React.Component<any, ShoppingCartSummaryState>
                             {
                                 (() => {
                                     if (this.state.freeTrail) {
-                                        return (
-                                            <FreeTrail />
-                                        );
+                                        if (this.state.monthlyCostItems.length > 1) { // case 3
+                                            return (
+                                                <div>
+                                                    <FreeTrail />
+                                                    <OfferEndsPrice price={this.state.monthlyCostItems[1].value} />
+                                                </div>
+                                            );
+                                        } else { // case 2
+                                            return (
+                                                <FreeTrail />
+                                            );
+                                        }
+                                    } else {
+                                        if (this.state.monthlyCostItems.length > 1) { // case 4
+                                            return (
+                                                <OfferEndsPrice price={this.state.monthlyCostItems[1].value} />
+                                            );
+                                        } else { // case 1
+                                            // return (); // return empty
+                                        }
                                     }
                                 })()
                             }
