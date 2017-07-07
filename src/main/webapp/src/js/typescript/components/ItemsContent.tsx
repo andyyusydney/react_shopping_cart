@@ -109,29 +109,68 @@ export class ItemsContent extends React.Component<any, ItemsContentStates> {
     render() {
         let ItemsContentRender: Object;
         let ItemsListRender: Array<any> = [];
+        let hasStarter: boolean;
+        try {
+            hasStarter = Foxtel.ShopCartManager.hasStarter();
+        } catch(err) {
+            hasStarter = false;
+        }
 
         if (this.props.packs && this.props.packs.length > 0) {
             this.props.packs.map((tier: any) => {
                 ItemsListRender.push(
                     <p key={tier.tierId} className="foxtel-now-jumbotron__pack-tag" data-tier-id={tier.tierId}>
                         <span>{tier.title}</span> - $<span>{tier.discountedPrice}</span>/month
-                        <sub onClick={(e) => this.onRemovePackClick(tier.tierId, tier.title)}>⨯</sub>
+                        {
+                            (() => {
+                                tier.removable = true; // To be removed. Force to be removable for testing.
+                                if (tier.removable) {
+                                    return <sub onClick={(e) => this.onRemovePackClick(tier.tierId, tier.title)}>⨯</sub>
+                                }
+                            })()
+                        }
                     </p>
                 );
             })
             ItemsContentRender = (
                 <div className="cart-item-wrapper">
                     {ItemsListRender}
+                    <p className="foxtel-now-jumbotron__pack-tag--transparent">
+                    {
+                        (() => {
+                            if (Foxtel.ShopCartManager.hasPremium()) {
+                                if (hasStarter) {
+                                    if (this.props.packs.length > 2) {
+                                        return (
+                                            <span>
+                                                + <span>{this.props.packs.length - 2}</span> {'\u00A0'}{'\u00A0'}<span>more</span>
+                                            </span>
+                                        );
+                                    }
+                                } else {
+                                    if (this.props.packs.length > 1) {
+                                        return (
+                                            <span>
+                                                + <span>{this.props.packs.length - 1}</span> {'\u00A0'}{'\u00A0'}<span>more</span>
+                                            </span>
+                                        );
+                                    }
+                                }
+                            } else {
+                                if (this.props.packs.length > 2) {
+                                    return (
+                                        <span>
+                                            + <span>{this.props.packs.length - 2}</span> {'\u00A0'}{'\u00A0'}<span>more</span>
+                                        </span>
+                                    );
+                                }
+                            }
+                        })()
+                    }
+                    </p>
                 </div>
             )
         } else {
-            let hasStarter: boolean;
-            try {
-                hasStarter = Foxtel.ShopCartManager.hasStarter();
-            } catch(err) {
-                hasStarter = false;
-            }
-
             if (hasStarter) {
                 <div>
                     <p className="foxtel-now-jumbotron__pack-tag--ghost foxtelNowProductAddToCart">

@@ -21594,6 +21594,13 @@ var ItemsContent = (function (_super) {
         var _this = this;
         var ItemsContentRender;
         var ItemsListRender = [];
+        var hasStarter;
+        try {
+            hasStarter = Foxtel.ShopCartManager.hasStarter();
+        }
+        catch (err) {
+            hasStarter = false;
+        }
         if (this.props.packs && this.props.packs.length > 0) {
             this.props.packs.map(function (tier) {
                 ItemsListRender.push(React.createElement("p", { key: tier.tierId, className: "foxtel-now-jumbotron__pack-tag", "data-tier-id": tier.tierId },
@@ -21601,18 +21608,54 @@ var ItemsContent = (function (_super) {
                     " - $",
                     React.createElement("span", null, tier.discountedPrice),
                     "/month",
-                    React.createElement("sub", { onClick: function (e) { return _this.onRemovePackClick(tier.tierId, tier.title); } }, "\u2A2F")));
+                    (function () {
+                        tier.removable = true; // To be removed. Force to be removable for testing.
+                        if (tier.removable) {
+                            return React.createElement("sub", { onClick: function (e) { return _this.onRemovePackClick(tier.tierId, tier.title); } }, "\u2A2F");
+                        }
+                    })()));
             });
-            ItemsContentRender = (React.createElement("div", { className: "cart-item-wrapper" }, ItemsListRender));
+            ItemsContentRender = (React.createElement("div", { className: "cart-item-wrapper" },
+                ItemsListRender,
+                React.createElement("p", { className: "foxtel-now-jumbotron__pack-tag--transparent" }, (function () {
+                    if (Foxtel.ShopCartManager.hasPremium()) {
+                        if (hasStarter) {
+                            if (_this.props.packs.length > 2) {
+                                return (React.createElement("span", null,
+                                    "+ ",
+                                    React.createElement("span", null, _this.props.packs.length - 2),
+                                    " ",
+                                    '\u00A0',
+                                    '\u00A0',
+                                    React.createElement("span", null, "more")));
+                            }
+                        }
+                        else {
+                            if (_this.props.packs.length > 1) {
+                                return (React.createElement("span", null,
+                                    "+ ",
+                                    React.createElement("span", null, _this.props.packs.length - 1),
+                                    " ",
+                                    '\u00A0',
+                                    '\u00A0',
+                                    React.createElement("span", null, "more")));
+                            }
+                        }
+                    }
+                    else {
+                        if (_this.props.packs.length > 2) {
+                            return (React.createElement("span", null,
+                                "+ ",
+                                React.createElement("span", null, _this.props.packs.length - 2),
+                                " ",
+                                '\u00A0',
+                                '\u00A0',
+                                React.createElement("span", null, "more")));
+                        }
+                    }
+                })())));
         }
         else {
-            var hasStarter = void 0;
-            try {
-                hasStarter = Foxtel.ShopCartManager.hasStarter();
-            }
-            catch (err) {
-                hasStarter = false;
-            }
             if (hasStarter) {
                 React.createElement("div", null,
                     React.createElement("p", { className: "foxtel-now-jumbotron__pack-tag--ghost foxtelNowProductAddToCart" },
