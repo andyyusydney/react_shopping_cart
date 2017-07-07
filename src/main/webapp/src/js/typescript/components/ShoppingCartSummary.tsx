@@ -4,10 +4,7 @@ import { connect } from "react-redux";
 import * as $ from "jquery";
 
 import { Description } from "./Description";
-import { TotalMonthlyCostPrice } from "./TotalMonthlyCostPrice";
-import { CheckoutBtn } from "./CheckoutBtn";
-import { FreeTrail } from "./FreeTrail";
-import { OfferEndsPrice } from "./OfferEndsPrice";
+import { Summary } from "./Summary";
 
 interface ShoppingCartSummaryState {
     descriptionTitle: string;
@@ -57,34 +54,13 @@ class ShoppingCartSummary extends React.Component<any, ShoppingCartSummaryState>
                             <Description title={this.state.descriptionTitle} />
                         </div>
                         <div className="foxtel-now-jumbotron--shopping-cart__summary col-md-4 col-sm-12">
-                            {
-                                (() => {
-                                    if (this.state.freeTrail) {
-                                        if (this.state.monthlyCostItems.length > 1) { // case 3
-                                            return (
-                                                <div>
-                                                    <FreeTrail />
-                                                    <OfferEndsPrice price={this.state.monthlyCostItems[1].value} />
-                                                </div>
-                                            );
-                                        } else { // case 2
-                                            return (
-                                                <FreeTrail />
-                                            );
-                                        }
-                                    } else {
-                                        if (this.state.monthlyCostItems.length > 1) { // case 4
-                                            return (
-                                                <OfferEndsPrice price={this.state.monthlyCostItems[1].value} />
-                                            );
-                                        } else { // case 1
-                                            // return (); // return empty
-                                        }
-                                    }
-                                })()
-                            }
-                            <TotalMonthlyCostPrice />
-                            <CheckoutBtn checkoutUrl={this.state.checkoutURL} checkoutNoStarterUrl={this.state.checkoutWithoutStarterURL} btnLabel={this.state.checkoutBtnLabel} />
+                            <Summary
+                                freeTrail={this.state.freeTrail}
+                                monthlyCostItems={this.state.monthlyCostItems}
+                                checkoutURL={this.state.checkoutURL}
+                                checkoutWithoutStarterURL={this.state.checkoutWithoutStarterURL}
+                                checkoutBtnLabel={this.state.checkoutBtnLabel}
+                                />
                         </div>
                     </div>
                 </div>

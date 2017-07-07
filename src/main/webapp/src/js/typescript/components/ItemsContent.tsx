@@ -124,7 +124,7 @@ export class ItemsContent extends React.Component<any, ItemsContentStates> {
                         {
                             (() => {
                                 tier.removable = true; // To be removed. Force to be removable for testing.
-                                if (tier.removable) {
+                                if (tier.removable && tier.type !== "EXTRA") {
                                     return <sub onClick={(e) => this.onRemovePackClick(tier.tierId, tier.title)}>⨯</sub>
                                 }
                             })()
